@@ -1,0 +1,41 @@
+var helpers = require("../../../../../../../../home/tobias_fletcher/.nvm/versions/node/v14.15.4/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _react = require('react');
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _reactDom = require('react-dom');
+  var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
+  require('./index.scss');
+  var _jsxFileName = "/mnt/c/Users/tobia/Documents/GitHub/horrorTime-client/src/index.jsx";
+  class HorrorTimeApp extends _reactDefault.default.Component {
+    reder() {
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "horror-time",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 9,
+            columnNumber: 7
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 10,
+            columnNumber: 9
+          }
+        }, "Good morning"))
+      );
+    }
+  }
+  const container = document.getElementsByClassName('app-container')[0];
+  _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(HorrorTimeApp), container);
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
