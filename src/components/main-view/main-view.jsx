@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { MovieCard } from '../movieCard/movieCard';
 import { MovieView } from '../movieView/movieView';
 
