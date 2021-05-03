@@ -9,7 +9,7 @@ import './index.scss';
 class horrorTimeApp extends React.Component {
   render() {
     return (
-      <div MainView />
+      < MainView />
     );
   }
 }
