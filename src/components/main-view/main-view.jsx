@@ -1,6 +1,7 @@
 import React from 'react';
-import { MovieCard } from '../movie-card/movie-card';
-import { MovieView } from '../movie-view/movie-view';
+import { MovieCard } from '../movieCard/movieCard';
+import { MovieView } from '../movieView/movieView';
+
 
 export class MainView extends React.Component {
 
@@ -8,12 +9,12 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [
-        { _id: 1, Title: 'Inception', Description: 'desc...', ImagePath: '... ' },
-        { _id: 2, Title: 'The Shawshank Redemption', Description: 'desc...', ImagePath: '...' },
-        { _id: 3, Title: 'Gladiator', Description: 'desc...', ImagePath: '...' }
+        { _id: 1, Title: 'Inception', Description: 'desc1...', ImagePath: '...' },
+        { _id: 2, Title: 'The Shawshank Redemption', Description: 'desc2...', ImagePath: '...' },
+        { _id: 3, Title: 'Gladiator', Description: 'desc3...', ImagePath: '...' }
       ],
       selectedMovie: null
-    };
+    }
   }
 
   setSelectedMovie(newSelectedMovie) {
@@ -22,18 +23,33 @@ export class MainView extends React.Component {
     });
   }
 
+
   render() {
     const { movies, selectedMovie } = this.state;
 
-    if (selectedMovie) return <MovieView movie={selectedMovie} />;
 
-    if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
+    if (movies.length === 0) return <div className="main-view">The list is empty</div>;
+
+
+    if (selectedMovie) return (
+      <div className="main-view">
+        <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie) }} />
+      </div>
+    )
+
 
     return (
       <div className="main-view">
-        {movies.map(movie => <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setState({ selectedMovie: newSelectedMovie }); }} />)}
+        {
+          movies.map(
+            movie => <MovieCard key={movie._id} movie={movie} onMovieClick={movie => { this.setSelectedMovie(movie) }} />
+          )
+        }
       </div>
     );
+
+
+
+
   }
 }
-
