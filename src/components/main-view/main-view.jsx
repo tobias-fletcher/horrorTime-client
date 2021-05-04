@@ -9,7 +9,7 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [
-        { _id: 1, Title: 'Silence of the Lambs', Description: 'A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.', ImagePath: 'https://s3.amazonaws.com/criterion-production/films/46014912ca0c20592c472f5bbe33e4f8/L9AQ95Y7z2vOIUf1ntwvpZsZx3kp8B_large.jpg' },
+        { _id: 1, Title: 'Silence of the Lambs', Description: 'https://upload.wikimedia.org/wikipedia/en/8/86/The_Silence_of_the_Lambs_poster.jpg' },
         { _id: 2, Title: 'You should have left', Description: 'written and directed by genre superstar screenwriter David Koepp, follows retired banker Theo Conroy (Kevin Bacon), his actress wife Susanna (Amanda Seyfried), and their young daughter Ella (Avery Tiiu Essex) to a rental house in the Welsh countryside.', ImagePath: 'https://upload.wikimedia.org/wikipedia/en/7/73/You_Should_Have_Left_Poster_2020.jpeg' },
         { _id: 3, Title: 'Gladiator', Description: 'desc3...', ImagePath: '...' }
       ],
