@@ -1,6 +1,6 @@
 import React from 'react';
-import { MovieCard } from '../movieCard/movieCard';
-import { MovieView } from '../movieView/movieView';
+import { MovieCard } from '../movieCard/movie-card';
+import { MovieView } from '../movieView/movie-view';
 
 
 export class MainView extends React.Component {
