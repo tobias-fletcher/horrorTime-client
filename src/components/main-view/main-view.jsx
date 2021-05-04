@@ -9,7 +9,7 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [
-        { _id: 1, Title: 'Silence of the Lambs', Description: 'A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.', ImagePath: 'https://images.app.goo.gl/8JiNxY4Q9x9BQynt8' },
+        { _id: 1, Title: 'Silence of the Lambs', Description: 'A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.', ImagePath: 'https://s3.amazonaws.com/criterion-production/films/46014912ca0c20592c472f5bbe33e4f8/L9AQ95Y7z2vOIUf1ntwvpZsZx3kp8B_large.jpg' },
         { _id: 2, Title: 'The Shawshank Redemption', Description: 'desc2...', ImagePath: '...' },
         { _id: 3, Title: 'Gladiator', Description: 'desc3...', ImagePath: '...' }
       ],
