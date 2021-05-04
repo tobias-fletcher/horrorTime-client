@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { MovieView } from '../movie-view/movie-view';
 import { MovieCard } from '../movie-card/movie-card';
 
@@ -8,15 +9,22 @@ export class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
-      movies: [
-        { _id: 1, Title: 'Silence of the Lambs', Description: '..', ImagePath: 'https://upload.wikimedia.org/wikipedia/en/8/86/The_Silence_of_the_Lambs_poster.jpg' },
-        { _id: 2, Title: 'You should have left', Description: 'written and directed by genre superstar screenwriter David Koepp, follows retired banker Theo Conroy (Kevin Bacon), his actress wife Susanna (Amanda Seyfried), and their young daughter Ella (Avery Tiiu Essex) to a rental house in the Welsh countryside.', ImagePath: 'https://upload.wikimedia.org/wikipedia/en/7/73/You_Should_Have_Left_Poster_2020.jpeg' },
-        { _id: 3, Title: 'Gladiator', Description: 'desc3...', ImagePath: '...' }
-      ],
+      movies: [],
       selectedMovie: null
     }
   }
 
+  componentDidMount() {
+    axios.get('https://[APP-NAME].herokuapp.com/movies')
+      .then(response => {
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
   setSelectedMovie(newSelectedMovie) {
     this.setState({
       selectedMovie: newSelectedMovie
@@ -28,28 +36,19 @@ export class MainView extends React.Component {
     const { movies, selectedMovie } = this.state;
 
 
-    if (movies.length === 0) return <div className="main-view">The list is empty</div>;
-
-
-    if (selectedMovie) return (
-      <div className="main-view">
-        <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie) }} />
-      </div>
-    )
+    if (movies.length === 0) return <div className="main-view" />;
 
 
     return (
       <div className="main-view">
-        {
-          movies.map(
-            movie => <MovieCard key={movie._id} movie={movie} onMovieClick={movie => { this.setSelectedMovie(movie) }} />
-          )
+        {selectedMovie
+          ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+          : movies.map(movie => (
+            <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
+          ))
         }
       </div>
     );
-
-
-
-
   }
 }
+
