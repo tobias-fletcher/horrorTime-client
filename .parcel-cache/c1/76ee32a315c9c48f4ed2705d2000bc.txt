@@ -4,7 +4,7 @@
 90C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\node-addon-api\doc\addon.md121436361000000000 0
 97C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\node-addon-api\tools\check-napi.js121436361000000000 0
 91C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\node-addon-api\.clang-format121436361000000000 0
-64C:\Users\tobia\Documents\GitHub\horrorTime-client\.gitattributes132639441125308548 0
+64C:\Users\tobia\Documents\GitHub\horrorTime-client\.gitattributes132645640769460067 0
 95C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\node-addon-api\doc\type_error.md121436361000000000 0
 86C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\object-assign\readme.md131226995680000000 0
 73C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\is-extglob132639525019752003 1
@@ -49,7 +49,7 @@
 75C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\sass\sass.js121436361000000000 0
 68C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react132639510224362888 1
 81C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\js-tokens\index.js131616141900000000 0
-88C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\main-view\main-view.jsx132645638788309823 0
+88C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\main-view\main-view.jsx132645640807620897 0
 67C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\.bin132639525020829139 1
 87C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\node-addon-api\README.md121436361000000000 0
 70C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel132639525016936870 1
