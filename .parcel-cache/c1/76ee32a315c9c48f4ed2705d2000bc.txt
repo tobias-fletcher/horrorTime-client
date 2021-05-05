@@ -46,12 +46,12 @@
 75C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\movie-view132641311458883598 1
 94C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\source-map\src\types.js121436361000000000 0
 73C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\fill-range132639525020011315 1
-90C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\movie-view\movie-view.jsx132645638517506414 0
+90C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\movie-view\movie-view.jsx132646477622880045 0
 84C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\types\LICENSE121436361000000000 0
 75C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\sass\sass.js121436361000000000 0
 68C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react132639510224362888 1
 81C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\js-tokens\index.js131616141900000000 0
-88C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\main-view\main-view.jsx132646457077601741 0
+88C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\main-view\main-view.jsx132646464187231766 0
 67C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\.bin132639525020829139 1
 87C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\node-addon-api\README.md121436361000000000 0
 70C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel132639525016936870 1
