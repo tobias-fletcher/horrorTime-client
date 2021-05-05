@@ -1,6 +1,6 @@
 import React from 'react';
-import { MovieCard } from '../movieCard/movieCard';
-import { MovieView } from '../movieView/movieView';
+import { MovieView } from '../movie-view/movie-view';
+import { MovieCard } from '../movie-card/movie-card';
 
 
 export class MainView extends React.Component {
@@ -9,8 +9,8 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [
-        { _id: 1, Title: 'Inception', Description: 'desc1...', ImagePath: '...' },
-        { _id: 2, Title: 'The Shawshank Redemption', Description: 'desc2...', ImagePath: '...' },
+        { _id: 1, Title: 'Silence of the Lambs', Description: '..', ImagePath: 'https://upload.wikimedia.org/wikipedia/en/8/86/The_Silence_of_the_Lambs_poster.jpg' },
+        { _id: 2, Title: 'You should have left', Description: 'written and directed by genre superstar screenwriter David Koepp, follows retired banker Theo Conroy (Kevin Bacon), his actress wife Susanna (Amanda Seyfried), and their young daughter Ella (Avery Tiiu Essex) to a rental house in the Welsh countryside.', ImagePath: 'https://upload.wikimedia.org/wikipedia/en/7/73/You_Should_Have_Left_Poster_2020.jpeg' },
         { _id: 3, Title: 'Gladiator', Description: 'desc3...', ImagePath: '...' }
       ],
       selectedMovie: null
