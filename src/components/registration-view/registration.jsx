@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 export function registrationView(props) {
   const [username, setUsername] = useState('');
