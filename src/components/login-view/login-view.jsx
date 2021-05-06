@@ -8,7 +8,17 @@ export function LoginView(props) {
   const handleSubmit = () => {
     e.preventDefault();
     console.log(username, password);
-    props.onLoggedIn(username);
+    axios.post('itshorrortime/login', {
+      Uername: username,
+      Password: password
+    })
+      .then(response => {
+        const user = response.user;
+        props.onLoggedIn(user);
+      })
+      .catch(e => {
+        console.log('Invalid username')
+      });
   };
 
   return (
