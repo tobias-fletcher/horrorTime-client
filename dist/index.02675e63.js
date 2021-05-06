@@ -28162,6 +28162,8 @@ try {
   });
   var _react = require('react');
   var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _propTypes = require('prop-types');
+  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _jsxFileName = "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx";
   class MovieView extends _reactDefault.default.Component {
     keypressCallback(event) {
@@ -28172,6 +28174,9 @@ try {
         console.log(event.key);
       });
     }
+    componentWillUnmount() {
+      document.removeEventListener('keypress', this.keypressCallback);
+    }
     render() {
       const {movie, onBackClick} = this.props;
       return (
@@ -28180,7 +28185,7 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 19,
+            lineNumber: 25,
             columnNumber: 7
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -28188,16 +28193,15 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 20,
+            lineNumber: 26,
             columnNumber: 9
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("img", {
-          src: movie.ImagePath,
-          alt: "Movie image",
+          src: `/img/${movie.ImagePath}`,
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 21,
+            lineNumber: 27,
             columnNumber: 11
           }
         })), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -28205,7 +28209,7 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 23,
+            lineNumber: 29,
             columnNumber: 9
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("span", {
@@ -28213,7 +28217,7 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 24,
+            lineNumber: 30,
             columnNumber: 11
           }
         }, "Title: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
@@ -28221,7 +28225,7 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 25,
+            lineNumber: 31,
             columnNumber: 11
           }
         }, movie.Title)), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -28229,7 +28233,7 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 27,
+            lineNumber: 33,
             columnNumber: 9
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("span", {
@@ -28237,7 +28241,7 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 28,
+            lineNumber: 34,
             columnNumber: 11
           }
         }, "Description: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
@@ -28245,7 +28249,7 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 29,
+            lineNumber: 35,
             columnNumber: 11
           }
         }, movie.Description)), /*#__PURE__*/_reactDefault.default.createElement("button", {
@@ -28255,20 +28259,38 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 31,
+            lineNumber: 37,
             columnNumber: 9
           }
         }, "Back"))
       );
     }
   }
+  MovieView.propTypes = {
+    movie: _propTypesDefault.default.shape({
+      Title: _propTypesDefault.default.string.isRequired,
+      Description: _propTypesDefault.default.string.isRequired,
+      ImagePath: _propTypesDefault.default.string.isRequired,
+      Genre: _propTypesDefault.default.shape({
+        Name: _propTypesDefault.default.string.isRequired,
+        Description: _propTypesDefault.default.string.isRequired
+      }),
+      Director: _propTypesDefault.default.shape({
+        Name: _propTypesDefault.default.string.isRequired,
+        Bio: _propTypesDefault.default.string.isRequired,
+        Birth: _propTypesDefault.default.string.isRequired,
+        Death: _propTypesDefault.default.string
+      })
+    }).isRequired,
+    onBackClick: _propTypesDefault.default.func.isRequired
+  };
   helpers.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"7kyIT","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"7kyIT":[function(require,module,exports) {
+},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"7kyIT","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","prop-types":"4dfy5"}],"7kyIT":[function(require,module,exports) {
 "use strict";
 
 exports.interopDefault = function (a) {
@@ -28467,57 +28489,7 @@ function registerExportsForReactRefresh(module) {
   }
 }
 
-},{"react-refresh/runtime":"2YxSG"}],"7v6h3":[function(require,module,exports) {
-var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-  _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "MovieCard", function () {
-    return MovieCard;
-  });
-  var _react = require('react');
-  var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _propTypes = require('prop-types');
-  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
-  var _jsxFileName = "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx";
-  class MovieCard extends _reactDefault.default.Component {
-    render() {
-      const {movie, onMovieClick} = this.props;
-      return (
-        /*#__PURE__*/_reactDefault.default.createElement("div", {
-          onClick: () => onMovieClick(movie),
-          className: "movie-card",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 8,
-            columnNumber: 13
-          }
-        }, movie.Title)
-      );
-    }
-  }
-  MovieCard.propTypes = {
-    movie: _propTypesDefault.default.shape({
-      Title: _propTypesDefault.default.string,
-      Description: _propTypesDefault.default.string,
-      Genre: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string,
-        Description: _propTypesDefault.default.string
-      })
-    }).isRequired,
-    onMovieClick: _propTypesDefault.default.func.isRequired
-  };
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-
-},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"7kyIT","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","prop-types":"4dfy5"}],"4dfy5":[function(require,module,exports) {
+},{"react-refresh/runtime":"2YxSG"}],"4dfy5":[function(require,module,exports) {
 /**
 * Copyright (c) 2013-present, Facebook, Inc.
 *
@@ -29327,7 +29299,64 @@ checkPropTypes.resetWarningCache = function () {
 };
 module.exports = checkPropTypes;
 
-},{"./lib/ReactPropTypesSecret":"3OVnw"}],"6Chq0":[function(require,module,exports) {
+},{"./lib/ReactPropTypesSecret":"3OVnw"}],"7v6h3":[function(require,module,exports) {
+var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "MovieCard", function () {
+    return MovieCard;
+  });
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _propTypes = require('prop-types');
+  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  var _jsxFileName = "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx";
+  class MovieCard extends _reactDefault.default.Component {
+    render() {
+      const {movie, onMovieClick} = this.props;
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          onClick: () => onMovieClick(movie),
+          className: "movie-card",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 9,
+            columnNumber: 7
+          }
+        }, movie.Title)
+      );
+    }
+  }
+  MovieCard.propTypes = {
+    movie: _propTypesDefault.default.shape({
+      title: _propTypesDefault.default.string.isRequired,
+      description: _propTypesDefault.default.string.isRequired,
+      imagePath: _propTypesDefault.default.string.isRequired,
+      genre: _propTypesDefault.default.shape({
+        name: _propTypesDefault.default.string.isRequired,
+        description: _propTypesDefault.default.string.isRequired
+      }),
+      director: _propTypesDefault.default.shape({
+        name: _propTypesDefault.default.string.isRequired,
+        bio: _propTypesDefault.default.string.isRequired,
+        birth: _propTypesDefault.default.string.isRequired,
+        death: _propTypesDefault.default.string
+      })
+    }).isRequired,
+    onClick: _propTypesDefault.default.func.isRequired
+  };
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"7kyIT","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","prop-types":"4dfy5"}],"6Chq0":[function(require,module,exports) {
 var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
