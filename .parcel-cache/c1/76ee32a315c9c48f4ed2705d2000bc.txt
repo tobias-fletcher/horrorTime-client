@@ -18,7 +18,7 @@
 53C:\Users\tobia\Documents\GitHub\horrorTime-client\src132641311458914181 1
 83C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\scheduler\tracing.js121436361000000000 0
 90C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\is-binary-path\package.json132639525018285922 0
-54C:\Users\tobia\Documents\GitHub\horrorTime-client\dist132648184210059945 1
+54C:\Users\tobia\Documents\GitHub\horrorTime-client\dist132648186059221932 1
 77C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\node-addon-api132639525018365711 1
 72C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\js-tokens132639510224374361 1
 64C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components132646617620703446 1
@@ -57,7 +57,7 @@
 73C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\fill-range132639525020011315 1
 90C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\movie-view\movie-view.jsx132648173147134601 0
 79C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\axios\index.d.ts121436361000000000 0
-90C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\login-view\login-view.jsx132648184205802482 0
+90C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\login-view\login-view.jsx132648186053167237 0
 67C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\.bin132639525020829139 1
 87C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\node-addon-api\README.md121436361000000000 0
 70C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel132639525016936870 1
@@ -395,7 +395,7 @@
 85C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\is-binary-path\license121436361000000000 0
 98C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\source-map\src\wasm-node.js121436361000000000 0
 87C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\is-binary-path\readme.md121436361000000000 0
-77C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.d22b8a02.css.map132648184209630182 0
+77C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.d22b8a02.css.map132648186058922769 0
 87C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\glob-parent\CHANGELOG.md121436361000000000 0
 83C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\glob-parent\index.js121436361000000000 0
 82C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\glob-parent\LICENSE121436361000000000 0
@@ -463,7 +463,7 @@
 81C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\anymatch\README.md121436361000000000 0
 81C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\source-map132639525020170892 1
 87C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\transformer-sass132639525019373037 1
-65C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.html132648184209350932 0
+65C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.html132648186058703330 0
 85C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\types\index.js121436361000000000 0
 91C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\transformer-sass\lib132639524954710488 1
 110C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\source-map\wasm-browser\source-map.wasm121436361000000000 0
@@ -496,11 +496,11 @@
 104C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\source-map\dist\SourceMap.js.flow121436361000000000 0
 100C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\source-map\dist\utils.js.flow121436361000000000 0
 102C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\source-map\dist\wasm-browser.js121436361000000000 0
-76C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.02675e63.js.map132648184210029121 0
+76C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.02675e63.js.map132648186059192322 0
 81C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\plugin\lib132639524954670595 1
 85C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\plugin\LICENSE121436361000000000 0
 80C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\.bin\loose-envify132639510225680877 0
 82C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\.bin\node-gyp-build132639525020679539 0
 87C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\.bin\node-gyp-build-test132639525020709442 0
-72C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.02675e63.js132648184209909592 0
-73C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.d22b8a02.css132648184209400804 0
+72C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.02675e63.js132648186059082315 0
+73C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.d22b8a02.css132648186058733283 0
