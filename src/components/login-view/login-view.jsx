@@ -12,7 +12,7 @@ export function LoginView(props) {
       Uername: username,
       Password: password
     })
-      .then(response => {
+      .then((response) => {
         const user = response.user;
         props.onLoggedIn(user);
       })
