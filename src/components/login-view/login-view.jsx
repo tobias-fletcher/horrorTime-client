@@ -13,7 +13,7 @@ export function LoginView(props) {
       Password: password
     })
       .then((response) => {
-        const user = response.data;
+        const data = response.data;
         props.onLoggedIn(data);
       })
       .catch(e => {
