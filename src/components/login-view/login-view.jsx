@@ -12,11 +12,10 @@ export function LoginView(props) {
       Uername: username,
       Password: password
     })
-      .then((response) => {
-        const data = response.data;
-        props.onLoggedIn(data);
+      .then((username) => {
+        props.onLoggedIn(username);
       })
-      .catch(event => {
+      .catch(e => {
         console.log('Invalid username')
       });
   };
