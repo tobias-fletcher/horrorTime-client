@@ -5,7 +5,7 @@ export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit(e) => {
     e.preventDefault();
     console.log(username, password);
     axios.post('/login', {
