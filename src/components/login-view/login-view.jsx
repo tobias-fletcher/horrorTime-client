@@ -8,7 +8,7 @@ export function LoginView(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username, password);
-    axios.post('/users', {
+    axios.post('itshorrortime/users', {
       Uername: username,
       Password: password
     })
