@@ -29377,7 +29377,7 @@ try {
     const [password, setPassword] = _react.useState('');
     const [email, setEmail] = _react.useState('');
     const [birthdate, setBirthdate] = _react.useState('');
-    const handleSubmit = e => {
+    const handleSubmit = () => {
       e.preventDefault();
       console.log(username, password, email, birthdate);
       props.onRegistration(username);
@@ -29497,10 +29497,10 @@ try {
     _s();
     const [username, setUsername] = _react.useState('');
     const [password, setPassword] = _react.useState('');
-    const handleSubmit = e => {
+    const handleSubmit = () => {
       e.preventDefault();
       console.log(username, password);
-      _axiosDefault.default.post('/users', {
+      _axiosDefault.default.post('itshorrortime/login', {
         Uername: username,
         Password: password
       }).then(response => {
@@ -29576,4 +29576,4 @@ try {
 
 },{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"7kyIT","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","axios":"7rA65"}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequireeb1c")
 
-//# sourceMappingURL=index.02675e63.js.map
+//# sourceMappingURL=index.HASH_REF_f9eab60bc3a7a7c3f683683702675e63.js.map
