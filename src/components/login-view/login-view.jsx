@@ -8,7 +8,7 @@ export function LoginView(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username, password);
-    axios.post('itshorrortime/users', {
+    axios.post('https://itshorrortime.herokuapp.com/users', {
       Uername: username,
       Password: password
     })
