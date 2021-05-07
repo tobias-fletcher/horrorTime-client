@@ -29500,7 +29500,7 @@ try {
     const handleSubmit = e => {
       e.preventDefault();
       console.log(username, password);
-      _axiosDefault.default.post('https://itshorrortime.herokuapp.com/users', {
+      _axiosDefault.default.post('/users', {
         Uername: username,
         Password: password
       }).then(response => {
