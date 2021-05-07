@@ -5,14 +5,16 @@ export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log(username, password);
     axios.post('/login', {
       Uername: username,
       Password: password
     })
-      .then((username) => {
+      .then((response) => {
+        const data = reponse.data;
+        console.log(response);
         props.onLoggedIn(username);
       })
       .catch(e => {
