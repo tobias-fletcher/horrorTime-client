@@ -12,13 +12,7 @@ export function LoginView(props) {
       Uername: username,
       Password: password
     })
-      .then((response) => {
-        const data = response.data;
-        props.onLoggedIn(data);
-      })
-      .catch(e => {
-        console.log('Invalid username')
-      });
+    props.onLoggedIn(username);
   };
 
   return (
