@@ -29500,7 +29500,7 @@ try {
     const handleSubmit = e => {
       e.preventDefault();
       console.log(username, password);
-      _axiosDefault.default.post('localhost:5000/login', {
+      _axiosDefault.default.post('/login', {
         Uername: username,
         Password: password
       });
