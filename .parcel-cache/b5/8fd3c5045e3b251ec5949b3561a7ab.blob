@@ -28270,7 +28270,7 @@ try {
     movie: _propTypesDefault.default.shape({
       Title: _propTypesDefault.default.string.isRequired,
       Description: _propTypesDefault.default.string.isRequired,
-      ImagePath: _propTypesDefault.default.string,
+      ImagePath: _propTypesDefault.default.string.isRequired,
       Genre: _propTypesDefault.default.shape({
         Name: _propTypesDefault.default.string.isRequired,
         Description: _propTypesDefault.default.string.isRequired
@@ -28278,7 +28278,7 @@ try {
       Director: _propTypesDefault.default.shape({
         Name: _propTypesDefault.default.string.isRequired,
         Bio: _propTypesDefault.default.string.isRequired,
-        Birth: _propTypesDefault.default.string,
+        Birth: _propTypesDefault.default.string.isRequired,
         Death: _propTypesDefault.default.string
       })
     }).isRequired,
@@ -29336,7 +29336,7 @@ try {
     movie: _propTypesDefault.default.shape({
       title: _propTypesDefault.default.string.isRequired,
       description: _propTypesDefault.default.string.isRequired,
-      imagePath: _propTypesDefault.default.string,
+      imagePath: _propTypesDefault.default.string.isRequired,
       genre: _propTypesDefault.default.shape({
         name: _propTypesDefault.default.string.isRequired,
         description: _propTypesDefault.default.string.isRequired
@@ -29344,7 +29344,7 @@ try {
       director: _propTypesDefault.default.shape({
         name: _propTypesDefault.default.string.isRequired,
         bio: _propTypesDefault.default.string.isRequired,
-        birth: _propTypesDefault.default.string,
+        birth: _propTypesDefault.default.string.isRequired,
         death: _propTypesDefault.default.string
       })
     }).isRequired,
@@ -29503,24 +29503,22 @@ try {
       _axiosDefault.default.post('https://itshorrortime.herokuapp.com/login', {
         Uername: username,
         Password: password
-      }).then(result => {
-        props.onLoggedIn(username);
-        console.log(result);
       });
+      props.onLoggedIn(username);
     };
     return (
       /*#__PURE__*/_reactDefault.default.createElement("form", {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 21,
+          lineNumber: 19,
           columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("label", {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22,
+          lineNumber: 20,
           columnNumber: 7
         }
       }, "Username:", /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -29530,14 +29528,14 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 24,
+          lineNumber: 22,
           columnNumber: 9
         }
       })), /*#__PURE__*/_reactDefault.default.createElement("label", {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 26,
+          lineNumber: 24,
           columnNumber: 7
         }
       }, "Password:", /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -29547,7 +29545,7 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 28,
+          lineNumber: 26,
           columnNumber: 9
         }
       })), /*#__PURE__*/_reactDefault.default.createElement("button", {
@@ -29556,7 +29554,7 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 30,
+          lineNumber: 28,
           columnNumber: 7
         }
       }, "Submit"))
@@ -29564,6 +29562,13 @@ try {
   }
   _s(LoginView, "wuQOK7xaXdVz4RMrZQhWbI751Oc=");
   _c = LoginView;
+  LoginView.propTypes = {
+    user: PropTypes.shape({
+      username: PropTypes.string.isRequired,
+      password: PropTypes.string.isRequired
+    }),
+    onLoggedIn: PropTypes.func.isRequired
+  };
   var _c;
   $RefreshReg$(_c, "LoginView");
   helpers.postlude(module);
@@ -29574,4 +29579,4 @@ try {
 
 },{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"7kyIT","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","axios":"7rA65"}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequireeb1c")
 
-//# sourceMappingURL=index.02675e63.js.map
+//# sourceMappingURL=index.HASH_REF_f9eab60bc3a7a7c3f683683702675e63.js.map

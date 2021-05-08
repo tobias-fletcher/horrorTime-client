@@ -11,8 +11,10 @@ export function LoginView(props) {
     axios.post('https://itshorrortime.herokuapp.com/login', {
       Uername: username,
       Password: password
+    }).then(result => {
+      props.onLoggedIn(username);
+      console.log(result)
     })
-    props.onLoggedIn(username);
   };
 
   return (
@@ -30,11 +32,11 @@ export function LoginView(props) {
   );
 }
 
-LoginView.propTypes = {
+/*LoginView.propTypes = {
   user: PropTypes.shape({
     username: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
   }),
   onLoggedIn: PropTypes.func.isRequired,
-  onRegister: PropTypes.func,
-};
+
+};*/
