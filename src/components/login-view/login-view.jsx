@@ -9,7 +9,7 @@ export function LoginView(props) {
     e.preventDefault();
     console.log(username, password);
     axios.post('https://itshorrortime.herokuapp.com/login', {
-      Uername: username,
+      Username: username,
       Password: password
     }).then(result => {
       props.onLoggedIn(username);
