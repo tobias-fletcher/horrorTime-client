@@ -30438,15 +30438,7 @@ try {
           lineNumber: 49,
           columnNumber: 7
         }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-        to: "/users",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 50,
-          columnNumber: 9
-        }
-      }, "Register"), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
         path: "/users",
         component: _registrationViewRegistration.RegistrationView,
         exact: true,
@@ -34682,4 +34674,4 @@ exports.default = _default;
 module.exports = exports["default"];
 },{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S"}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequireeb1c")
 
-//# sourceMappingURL=index.02675e63.js.map
+//# sourceMappingURL=index.HASH_REF_f9eab60bc3a7a7c3f683683702675e63.js.map

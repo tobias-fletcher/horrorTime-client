@@ -7,7 +7,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Nav
 } from "react-router-dom";
 
 export function LoginView(props) {
@@ -46,8 +47,13 @@ export function LoginView(props) {
         </Button>
       </Form>
       <Router>
-        <Link to="https://itshorrortime.herokuapp.com/users">Register</Link>
-      </Router >
+        <Link to="/users">Register</Link>
+        <Route
+          path='/users'
+          component={RegistrationView}
+          exact
+        />
+      </Router>
     </>
   )
 }
