@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { RegistrationView } from '../registration-view/registration';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -7,36 +16,38 @@ export function LoginView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    axios.post('https://itshorrortime.herokuapp.com/login', {
+    axios.post(' https://itshorrortime.herokuapp.com/login', {
       Username: username,
       Password: password
-    }).then(result => {
-      props.onLoggedIn(username);
-      console.log(result)
-    })
+    })//.then(result => {
+    props.onLoggedIn(username);
+    //console.log(result);
+    //})
+    /// .catch(e => {
+    //  console.log('Invalid User');
+    // });
   };
 
   return (
-    <form>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
-      <button type="submit" onClick={handleSubmit}>Submit</button>
-    </form>
-  );
+    <>
+      <Form>
+        <Form.Group controlId='formUsername'>
+          <Form.Label>Username:</Form.Label>
+          <Form.Control type='text' placeholder='Enter Username' onChange={e => setUsername(e.target.value)} />
+        </Form.Group>
+
+        <Form.Group controlId='formPassword'>
+          <Form.Label>Password:</Form.Label>
+          <Form.Control type='password' placeholder='Enter Password' onChange={e => setPassword(e.target.value)} />
+        </Form.Group>
+
+        <Button variant='success' type='submit' onClick={handleSubmit}>
+          Submit
+        </Button>
+      </Form>
+      <Router>
+        <Link to="https://itshorrortime.herokuapp.com/users">Register</Link>
+      </Router >
+    </>
+  )
 }
-
-/*LoginView.propTypes = {
-  user: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-  }),
-  onLoggedIn: PropTypes.func.isRequired,
-
-};*/
