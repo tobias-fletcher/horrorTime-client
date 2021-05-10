@@ -33,7 +33,7 @@ export function LoginView(props) {
 
   return (
     <>
-      //<Form>
+      <Form>
         <Form.Group controlId='formUsername'>
           <Form.Label>Username:</Form.Label>
           <Form.Control type='text' placeholder='Enter Username' onChange={e => setUsername(e.target.value)} />
@@ -48,16 +48,8 @@ export function LoginView(props) {
           Submit
         </Button>
       </Form>
-      <Router>
-        <Button>
-          <Switch>
-            <Route
-              path='/users'
-              component={RegistrationView}
-            />
-          </Switch>
-        </Button>
-      </Router>
+      <button onClick={props.toggleView}>Register</button>
+
     </>
   )
 }
