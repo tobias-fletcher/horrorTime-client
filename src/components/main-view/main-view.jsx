@@ -65,7 +65,7 @@ export class MainView extends React.Component {
 
   toggleView() {
     this.setState({
-      register: true
+      register: !register
     })
 
   }
