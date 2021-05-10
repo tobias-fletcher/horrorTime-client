@@ -8,7 +8,8 @@ import {
   Switch,
   Route,
   Link,
-  Nav
+  Nav,
+  withRouter
 } from "react-router-dom";
 
 export function LoginView(props) {
@@ -29,9 +30,10 @@ export function LoginView(props) {
     // });
   };
 
+
   return (
     <>
-      <Form>
+      //<Form>
         <Form.Group controlId='formUsername'>
           <Form.Label>Username:</Form.Label>
           <Form.Control type='text' placeholder='Enter Username' onChange={e => setUsername(e.target.value)} />
@@ -47,12 +49,14 @@ export function LoginView(props) {
         </Button>
       </Form>
       <Router>
-        <Link to="/users">Register</Link>
-        <Route
-          path='/users'
-          component={RegistrationView}
-          exact
-        />
+        <Button>
+          <Switch>
+            <Route
+              path='/users'
+              component={RegistrationView}
+            />
+          </Switch>
+        </Button>
       </Router>
     </>
   )

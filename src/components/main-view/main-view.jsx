@@ -9,6 +9,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  History,
   Link
 } from "react-router-dom";
 import Row from 'react-bootstrap/Row';
@@ -61,6 +62,14 @@ export class MainView extends React.Component {
       selectedMovie: null
     });
   }
+
+  toggleView() {
+    this.setState({
+      register: true
+    })
+
+  }
+
 
   render() {
     const { movies, selectedMovie, user, register } = this.state;
