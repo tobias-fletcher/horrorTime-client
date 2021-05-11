@@ -1,0 +1,18 @@
+$color1-black: black;
+$color2-red: rgb(226, 55, 55);
+
+
+.container1 {
+    display: flex;
+    color: $color2-red;
+    font-weight: bolder;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: auto;
+    align-items: center;
+}
+
+.formUsername {
+    text-decoration-color: color2-red;
+}
+
