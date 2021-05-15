@@ -39,32 +39,30 @@ export function LoginView(props) {
     <Container className="container1">
       <Helmet bodyAttributes={{ style: 'background-color : black' }} />
 
-      <Container className="justify-content-center containter1">
-        <Form.Row className="justify-content-center mt-5 container2">
-          <Form>
-            <Form.Row>
+      <Container>
+        <Form.Row className="justify-content-center mt-5">
+          <Form className="container2 justify-content-enter">
+            <Form.Row className="justify-content-center">
               <Form.Group controlId='formUsername'>
                 <Form.Label>Username:</Form.Label>
                 <Form.Control type='text' placeholder='Enter Username' onChange={e => setUsername(e.target.value)} />
               </Form.Group>
             </Form.Row>
 
-            <Form.Row>
+            <Form.Row className="justify-content-center">
               <Form.Group controlId='formPassword'>
                 <Form.Label>Password:</Form.Label>
                 <Form.Control type='password' placeholder='Enter Password' onChange={e => setPassword(e.target.value)} />
               </Form.Group>
             </Form.Row>
 
-            <Form.Row className="justify-content-center">
-              <Button variant="secondary" block type='submit' onClick={handleSubmit}>
-                Submit
-         </Button>
+            <Form.Row className="justify-content-center mb-3">
+              <Button variant="secondary" block type='submit' onClick={handleSubmit}>Submit</Button>
               <Button variant="secondary" block onClick={props.toggleView}>Register</Button>
             </Form.Row>
           </Form>
-        </Form.Row>
-      </Container>
-    </Container>
+        </Form.Row >
+      </Container >
+    </Container >
   )
 }

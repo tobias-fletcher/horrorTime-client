@@ -1,19 +1,22 @@
 .container1 {
   display: flex;
-  color: #e23737;
+  color: black;
   font-weight: bolder;
   height: 100vh;
-  box-sizing: border-box;
   padding: auto;
   align-items: center;
+  justify-content: center;
+  border: dotted red;
 }
 
-.formUsername {
-  text-decoration-color: color2-red;
-}
-
-.mycontainer {
-  border: 2px solid blue;
+.container2 {
+  padding: 20px;
+  margin: auto;
+  border-radius: 10px 30px;
+  background-color: red;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
 }
 .Horror-Time {
   color: color;

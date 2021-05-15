@@ -1,0 +1,25 @@
+.container1 {
+  display: flex;
+  color: #e23737;
+  font-weight: bolder;
+  height: 100vh;
+  padding: auto;
+  align-items: center;
+}
+
+container2 {
+  background-color: red;
+  border-radius: 30% 70%;
+}
+
+.formUsername {
+  text-decoration-color: color2-red;
+}
+
+.mycontainer {
+  border: 2px solid blue;
+}
+.Horror-Time {
+  color: color;
+}
+/*# sourceMappingURL=index.HASH_REF_483382a0c90396020ca7c1c4778c89a2.css.map */

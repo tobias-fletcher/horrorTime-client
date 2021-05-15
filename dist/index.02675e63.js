@@ -28219,13 +28219,13 @@ try {
       props.onRegister(username);
     };
     return (
-      /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
+      /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
         className: "container1",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 25,
-          columnNumber: 7
+          lineNumber: 23,
+          columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
         bodyAttributes: {
@@ -28234,52 +28234,53 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 27,
-          columnNumber: 9
+          lineNumber: 25,
+          columnNumber: 7
         }
       }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
+        className: "container2",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 28,
-          columnNumber: 9
+          lineNumber: 26,
+          columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
         className: "justify-content-center mt-5",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29,
-          columnNumber: 11
+          lineNumber: 27,
+          columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 30,
-          columnNumber: 13
+          lineNumber: 28,
+          columnNumber: 11
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31,
-          columnNumber: 15
+          lineNumber: 29,
+          columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
         controlId: "formUsername",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 32,
-          columnNumber: 17
+          lineNumber: 30,
+          columnNumber: 15
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33,
-          columnNumber: 19
+          lineNumber: 31,
+          columnNumber: 17
         }
       }, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         type: "text",
@@ -28288,30 +28289,30 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34,
-          columnNumber: 19
+          lineNumber: 32,
+          columnNumber: 17
         }
       }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37,
-          columnNumber: 15
+          lineNumber: 35,
+          columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
         controlId: "formPassword",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 38,
-          columnNumber: 17
+          lineNumber: 36,
+          columnNumber: 15
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 39,
-          columnNumber: 19
+          lineNumber: 37,
+          columnNumber: 17
         }
       }, "Password: "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         type: "password",
@@ -28320,30 +28321,30 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40,
-          columnNumber: 19
+          lineNumber: 38,
+          columnNumber: 17
         }
       }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43,
-          columnNumber: 15
+          lineNumber: 41,
+          columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
         controlId: "formEmail",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 44,
-          columnNumber: 17
+          lineNumber: 42,
+          columnNumber: 15
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45,
-          columnNumber: 19
+          lineNumber: 43,
+          columnNumber: 17
         }
       }, "Email: "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         type: "email",
@@ -28352,30 +28353,30 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46,
-          columnNumber: 19
+          lineNumber: 44,
+          columnNumber: 17
         }
       }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49,
-          columnNumber: 15
+          lineNumber: 47,
+          columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
         controlId: "formBirthdate",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 50,
-          columnNumber: 17
+          lineNumber: 48,
+          columnNumber: 15
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51,
-          columnNumber: 19
+          lineNumber: 49,
+          columnNumber: 17
         }
       }, "Birthdate: "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         type: "birthdate",
@@ -28384,16 +28385,16 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 52,
-          columnNumber: 19
+          lineNumber: 50,
+          columnNumber: 17
         }
       }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
         className: "justify-content-center mb-3",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 55,
-          columnNumber: 15
+          lineNumber: 53,
+          columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
         variant: "secondary",
@@ -28403,8 +28404,8 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 56,
-          columnNumber: 17
+          lineNumber: 54,
+          columnNumber: 15
         }
       }, "Submit"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
         variant: "secondary",
@@ -28413,10 +28414,10 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 59,
-          columnNumber: 17
+          lineNumber: 57,
+          columnNumber: 15
         }
-      }, "Login")))))))
+      }, "Login"))))))
     );
   }
   _s(RegistrationView, "TD2fkD1Ab4Kck2JJHVZv+3f7f/8=");
@@ -32041,7 +32042,6 @@ try {
           columnNumber: 7
         }
       }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
-        className: "justify-content-center containter1",
         __self: this,
         __source: {
           fileName: _jsxFileName,
@@ -32049,7 +32049,7 @@ try {
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
-        className: "justify-content-center mt-5 container2",
+        className: "justify-content-center mt-5",
         __self: this,
         __source: {
           fileName: _jsxFileName,
@@ -32057,6 +32057,7 @@ try {
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, {
+        className: "container2 justify-content-enter",
         __self: this,
         __source: {
           fileName: _jsxFileName,
@@ -32064,6 +32065,7 @@ try {
           columnNumber: 11
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+        className: "justify-content-center",
         __self: this,
         __source: {
           fileName: _jsxFileName,
@@ -32096,6 +32098,7 @@ try {
           columnNumber: 17
         }
       }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+        className: "justify-content-center",
         __self: this,
         __source: {
           fileName: _jsxFileName,
@@ -32128,7 +32131,7 @@ try {
           columnNumber: 17
         }
       }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
-        className: "justify-content-center",
+        className: "justify-content-center mb-3",
         __self: this,
         __source: {
           fileName: _jsxFileName,
@@ -32153,7 +32156,7 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 63,
+          lineNumber: 61,
           columnNumber: 15
         }
       }, "Register"))))))
