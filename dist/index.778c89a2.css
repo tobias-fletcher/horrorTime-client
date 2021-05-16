@@ -8,14 +8,24 @@
   justify-content: center;
 }
 
+.header {
+  color: red;
+  justify-content: center;
+  align-items: center;
+  border-color: red;
+}
+
 .container2 {
   padding: 20px;
   margin: auto;
   border-radius: 10px 30px;
-  background-color: red;
+  background-color: #343a40 !important;
   width: 60%;
   justify-content: center;
   align-items: center;
+}
+.maximumW {
+  max-width: 200px;
 }
 .Horror-Time {
   color: color;

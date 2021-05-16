@@ -1,0 +1,23 @@
+.container1 {
+  display: flex;
+  color: black;
+  font-weight: bolder;
+  height: 100vh;
+  padding: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  border: dotted;
+}
+
+.container2 {
+  padding: 20px;
+  margin: auto;
+  border-radius: 10px 30px;
+  background-color: #851111;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+}

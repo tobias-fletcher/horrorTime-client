@@ -12,7 +12,6 @@ import {
   withRouter
 } from "react-router-dom";
 import Helmet from "react-helmet";
-
 import './login-view.scss';
 
 export function LoginView(props) {
