@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Horror-Time</title>
+
+  <link rel="stylesheet" href="16a9f1243b7b2daf9d1531a74cc473fb" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="app-container"></div>
+</body>
+
+</html>
+<script src="1ddb3d1417e1b0b5873efb77d83cdb7d"></script>

@@ -1,0 +1,4 @@
+.customClass {
+  max-height: 24rem;
+  max-width: 12rem;
+}

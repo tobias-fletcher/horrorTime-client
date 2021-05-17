@@ -1,0 +1,8 @@
+.card {
+  max-height: 700px;
+  max-width: 500px;
+}
+
+.buttonStyle {
+  background: black;
+}

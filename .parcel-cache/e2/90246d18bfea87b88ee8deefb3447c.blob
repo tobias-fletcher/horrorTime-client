@@ -1,0 +1,8 @@
+.card-body {
+  max-height: 350px;
+  max-width: 200px;
+}
+
+.card-body1 {
+  max-width: 200px;
+}
