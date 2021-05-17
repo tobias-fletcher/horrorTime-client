@@ -87,36 +87,40 @@ export class MainView extends React.Component {
     return (
 
       <>
-        <Row block>
-          <Navbar style={{ width: "100%" }} bg="dark" variant="dark">
-            <Navbar.Brand style={{ margin: "auto" }} href="#movies">HorrorTime</Navbar.Brand>
-            <Nav className="mr-auto">
-              <Nav.Link href="/movies">Movies</Nav.Link>
-              <Nav.Link href="/genres">Genres</Nav.Link>
-              <Nav.Link href="/directors">Directors</Nav.Link>
-              <Nav.Link href="/account">Account</Nav.Link>
-            </Nav>
-            <Form style={{ margin: "auto" }} inline>
-              <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-              <Button variant="outline-info">Search</Button>
-            </Form>
-          </Navbar>
-          <br />
-        </Row>
-        <Row className="main-view justify-content-md-center">
-          {selectedMovie
-            ? (
-              <Col>
-                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-              </Col>
-            )
-            : movies.map(movie => (
-              <Col>
-                <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-              </Col>
-            ))
-          }
-        </Row>
+        <Container>
+          <Row block>
+            <Navbar style={{ width: "100%" }} bg="dark" variant="dark">
+              <Navbar.Brand style={{ margin: "auto" }} href="#movies">HorrorTime</Navbar.Brand>
+              <Nav className="mr-auto">
+                <Nav.Link href="/movies">Movies</Nav.Link>
+                <Nav.Link href="/genres">Genres</Nav.Link>
+                <Nav.Link href="/directors">Directors</Nav.Link>
+                <Nav.Link href="/account">Account</Nav.Link>
+              </Nav>
+              <Form style={{ margin: "auto" }} inline>
+                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                <Button variant="outline-info">Search</Button>
+              </Form>
+            </Navbar>
+            <br />
+          </Row>
+        </Container>
+        <Container>
+          <Row className="main-view justify-content-md-center">
+            {selectedMovie
+              ? (
+                <Col>
+                  <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+                </Col>
+              )
+              : movies.map(movie => (
+                <Col>
+                  <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+                </Col>
+              ))
+            }
+          </Row>
+        </Container>
       </>
     );
   }
