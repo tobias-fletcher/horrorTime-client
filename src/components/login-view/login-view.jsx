@@ -16,14 +16,13 @@ export function LoginView(props) {
     axios.post(' https://itshorrortime.herokuapp.com/login', {
       Username: username,
       Password: password
-    }).then(response => {
-      const data = response.data;
-      props.onLoggedin(data);
-      console.log(response);
-    })
-      .catch(e => {
-        console.log('Invalid User');
-      });
+    })//.then(result => {
+    props.onLoggedIn(username);
+    //console.log(result);
+    //})
+    /// .catch(e => {
+    //  console.log('Invalid User');
+    // });
   };
 
 

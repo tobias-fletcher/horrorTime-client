@@ -21,12 +21,7 @@ export function RegistrationView(props) {
 
   return (
     <Container className="container1 justify-content-center">
-
-
-
-
       <Helmet bodyAttributes={{ style: 'background-color : black' }} />
-
       <Container className="container2">
         <Form.Row className="justify-content-center mt-5">
           <Form>

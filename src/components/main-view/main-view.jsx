@@ -18,6 +18,7 @@ import Col from 'react-bootstrap/Col';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 export class MainView extends React.Component {
 
   constructor() {
