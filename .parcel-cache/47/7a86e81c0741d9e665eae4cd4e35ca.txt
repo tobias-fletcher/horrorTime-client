@@ -40,7 +40,7 @@
 101C:\Users\tobia\Desktop\horrorTime-client\node_modules\postcss-merge-longhand\dist\lib\decl\boxBase.js121436361000000000 0
 78C:\Users\tobia\Desktop\horrorTime-client\node_modules\abortcontroller-polyfill132658237019261033 1
 87C:\Users\tobia\Desktop\horrorTime-client\node_modules\uncontrollable\lib\cjs\index.d.ts121436361000000000 0
-45C:\Users\tobia\Desktop\horrorTime-client\dist132658260737107566 1
+45C:\Users\tobia\Desktop\horrorTime-client\dist132658298445611853 1
 85C:\Users\tobia\Desktop\horrorTime-client\node_modules\caniuse-lite\data\regions\JO.js121436361000000000 0
 66C:\Users\tobia\Desktop\horrorTime-client\node_modules\resolve\test132658236633486990 1
 106C:\Users\tobia\Desktop\horrorTime-client\node_modules\postcss-calc\node_modules\color-convert\package.json132658236973114610 0
@@ -171,7 +171,7 @@
 61C:\Users\tobia\Desktop\horrorTime-client\node_modules\getpass132658236994746546 1
 101C:\Users\tobia\Desktop\horrorTime-client\node_modules\@popperjs\core\lib\dom-utils\getDocumentRect.js121436361000000000 0
 77C:\Users\tobia\Desktop\horrorTime-client\node_modules\requires-port\README.md130599359430000000 0
-81C:\Users\tobia\Desktop\horrorTime-client\src\components\movie-card\movie-card.jsx132658224296253227 0
+81C:\Users\tobia\Desktop\horrorTime-client\src\components\movie-card\movie-card.jsx132658322138218503 0
 114C:\Users\tobia\Desktop\horrorTime-client\node_modules\postcss-minify-selectors\node_modules\postcss\docs\syntax.md121436361000000000 0
 75C:\Users\tobia\Desktop\horrorTime-client\node_modules\lodash\fp\conforms.js121436361000000000 0
 74C:\Users\tobia\Desktop\horrorTime-client\node_modules\ret\lib\positions.js131132065910000000 0
@@ -232,7 +232,7 @@
 85C:\Users\tobia\Desktop\horrorTime-client\node_modules\which-boxed-primitive\README.md121436361000000000 0
 110C:\Users\tobia\Desktop\horrorTime-client\node_modules\@babel\types\lib\converters\gatherSequenceExpressions.js121012626000000000 0
 57C:\Users\tobia\Desktop\horrorTime-client\node_modules\use132658236911090148 1
-79C:\Users\tobia\Desktop\horrorTime-client\src\components\main-view\main-view.jsx132658224296233253 0
+79C:\Users\tobia\Desktop\horrorTime-client\src\components\main-view\main-view.jsx132658331844386411 0
 87C:\Users\tobia\Desktop\horrorTime-client\node_modules\unicode-match-property-ecmascript132658236916106745 1
 81C:\Users\tobia\Desktop\horrorTime-client\node_modules\browserify-aes\modes\cbc.js121436361000000000 0
 85C:\Users\tobia\Desktop\horrorTime-client\node_modules\dom-helpers\cjs\triggerEvent.js121436361000000000 0
@@ -246,7 +246,7 @@
 99C:\Users\tobia\Desktop\horrorTime-client\node_modules\stylehacks\node_modules\color-convert\LICENSE121436361000000000 0
 75C:\Users\tobia\Desktop\horrorTime-client\node_modules\react-bootstrap\Badge132658236478521126 1
 82C:\Users\tobia\Desktop\horrorTime-client\node_modules\@restart\hooks\useStateAsync132658236655847167 1
-95C:\Users\tobia\Desktop\horrorTime-client\src\components\registration-view\registration-view.jsx132658224296283125 0
+95C:\Users\tobia\Desktop\horrorTime-client\src\components\registration-view\registration-view.jsx132658322747120741 0
 110C:\Users\tobia\Desktop\horrorTime-client\node_modules\regenerate-unicode-properties\Script_Extensions\Bamum.js121436361000000000 0
 75C:\Users\tobia\Desktop\horrorTime-client\node_modules\randomfill\browser.js131528156600000000 0
 78C:\Users\tobia\Desktop\horrorTime-client\node_modules\assert-plus\package.json132658237015989772 0
@@ -260,7 +260,7 @@
 91C:\Users\tobia\Desktop\horrorTime-client\node_modules\string.prototype.trimend\CHANGELOG.md121436361000000000 0
 90C:\Users\tobia\Desktop\horrorTime-client\node_modules\resolve\test\resolver\same_names\foo132658236596306300 1
 80C:\Users\tobia\Desktop\horrorTime-client\node_modules\to-fast-properties\license131414904450000000 0
-81C:\Users\tobia\Desktop\horrorTime-client\src\components\movie-view\movie-view.jsx132658224296263169 0
+81C:\Users\tobia\Desktop\horrorTime-client\src\components\movie-view\movie-view.jsx132658322581864579 0
 75C:\Users\tobia\Desktop\horrorTime-client\node_modules\csso\dist\csso.min.js121436361000000000 0
 96C:\Users\tobia\Desktop\horrorTime-client\node_modules\core-js\stable\typed-array\uint32-array.js121436361000000000 0
 82C:\Users\tobia\Desktop\horrorTime-client\src\components\movie-view\movie-view.scss132658224296273137 0
@@ -309,7 +309,7 @@
 91C:\Users\tobia\Desktop\horrorTime-client\node_modules\uri-js\dist\esnext\schemes\wss.js.map121436361000000000 0
 83C:\Users\tobia\Desktop\horrorTime-client\node_modules\react-overlays\cjs\types.d.ts121436361000000000 0
 85C:\Users\tobia\Desktop\horrorTime-client\node_modules\miller-rabin\node_modules\bn.js132658236981462064 1
-81C:\Users\tobia\Desktop\horrorTime-client\src\components\login-view\login-view.jsx132658224296223272 0
+81C:\Users\tobia\Desktop\horrorTime-client\src\components\login-view\login-view.jsx132658312550773757 0
 97C:\Users\tobia\Desktop\horrorTime-client\node_modules\mini-create-react-context\dist\cjs\index.js121436361000000000 0
 136C:\Users\tobia\Desktop\horrorTime-client\node_modules\postcss-reduce-initial\node_modules\chalk\node_modules\supports-color\package.json132658236951871249 0
 82C:\Users\tobia\Desktop\horrorTime-client\src\components\login-view\login-view.scss132658224296223272 0
@@ -2986,7 +2986,7 @@
 88C:\Users\tobia\Desktop\horrorTime-client\node_modules\react-bootstrap\esm\Offcanvas.d.ts121436361000000000 0
 69C:\Users\tobia\Desktop\horrorTime-client\node_modules\value-equal\esm132658236376657247 1
 64C:\Users\tobia\Desktop\horrorTime-client\node_modules\safe-regex132658236943613225 1
-64C:\Users\tobia\Desktop\horrorTime-client\dist\index.778c89a2.css132658260736170072 0
+64C:\Users\tobia\Desktop\horrorTime-client\dist\index.778c89a2.css132658298445192984 0
 108C:\Users\tobia\Desktop\horrorTime-client\node_modules\postcss-calc\node_modules\color-convert\conversions.js121436361000000000 0
 66C:\Users\tobia\Desktop\horrorTime-client\node_modules\safer-buffer132658236943513488 1
 71C:\Users\tobia\Desktop\horrorTime-client\node_modules\lodash-es\mean.js121436361000000000 0
@@ -5740,7 +5740,7 @@
 110C:\Users\tobia\Desktop\horrorTime-client\node_modules\postcss-colormin\node_modules\color-convert\CHANGELOG.md121436361000000000 0
 124C:\Users\tobia\Desktop\horrorTime-client\node_modules\stylehacks\node_modules\postcss-selector-parser\dist\selectors\root.js121436361000000000 0
 84C:\Users\tobia\Desktop\horrorTime-client\node_modules\resolve\test\faulty_basedir.js121436361000000000 0
-68C:\Users\tobia\Desktop\horrorTime-client\dist\index.778c89a2.css.map132658260736299742 0
+68C:\Users\tobia\Desktop\horrorTime-client\dist\index.778c89a2.css.map132658298445302686 0
 91C:\Users\tobia\Desktop\horrorTime-client\node_modules\caniuse-lite\data\features\css-all.js121436361000000000 0
 75C:\Users\tobia\Desktop\horrorTime-client\node_modules\lodash\fp\template.js121436361000000000 0
 87C:\Users\tobia\Desktop\horrorTime-client\node_modules\core-js\stable\instance\splice.js121436361000000000 0
@@ -21690,7 +21690,7 @@
 75C:\Users\tobia\Desktop\horrorTime-client\node_modules\ajv\scripts\bundle.js121436361000000000 0
 81C:\Users\tobia\Desktop\horrorTime-client\node_modules\ajv\scripts\compile-dots.js121436361000000000 0
 70C:\Users\tobia\Desktop\horrorTime-client\node_modules\ajv\scripts\info121436361000000000 0
-67C:\Users\tobia\Desktop\horrorTime-client\dist\index.02675e63.js.map132658260736638814 0
+67C:\Users\tobia\Desktop\horrorTime-client\dist\index.02675e63.js.map132658298445591930 0
 81C:\Users\tobia\Desktop\horrorTime-client\node_modules\ajv\scripts\travis-gh-pages121436361000000000 0
 70C:\Users\tobia\Desktop\horrorTime-client\node_modules\ajv\lib\ajv.d.ts121436361000000000 0
 70C:\Users\tobia\Desktop\horrorTime-client\node_modules\ajv\lib\cache.js121436361000000000 0
@@ -24026,8 +24026,8 @@
 68C:\Users\tobia\Desktop\horrorTime-client\node_modules\.bin\which.cmd132658237050796744 0
 68C:\Users\tobia\Desktop\horrorTime-client\node_modules\.bin\which.ps1132658237050796744 0
 67C:\Users\tobia\Desktop\horrorTime-client\dist\index.01a1c8c0.js.map132658224295654794 0
-63C:\Users\tobia\Desktop\horrorTime-client\dist\index.02675e63.js132658260736549054 0
+63C:\Users\tobia\Desktop\horrorTime-client\dist\index.02675e63.js132658298445532086 0
 68C:\Users\tobia\Desktop\horrorTime-client\dist\index.46d3c6ce.css.map132658224295914100 0
 64C:\Users\tobia\Desktop\horrorTime-client\dist\index.d22b8a02.css132658224295934055 0
 63C:\Users\tobia\Desktop\horrorTime-client\dist\index.e42acf8a.js132658224296103760 0
-56C:\Users\tobia\Desktop\horrorTime-client\dist\index.html132658260736150127 0
+56C:\Users\tobia\Desktop\horrorTime-client\dist\index.html132658298445192984 0

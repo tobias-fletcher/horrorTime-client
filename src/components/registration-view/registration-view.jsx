@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-
 import Helmet from "react-helmet";
 
 export function RegistrationView(props) {

@@ -5,20 +5,15 @@ import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
 import { MovieView } from '../movie-view/movie-view';
 import { MovieCard } from '../movie-card/movie-card';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  History,
-  Link
-} from "react-router-dom";
+
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+
 export class MainView extends React.Component {
 
   constructor() {
@@ -33,15 +28,13 @@ export class MainView extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://itshorrortime.herokuapp.com/movies')
-      .then(response => {
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(error => {
-        console.log(error);
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
       });
+      this.getMovies(accessToken);
+    }
   }
 
   setSelectedMovie(newSelectedMovie) {
@@ -50,12 +43,34 @@ export class MainView extends React.Component {
     });
   }
 
-  onLoggedIn(user) {
+  onLoggedIn(authData) {
+    console.log(authData);
     this.setState({
-      user
+      user: authData.user.Username
     });
+
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
   }
 
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      user: null
+    });
+  }
+  getMovies(token) {
+    axios.get('https://itshorrortime.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        this.setState({
+          movies: response.data
+        });
+      })
+  }
   onRegister(register) {
     this.setState({
       register
@@ -102,6 +117,9 @@ export class MainView extends React.Component {
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 <Button variant="outline-info">Search</Button>
               </Form>
+              <Nav.Item>
+                <Button variant="dark" onClick={() => { this.onLoggedOut() }}>Logout</Button>
+              </Nav.Item>
             </Navbar>
             <br />
           </Row>

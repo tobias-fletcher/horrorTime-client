@@ -2,21 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import CardDeck from 'react-bootstrap/CardDeck';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Helmet from "react-helmet";
 import './movie-card.scss';
-import Container from 'react-bootstrap/Container'
-import Navbar from 'react-bootstrap/Navbar';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Nav,
-  Link,
-  Brand,
-} from "react-router-dom";
 
 export class MovieCard extends React.Component {
   render() {

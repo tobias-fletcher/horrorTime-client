@@ -1,18 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup'
 import Image from 'react-bootstrap/Image';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Nav,
-  withRouter
-} from "react-router-dom";
 import Helmet from "react-helmet";
 export class MovieView extends React.Component {
 

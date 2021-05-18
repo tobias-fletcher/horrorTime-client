@@ -19,7 +19,6 @@ export function LoginView(props) {
     }).then(response => {
       const data = response.data;
       props.onLoggedIn(data);
-      //console.log(result);
     })
       .catch(e => {
         console.log('Invalid User');
