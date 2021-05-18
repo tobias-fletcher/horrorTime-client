@@ -15,8 +15,17 @@ export function RegistrationView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password, email, birthdate);
-    props.onRegister(username);
+    axios.post('https://itshorrortime.herokuapp.com/users', {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthdate
+    }).then(response => {
+      const data = response.data;
+      props.onRegister(data);
+    }).catch(e => {
+      console.log('Cannot register');
+    });
   };
 
   return (

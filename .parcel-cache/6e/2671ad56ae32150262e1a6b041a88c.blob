@@ -28346,7 +28346,7 @@ try {
     const [birthdate, setBirthdate] = _react.useState('');
     const handleSubmit = e => {
       e.preventDefault();
-      _axiosDefault.default.post('https://itshorrortime.herokuapp.com/users', {
+      _axiosDefault.default.post('https://itshorrortime.herokuapp.com/login', {
         Username: username,
         Password: password,
         Email: email,
@@ -47885,4 +47885,4 @@ exports.default = _default;
 module.exports = exports["default"];
 },{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","prop-types-extra/lib/isRequiredForA11y":"4XrEc","./ThemeProvider":"4rz1S"}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequireeb1c")
 
-//# sourceMappingURL=index.02675e63.js.map
+//# sourceMappingURL=index.HASH_REF_f9eab60bc3a7a7c3f683683702675e63.js.map
