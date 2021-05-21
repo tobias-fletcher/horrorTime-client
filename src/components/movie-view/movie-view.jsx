@@ -4,7 +4,12 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup'
 import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
 import Helmet from "react-helmet";
+import Col from 'react-bootstrap/Col';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 export class MovieView extends React.Component {
 
   keypressCallback(event) {
@@ -44,9 +49,19 @@ export class MovieView extends React.Component {
               <span className='label'>Birth year: </span>
               <span className='value'>{movie.Director.Birth}</span>
             </Card.Body>
-            <Card.Footer>
-              <Button variant="dark" onClick={() => { onBackClick(null); }}>Back</Button>
-            </Card.Footer>
+
+            <Row>
+              <Col className="justify-content-center my-5">
+                <Link to={`/directors/${movie.Director.Name}`}>
+                  <Button variant="dark">Director</Button>
+                </Link>
+              </Col>
+              <Col className="justify-content-center">
+                <Link to={`/genres/${movie.Genre.Name}`}>
+                  <Button variant="dark" className='my-5'>Genre</Button>
+                </Link>
+              </Col>
+            </Row>
           </Card>
         </CardGroup>
 

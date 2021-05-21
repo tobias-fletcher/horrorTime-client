@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Helmet from "react-helmet";
+import { Link } from 'react-router-dom';
 import './movie-card.scss';
 
 export class MovieCard extends React.Component {
@@ -21,8 +22,9 @@ export class MovieCard extends React.Component {
               <Card.Img variant="top" src={movie.ImagePath} style={{ height: "11rem" }} />
               <Card.Title style={{ height: "3rem" }}>{movie.Title}</Card.Title>
               <Card.Footer className="mb-3">
-                <Button onClick={() => onMovieClick(movie)}
-                  variant="primary">Movie Info</Button>
+                <Link to={`/movies/${movie._id}`}>
+                  <Button variant="dark">Movie Info</Button>
+                </Link>
               </Card.Footer>
             </Card.Body>
           </Card>
