@@ -6,6 +6,7 @@ import { LoginView } from '../login-view/login-view';
 import { MovieView } from '../movie-view/movie-view';
 import { MovieCard } from '../movie-card/movie-card';
 
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,6 +14,8 @@ import { Navbar, Nav } from 'react-bootstrap';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+
+
 
 export class MainView extends React.Component {
 
@@ -104,9 +107,9 @@ export class MainView extends React.Component {
 
       <>
         <Container>
-          <Row block>
-            <Navbar style={{ width: "100%" }} bg="dark" variant="dark">
-              <Navbar.Brand style={{ margin: "auto" }} href="#movies">HorrorTime</Navbar.Brand>
+          <Row>
+            <Navbar block style={{ width: "100%" }} bg="dark" variant="dark">
+              <Navbar.Brand href="#movies">HorrorTime</Navbar.Brand>
               <Nav className="mr-auto">
                 <Nav.Link href="/movies">Movies</Nav.Link>
                 <Nav.Link href="/genres">Genres</Nav.Link>

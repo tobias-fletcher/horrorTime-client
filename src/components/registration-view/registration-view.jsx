@@ -4,14 +4,22 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Helmet from "react-helmet";
-
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [birthdate, setBirthdate] = useState('');
+  const [validated, setValidated] = useState(false);
+
 
   const handleSubmit = (e) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     e.preventDefault();
     axios.post('https://itshorrortime.herokuapp.com/users', {
       Username: username,
@@ -24,46 +32,75 @@ export function RegistrationView(props) {
     }).catch(e => {
       console.log('Cannot register');
     });
+
+    setValidated(true);
   };
 
   return (
     <Container className="container1 justify-content-center">
       <Helmet bodyAttributes={{ style: 'background-color : black' }} />
+
       <Container className="container2">
         <Form.Row className="justify-content-center mt-5">
-          <Form>
-            <Container>
-              <Form.Row className="justify-content-center">
-                <Form.Group controlId='formUsername'>
-                  <Form.Label>Username:</Form.Label>
-                  <Form.Control type='text' placeholder='Enter Username' onChange={e => setUsername(e.target.value)} />
-                </Form.Group>
-              </Form.Row>
-            </Container>
-            <Container>
-              <Form.Row className="justify-content-center">
-                <Form.Group controlId='formPassword'>
-                  <Form.Label>Password: </Form.Label>
-                  <Form.Control type='password' placeholder='Enter Password' onChange={e => setPassword(e.target.value)} />
-                </Form.Group>
-              </Form.Row>
-            </Container>
-            <Container>
-              <Form.Row className="justify-content-center">
-                <Form.Group controlId='formEmail'>
-                  <Form.Label>Email: </Form.Label>
-                  <Form.Control type='email' placeholder='Enter Email' onChange={e => setEmail(e.target.value)} />
-                </Form.Group>
-              </Form.Row>
-            </Container>
-            <Container>
-              <Form.Row className="justify-content-center">
-                <Form.Group controlId='formBirthdate'>
-                  <Form.Label>Birthdate: </Form.Label>
-                  <Form.Control type='birthdate' placeholder='Enter Birthdate' onChange={e => setBirthdate(e.target.value)} />
-                </Form.Group>
-              </Form.Row>
-            </Container>
+
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+
+            <Form.Row className="justify-content-center">
+              <Form.Group as={Row} controlId='validationCustomUsername'>
+                <Form.Label>Username:</Form.Label>
+                <Form.Control
+                  type='text'
+                  required
+                  minLength="6"
+                  maxLength="12"
+                  placeholder='Enter Username'
+                  onChange={e => setUsername(e.target.value)}
+                />
+
+                <Form.Control.Feedback type="invalid">Please enter Username between 6 and 12 characters</Form.Control.Feedback>
+              </Form.Group>
+            </Form.Row>
+
+            <Form.Row className="justify-content-center">
+              <Form.Group as={Row} controlId='validationCustomPassword'>
+                <Form.Label>Password: </Form.Label>
+                <Form.Control
+                  type='password'
+                  required
+                  minLength="6"
+                  pattern="[a-zA-Z0-9]+"
+                  placeholder='Alphanumeric (6-12 characters)'
+                  onChange={e => setPassword(e.target.value)}
+                />
+                <Form.Control.Feedback type="invalid">Please enter an alphanumeric password at least 6 characters long.</Form.Control.Feedback>
+              </Form.Group>
+            </Form.Row>
+
+            <Form.Row className="justify-content-center">
+              <Form.Group as={Row} controlId='customValidationEmail'>
+                <Form.Label column sm={2}>Email: </Form.Label>
+                <Form.Control
+                  type='email'
+                  required
+                  placeholder='example@example.com'
+                  onChange={e => setEmail(e.target.value)}
+                />
+                <Form.Control.Feedback type="invalid">Please include @ in the email address</Form.Control.Feedback>
+              </Form.Group>
+            </Form.Row>
+
+
+            <Form.Row className="justify-content-center">
+              <Form.Group as={Row} controlId='customValidationBirthdate'>
+                <Form.Label >Birthdate: </Form.Label>
+                <Form.Control
+                  type='date'
+                  onChange={e => setBirthdate(e.target.value)}
+                />
+                <Form.Control.Feedback type="invalid">Please enter your birthdate</Form.Control.Feedback>
+              </Form.Group>
+            </Form.Row>
+
             <Container>
               <Form.Row className="justify-content-center mb-3">
                 <Button variant="dark" block type='submit' onClick={handleSubmit}> Submit</Button>
