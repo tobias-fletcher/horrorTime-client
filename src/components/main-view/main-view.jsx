@@ -108,11 +108,7 @@ export class MainView extends React.Component {
     });
   }
 
-  onUpdate(update) {
-    this.setState({
-      update
-    });
-  }
+
 
   onBackClick() {
     this.setState({
@@ -127,26 +123,13 @@ export class MainView extends React.Component {
     })
 
   }
-
-  handleUpdate() {
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    e.preventDefault();
-    axios.put(`https://itshorrortime.herokuapp.com/users/${user}`, {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthdate: birthdate
-    }).then(response => {
-      const data = response.data;
-      props.onRegister(data);
-    }).catch(e => {
-      console.log('Error Updating User');
+  onUpdate(update) {
+    this.setState({
+      update
     });
+    console.log(update)
   }
+
 
   render() {
     const { movies, selectedMovie, user, token, userInfo, register } = this.state;
@@ -168,7 +151,7 @@ export class MainView extends React.Component {
               <Navbar.Brand style={{ margin: "auto" }} href="#movies">HorrorTime</Navbar.Brand>
               <Nav className="mr-auto">
                 <Nav.Link href="/">Movies</Nav.Link>
-                <Nav.Link href="/users">Account</Nav.Link>
+                {/*<Nav.Link href='/users/${user}'>Account</Nav.Link>*/}
               </Nav>
               <Form style={{ margin: "auto" }} inline>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -245,7 +228,7 @@ export class MainView extends React.Component {
               </Col>
               if (movies.length === 0) return <div className="main-view" />
               return <Col md={8}>
-                <ProfileView user={user} token={token} userInfo={userInfo} onClick={() => { handleSubmit() }onBackClick={() => history.goBack()} />
+                <ProfileView user={user} token={token} userInfo={userInfo} onBackClick={() => history.goBack()} />
               </Col>
             }} />
 
