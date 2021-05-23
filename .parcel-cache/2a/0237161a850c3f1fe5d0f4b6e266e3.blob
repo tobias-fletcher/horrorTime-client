@@ -1,0 +1,83 @@
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "ProfileView", function () {
+    return ProfileView;
+  });
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _axios = require('axios');
+  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
+  require('react-bootstrap/Form');
+  require('react-bootstrap/Button');
+  require('react-bootstrap/Container');
+  var _reactHelmet = require("react-helmet");
+  var _reactHelmetDefault = _parcelHelpers.interopDefault(_reactHelmet);
+  require('react-bootstrap/Row');
+  require('react-bootstrap/Col');
+  var _propTypes = require('prop-types');
+  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx", _s = $RefreshSig$();
+  function ProfileView(props) {
+    _s();
+    const [username, updateUsername] = _react.useState('');
+    const [password, updatePassword] = _react.useState('');
+    const [email, updateEmail] = _react.useState('');
+    const [birthdate, updateBirthdate] = _react.useState('');
+    const [userInfo, updateUserInfo] = _react.useState('');
+    const getUserInfo = e => {
+      e.preventDefault();
+      _axiosDefault.default.get('https://itshorrortime.herokuapp.com/users/${user}', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => {
+        const data = response.data;
+        props.onUpdate(data);
+      }).catch(e => {
+        console.log(err);
+      });
+    };
+    const onLogOut = () => {
+      props.onLoggedOut();
+    };
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
+        bodyAttributes: {
+          style: 'background-color : black'
+        },
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 39,
+          columnNumber: 7
+        }
+      }), "console.log(user);", /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 41,
+          columnNumber: 7
+        }
+      }, "hello "))
+    );
+  }
+  _s(ProfileView, "ak5t7OF2wcf4LhDC4QHc56Ox34A=");
+  _c = ProfileView;
+  ProfileView.propTypes = {
+    user: _propTypesDefault.default.string,
+    token: _propTypesDefault.default.string,
+    onBackClick: _propTypesDefault.default.func,
+    onLogOut: _propTypesDefault.default.func
+  };
+  var _c;
+  $RefreshReg$(_c, "ProfileView");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

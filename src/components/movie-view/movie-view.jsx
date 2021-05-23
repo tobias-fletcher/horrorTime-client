@@ -6,9 +6,14 @@ import CardGroup from 'react-bootstrap/CardGroup'
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Helmet from "react-helmet";
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { Navbar, Nav, NavLink } from 'react-bootstrap';
+import FormControl from 'react-bootstrap/FormControl';
+import Container from 'react-bootstrap/Container';
+import { DirectorView } from '../director-view/director-view';
 
 export class MovieView extends React.Component {
 
@@ -28,9 +33,10 @@ export class MovieView extends React.Component {
   render() {
     const { movie, onBackClick } = this.props;
 
-
     return (
       <>
+
+
         <Helmet bodyAttributes={{ style: 'background-color : black' }} />
 
         <CardGroup className="bg-dark my-5 mx-5">
@@ -73,7 +79,7 @@ export class MovieView extends React.Component {
 MovieView.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string,
-    Description: PropTypes.string.isRequired,
+    Description: PropTypes.string,
     ImagePath: PropTypes.string,
     Genre: PropTypes.shape({
       Name: PropTypes.string.isRequired,
@@ -85,6 +91,5 @@ MovieView.propTypes = {
       Birth: PropTypes.string,
       Death: PropTypes.string,
     }),
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired
+  }).isRequired
 };

@@ -6,12 +6,22 @@ import Container from 'react-bootstrap/Container';
 import Helmet from "react-helmet";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Link from 'react-router-dom'
+import { useHistory } from "react-router-dom";
+
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [validated, setValidated] = useState(false);
+
+
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push("/");
+  }
 
 
   const handleSubmit = (e) => {
@@ -25,12 +35,13 @@ export function RegistrationView(props) {
       Username: username,
       Password: password,
       Email: email,
-      Birthday: birthdate
+      Birthdate: birthdate
     }).then(response => {
       const data = response.data;
       props.onRegister(data);
+      window.open('/', '_self');
     }).catch(e => {
-      console.log('Cannot register');
+      console.log('Error Registering User');
     });
 
     setValidated(true);
@@ -68,7 +79,6 @@ export function RegistrationView(props) {
                   type='password'
                   required
                   minLength="6"
-                  pattern="[a-zA-Z0-9]+"
                   placeholder='Alphanumeric (6-12 characters)'
                   onChange={e => setPassword(e.target.value)}
                 />
@@ -104,7 +114,8 @@ export function RegistrationView(props) {
             <Container>
               <Form.Row className="justify-content-center mb-3">
                 <Button variant="dark" block type='submit' onClick={handleSubmit}> Submit</Button>
-                <Button variant="outline-dark" block onClick={props.toggleView}>Already have an account?</Button>
+
+                <Button variant="outline-dark" block onClick={() => handleClick('/')}>Already have an account?</Button>
               </Form.Row>
             </Container>
           </Form >

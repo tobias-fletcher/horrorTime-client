@@ -1,0 +1,103 @@
+var helpers = require("../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "DirectorView", function () {
+    return DirectorView;
+  });
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _propTypes = require('prop-types');
+  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  require('react-bootstrap/Button');
+  var _reactBootstrapCard = require('react-bootstrap/Card');
+  var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
+  var _reactBootstrapCardGroup = require('react-bootstrap/CardGroup');
+  var _reactBootstrapCardGroupDefault = _parcelHelpers.interopDefault(_reactBootstrapCardGroup);
+  require('react-bootstrap/Image');
+  require('react-bootstrap/Row');
+  var _reactHelmet = require("react-helmet");
+  var _reactHelmetDefault = _parcelHelpers.interopDefault(_reactHelmet);
+  require('react-router-dom');
+  require('react-bootstrap/Form');
+  require('react-bootstrap/Col');
+  require('react-router-dom');
+  require('react-bootstrap');
+  require('react-bootstrap/FormControl');
+  require('react-bootstrap/Container');
+  require('../movie-card/movie-card');
+  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\director-view\\director-view.jsx";
+  function DirectorView(props) {
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
+        bodyAttributes: {
+          style: 'background-color : black'
+        },
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 24,
+          columnNumber: 7
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardGroupDefault.default, {
+        className: "bg-dark my-5 mx-5",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 27,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
+        className: "director-view bg-dark text-white my-5 mx-5 justify-content-center align-items-center",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 28,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Title, {
+        className: "label justify-content-center",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 30,
+          columnNumber: 11
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
+        className: "director-bio",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 31,
+          columnNumber: 11
+        }
+      }, "Description: "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
+        className: "director-birth",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 32,
+          columnNumber: 11
+        }
+      }, "Genre:"))))
+    );
+  }
+  _c = DirectorView;
+  DirectorView.propTypes = {
+    director: _propTypesDefault.default.shape({
+      Name: _propTypesDefault.default.string.isRequired,
+      Bio: _propTypesDefault.default.string.isRequired,
+      Birth: _propTypesDefault.default.string,
+      Death: _propTypesDefault.default.string
+    }).isRequired
+  };
+  var _c;
+  $RefreshReg$(_c, "DirectorView");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

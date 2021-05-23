@@ -1,0 +1,63 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "DirectorView", function () {
+  return DirectorView;
+});
+var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\director-view\\director-view.jsx";
+class DirectorView extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+  render() {
+    const {movie} = this.props;
+    if (!movie) return null;
+    return (
+      /*#__PURE__*/React.createElement("div", {
+        className: "director-description p-2",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 14,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/React.createElement("p", {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 15,
+          columnNumber: 9
+        }
+      }, "Director Description"), /*#__PURE__*/React.createElement("p", {
+        className: "text-danger",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 16,
+          columnNumber: 9
+        }
+      }, movie.director.name), /*#__PURE__*/React.createElement("p", {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 17,
+          columnNumber: 9
+        }
+      }, movie.director.bio), /*#__PURE__*/React.createElement("p", {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 18,
+          columnNumber: 9
+        }
+      }, "Birth: ", movie.director.birth), /*#__PURE__*/React.createElement("p", {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 19,
+          columnNumber: 9
+        }
+      }, movie.director.death ? `Death: ${movie.director.death}` : ''))
+    );
+  }
+}
