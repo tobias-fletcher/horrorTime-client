@@ -14,6 +14,15 @@ import Link, { useParams } from 'react-router-dom';
 
 export class ProfileView extends React.Component {
 
+  constructor(props) {
+    super();
+    this.state = {
+      Username: "",
+      Password: "",
+      Email: "",
+      Birthdate: "",
+    }
+  }
 
 
   componentDidMount() {
