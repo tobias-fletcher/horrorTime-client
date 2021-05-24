@@ -114,14 +114,48 @@ export class ProfileView extends React.Component {
                   placeholder='Enter Username'
 
                 />
-
               </Form.Group>
-
             </Form.Row>
-            <Button type="submit" onClick={this.handleSubmit} variant="dark" block >Submit</Button>
+
+            <Form.Row className="justify-content-center">
+              <Form.Group as={Row} controlId='validationCustomUsername'>
+                <Form.Label>Password:</Form.Label>
+                <Form.Control
+                  type='text'
+                  required
+                  minLength="6"
+                  maxLength="12"
+                  placeholder='Enter Password'
+
+                />
+              </Form.Group>
+            </Form.Row>
+            <Form.Row className="justify-content-center">
+              <Form.Group as={Row} controlId='validationCustomUsername'>
+                <Form.Label>Email:</Form.Label>
+                <Form.Control
+                  type='text'
+                  required
+                  placeholder='Enter Email'
+
+                />
+              </Form.Group>
+            </Form.Row>
+            <Form.Row className="justify-content-center">
+              <Form.Group as={Row} controlId='customValidationBirthdate'>
+                <Form.Label >Birthdate: </Form.Label>
+                <Form.Control
+                  type='date'
+                />
+                <Form.Control.Feedback type="invalid">Please enter your birthdate</Form.Control.Feedback>
+              </Form.Group>
+            </Form.Row>
+
+
+            <Button type="submit" onClick={this.handleUpdate} variant="dark" block >Submit</Button>
             <Button type="submit" onClick={this.handleDelete} variant="dark" block>Delete</Button>
-          </Form>
-        </Form.Row>
+          </Form >
+        </Form.Row >
 
       </>
     )
