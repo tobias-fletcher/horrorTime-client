@@ -18,12 +18,16 @@ export class ProfileView extends React.Component {
   constructor() {
     super();
     this.state = {
+      Username: "",
+      Password: "",
+      Email: "",
+      Birthdate: "",
       movies: [],
       selectedMovie: null,
-      user: null,
       register: true,
-      director: [],
-      token: null
+
+      userInfo: null
+
 
     }
 
@@ -49,7 +53,11 @@ export class ProfileView extends React.Component {
       .then(response => {
         console.log('Got account Info');
         this.setState({
-          userInfo: response.data,
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          // Birthdate: response.data.Birthdate,
+
         });
 
       })
@@ -57,7 +65,7 @@ export class ProfileView extends React.Component {
 
 
 
-  handleDelete() {
+  /*handleDelete(user, token) {
     axios.delete(`https://itshorrortime.herokuapp.com/users/${user}`,
       {
         headers: { Authorization: `Bearer ${token}` }
@@ -65,25 +73,24 @@ export class ProfileView extends React.Component {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
       });
-  }
+  }*/
 
-  handleUpdate() {
+  handleUpdate(user, token, e) {
     axios.put(`https://itshorrortime.herokuapp.com/users/${user}`, {
       Username: this.state.Username,
-      Birthday: this.state.Birthday,
+      Birthdate: this.state.Birthdate,
       Email: this.state.Email,
       Password: this.state.Password
 
     },
-      console.log('updated'),
+      console.log(this.state.Username),
       {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then((response) => {
         const data = response.data;
         localStorage.setItem("user", data.Username);
-        alert(user + " has been updated");
-        console.log(response);
+        console.log(response.data);
       }).catch((e) => {
         console.log('error');
       })
@@ -92,9 +99,11 @@ export class ProfileView extends React.Component {
 
 
 
+
   render() {
 
     const { user, token, userInfo } = this.props;
+
 
     console.log(this.props);
 
@@ -106,7 +115,7 @@ export class ProfileView extends React.Component {
           <Card.Title> Account Information</Card.Title>
           <Card.Body>
             <Card.Text>Username: {user}</Card.Text>
-            <Card.Text>Birthdate: {userInfo.Birthday}</Card.Text>
+            <Card.Text>Birthdate: {userInfo.Birthdate}</Card.Text>
             <Card.Text>Email: {userInfo.Email}</Card.Text>
           </Card.Body>
 
@@ -120,7 +129,7 @@ export class ProfileView extends React.Component {
         </Card>
         <Form.Row className="justify-content-center mt-5">
 
-          <Form onSubmit={this.handleUpdate}>
+          <Form onSubmit={this.handleUpdate(user, token, userInfo)}>
             <Form.Row className="justify-content-center">
               <Form.Group as={Row} controlId='validationCustomUsername'>
                 <Form.Label>Username:</Form.Label>
@@ -130,7 +139,7 @@ export class ProfileView extends React.Component {
                   minLength="6"
                   maxLength="12"
                   placeholder='Enter Username'
-                  onClick={this.handleSubmit}
+
                 />
               </Form.Group>
             </Form.Row>
@@ -144,7 +153,7 @@ export class ProfileView extends React.Component {
                   minLength="6"
                   maxLength="12"
                   placeholder='Enter Password'
-                  onClick={this.handleSubmit}
+
                 />
               </Form.Group>
             </Form.Row>
@@ -155,7 +164,7 @@ export class ProfileView extends React.Component {
                   type='text'
                   required
                   placeholder='Enter Email'
-                  onClick={this.handleSubmit}
+
                 />
               </Form.Group>
             </Form.Row>
@@ -164,17 +173,17 @@ export class ProfileView extends React.Component {
                 <Form.Label >Birthdate: </Form.Label>
                 <Form.Control
                   type='date'
-                  onClick={this.handleSubmit}
+
                 />
                 <Form.Control.Feedback type="invalid">Please enter your birthdate</Form.Control.Feedback>
               </Form.Group>
             </Form.Row>
 
 
-            <Button type="submit" onClick={this.handleUpdate} variant="dark" block >Submit</Button>
-            <Button onClick={this.handleDelete} variant="dark" block>Delete</Button>
+            <Button type="submit" onClick={this.handleUpdate(user, token)} variant="dark" block >Submit</Button>
           </Form >
         </Form.Row >
+        { /*  <Button onClick={this.handleDelete(user, token)} variant="dark" block>Delete</Button>*/}
 
       </>
     )
@@ -188,7 +197,7 @@ export default ProfileView;
 ProfileView.propTypes = {
   UserInfo: PropTypes.shape({
     Username: propTypes.string,
-    Birthday: propTypes.string,
+    Birthdate: propTypes.string,
     Email: propTypes.string,
     _id: propTypes.strin
   })
