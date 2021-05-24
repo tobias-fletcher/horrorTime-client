@@ -14,39 +14,55 @@ import Link, { useParams } from 'react-router-dom';
 
 export class ProfileView extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      newUsername: '',
-      setNewUsername: ''
-    }
+
+
+  componentDidMount() {
+    ('mounting component')
+
   }
+
+
   componentDidUpdate(prevProps) {
     if (this.props.Username !== prevProps.Username) {
-      this.fetchData(this.props.Username);
+      //   this.fetchData(this.props.Username);
       console.log(this.props.Username)
     }
   }
 
-  onUpdate(userInfo) {
-    const changeData = {
-      UserInfo: this.props.userInfo,
-      Username: this.state.username
-    }
+
+  handleDelete() {
+    axios.delete(`https://itshorrortime.herokuapp.com/users/${user}`,
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }).then(() => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+      });
   }
-
-
   handleUpdate() {
-    const user = user;
+
     axios.put(`https://itshorrortime.herokuapp.com/users/${user}`, {
-      Username: newUsername,
-    }).then((response) => {
-      const data = response.data;
-      this.onUpdate(data);
-      console.log(response);
-    });
+      Username: this.state.Username,
+      Birthday: this.state.Birthday,
+      Email: this.state.Email,
+      Password: this.state.Password
+
+    },
+      console.log('updated'),
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then((response) => {
+        const data = response.data;
+        localStorage.setItem("user", data.Username);
+        alert(user + " has been updated");
+        console.log(response);
+      }).catch((e) => {
+        console.log('error');
+      })
 
   }
+
 
 
   render() {
@@ -77,7 +93,7 @@ export class ProfileView extends React.Component {
         </Card>
         <Form.Row className="justify-content-center mt-5">
 
-          <Form>
+          <Form onSubmit={this.handleUpdate}>
             <Form.Row className="justify-content-center">
               <Form.Group as={Row} controlId='validationCustomUsername'>
                 <Form.Label>Username:</Form.Label>
@@ -87,13 +103,14 @@ export class ProfileView extends React.Component {
                   minLength="6"
                   maxLength="12"
                   placeholder='Enter Username'
-                  onChange={handleUpdate}
+
                 />
 
               </Form.Group>
 
             </Form.Row>
-            <Button onClick={handleUpdate} variant="dark" block >Submit</Button>
+            <Button type="submit" onClick={this.handleSubmit} variant="dark" block >Submit</Button>
+            <Button type="submit" onClick={this.handleDelete} variant="dark" block>Delete</Button>
           </Form>
         </Form.Row>
 
