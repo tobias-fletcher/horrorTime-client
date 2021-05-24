@@ -48758,7 +48758,6 @@ try {
           minLength: "6",
           maxLength: "12",
           placeholder: "Enter Password",
-          onClick: this.handleSubmit,
           __self: this,
           __source: {
             fileName: _jsxFileName,
@@ -48793,7 +48792,6 @@ try {
           type: "text",
           required: true,
           placeholder: "Enter Email",
-          onClick: this.handleSubmit,
           __self: this,
           __source: {
             fileName: _jsxFileName,
@@ -48826,7 +48824,6 @@ try {
           }
         }, "Birthdate: "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
           type: "date",
-          onClick: this.handleSubmit,
           __self: this,
           __source: {
             fileName: _jsxFileName,
@@ -48838,7 +48835,7 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 169,
+            lineNumber: 168,
             columnNumber: 17
           }
         }, "Please enter your birthdate"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
@@ -48849,7 +48846,7 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 174,
+            lineNumber: 173,
             columnNumber: 13
           }
         }, "Submit"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
@@ -48859,7 +48856,7 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 175,
+            lineNumber: 174,
             columnNumber: 13
           }
         }, "Delete"))))
@@ -49036,4 +49033,4 @@ exports.default = ThemeProvider;
 
 },{"@babel/runtime/helpers/esm/extends":"5qnVv","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequireeb1c")
 
-//# sourceMappingURL=index.02675e63.js.map
+//# sourceMappingURL=index.HASH_REF_f9eab60bc3a7a7c3f683683702675e63.js.map

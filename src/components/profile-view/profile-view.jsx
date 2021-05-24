@@ -14,29 +14,47 @@ import Link, { useParams } from 'react-router-dom';
 
 export class ProfileView extends React.Component {
 
-  constructor(props) {
+
+  constructor() {
     super();
     this.state = {
-      Username: "",
-      Password: "",
-      Email: "",
-      Birthdate: "",
-    }
-  }
+      movies: [],
+      selectedMovie: null,
+      user: null,
+      register: true,
+      director: [],
+      token: null
 
+    }
+
+  }
 
   componentDidMount() {
-    ('mounting component')
+    let accessToken = localStorage.getItem('token');
+    let userInfo = localStorage.getItem('user');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user'),
+        token: localStorage.getItem('token')
 
-  }
-
-
-  componentDidUpdate(prevProps) {
-    if (this.props.Username !== prevProps.Username) {
-      //   this.fetchData(this.props.Username);
-      console.log(this.props.Username)
+      });
+      this.getUser(accessToken, userInfo);
     }
   }
+
+  getUser(token, user) {
+    axios.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        console.log('Got account Info');
+        this.setState({
+          userInfo: response.data,
+        });
+
+      })
+  }
+
 
 
   handleDelete() {
@@ -48,8 +66,8 @@ export class ProfileView extends React.Component {
         localStorage.removeItem('token');
       });
   }
-  handleUpdate() {
 
+  handleUpdate() {
     axios.put(`https://itshorrortime.herokuapp.com/users/${user}`, {
       Username: this.state.Username,
       Birthday: this.state.Birthday,
@@ -112,7 +130,7 @@ export class ProfileView extends React.Component {
                   minLength="6"
                   maxLength="12"
                   placeholder='Enter Username'
-
+                  onClick={this.handleSubmit}
                 />
               </Form.Group>
             </Form.Row>
@@ -126,7 +144,7 @@ export class ProfileView extends React.Component {
                   minLength="6"
                   maxLength="12"
                   placeholder='Enter Password'
-
+                  onClick={this.handleSubmit}
                 />
               </Form.Group>
             </Form.Row>
@@ -137,7 +155,7 @@ export class ProfileView extends React.Component {
                   type='text'
                   required
                   placeholder='Enter Email'
-
+                  onClick={this.handleSubmit}
                 />
               </Form.Group>
             </Form.Row>
@@ -146,6 +164,7 @@ export class ProfileView extends React.Component {
                 <Form.Label >Birthdate: </Form.Label>
                 <Form.Control
                   type='date'
+                  onClick={this.handleSubmit}
                 />
                 <Form.Control.Feedback type="invalid">Please enter your birthdate</Form.Control.Feedback>
               </Form.Group>
@@ -153,7 +172,7 @@ export class ProfileView extends React.Component {
 
 
             <Button type="submit" onClick={this.handleUpdate} variant="dark" block >Submit</Button>
-            <Button type="submit" onClick={this.handleDelete} variant="dark" block>Delete</Button>
+            <Button onClick={this.handleDelete} variant="dark" block>Delete</Button>
           </Form >
         </Form.Row >
 
@@ -164,6 +183,7 @@ export class ProfileView extends React.Component {
   }
 }
 
+export default ProfileView;
 
 ProfileView.propTypes = {
   UserInfo: PropTypes.shape({
