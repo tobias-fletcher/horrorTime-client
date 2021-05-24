@@ -18,16 +18,7 @@ export class ProfileView extends React.Component {
   constructor() {
     super();
     this.state = {
-      Username: "",
-      Password: "",
-      Email: "",
-      Birthdate: "",
-      movies: [],
-      selectedMovie: null,
-      register: true,
-
-      userInfo: null
-
+      movies: []
 
     }
 
@@ -42,48 +33,37 @@ export class ProfileView extends React.Component {
         token: localStorage.getItem('token')
 
       });
-      this.getUser(accessToken, userInfo);
+      console.log(localStorage.getItem('token'));
     }
-  }
 
-  getUser(token, user) {
-    axios.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(response => {
-        console.log('Got account Info');
-        this.setState({
-          Username: response.data.Username,
-          Password: response.data.Password,
-          Email: response.data.Email,
-          // Birthdate: response.data.Birthdate,
-
-        });
-
-      })
   }
 
 
 
-  /*handleDelete(user, token) {
+
+
+  handleDelete(user, token) {
     axios.delete(`https://itshorrortime.herokuapp.com/users/${user}`,
       {
         headers: { Authorization: `Bearer ${token}` }
       }).then(() => {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
+        window.open('/', '_self');
       });
-  }*/
+
+  }
 
   handleUpdate(user, token, e) {
+    console.log(this.state.token);
+    e.preventDefault();
     axios.put(`https://itshorrortime.herokuapp.com/users/${user}`, {
       Username: this.state.Username,
-      Birthdate: this.state.Birthdate,
+      Password: this.state.Password,
       Email: this.state.Email,
-      Password: this.state.Password
+      Birthday: this.state.Birthday,
 
     },
-      console.log(this.state.Username),
       {
         headers: { Authorization: `Bearer ${token}` }
       })
@@ -92,11 +72,10 @@ export class ProfileView extends React.Component {
         localStorage.setItem("user", data.Username);
         console.log(response.data);
       }).catch((e) => {
-        console.log('error');
+        console.log(e);
       })
 
   }
-
 
 
 
@@ -105,7 +84,7 @@ export class ProfileView extends React.Component {
     const { user, token, userInfo } = this.props;
 
 
-    console.log(this.props);
+    //console.log(this.props);
 
 
     return (
@@ -115,8 +94,7 @@ export class ProfileView extends React.Component {
           <Card.Title> Account Information</Card.Title>
           <Card.Body>
             <Card.Text>Username: {user}</Card.Text>
-            <Card.Text>Birthdate: {userInfo.Birthdate}</Card.Text>
-            <Card.Text>Email: {userInfo.Email}</Card.Text>
+
           </Card.Body>
 
           <Card.Body>
@@ -129,7 +107,7 @@ export class ProfileView extends React.Component {
         </Card>
         <Form.Row className="justify-content-center mt-5">
 
-          <Form onSubmit={this.handleUpdate(user, token, userInfo)}>
+          <Form onSubmit={(e) => this.handleUpdate(user, token, e)}>
             <Form.Row className="justify-content-center">
               <Form.Group as={Row} controlId='validationCustomUsername'>
                 <Form.Label>Username:</Form.Label>
@@ -145,7 +123,7 @@ export class ProfileView extends React.Component {
             </Form.Row>
 
             <Form.Row className="justify-content-center">
-              <Form.Group as={Row} controlId='validationCustomUsername'>
+              <Form.Group as={Row} controlId='validationCustomPassword'>
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
                   type='text'
@@ -158,7 +136,7 @@ export class ProfileView extends React.Component {
               </Form.Group>
             </Form.Row>
             <Form.Row className="justify-content-center">
-              <Form.Group as={Row} controlId='validationCustomUsername'>
+              <Form.Group as={Row} controlId='validationCustomEmail'>
                 <Form.Label>Email:</Form.Label>
                 <Form.Control
                   type='text'
@@ -169,21 +147,21 @@ export class ProfileView extends React.Component {
               </Form.Group>
             </Form.Row>
             <Form.Row className="justify-content-center">
-              <Form.Group as={Row} controlId='customValidationBirthdate'>
-                <Form.Label >Birthdate: </Form.Label>
+              <Form.Group as={Row} controlId='customValidationBirthday'>
+                <Form.Label >Birthday: </Form.Label>
                 <Form.Control
                   type='date'
-
+                  required
                 />
-                <Form.Control.Feedback type="invalid">Please enter your birthdate</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please enter your Birthday</Form.Control.Feedback>
               </Form.Group>
             </Form.Row>
 
 
-            <Button type="submit" onClick={this.handleUpdate(user, token)} variant="dark" block >Submit</Button>
+            <Button type="submit" variant="dark" block >Submit</Button>
           </Form >
         </Form.Row >
-        { /*  <Button onClick={this.handleDelete(user, token)} variant="dark" block>Delete</Button>*/}
+        <Button onClick={(e) => this.handleDelete(user, token)} variant="dark" block>Delete</Button>
 
       </>
     )
@@ -195,11 +173,12 @@ export class ProfileView extends React.Component {
 export default ProfileView;
 
 ProfileView.propTypes = {
-  UserInfo: PropTypes.shape({
+  User: PropTypes.shape({
     Username: propTypes.string,
-    Birthdate: propTypes.string,
-    Email: propTypes.string,
-    _id: propTypes.strin
+    Password: propTypes.string,
+    Email: propTypes.string
+
+
   })
 }
 

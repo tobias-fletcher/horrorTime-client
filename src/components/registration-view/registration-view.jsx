@@ -13,7 +13,7 @@ export function RegistrationView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [birthdate, setBirthdate] = useState('');
+  const [birthday, setBirthday] = useState('');
   const [validated, setValidated] = useState(false);
 
 
@@ -35,10 +35,10 @@ export function RegistrationView(props) {
       Username: username,
       Password: password,
       Email: email,
-      Birthdate: birthdate
+      Birthday: birthday
     }).then(response => {
       const data = response.data;
-      props.onRegister(data);
+      // props.onRegister(data);
       window.open('/', '_self');
     }).catch(e => {
       console.log('Error Registering User');
@@ -101,13 +101,14 @@ export function RegistrationView(props) {
 
 
             <Form.Row className="justify-content-center">
-              <Form.Group as={Row} controlId='customValidationBirthdate'>
-                <Form.Label >Birthdate: </Form.Label>
+              <Form.Group as={Row} controlId='customValidationbirthday'>
+                <Form.Label >Birthday: </Form.Label>
                 <Form.Control
                   type='date'
-                  onChange={e => setBirthdate(e.target.value)}
+                  required
+                  onChange={e => setBirthday(e.target.value)}
                 />
-                <Form.Control.Feedback type="invalid">Please enter your birthdate</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please enter your birthday</Form.Control.Feedback>
               </Form.Group>
             </Form.Row>
 

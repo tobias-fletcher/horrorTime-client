@@ -7,11 +7,18 @@ import Col from 'react-bootstrap/Col';
 import Helmet from "react-helmet";
 import './login-view.scss';
 import { InputGroup } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [validated, setValidated] = useState(false);
+
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push("/register");
+  }
 
   const handleSubmit = (e) => {
     const form = e.currentTarget;
@@ -80,7 +87,7 @@ export function LoginView(props) {
             <Container>
               <Form.Row className="justify-content-center mb-3">
                 <Button variant="dark" block type='submit' onClick={handleSubmit}>Submit</Button>
-                <Button variant="outline-dark" block onClick={props.toggleView}>Don't have an account?</Button>
+                <Button variant="outline-dark" block onClick={() => handleClick('/')}>Don't have an account?</Button>
               </Form.Row>
             </Container>
 

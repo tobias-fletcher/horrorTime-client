@@ -77,6 +77,7 @@ export class MainView extends React.Component {
     this.setState({
       user: null
     });
+    window.open('/', '_self');
   }
   getMovies(token) {
     axios.get('https://itshorrortime.herokuapp.com/movies', {
