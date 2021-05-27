@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -10,8 +11,32 @@ import Container from 'react-bootstrap';
 import './movie-card.scss';
 import Col from 'react-bootstrap';
 export class MovieCard extends React.Component {
+
+
+  addFav(movie, user, token) {
+
+    console.log(this.props.movie._id);
+    console.log(user);
+    console.log(token);
+
+    axios.post(`https://itshorrortime.herokuapp.com/users/${user}/movies/${movie._id}`, {},
+      {
+        headers: {
+          'Authorization': `Bearer ${token} `,
+          'Content-Type': 'application/json',
+        }
+      }
+    ).then((response) => {
+      console.log(response);
+    })
+  }
+
+
+
   render() {
-    const { movie, onMovieClick } = this.props;
+    const { movie, onMovieClick, user, token } = this.props;
+    // console.log(movie);
+
 
     return (
       <>
@@ -21,6 +46,9 @@ export class MovieCard extends React.Component {
 
 
         <Card body bsPrefix="maximumW" className="bg-dark text-white mt-5 mx-2" style={{ height: "24rem" }}>
+          <Card.Header><Link to={`/movies/${movie._id}`}>
+            <Button className="mb-2" block variant="primary" onClick={(e) => this.addFav(movie, user, token)}>Add to favourite</Button>
+          </Link>*</Card.Header>
           <Card.Body className="justify-content-center align-items-center" >
             <Card.Img variant="top" src={movie.ImagePath} style={{ height: "11rem" }} />
             <Card.Title className="my-2" >{movie.Title}</Card.Title>
@@ -28,6 +56,7 @@ export class MovieCard extends React.Component {
               <Link to={`/movies/${movie._id}`}>
                 <Button variant="dark">Movie Info</Button>
               </Link>
+
             </Card.Footer>
           </Card.Body>
         </Card>

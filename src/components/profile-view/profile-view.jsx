@@ -31,7 +31,7 @@ export class ProfileView extends React.Component {
         token: localStorage.getItem('token')
 
       });
-      /*this.getMovies(accessToken);*/
+      this.getMovies(accessToken);
       this.getUser(accessToken, userInfo);
     }
   }
@@ -54,6 +54,17 @@ export class ProfileView extends React.Component {
       })
   }
 
+  getMovies(token) {
+    axios.get('https://itshorrortime.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        this.setState({
+          movies: response.data
+        });
+        console.log('got movies');
+      })
+  }
   handleDelete(user, token) {
     axios.delete(`https://itshorrortime.herokuapp.com/users/${user}`,
       {
@@ -61,7 +72,7 @@ export class ProfileView extends React.Component {
       }).then(() => {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-        window.open('/', '_self');
+        window.open('', '_self');
       });
 
   }
@@ -95,7 +106,7 @@ export class ProfileView extends React.Component {
         const data = response.data;
         localStorage.setItem("user", data.Username);
         console.log(data);
-        window.open(`/users/${user}`);
+        window.open(`/users/${data.Username}`);
       }).catch((e) => {
         console.log(e.toJSON());
         console.log(e.response.data);
@@ -104,8 +115,29 @@ export class ProfileView extends React.Component {
 
   }
 
+  printMovies(movie) {
+    console.log(this.state.movie);
+  }
 
-
+  /*addFavMovie(user, token, movie) {
+    
+      e.preventDefault();
+      axios.post(`https://itshorrortime.herokuapp.com/users/${user}/${movie._id}`, {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthday: birthday
+      }).then(response => {
+        const data = response.data;
+        // props.onRegister(data);
+        window.open('/', '_self');
+      }).catch(e => {
+        console.log('Error Registering User');
+      });
+  
+      setValidated(true);
+    };
+  }*/
 
   render() {
 
@@ -118,6 +150,9 @@ export class ProfileView extends React.Component {
     return (
       <>
         <Helmet bodyAttributes={{ style: 'background-color : black, text-decoration-color : white' }} />
+
+
+
         <Card>
           <Card.Title> Account Information</Card.Title>
           <Card.Body>
@@ -194,6 +229,7 @@ export class ProfileView extends React.Component {
         </Form >
 
         <Button onClick={(e) => this.handleDelete(user, token)} variant="dark" block>Delete</Button>
+
 
       </>
     )

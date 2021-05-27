@@ -175,7 +175,7 @@ export class MainView extends React.Component {
                     movies.map(m => (
                       <div className="d-flex justify-content-center">
                         <Col className="flex-column p-4" bsPrefix="customCol" >
-                          <MovieCard user={user} movie={m} />
+                          <MovieCard user={user} movie={m} token={token} />
                         </Col>
                       </div>
                     ))
