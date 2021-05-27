@@ -14,9 +14,18 @@ import { Navbar, Nav, NavLink } from 'react-bootstrap';
 import FormControl from 'react-bootstrap/FormControl';
 import Container from 'react-bootstrap/Container';
 import { DirectorView } from '../director-view/director-view';
-
+import axios from 'axios';
 export class MovieView extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      movies: [],
+      user: ''
+
+    }
+
+  }
   keypressCallback(event) {
     console.log(event.key);
   }
@@ -29,9 +38,22 @@ export class MovieView extends React.Component {
     document.removeEventListener('keypress', this.keypressCallback);
   }
 
+  addFav(movie, user, e, token) {
+    console.log(movie);
+    axios.patch(`https://itshorrortime.herokuapp.com/users/${user}/movies/${movie._id}`, {
+      Username: user
+    },
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }).then(response => {
+        console.log(movie);
+      }).catch(e => {
+        console.log('Error adding Favorite');
+      });
+  };
 
   render() {
-    const { movie, onBackClick } = this.props;
+    const { movie, onBackClick, user } = this.props;
 
     return (
       <>
@@ -41,7 +63,7 @@ export class MovieView extends React.Component {
 
         <CardGroup className="bg-dark my-5 mx-5">
           <Card className='movie-view bg-dark text-white my-5 mx-5 justify-content-center align-items-center'>
-            <Image src={`/img/${movie.ImagePath}`} />
+            <Image src={`/ img / ${movie.ImagePath}`} />
             <Card.Title className='label justify-content-center'>{movie.Title} </Card.Title>
             <Card.Body className='movie-description'>Description: {movie.Description}</Card.Body>
             <Card.Body className='movie-Genre'>Genre: {movie.Genre.Name}</Card.Body>
@@ -55,15 +77,14 @@ export class MovieView extends React.Component {
               <span className='label'>Birth year: </span>
               <span className='value'>{movie.Director.Birth}</span>
             </Card.Body>
-
             <Row>
               <Col className="justify-content-center my-5">
-                <Link to={`/directors/${movie.Director.Name}`}>
+                <Link to={`/ directors / ${movie.Director.Name}`}>
                   <Button variant="dark">Director</Button>
                 </Link>
               </Col>
               <Col className="justify-content-center">
-                <Link to={`/genres/${movie.Genre.Name}`}>
+                <Link to={`/ genres / ${movie.Genre.Name}`}>
                   <Button variant="dark" className='my-5'>Genre</Button>
                 </Link>
               </Col>

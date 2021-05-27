@@ -45,7 +45,7 @@ export class MainView extends React.Component {
 
       });
       this.getMovies(accessToken);
-      this.getUser(accessToken, userInfo);
+      /* this.getUser(accessToken, userInfo);*/
     }
   }
 
@@ -68,7 +68,7 @@ export class MainView extends React.Component {
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
     this.getMovies(authData.token);
-    this.getUser(authData.token, authData.user.Username)
+    /*this.getUser(authData.token, authData.user.Username)*/
   }
 
   onLoggedOut() {
@@ -90,7 +90,7 @@ export class MainView extends React.Component {
       })
   }
 
-  getUser(token, user) {
+  /*getUser(token, user) {
     axios.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -101,7 +101,7 @@ export class MainView extends React.Component {
         });
 
       })
-  }
+  }*/
 
   onRegister(register) {
     this.setState({
@@ -175,7 +175,7 @@ export class MainView extends React.Component {
                     movies.map(m => (
                       <div className="d-flex justify-content-center">
                         <Col className="flex-column p-4" bsPrefix="customCol" >
-                          <MovieCard movie={m} />
+                          <MovieCard user={user} movie={m} />
                         </Col>
                       </div>
                     ))
@@ -197,7 +197,7 @@ export class MainView extends React.Component {
               </Col>
               if (movies.length === 0) return <div className="main-view" />;
               return <Col md={8}>
-                <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
+                <MovieView movie={movies.find(m => m._id === match.params.movieId)} user={user} onBackClick={() => history.goBack()} />
               </Col>
             }} />
 
@@ -229,7 +229,7 @@ export class MainView extends React.Component {
               </Col>
               if (movies.length === 0) return <div className="main-view" />
               return <Col md={8}>
-                <ProfileView user={user} token={token} userInfo={userInfo} onBackClick={() => history.goBack()} />
+                <ProfileView user={user} movie={movies} getMovies={(token) => this.getMovies(token)} token={token} userInfo={userInfo} onBackClick={() => history.goBack()} />
               </Col>
             }} />
 

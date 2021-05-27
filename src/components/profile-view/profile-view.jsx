@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import Helmet from "react-helmet";
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import { propTypes } from 'react-bootstrap/esm/Image';
-import Link, { useParams } from 'react-router-dom';
+import FormControl from 'react-bootstrap/FormControl';
 
 
 export class ProfileView extends React.Component {
@@ -17,10 +15,10 @@ export class ProfileView extends React.Component {
 
   constructor() {
     super();
-    this.state = {
-      movies: []
-
-    }
+    this.state = { Username: '' }
+    this.state = { Password: '' }
+    this.state = { Email: '' }
+    this.state = { Birthday: '' }
 
   }
 
@@ -33,14 +31,28 @@ export class ProfileView extends React.Component {
         token: localStorage.getItem('token')
 
       });
-      console.log(localStorage.getItem('token'));
+      /*this.getMovies(accessToken);*/
+      this.getUser(accessToken, userInfo);
     }
-
   }
 
 
+  getUser(token, user) {
+    axios.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        console.log('Got account Info');
+        this.setState({
+          userInfo: response.data,
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday
+        });
 
-
+      })
+  }
 
   handleDelete(user, token) {
     axios.delete(`https://itshorrortime.herokuapp.com/users/${user}`,
@@ -54,37 +66,53 @@ export class ProfileView extends React.Component {
 
   }
 
-  handleUpdate(user, token, e) {
-    console.log(this.state.token);
-    e.preventDefault();
-    axios.put(`https://itshorrortime.herokuapp.com/users/${user}`, {
-      Username: this.state.Username,
-      Password: this.state.Password,
-      Email: this.state.Email,
-      Birthday: this.state.Birthday,
 
-    },
+
+  handleUpdate(user, token, e) {
+    console.log('you are in handleUpdate');
+    console.log(this.state.Username);
+    console.log(this.state.Password);
+
+    console.log(e.target.username.value);
+
+    e.preventDefault();
+
+    axios.put(`https://itshorrortime.herokuapp.com/users/${user} `,
       {
-        headers: { Authorization: `Bearer ${token}` }
+        Username: e.target.username.value,
+        Password: e.target.password.value,
+        Email: e.target.email.value,
+        Birthday: e.target.birthday.value
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${token} `,
+          'Content-Type': 'application/json',
+        }
       })
       .then((response) => {
+        console.log(response);
         const data = response.data;
         localStorage.setItem("user", data.Username);
-        console.log(response.data);
+        console.log(data);
+        window.open(`/users/${user}`);
       }).catch((e) => {
-        console.log(e);
-      })
+        console.log(e.toJSON());
+        console.log(e.response.data);
+
+      });
 
   }
 
 
 
+
   render() {
 
-    const { user, token, userInfo } = this.props;
+    const { user, token, userInfo, movie } = this.props;
 
 
-    //console.log(this.props);
+    console.log(userInfo);
 
 
     return (
@@ -94,73 +122,77 @@ export class ProfileView extends React.Component {
           <Card.Title> Account Information</Card.Title>
           <Card.Body>
             <Card.Text>Username: {user}</Card.Text>
-
+            {/*<Card.Text>Email:{userInfo.Email}</Card.Text>*/}
           </Card.Body>
-
+          <Card.Body></Card.Body>
           <Card.Body>
             {/*make drop down when clicking update information to pull up update form*/}
 
             <Button>Update Information</Button>
-
+            <Button>Show Movie List</Button>
           </Card.Body>
 
         </Card>
-        <Form.Row className="justify-content-center mt-5">
-
-          <Form onSubmit={(e) => this.handleUpdate(user, token, e)}>
-            <Form.Row className="justify-content-center">
-              <Form.Group as={Row} controlId='validationCustomUsername'>
-                <Form.Label>Username:</Form.Label>
-                <Form.Control
-                  type='text'
-                  required
-                  minLength="6"
-                  maxLength="12"
-                  placeholder='Enter Username'
-
-                />
-              </Form.Group>
-            </Form.Row>
-
-            <Form.Row className="justify-content-center">
-              <Form.Group as={Row} controlId='validationCustomPassword'>
-                <Form.Label>Password:</Form.Label>
-                <Form.Control
-                  type='text'
-                  required
-                  minLength="6"
-                  maxLength="12"
-                  placeholder='Enter Password'
-
-                />
-              </Form.Group>
-            </Form.Row>
-            <Form.Row className="justify-content-center">
-              <Form.Group as={Row} controlId='validationCustomEmail'>
-                <Form.Label>Email:</Form.Label>
-                <Form.Control
-                  type='text'
-                  required
-                  placeholder='Enter Email'
-
-                />
-              </Form.Group>
-            </Form.Row>
-            <Form.Row className="justify-content-center">
-              <Form.Group as={Row} controlId='customValidationBirthday'>
-                <Form.Label >Birthday: </Form.Label>
-                <Form.Control
-                  type='date'
-                  required
-                />
-                <Form.Control.Feedback type="invalid">Please enter your Birthday</Form.Control.Feedback>
-              </Form.Group>
-            </Form.Row>
 
 
-            <Button type="submit" variant="dark" block >Submit</Button>
-          </Form >
-        </Form.Row >
+        <Form onSubmit={(e) => this.handleUpdate(user, token, e)}>
+          <Form.Row className="justify-content-center">
+            <Form.Label>Username:</Form.Label>
+            <Form.Control
+              type='text'
+              required
+              minLength="6"
+              maxLength="12"
+              placeholder='Enter Username'
+              value={this.state.username}
+              id='username'
+
+            />
+          </Form.Row>
+
+          <Form.Row className="justify-content-center">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type='text'
+              required
+              minLength="6"
+              maxLength="12"
+              placeholder='Enter Password'
+              id='password'
+              value={this.state.password}
+
+
+            />
+          </Form.Row>
+          <Form.Row className="justify-content-center">
+
+            <Form.Label>Email:</Form.Label>
+            <Form.Control
+              type='text'
+              required
+              placeholder='Enter Email'
+              id='email'
+              value={this.state.email}
+
+            />
+
+          </Form.Row>
+          <Form.Row className="justify-content-center">
+            <Form.Label >Birthday: </Form.Label>
+            <Form.Control
+              type='date'
+              required
+              id='birthday'
+              value={this.state.birthday}
+
+
+            />
+          </Form.Row>
+
+
+          <Button type="submit" variant="dark" block >Submit</Button>
+        </Form >
+
         <Button onClick={(e) => this.handleDelete(user, token)} variant="dark" block>Delete</Button>
 
       </>
