@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import FormControl from 'react-bootstrap/FormControl';
-
+import FavoriteView from '../fav-view/fav-view';
 
 export class ProfileView extends React.Component {
 
@@ -19,6 +19,7 @@ export class ProfileView extends React.Component {
     this.state = { Password: '' }
     this.state = { Email: '' }
     this.state = { Birthday: '' }
+    this.state = { FavoriteMovies: [] }
 
   }
 
@@ -34,6 +35,7 @@ export class ProfileView extends React.Component {
       this.getMovies(accessToken);
       this.getUser(accessToken, userInfo);
     }
+
   }
 
 
@@ -115,36 +117,23 @@ export class ProfileView extends React.Component {
 
   }
 
-  printMovies(movie) {
-    console.log(this.state.movie);
-  }
 
-  /*addFavMovie(user, token, movie) {
-    
-      e.preventDefault();
-      axios.post(`https://itshorrortime.herokuapp.com/users/${user}/${movie._id}`, {
-        Username: username,
-        Password: password,
-        Email: email,
-        Birthday: birthday
-      }).then(response => {
-        const data = response.data;
-        // props.onRegister(data);
-        window.open('/', '_self');
-      }).catch(e => {
-        console.log('Error Registering User');
-      });
-  
-      setValidated(true);
-    };
-  }*/
+
+  FavoriteMovieList() {
+    console.log(this.state.userInfo.FavoriteMovies);
+    this.state.userInfo.FavoriteMovies.forEach((item, index) => {
+      this.FavoriteMovieList.push(<li key={index}>{item}</li>)
+      console.log({ item });
+    });
+  }
 
   render() {
 
-    const { user, token, userInfo, movie } = this.props;
+    const { user, token, userInfo, movie, FavoriteMovies } = this.props;
 
 
-    console.log(userInfo);
+
+
 
 
     return (
@@ -157,18 +146,23 @@ export class ProfileView extends React.Component {
           <Card.Title> Account Information</Card.Title>
           <Card.Body>
             <Card.Text>Username: {user}</Card.Text>
-            {/*<Card.Text>Email:{userInfo.Email}</Card.Text>*/}
+            <Card.Text>Email:{this.state.Email}</Card.Text>
+            <Card.Text></Card.Text>
+
           </Card.Body>
           <Card.Body></Card.Body>
           <Card.Body>
             {/*make drop down when clicking update information to pull up update form*/}
 
             <Button>Update Information</Button>
-            <Button>Show Movie List</Button>
+            <div>
+              <ul>{this.FavoriteMovieList}</ul>
+            </div>
+
           </Card.Body>
 
         </Card>
-
+        <fav-view userInfo={userInfo} />
 
         <Form onSubmit={(e) => this.handleUpdate(user, token, e)}>
           <Form.Row className="justify-content-center">
@@ -240,13 +234,4 @@ export class ProfileView extends React.Component {
 
 export default ProfileView;
 
-ProfileView.propTypes = {
-  User: PropTypes.shape({
-    Username: propTypes.string,
-    Password: propTypes.string,
-    Email: propTypes.string
-
-
-  })
-}
 

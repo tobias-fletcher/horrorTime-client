@@ -29,7 +29,8 @@ export class MainView extends React.Component {
       user: null,
       register: true,
       director: [],
-      token: null
+      token: null,
+      userInfo: null
 
     }
     this.toggleView = this.toggleView.bind(this)
@@ -45,7 +46,7 @@ export class MainView extends React.Component {
 
       });
       this.getMovies(accessToken);
-      /* this.getUser(accessToken, userInfo);*/
+      this.getUser(accessToken, userInfo);
     }
   }
 
@@ -90,7 +91,7 @@ export class MainView extends React.Component {
       })
   }
 
-  /*getUser(token, user) {
+  getUser(token, user) {
     axios.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -101,7 +102,7 @@ export class MainView extends React.Component {
         });
 
       })
-  }*/
+  }
 
   onRegister(register) {
     this.setState({
@@ -134,7 +135,7 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, selectedMovie, user, token, userInfo, register } = this.state;
-
+    //console.log(userInfo);
     // if (!register) return <RegistrationView onRegister={register => this.onRegister(register)} toggleView={this.toggleView} />;
     // if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} toggleView={this.toggleView} />;
 
@@ -229,7 +230,7 @@ export class MainView extends React.Component {
               </Col>
               if (movies.length === 0) return <div className="main-view" />
               return <Col md={8}>
-                <ProfileView user={user} movie={movies} getMovies={(token) => this.getMovies(token)} token={token} userInfo={userInfo} onBackClick={() => history.goBack()} />
+                <ProfileView user={user} movies={movies} getMovies={(token) => this.getMovies(token)} token={token} userInfo={userInfo} onBackClick={() => history.goBack()} />
               </Col>
             }} />
 
