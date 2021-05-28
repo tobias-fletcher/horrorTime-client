@@ -153,7 +153,9 @@ export class MainView extends React.Component {
               <Navbar.Brand style={{ margin: "auto" }} href="#movies">HorrorTime</Navbar.Brand>
               <Nav className="mr-auto">
                 <Nav.Link href="/">Movies</Nav.Link>
-                {/*<Nav.Link href='/users/${user}'>Account</Nav.Link>*/}
+                <Link to={`/users/${user}`}>
+                  <Button variant="dark">Account</Button>
+                </Link>
               </Nav>
               <Form style={{ margin: "auto" }} inline>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />

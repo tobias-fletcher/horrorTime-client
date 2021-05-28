@@ -38,19 +38,6 @@ export class MovieView extends React.Component {
     document.removeEventListener('keypress', this.keypressCallback);
   }
 
-  addFav(movie, user, e, token) {
-    console.log(movie);
-    axios.patch(`https://itshorrortime.herokuapp.com/users/${user}/movies/${movie._id}`, {
-      Username: user
-    },
-      {
-        headers: { Authorization: `Bearer ${token}` }
-      }).then(response => {
-        console.log(movie);
-      }).catch(e => {
-        console.log('Error adding Favorite');
-      });
-  };
 
   render() {
     const { movie, onBackClick, user } = this.props;
@@ -79,12 +66,12 @@ export class MovieView extends React.Component {
             </Card.Body>
             <Row>
               <Col className="justify-content-center my-5">
-                <Link to={`/ directors / ${movie.Director.Name}`}>
+                <Link to={`/directors/${movie.Director.Name}`}>
                   <Button variant="dark">Director</Button>
                 </Link>
               </Col>
               <Col className="justify-content-center">
-                <Link to={`/ genres / ${movie.Genre.Name}`}>
+                <Link to={`/genres/${movie.Genre.Name}`}>
                   <Button variant="dark" className='my-5'>Genre</Button>
                 </Link>
               </Col>

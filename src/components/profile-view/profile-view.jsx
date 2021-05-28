@@ -123,7 +123,6 @@ export class ProfileView extends React.Component {
     console.log(this.state.userInfo.FavoriteMovies);
     this.state.userInfo.FavoriteMovies.forEach((item, index) => {
       this.FavoriteMovieList.push(<li key={index}>{item}</li>)
-      console.log({ item });
     });
   }
 
@@ -155,9 +154,8 @@ export class ProfileView extends React.Component {
             {/*make drop down when clicking update information to pull up update form*/}
 
             <Button>Update Information</Button>
-            <div>
-              <ul>{this.FavoriteMovieList}</ul>
-            </div>
+            <Button onClick={() => this.FavoriteMovieList()}>Show Movies</Button>
+
 
           </Card.Body>
 
