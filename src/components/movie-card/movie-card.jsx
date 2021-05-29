@@ -30,10 +30,12 @@ export class MovieCard extends React.Component {
         }
       }
     ).then((response) => {
+      const data = response;
       console.log(response);
       console.log(movie);
-
-
+      this.setState({
+        FavoriteMovies: response.data
+      })
     })
   }
 

@@ -44,6 +44,7 @@ export class ProfileView extends React.Component {
         user: localStorage.getItem('user'),
         token: localStorage.getItem('token')
 
+
       });
       this.getMovies(accessToken);
       this.getUser(accessToken, userInfo);
@@ -147,9 +148,10 @@ export class ProfileView extends React.Component {
       console.log(response);
       const data = response.data;
       this.setState({
-        FavMovies: response.data,
-        FavoriteMovies: response.data
+        FavMovies: response.data
       });
+      window.location.reload();
+
     })
   }
 
