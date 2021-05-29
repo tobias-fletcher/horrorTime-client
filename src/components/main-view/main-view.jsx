@@ -36,7 +36,7 @@ export class MainView extends React.Component {
       userInfo: null
 
     }
-    this.toggleView = this.toggleView.bind(this)
+
   }
 
   componentDidMount() {
