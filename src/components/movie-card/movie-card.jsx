@@ -10,6 +10,8 @@ import { DirectorView } from '../director-view/director-view';
 import Container from 'react-bootstrap';
 import './movie-card.scss';
 import Col from 'react-bootstrap';
+import { transitions, positions, Provider as AlertProvider } from 'react-alert';
+
 export class MovieCard extends React.Component {
 
 
@@ -32,14 +34,16 @@ export class MovieCard extends React.Component {
       console.log(response);
       console.log(movie);
 
+
     })
   }
 
 
-
   render() {
     const { movie, onMovieClick, user, token } = this.props;
-
+    const App = () => {
+      const alert = useAlert()
+    }
 
     return (
       <>
@@ -49,9 +53,9 @@ export class MovieCard extends React.Component {
 
 
         <Card body bsPrefix="maximumW" className="bg-dark text-white mt-5 mx-2" style={{ height: "24rem" }}>
-          <Card.Header className="mb-0"><Link to={`/movies/${movie._id}`}>
-            <Button className="mb-2" block variant="primary" onClick={(e) => this.addFav(movie, user, token)}>Add</Button>
-          </Link></Card.Header>
+          <Card.Header className="mb-0">
+            <Button className="mb-2" block variant="primary" onClick={() => { alert.show('Movie Added') }} onClick={(e) => this.addFav(movie, user, token)}>Add</Button>
+          </Card.Header>
           <Card.Body className="justify-content-center align-items-center" >
             <Card.Img variant="top" src={movie.ImagePath} style={{ height: "11rem" }} />
             <Card.Title className="my-2" >{movie.Title}</Card.Title>
