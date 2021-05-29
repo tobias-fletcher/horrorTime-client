@@ -27,7 +27,9 @@ export class ProfileView extends React.Component {
     this.state = { Password: '' }
     this.state = { Email: '' }
     this.state = { Birthday: '' }
-    this.state = { FavoriteMovies: '' }
+    this.state = { FavoriteMovies: [] }
+    this.state = { FavMovies: [] }
+
 
 
 
@@ -45,6 +47,7 @@ export class ProfileView extends React.Component {
       });
       this.getMovies(accessToken);
       this.getUser(accessToken, userInfo);
+
     }
 
   }
@@ -128,18 +131,37 @@ export class ProfileView extends React.Component {
 
   }
 
+  deleteFav(movie, user, token, userInfo) {
+    console.log(movie);
+    console.log(token);
 
+
+    axios.delete(`https://itshorrortime.herokuapp.com/users/${user}/movies/${movie}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${token} `,
+          'Content-Type': 'application/json',
+        }
+      }
+    ).then((response) => {
+      console.log(response);
+      const data = response.data;
+      this.setState({
+        FavMovies: response.data,
+        FavoriteMovies: response.data
+      });
+    })
+  }
 
 
 
   render() {
 
     const { user, token, movies, userInfo } = this.props;
-    console.log(user.FavoriteMovies);
-    const FavoriteMovieList = movies.filter((movie) => {
+    const FavMovies = movies.filter((movie) => {
       return userInfo.FavoriteMovies.includes(movie._id);
     });
-    console.log(FavoriteMovieList);
+
 
 
 
@@ -168,7 +190,7 @@ export class ProfileView extends React.Component {
             {/*make drop down when clicking update information to pull up update form*/}
 
             <Button>Update Information</Button>
-            {  /*<Button onClick={() => this.FavoriteMovieList()}>Show Movies</Button>*/}
+            {  /*<Button onClick={() => this.FavMovies()}>Show Movies</Button>*/}
 
 
           </Card.Body>
@@ -178,10 +200,16 @@ export class ProfileView extends React.Component {
           <Col>
             <Card.Title>FavoriteMoviesList</Card.Title>
             <Card.Body>
-              <div>{FavoriteMovieList.map((movie) => (
-                <div>{movie.Title}</div>
-              ))} </div>
+
+              <div>{FavMovies.map((movie) => (
+                <div key={movie.Title}>{movie.Title} <Button onClick={(e) => this.deleteFav(movie._id, user, token, userInfo)} variant="dark" block>Delete</Button> </div>
+
+              ))}</div>
+
             </Card.Body>
+            <Card.Footer>
+
+            </Card.Footer>
 
           </Col>
         </Card>

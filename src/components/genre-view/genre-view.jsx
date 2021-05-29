@@ -26,6 +26,9 @@ export class GenreView extends React.Component {
             <Card.Title style={{ height: "3rem" }}>{genre.Name}</Card.Title>
             <Card.Text>{genre.Description}</Card.Text>
           </Card.Body>
+          <Card.Footer>
+            <Button onClick={() => history.back()}>Back</Button>
+          </Card.Footer>
         </Card>
       </div>
     );

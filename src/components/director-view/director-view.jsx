@@ -32,6 +32,9 @@ export class DirectorView extends React.Component {
             <br />
 
           </Card.Body>
+          <Card.Footer>
+            <Button onClick={() => history.back()}>Back</Button>
+          </Card.Footer>
         </Card>
       </div >
     );

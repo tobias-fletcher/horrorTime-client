@@ -50,7 +50,7 @@ export class MovieView extends React.Component {
 
         <CardGroup className="bg-dark my-5 mx-5">
           <Card className='movie-view bg-dark text-white my-5 mx-5 justify-content-center align-items-center'>
-            <Image src={`/ img / ${movie.ImagePath}`} />
+            <Card.Img variant="top" src={movie.ImagePath} />
             <Card.Title className='label justify-content-center'>{movie.Title} </Card.Title>
             <Card.Body className='movie-description'>Description: {movie.Description}</Card.Body>
             <Card.Body className='movie-Genre'>Genre: {movie.Genre.Name}</Card.Body>
@@ -74,6 +74,7 @@ export class MovieView extends React.Component {
                 <Link to={`/genres/${movie.Genre.Name}`}>
                   <Button variant="dark" className='my-5'>Genre</Button>
                 </Link>
+                <Button onClick={() => history.back()}>Back</Button>
               </Col>
             </Row>
           </Card>

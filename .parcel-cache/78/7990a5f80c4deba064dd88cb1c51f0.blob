@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+
+<head><link rel="stylesheet" href="/index.HASH_REF_1ff1b3bbe6dc9ba64a9287a3d1cfc2c1.css">
+  <title>Horror-Time</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="app-container"></div>
+  <script src="/index.HASH_REF_6ff0296473c9104501ee949f7707d240.js"></script>
+</body>
+
+</html>
