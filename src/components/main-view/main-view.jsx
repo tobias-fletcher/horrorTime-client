@@ -8,16 +8,19 @@ import { MovieCard } from '../movie-card/movie-card';
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { ProfileView } from '../profile-view/profile-view';
+import { FavoriteView } from '../fav-view/fav-view';
 import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import { Navbar, Nav } from 'react-bootstrap';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-
+import Moment from 'react-moment';
+import moment from 'moment';
 
 export class MainView extends React.Component {
 
@@ -134,7 +137,10 @@ export class MainView extends React.Component {
 
 
   render() {
-    const { movies, selectedMovie, user, token, userInfo, register } = this.state;
+    const { movies, selectedMovie, user, token, userInfo, register, FavoriteMovies } = this.state;
+
+
+
     //console.log(userInfo);
     // if (!register) return <RegistrationView onRegister={register => this.onRegister(register)} toggleView={this.toggleView} />;
     // if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} toggleView={this.toggleView} />;
@@ -152,7 +158,9 @@ export class MainView extends React.Component {
             <Navbar style={{ width: "100%" }} bg="dark" variant="dark">
               <Navbar.Brand style={{ margin: "auto" }} href="#movies">HorrorTime</Navbar.Brand>
               <Nav className="mr-auto">
-                <Nav.Link href="/">Movies</Nav.Link>
+                <Link to="/">
+                  <Button variant="dark">Movies</Button>
+                </Link>
                 <Link to={`/users/${user}`}>
                   <Button variant="dark">Account</Button>
                 </Link>
@@ -235,6 +243,8 @@ export class MainView extends React.Component {
                 <ProfileView user={user} movies={movies} getMovies={(token) => this.getMovies(token)} token={token} userInfo={userInfo} onBackClick={() => history.goBack()} />
               </Col>
             }} />
+
+
 
           </div>
         </Router>

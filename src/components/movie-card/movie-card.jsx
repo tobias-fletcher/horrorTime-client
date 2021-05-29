@@ -16,11 +16,12 @@ export class MovieCard extends React.Component {
   addFav(movie, user, token, userInfo) {
 
     console.log(this.props.movie._id);
-    console.log(user);
-    console.log(token);
     console.log(movie);
 
-    axios.post(`https://itshorrortime.herokuapp.com/users/${user}/movies/${this.props.movie._id}`, {},
+
+    axios.post(`https://itshorrortime.herokuapp.com/users/${user}/movies/${this.props.movie._id}`, {
+      FavoriteMovies: this.props.FavoriteMovies
+    },
       {
         headers: {
           'Authorization': `Bearer ${token} `,
@@ -28,9 +29,9 @@ export class MovieCard extends React.Component {
         }
       }
     ).then((response) => {
-
       console.log(response);
       console.log(movie);
+
     })
   }
 
@@ -85,5 +86,7 @@ MovieCard.propTypes = {
     ImagePath: PropTypes.string.isRequired,
     Featured: PropTypes.bool,
     Year: PropTypes.string
-  }).isRequired
+  }).isRequired,
+
+
 };

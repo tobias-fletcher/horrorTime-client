@@ -8,7 +8,15 @@ import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import FormControl from 'react-bootstrap/FormControl';
-import FavoriteView from '../fav-view/fav-view';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import ModalHeader from 'react-bootstrap/ModalHeader';
+import ModalDialog from 'react-bootstrap/ModalDialog';
+import Modal from 'react-bootstrap/Modal'
+import { FavoriteView } from '../fav-view/fav-view';
+import Container from 'react-bootstrap';
+import Moment from 'react-moment';
+import moment from 'moment';
+import Col from 'react-bootstrap/Col'
 
 export class ProfileView extends React.Component {
 
@@ -19,7 +27,10 @@ export class ProfileView extends React.Component {
     this.state = { Password: '' }
     this.state = { Email: '' }
     this.state = { Birthday: '' }
-    this.state = { FavoriteMovies: [] }
+    this.state = { FavoriteMovies: '' }
+
+
+
 
   }
 
@@ -74,7 +85,7 @@ export class ProfileView extends React.Component {
       }).then(() => {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-        window.open('', '_self');
+        window.open('/', '_self');
       });
 
   }
@@ -119,16 +130,19 @@ export class ProfileView extends React.Component {
 
 
 
-  FavoriteMovieList() {
-    console.log(this.state.userInfo.FavoriteMovies);
-    this.state.userInfo.FavoriteMovies.forEach((item, index) => {
-      this.FavoriteMovieList.push(<li key={index}>{item}</li>)
-    });
-  }
+
 
   render() {
 
-    const { user, token, userInfo, movie, FavoriteMovies } = this.props;
+    const { user, token, movies, userInfo } = this.props;
+    console.log(user.FavoriteMovies);
+    const FavoriteMovieList = movies.filter((movie) => {
+      return userInfo.FavoriteMovies.includes(movie._id);
+    });
+    console.log(FavoriteMovieList);
+
+
+
 
 
 
@@ -146,7 +160,7 @@ export class ProfileView extends React.Component {
           <Card.Body>
             <Card.Text>Username: {user}</Card.Text>
             <Card.Text>Email:{this.state.Email}</Card.Text>
-            <Card.Text></Card.Text>
+            <Card.Text>Birthday: {this.state.Birthday}</Card.Text>
 
           </Card.Body>
           <Card.Body></Card.Body>
@@ -154,13 +168,26 @@ export class ProfileView extends React.Component {
             {/*make drop down when clicking update information to pull up update form*/}
 
             <Button>Update Information</Button>
-            <Button onClick={() => this.FavoriteMovieList()}>Show Movies</Button>
+            {  /*<Button onClick={() => this.FavoriteMovieList()}>Show Movies</Button>*/}
 
 
           </Card.Body>
 
         </Card>
-        <fav-view userInfo={userInfo} />
+        <Card>
+          <Col>
+            <Card.Title>FavoriteMoviesList</Card.Title>
+            <Card.Body>
+              <div>{FavoriteMovieList.map((movie) => (
+                <div>{movie.Title}</div>
+              ))} </div>
+            </Card.Body>
+
+          </Col>
+        </Card>
+
+
+
 
         <Form onSubmit={(e) => this.handleUpdate(user, token, e)}>
           <Form.Row className="justify-content-center">
@@ -223,12 +250,19 @@ export class ProfileView extends React.Component {
         <Button onClick={(e) => this.handleDelete(user, token)} variant="dark" block>Delete</Button>
 
 
+
+
       </>
     )
 
 
   }
 }
+
+
+ProfileView.propTypes = {
+  movies: PropTypes.array.isRequired
+};
 
 export default ProfileView;
 
