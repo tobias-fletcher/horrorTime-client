@@ -26292,11 +26292,13 @@ try {
   var _loginViewLoginView = require('../login-view/login-view');
   var _movieViewMovieView = require('../movie-view/movie-view');
   var _movieCardMovieCard = require('../movie-card/movie-card');
-  require("react-router-dom");
+  var _genreViewGenreView = require('../genre-view/genre-view');
+  var _directorViewDirectorView = require('../director-view/director-view');
+  var _profileViewProfileView = require('../profile-view/profile-view');
+  var _reactRouterDom = require('react-router-dom');
   var _reactBootstrapForm = require('react-bootstrap/Form');
   var _reactBootstrapFormDefault = _parcelHelpers.interopDefault(_reactBootstrapForm);
-  var _reactBootstrapRow = require('react-bootstrap/Row');
-  var _reactBootstrapRowDefault = _parcelHelpers.interopDefault(_reactBootstrapRow);
+  require('react-bootstrap/Row');
   var _reactBootstrapCol = require('react-bootstrap/Col');
   var _reactBootstrapColDefault = _parcelHelpers.interopDefault(_reactBootstrapCol);
   var _reactBootstrap = require('react-bootstrap');
@@ -26304,6 +26306,8 @@ try {
   var _reactBootstrapFormControlDefault = _parcelHelpers.interopDefault(_reactBootstrapFormControl);
   var _reactBootstrapButton = require('react-bootstrap/Button');
   var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
+  var _reactBootstrapContainer = require('react-bootstrap/Container');
+  var _reactBootstrapContainerDefault = _parcelHelpers.interopDefault(_reactBootstrapContainer);
   var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\main-view\\main-view.jsx";
   class MainView extends _reactDefault.default.Component {
     constructor() {
@@ -26312,27 +26316,69 @@ try {
         movies: [],
         selectedMovie: null,
         user: null,
-        register: true
+        register: true,
+        director: [],
+        token: null
       };
       this.toggleView = this.toggleView.bind(this);
     }
     componentDidMount() {
-      _axiosDefault.default.get('https://itshorrortime.herokuapp.com/movies').then(response => {
+      let accessToken = localStorage.getItem('token');
+      let userInfo = localStorage.getItem('user');
+      if (accessToken !== null) {
         this.setState({
-          movies: response.data
+          user: localStorage.getItem('user'),
+          token: localStorage.getItem('token')
         });
-      }).catch(error => {
-        console.log(error);
-      });
+        this.getMovies(accessToken);
+        this.getUser(accessToken, userInfo);
+      }
     }
     setSelectedMovie(newSelectedMovie) {
       this.setState({
         selectedMovie: newSelectedMovie
       });
     }
-    onLoggedIn(user) {
+    onLoggedIn(authData) {
+      console.log(authData);
       this.setState({
-        user
+        user: authData.user.Username,
+        token: authData.token
+      });
+      localStorage.setItem('token', authData.token);
+      localStorage.setItem('user', authData.user.Username);
+      this.getMovies(authData.token);
+      this.getUser(authData.token, authData.user.Username);
+    }
+    onLoggedOut() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      this.setState({
+        user: null
+      });
+      window.open('/', '_self');
+    }
+    getMovies(token) {
+      _axiosDefault.default.get('https://itshorrortime.herokuapp.com/movies', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => {
+        this.setState({
+          movies: response.data
+        });
+      });
+    }
+    getUser(token, user) {
+      _axiosDefault.default.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => {
+        console.log('Got account Info');
+        this.setState({
+          userInfo: response.data
+        });
       });
     }
     onRegister(register) {
@@ -26351,51 +26397,31 @@ try {
         register: !this.state.register
       });
     }
+    onUpdate(update) {
+      this.setState({
+        update
+      });
+      console.log(update);
+    }
     render() {
-      const {movies, selectedMovie, user, register} = this.state;
-      if (!register) return (
-        /*#__PURE__*/_reactDefault.default.createElement(_registrationViewRegistrationView.RegistrationView, {
-          onRegister: register => this.onRegister(register),
-          toggleView: this.toggleView,
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 82,
-            columnNumber: 27
-          }
-        })
-      );
-      if (!user) return (
-        /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
-          onLoggedIn: user => this.onLoggedIn(user),
-          toggleView: this.toggleView,
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 83,
-            columnNumber: 23
-          }
-        })
-      );
-      if (movies.length === 0) return (
-        /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "main-view",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 84,
-            columnNumber: 37
-          }
-        })
-      );
+      const {movies, selectedMovie, user, token, userInfo, register} = this.state;
+      // if (!register) return <RegistrationView onRegister={register => this.onRegister(register)} toggleView={this.toggleView} />;
+      // if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} toggleView={this.toggleView} />;
       return (
-        /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, {
-          block: true,
+        /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 90,
+            lineNumber: 146,
             columnNumber: 9
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "main-view justify-content-md-center",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 148,
+            columnNumber: 11
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar, {
           style: {
@@ -26406,8 +26432,8 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 91,
-            columnNumber: 11
+            lineNumber: 151,
+            columnNumber: 13
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
           style: {
@@ -26417,50 +26443,26 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 92,
-            columnNumber: 13
+            lineNumber: 152,
+            columnNumber: 15
           }
         }, "HorrorTime"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav, {
           className: "mr-auto",
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 93,
-            columnNumber: 13
+            lineNumber: 153,
+            columnNumber: 15
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-          href: "/movies",
+          href: "/",
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 94,
-            columnNumber: 15
+            lineNumber: 154,
+            columnNumber: 17
           }
-        }, "Movies"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-          href: "/genres",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 95,
-            columnNumber: 15
-          }
-        }, "Genres"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-          href: "/directors",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 96,
-            columnNumber: 15
-          }
-        }, "Directors"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-          href: "/account",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 97,
-            columnNumber: 15
-          }
-        }, "Account")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, {
+        }, "Movies")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, {
           style: {
             margin: "auto"
           },
@@ -26468,8 +26470,8 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 99,
-            columnNumber: 13
+            lineNumber: 157,
+            columnNumber: 15
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormControlDefault.default, {
           type: "text",
@@ -26478,70 +26480,396 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 100,
-            columnNumber: 15
+            lineNumber: 158,
+            columnNumber: 17
           }
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
           variant: "outline-info",
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 101,
+            lineNumber: 159,
+            columnNumber: 17
+          }
+        }, "Search")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Nav.Item, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 161,
             columnNumber: 15
           }
-        }, "Search"))), /*#__PURE__*/_reactDefault.default.createElement("br", {
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 104,
-            columnNumber: 11
-          }
-        })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, {
-          className: "main-view justify-content-md-center",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 106,
-            columnNumber: 9
-          }
-        }, selectedMovie ? /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 109,
-            columnNumber: 15
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement(_movieViewMovieView.MovieView, {
-          movie: selectedMovie,
-          onBackClick: newSelectedMovie => {
-            this.setSelectedMovie(newSelectedMovie);
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+          variant: "dark",
+          onClick: () => {
+            this.onLoggedOut();
           },
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 110,
+            lineNumber: 162,
             columnNumber: 17
           }
-        })) : movies.map(movie => /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+        }, "Logout"))), /*#__PURE__*/_reactDefault.default.createElement("br", {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 114,
-            columnNumber: 15
+            lineNumber: 165,
+            columnNumber: 13
           }
-        }, /*#__PURE__*/_reactDefault.default.createElement(_movieCardMovieCard.MovieCard, {
-          key: movie._id,
-          movie: movie,
-          onMovieClick: newSelectedMovie => {
-            this.setSelectedMovie(newSelectedMovie);
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+          exact: true,
+          path: "/",
+          render: () => {
+            if (!user) return (
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 168,
+                  columnNumber: 33
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
+                onLoggedIn: user => this.onLoggedIn(user),
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 169,
+                  columnNumber: 17
+                }
+              }))
+            );
+            if (movies.length === 0) return (
+              /*#__PURE__*/_reactDefault.default.createElement("div", {
+                className: "main-view",
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 171,
+                  columnNumber: 47
+                }
+              })
+            );
+            return (
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
+                bsPrefix: "custom",
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 173,
+                  columnNumber: 17
+                }
+              }, movies.map(m => /*#__PURE__*/_reactDefault.default.createElement("div", {
+                className: "d-flex justify-content-center",
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 176,
+                  columnNumber: 23
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+                className: "flex-column p-4",
+                bsPrefix: "customCol",
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 177,
+                  columnNumber: 25
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_movieCardMovieCard.MovieCard, {
+                movie: m,
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 178,
+                  columnNumber: 27
+                }
+              })))))
+            );
           },
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 115,
-            columnNumber: 17
+            lineNumber: 167,
+            columnNumber: 13
           }
-        })))))
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+          path: "/register",
+          render: () => {
+            if (user) return (
+              /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Redirect, {
+                to: "/",
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 188,
+                  columnNumber: 32
+                }
+              })
+            );
+            return (
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 189,
+                  columnNumber: 22
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_registrationViewRegistrationView.RegistrationView, {
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 190,
+                  columnNumber: 17
+                }
+              }))
+            );
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 187,
+            columnNumber: 13
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+          path: "/movies/:movieId",
+          render: ({match, history}) => {
+            if (!user) return (
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 195,
+                  columnNumber: 33
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
+                onLoggedIn: user => this.onLoggedIn(user),
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 196,
+                  columnNumber: 17
+                }
+              }))
+            );
+            if (movies.length === 0) return (
+              /*#__PURE__*/_reactDefault.default.createElement("div", {
+                className: "main-view",
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 198,
+                  columnNumber: 47
+                }
+              })
+            );
+            return (
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+                md: 8,
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 199,
+                  columnNumber: 22
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_movieViewMovieView.MovieView, {
+                movie: movies.find(m => m._id === match.params.movieId),
+                onBackClick: () => history.goBack(),
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 200,
+                  columnNumber: 17
+                }
+              }))
+            );
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 194,
+            columnNumber: 13
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+          path: "/directors/:name",
+          render: ({match, history}) => {
+            if (!user) return (
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 205,
+                  columnNumber: 33
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
+                onLoggedIn: user => this.onLoggedIn(user),
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 206,
+                  columnNumber: 17
+                }
+              }))
+            );
+            if (movies.length === 0) return (
+              /*#__PURE__*/_reactDefault.default.createElement("div", {
+                className: "main-view",
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 208,
+                  columnNumber: 47
+                }
+              })
+            );
+            return (
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+                md: 8,
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 209,
+                  columnNumber: 22
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_directorViewDirectorView.DirectorView, {
+                director: movies.find(m => m.Director.Name === match.params.name).Director,
+                movies: movies,
+                onBackClick: () => history.goBack(),
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 210,
+                  columnNumber: 17
+                }
+              }))
+            );
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 204,
+            columnNumber: 13
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+          path: "/genres/:name",
+          render: ({match}) => {
+            if (!user) return (
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 217,
+                  columnNumber: 33
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
+                onLoggedIn: user => this.onLoggedIn(user),
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 218,
+                  columnNumber: 17
+                }
+              }))
+            );
+            if (movies.length === 0) return (
+              /*#__PURE__*/_reactDefault.default.createElement("div", {
+                className: "main-view",
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 220,
+                  columnNumber: 47
+                }
+              })
+            );
+            return (
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+                md: 8,
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 221,
+                  columnNumber: 22
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_genreViewGenreView.GenreView, {
+                genre: movies.find(m => m.Genre.Name === match.params.name).Genre,
+                onBackClick: () => history.goBack(),
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 222,
+                  columnNumber: 17
+                }
+              }))
+            );
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 216,
+            columnNumber: 13
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+          path: `/users/${user}`,
+          render: ({match, history}) => {
+            if (!user) return (
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 227,
+                  columnNumber: 33
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
+                onLoggedIn: user => this.inLoggedIn(user),
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 228,
+                  columnNumber: 17
+                }
+              }))
+            );
+            if (movies.length === 0) return (
+              /*#__PURE__*/_reactDefault.default.createElement("div", {
+                className: "main-view",
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 230,
+                  columnNumber: 47
+                }
+              })
+            );
+            return (
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+                md: 8,
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 231,
+                  columnNumber: 22
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_profileViewProfileView.ProfileView, {
+                user: user,
+                token: token,
+                userInfo: userInfo,
+                onBackClick: () => history.goBack(),
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 232,
+                  columnNumber: 17
+                }
+              }))
+            );
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 226,
+            columnNumber: 13
+          }
+        }))))
       );
     }
   }
@@ -26552,7 +26880,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","axios":"7rA65","../registration-view/registration-view":"7gvH2","../login-view/login-view":"6M7fu","../movie-view/movie-view":"3xBbr","../movie-card/movie-card":"7v6h3","react-router-dom":"1PMSK","react-bootstrap/Form":"6A5ko","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","react-bootstrap":"4n7hB","react-bootstrap/FormControl":"573gP","react-bootstrap/Button":"1ru0l","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","../registration-view/registration-view":"7gvH2","../login-view/login-view":"6M7fu","../movie-view/movie-view":"3xBbr","../movie-card/movie-card":"7v6h3","../director-view/director-view":"7HF27","react-router-dom":"1PMSK","react-bootstrap/Form":"6A5ko","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","react-bootstrap":"4n7hB","react-bootstrap/FormControl":"573gP","react-bootstrap/Button":"1ru0l","react-bootstrap/Container":"3Mt3t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","../genre-view/genre-view":"6FLqj","../profile-view/profile-view":"3CncI"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
 'use strict';
@@ -28310,27 +28638,52 @@ try {
   });
   var _react = require('react');
   var _reactDefault = _parcelHelpers.interopDefault(_react);
-  require('axios');
+  var _axios = require('axios');
+  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _reactBootstrapForm = require('react-bootstrap/Form');
   var _reactBootstrapFormDefault = _parcelHelpers.interopDefault(_reactBootstrapForm);
   var _reactBootstrapButton = require('react-bootstrap/Button');
   var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
-  require('react-bootstrap/Col');
   var _reactBootstrapContainer = require('react-bootstrap/Container');
   var _reactBootstrapContainerDefault = _parcelHelpers.interopDefault(_reactBootstrapContainer);
   var _reactHelmet = require("react-helmet");
   var _reactHelmetDefault = _parcelHelpers.interopDefault(_reactHelmet);
+  var _reactBootstrapRow = require('react-bootstrap/Row');
+  var _reactBootstrapRowDefault = _parcelHelpers.interopDefault(_reactBootstrapRow);
+  require('react-bootstrap/Col');
+  var _reactRouterDom = require('react-router-dom');
   var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\registration-view\\registration-view.jsx", _s = $RefreshSig$();
   function RegistrationView(props) {
     _s();
     const [username, setUsername] = _react.useState('');
     const [password, setPassword] = _react.useState('');
     const [email, setEmail] = _react.useState('');
-    const [birthdate, setBirthdate] = _react.useState('');
+    const [birthday, setBirthday] = _react.useState('');
+    const [validated, setValidated] = _react.useState(false);
+    const history = _reactRouterDom.useHistory();
+    const handleClick = () => {
+      history.push("/");
+    };
     const handleSubmit = e => {
+      const form = e.currentTarget;
+      if (form.checkValidity() === false) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       e.preventDefault();
-      console.log(username, password, email, birthdate);
-      props.onRegister(username);
+      _axiosDefault.default.post('https://itshorrortime.herokuapp.com/users', {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthday: birthday
+      }).then(response => {
+        const data = response.data;
+        // props.onRegister(data);
+        window.open('/', '_self');
+      }).catch(e => {
+        console.log('Error Registering User');
+      });
+      setValidated(true);
     };
     return (
       /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
@@ -28338,7 +28691,7 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 23,
+          lineNumber: 51,
           columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
@@ -28348,7 +28701,7 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 28,
+          lineNumber: 52,
           columnNumber: 7
         }
       }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
@@ -28356,7 +28709,7 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 30,
+          lineNumber: 54,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
@@ -28364,14 +28717,17 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31,
+          lineNumber: 55,
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, {
+        noValidate: true,
+        validated: validated,
+        onSubmit: handleSubmit,
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 32,
+          lineNumber: 57,
           columnNumber: 11
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
@@ -28379,140 +28735,191 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33,
+          lineNumber: 59,
           columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
-        controlId: "formUsername",
+        as: _reactBootstrapRowDefault.default,
+        controlId: "validationCustomUsername",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34,
+          lineNumber: 60,
           columnNumber: 15
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 35,
+          lineNumber: 61,
           columnNumber: 17
         }
       }, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         type: "text",
+        required: true,
+        minLength: "6",
+        maxLength: "12",
         placeholder: "Enter Username",
         onChange: e => setUsername(e.target.value),
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36,
+          lineNumber: 62,
           columnNumber: 17
         }
-      }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control.Feedback, {
+        type: "invalid",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 71,
+          columnNumber: 17
+        }
+      }, "Please enter Username between 6 and 12 characters"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
         className: "justify-content-center",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 39,
+          lineNumber: 75,
           columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
-        controlId: "formPassword",
+        as: _reactBootstrapRowDefault.default,
+        controlId: "validationCustomPassword",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40,
+          lineNumber: 76,
           columnNumber: 15
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 41,
+          lineNumber: 77,
           columnNumber: 17
         }
       }, "Password: "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         type: "password",
-        placeholder: "Enter Password",
+        required: true,
+        minLength: "6",
+        placeholder: "Alphanumeric (6-12 characters)",
         onChange: e => setPassword(e.target.value),
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 42,
+          lineNumber: 78,
           columnNumber: 17
         }
-      }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control.Feedback, {
+        type: "invalid",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 85,
+          columnNumber: 17
+        }
+      }, "Please enter an alphanumeric password at least 6 characters long."))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
         className: "justify-content-center",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45,
+          lineNumber: 89,
           columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
-        controlId: "formEmail",
+        as: _reactBootstrapRowDefault.default,
+        controlId: "customValidationEmail",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46,
+          lineNumber: 90,
           columnNumber: 15
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
+        column: true,
+        sm: 2,
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 47,
+          lineNumber: 91,
           columnNumber: 17
         }
       }, "Email: "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         type: "email",
-        placeholder: "Enter Email",
+        required: true,
+        placeholder: "example@example.com",
         onChange: e => setEmail(e.target.value),
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48,
+          lineNumber: 92,
           columnNumber: 17
         }
-      }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control.Feedback, {
+        type: "invalid",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 98,
+          columnNumber: 17
+        }
+      }, "Please include @ in the email address"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
         className: "justify-content-center",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51,
+          lineNumber: 103,
           columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
-        controlId: "formBirthdate",
+        as: _reactBootstrapRowDefault.default,
+        controlId: "customValidationbirthday",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 52,
+          lineNumber: 104,
           columnNumber: 15
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 53,
+          lineNumber: 105,
           columnNumber: 17
         }
-      }, "Birthdate: "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
-        type: "birthdate",
-        placeholder: "Enter Birthdate",
-        onChange: e => setBirthdate(e.target.value),
+      }, "Birthday: "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+        type: "date",
+        required: true,
+        onChange: e => setBirthday(e.target.value),
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 54,
+          lineNumber: 106,
           columnNumber: 17
         }
-      }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control.Feedback, {
+        type: "invalid",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 111,
+          columnNumber: 17
+        }
+      }, "Please enter your birthday"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 115,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
         className: "justify-content-center mb-3",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 57,
-          columnNumber: 13
+          lineNumber: 116,
+          columnNumber: 15
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
         variant: "dark",
@@ -28522,23 +28929,25 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 58,
-          columnNumber: 15
+          lineNumber: 117,
+          columnNumber: 17
         }
-      }, "Submit"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+      }, " Submit"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
         variant: "outline-dark",
         block: true,
-        onClick: props.toggleView,
+        onClick: () => handleClick('/'),
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 61,
-          columnNumber: 15
+          lineNumber: 119,
+          columnNumber: 17
         }
-      }, "Already have an account?"))))))
+      }, "Already have an account?")))))))
     );
   }
-  _s(RegistrationView, "TD2fkD1Ab4Kck2JJHVZv+3f7f/8=");
+  _s(RegistrationView, "R5RYefSnILCx48Vy6WUwl0ZBXLQ=", false, function () {
+    return [_reactRouterDom.useHistory];
+  });
   _c = RegistrationView;
   var _c;
   $RefreshReg$(_c, "RegistrationView");
@@ -28548,7 +28957,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","axios":"7rA65","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Col":"2D0r8","react-bootstrap/Container":"3Mt3t","react-helmet":"71Wec","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"6A5ko":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Container":"3Mt3t","react-helmet":"71Wec","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK"}],"6A5ko":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -31902,7 +32311,66 @@ module.exports = function isEqual(a, b) {
   }
 };
 
-},{}],"5gA8y":[function(require,module,exports) {
+},{}],"3fzwD":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _ThemeProvider = require("./ThemeProvider");
+
+var DEVICE_SIZES = ['xl', 'lg', 'md', 'sm', 'xs'];
+var defaultProps = {
+  noGutters: false
+};
+
+var Row = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
+  var bsPrefix = _ref.bsPrefix,
+      className = _ref.className,
+      noGutters = _ref.noGutters,
+      _ref$as = _ref.as,
+      Component = _ref$as === void 0 ? 'div' : _ref$as,
+      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "noGutters", "as"]);
+  var decoratedBsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'row');
+  var sizePrefix = decoratedBsPrefix + "-cols";
+  var classes = [];
+  DEVICE_SIZES.forEach(function (brkPoint) {
+    var propValue = props[brkPoint];
+    delete props[brkPoint];
+    var cols;
+
+    if (propValue != null && typeof propValue === 'object') {
+      cols = propValue.cols;
+    } else {
+      cols = propValue;
+    }
+
+    var infix = brkPoint !== 'xs' ? "-" + brkPoint : '';
+    if (cols != null) classes.push("" + sizePrefix + infix + "-" + cols);
+  });
+  return /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({
+    ref: ref
+  }, props, {
+    className: _classnames.default.apply(void 0, [className, decoratedBsPrefix, noGutters && 'no-gutters'].concat(classes))
+  }));
+});
+
+Row.displayName = 'Row';
+Row.defaultProps = defaultProps;
+var _default = Row;
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S"}],"5gA8y":[function(require,module,exports) {
 "use strict";
 
 exports.interopDefault = function (a) {
@@ -32101,196 +32569,7 @@ function registerExportsForReactRefresh(module) {
   }
 }
 
-},{"react-refresh/runtime":"592mh"}],"6M7fu":[function(require,module,exports) {
-var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-  _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "LoginView", function () {
-    return LoginView;
-  });
-  var _react = require('react');
-  var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _axios = require('axios');
-  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
-  var _reactBootstrapForm = require('react-bootstrap/Form');
-  var _reactBootstrapFormDefault = _parcelHelpers.interopDefault(_reactBootstrapForm);
-  var _reactBootstrapButton = require('react-bootstrap/Button');
-  var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
-  var _reactBootstrapContainer = require('react-bootstrap/Container');
-  var _reactBootstrapContainerDefault = _parcelHelpers.interopDefault(_reactBootstrapContainer);
-  require("react-router-dom");
-  var _reactHelmet = require("react-helmet");
-  var _reactHelmetDefault = _parcelHelpers.interopDefault(_reactHelmet);
-  require('./login-view.scss');
-  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\login-view\\login-view.jsx", _s = $RefreshSig$();
-  function LoginView(props) {
-    _s();
-    const [username, setUsername] = _react.useState('');
-    const [password, setPassword] = _react.useState('');
-    const handleSubmit = e => {
-      e.preventDefault();
-      _axiosDefault.default.post(' https://itshorrortime.herokuapp.com/login', {
-        Username: username,
-        Password: password
-      });
-      // .then(result => {
-      props.onLoggedIn(username);
-    };
-    return (
-      /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
-        className: "container1",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 38,
-          columnNumber: 5
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
-        bodyAttributes: {
-          style: 'background-color : black'
-        },
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 39,
-          columnNumber: 7
-        }
-      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 41,
-          columnNumber: 7
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
-        className: "justify-content-center mt-5",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 42,
-          columnNumber: 9
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, {
-        className: "container2 justify-content-enter",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 43,
-          columnNumber: 11
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
-        className: "justify-content-center",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 44,
-          columnNumber: 13
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
-        controlId: "formUsername",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 45,
-          columnNumber: 15
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 46,
-          columnNumber: 17
-        }
-      }, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
-        type: "text",
-        placeholder: "Enter Username",
-        onChange: e => setUsername(e.target.value),
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 47,
-          columnNumber: 17
-        }
-      }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
-        className: "justify-content-center",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 51,
-          columnNumber: 13
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
-        controlId: "formPassword",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 52,
-          columnNumber: 15
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 53,
-          columnNumber: 17
-        }
-      }, "Password:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
-        type: "password",
-        placeholder: "Enter Password",
-        onChange: e => setPassword(e.target.value),
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 54,
-          columnNumber: 17
-        }
-      }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
-        className: "justify-content-center mb-3",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 58,
-          columnNumber: 13
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
-        variant: "dark",
-        block: true,
-        type: "submit",
-        onClick: handleSubmit,
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 59,
-          columnNumber: 15
-        }
-      }, "Submit"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
-        variant: "outline-dark",
-        block: true,
-        onClick: props.toggleView,
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 60,
-          columnNumber: 15
-        }
-      }, "Don't have an account?"))))))
-    );
-  }
-  _s(LoginView, "wuQOK7xaXdVz4RMrZQhWbI751Oc=");
-  _c = LoginView;
-  var _c;
-  $RefreshReg$(_c, "LoginView");
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-
-},{"react":"3b2NM","axios":"7rA65","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Container":"3Mt3t","react-router-dom":"1PMSK","react-helmet":"71Wec","./login-view.scss":"3ueKO","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"1PMSK":[function(require,module,exports) {
+},{"react-refresh/runtime":"592mh"}],"1PMSK":[function(require,module,exports) {
 "use strict";
 if ("development" === "production") {
   module.exports = require("./cjs/react-router-dom.min.js");
@@ -33576,7 +33855,7 @@ exports.useParams = useParams;
 exports.useRouteMatch = useRouteMatch;
 exports.withRouter = withRouter;
 
-},{"react":"3b2NM","prop-types":"4dfy5","history":"RV0qD","tiny-warning":"3B527","mini-create-react-context":"g8cqP","tiny-invariant":"4v3Kg","path-to-regexp":"2JudW","react-is":"68QIU","hoist-non-react-statics":"3nUHV"}],"RV0qD":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","history":"RV0qD","tiny-warning":"3B527","mini-create-react-context":"g8cqP","tiny-invariant":"4v3Kg","path-to-regexp":"5CMSM","react-is":"68QIU","hoist-non-react-statics":"3nUHV"}],"RV0qD":[function(require,module,exports) {
 "use strict";
 if ("development" === 'production') {
   module.exports = require('./cjs/history.min.js');
@@ -34878,7 +35157,7 @@ function _setPrototypeOf(o, p) {
 
 module.exports = _setPrototypeOf;
 module.exports["default"] = module.exports, module.exports.__esModule = true;
-},{}],"2JudW":[function(require,module,exports) {
+},{}],"5CMSM":[function(require,module,exports) {
 var isarray = require('isarray')
 
 /**
@@ -35306,7 +35585,7 @@ function pathToRegexp (path, keys, options) {
   return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
 }
 
-},{"isarray":"1Mr3a"}],"1Mr3a":[function(require,module,exports) {
+},{"isarray":"5JxtJ"}],"5JxtJ":[function(require,module,exports) {
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
@@ -35416,7 +35695,7 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 
 module.exports = hoistNonReactStatics;
 
-},{"react-is":"68QIU"}],"3ueKO":[function() {},{}],"3xBbr":[function(require,module,exports) {
+},{"react-is":"68QIU"}],"6M7fu":[function(require,module,exports) {
 var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -35424,749 +35703,612 @@ helpers.prelude(module);
 try {
   var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
   _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "MovieView", function () {
-    return MovieView;
+  _parcelHelpers.export(exports, "LoginView", function () {
+    return LoginView;
   });
   var _react = require('react');
   var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _propTypes = require('prop-types');
-  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
-  require('react-bootstrap/Form');
+  var _axios = require('axios');
+  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
+  var _reactBootstrapForm = require('react-bootstrap/Form');
+  var _reactBootstrapFormDefault = _parcelHelpers.interopDefault(_reactBootstrapForm);
   var _reactBootstrapButton = require('react-bootstrap/Button');
   var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
-  var _reactBootstrapCard = require('react-bootstrap/Card');
-  var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
-  var _reactBootstrapCardGroup = require('react-bootstrap/CardGroup');
-  var _reactBootstrapCardGroupDefault = _parcelHelpers.interopDefault(_reactBootstrapCardGroup);
-  var _reactBootstrapImage = require('react-bootstrap/Image');
-  var _reactBootstrapImageDefault = _parcelHelpers.interopDefault(_reactBootstrapImage);
-  require("react-router-dom");
+  var _reactBootstrapContainer = require('react-bootstrap/Container');
+  var _reactBootstrapContainerDefault = _parcelHelpers.interopDefault(_reactBootstrapContainer);
+  require('react-bootstrap/Col');
   var _reactHelmet = require("react-helmet");
   var _reactHelmetDefault = _parcelHelpers.interopDefault(_reactHelmet);
-  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx";
-  class MovieView extends _reactDefault.default.Component {
-    keypressCallback(event) {
-      console.log(event.key);
-    }
-    componentDidMount() {
-      document.addEventListener('keypress', this.keypressCallback);
-    }
-    componentWillUnmount() {
-      document.removeEventListener('keypress', this.keypressCallback);
-    }
-    render() {
-      const {movie, onBackClick} = this.props;
-      return (
-        /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
-          bodyAttributes: {
-            style: 'background-color : black'
-          },
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 38,
-            columnNumber: 9
-          }
-        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardGroupDefault.default, {
-          className: "bg-dark my-5 mx-5",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 40,
-            columnNumber: 9
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
-          className: "movie-view bg-dark text-white my-5 mx-5 justify-content-center align-items-center",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 41,
-            columnNumber: 11
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapImageDefault.default, {
-          src: `/img/${movie.ImagePath}`,
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 42,
-            columnNumber: 13
-          }
-        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Title, {
-          className: "label justify-content-center",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 43,
-            columnNumber: 13
-          }
-        }, "Title: ", movie.Title, " "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
-          className: "movie-description",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 44,
-            columnNumber: 13
-          }
-        }, "Description: ", movie.Description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
-          className: "movie-Genre",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 45,
-            columnNumber: 13
-          }
-        }, "Genre: ", movie.Genre.Name), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
-          className: "movie-director",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 46,
-            columnNumber: 13
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "label",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 47,
-            columnNumber: 15
-          }
-        }, "Director: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "value",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 48,
-            columnNumber: 15
-          }
-        }, movie.Director.Name), /*#__PURE__*/_reactDefault.default.createElement("br", {
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 49,
-            columnNumber: 15
-          }
-        }), /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "label",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 50,
-            columnNumber: 15
-          }
-        }, "Bio: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "value",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 51,
-            columnNumber: 15
-          }
-        }, movie.Director.Bio), /*#__PURE__*/_reactDefault.default.createElement("br", {
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 52,
-            columnNumber: 15
-          }
-        }), /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "label",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 53,
-            columnNumber: 15
-          }
-        }, "Birth year: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
-          className: "value",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 54,
-            columnNumber: 15
-          }
-        }, movie.Director.Birth)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Footer, {
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 56,
-            columnNumber: 13
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
-          variant: "dark",
-          onClick: () => {
-            onBackClick(null);
-          },
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 57,
-            columnNumber: 15
-          }
-        }, "Back")))))
-      );
-    }
+  require('./login-view.scss');
+  require('react-bootstrap');
+  var _reactRouterDom = require("react-router-dom");
+  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\login-view\\login-view.jsx", _s = $RefreshSig$();
+  function LoginView(props) {
+    _s();
+    const [username, setUsername] = _react.useState('');
+    const [password, setPassword] = _react.useState('');
+    const [validated, setValidated] = _react.useState(false);
+    const history = _reactRouterDom.useHistory();
+    const handleClick = () => {
+      history.push("/register");
+    };
+    const handleSubmit = e => {
+      const form = e.currentTarget;
+      if (form.checkValidity() === false) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      e.preventDefault();
+      _axiosDefault.default.post(' https://itshorrortime.herokuapp.com/login', {
+        Username: username,
+        Password: password
+      }).then(response => {
+        const data = response.data;
+        props.onLoggedIn(data);
+      }).catch(e => {
+        console.log('Invalid Username or Password');
+      });
+      setValidated(true);
+    };
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
+        className: "container1",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 47,
+          columnNumber: 5
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
+        bodyAttributes: {
+          style: 'background-color : black'
+        },
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 48,
+          columnNumber: 7
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 50,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+        className: "justify-content-center mt-5",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 51,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, {
+        noValidate: true,
+        validated: validated,
+        onSubmit: handleSubmit,
+        className: "container2 justify-content-enter",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 52,
+          columnNumber: 11
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+        className: "justify-content-center",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 54,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+        controlId: "validationCustomUsername",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 55,
+          columnNumber: 15
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 56,
+          columnNumber: 17
+        }
+      }, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+        type: "text",
+        placeholder: "Enter Username",
+        required: true,
+        "aria-describedby": "inputGroupPrepend",
+        onChange: e => setUsername(e.target.value),
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 58,
+          columnNumber: 17
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control.Feedback, {
+        type: "invalid",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 65,
+          columnNumber: 17
+        }
+      }, "Please enter your username"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+        className: "justify-content-center",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 71,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+        controlId: "validationCustomPassword",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 72,
+          columnNumber: 15
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 73,
+          columnNumber: 17
+        }
+      }, "Password:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+        type: "password",
+        placeholder: "Enter Password",
+        required: true,
+        className: "",
+        "aria-describedby": "inputGroupPrepend",
+        onChange: e => setPassword(e.target.value),
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 74,
+          columnNumber: 17
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control.Feedback, {
+        type: "invalid",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 82,
+          columnNumber: 17
+        }
+      }, "Please enter your Password"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 87,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+        className: "justify-content-center mb-3",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 88,
+          columnNumber: 15
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+        variant: "dark",
+        block: true,
+        type: "submit",
+        onClick: handleSubmit,
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 89,
+          columnNumber: 17
+        }
+      }, "Submit"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+        variant: "outline-dark",
+        block: true,
+        onClick: () => handleClick('/'),
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 90,
+          columnNumber: 17
+        }
+      }, "Don't have an account?")))))))
+    );
   }
-  MovieView.propTypes = {
-    movie: _propTypesDefault.default.shape({
-      Title: _propTypesDefault.default.string,
-      Description: _propTypesDefault.default.string.isRequired,
-      ImagePath: _propTypesDefault.default.string,
-      Genre: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired,
-        Description: _propTypesDefault.default.string.isRequired
-      }),
-      Director: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired,
-        Bio: _propTypesDefault.default.string.isRequired,
-        Birth: _propTypesDefault.default.string,
-        Death: _propTypesDefault.default.string
-      })
-    }).isRequired,
-    onBackClick: _propTypesDefault.default.func.isRequired
-  };
+  _s(LoginView, "SuriaRFL2yQfPUXfs5oDRVYHDA0=", false, function () {
+    return [_reactRouterDom.useHistory];
+  });
+  _c = LoginView;
+  var _c;
+  $RefreshReg$(_c, "LoginView");
   helpers.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-bootstrap/CardGroup":"1B9U7","react-bootstrap/Image":"5qrP5","react-router-dom":"1PMSK","react-helmet":"71Wec","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"1CZWQ":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Container":"3Mt3t","react-bootstrap/Col":"2D0r8","react-helmet":"71Wec","./login-view.scss":"3ueKO","react-bootstrap":"4n7hB","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK"}],"3ueKO":[function() {},{}],"4n7hB":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
-exports.default = void 0;
+exports.useAccordionToggle = exports.Tooltip = exports.ToggleButtonGroup = exports.ToggleButton = exports.ToastHeader = exports.ToastBody = exports.Toast = exports.ThemeProvider = exports.Tabs = exports.TabPane = exports.Table = exports.TabContent = exports.TabContainer = exports.Tab = exports.SplitButton = exports.Spinner = exports.SafeAnchor = exports.Row = exports.ResponsiveEmbed = exports.ProgressBar = exports.PopoverContent = exports.PopoverTitle = exports.Popover = exports.Pagination = exports.PageItem = exports.OverlayTrigger = exports.Overlay = exports.NavLink = exports.NavItem = exports.NavDropdown = exports.NavbarBrand = exports.Navbar = exports.Nav = exports.ModalTitle = exports.ModalFooter = exports.ModalDialog = exports.ModalBody = exports.Modal = exports.Media = exports.ListGroupItem = exports.ListGroup = exports.Jumbotron = exports.InputGroup = exports.Figure = exports.Image = exports.Container = exports.FormText = exports.FormLabel = exports.FormGroup = exports.FormFile = exports.FormCheck = exports.FormControl = exports.Form = exports.Fade = exports.DropdownButton = exports.Dropdown = exports.Collapse = exports.Col = exports.CloseButton = exports.CarouselItem = exports.Carousel = exports.CardGroup = exports.CardImg = exports.CardDeck = exports.CardColumns = exports.Card = exports.ButtonToolbar = exports.ButtonGroup = exports.Button = exports.BreadcrumbItem = exports.Breadcrumb = exports.Badge = exports.Alert = exports.AccordionToggle = exports.AccordionCollapse = exports.AccordionContext = exports.Accordion = void 0;
 
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+var _Accordion = _interopRequireDefault(require("./Accordion"));
 
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+exports.Accordion = _Accordion.default;
 
-var _classnames = _interopRequireDefault(require("classnames"));
+var _AccordionContext = _interopRequireDefault(require("./AccordionContext"));
 
-var _react = _interopRequireWildcard(require("react"));
+exports.AccordionContext = _AccordionContext.default;
 
-var _ThemeProvider = require("./ThemeProvider");
+var _AccordionCollapse = _interopRequireDefault(require("./AccordionCollapse"));
 
-var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
+exports.AccordionCollapse = _AccordionCollapse.default;
 
-var _divWithClassName = _interopRequireDefault(require("./divWithClassName"));
+var _AccordionToggle = _interopRequireWildcard(require("./AccordionToggle"));
 
-var _CardContext = _interopRequireDefault(require("./CardContext"));
+exports.AccordionToggle = _AccordionToggle.default;
+exports.useAccordionToggle = _AccordionToggle.useAccordionToggle;
+
+var _Alert = _interopRequireDefault(require("./Alert"));
+
+exports.Alert = _Alert.default;
+
+var _Badge = _interopRequireDefault(require("./Badge"));
+
+exports.Badge = _Badge.default;
+
+var _Breadcrumb = _interopRequireDefault(require("./Breadcrumb"));
+
+exports.Breadcrumb = _Breadcrumb.default;
+
+var _BreadcrumbItem = _interopRequireDefault(require("./BreadcrumbItem"));
+
+exports.BreadcrumbItem = _BreadcrumbItem.default;
+
+var _Button = _interopRequireDefault(require("./Button"));
+
+exports.Button = _Button.default;
+
+var _ButtonGroup = _interopRequireDefault(require("./ButtonGroup"));
+
+exports.ButtonGroup = _ButtonGroup.default;
+
+var _ButtonToolbar = _interopRequireDefault(require("./ButtonToolbar"));
+
+exports.ButtonToolbar = _ButtonToolbar.default;
+
+var _Card = _interopRequireDefault(require("./Card"));
+
+exports.Card = _Card.default;
+
+var _CardColumns = _interopRequireDefault(require("./CardColumns"));
+
+exports.CardColumns = _CardColumns.default;
+
+var _CardDeck = _interopRequireDefault(require("./CardDeck"));
+
+exports.CardDeck = _CardDeck.default;
 
 var _CardImg = _interopRequireDefault(require("./CardImg"));
 
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+exports.CardImg = _CardImg.default;
 
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var _CardGroup = _interopRequireDefault(require("./CardGroup"));
 
-var DivStyledAsH5 = (0, _divWithClassName.default)('h5');
-var DivStyledAsH6 = (0, _divWithClassName.default)('h6');
-var CardBody = (0, _createWithBsPrefix.default)('card-body');
-var CardTitle = (0, _createWithBsPrefix.default)('card-title', {
-  Component: DivStyledAsH5
-});
-var CardSubtitle = (0, _createWithBsPrefix.default)('card-subtitle', {
-  Component: DivStyledAsH6
-});
-var CardLink = (0, _createWithBsPrefix.default)('card-link', {
-  Component: 'a'
-});
-var CardText = (0, _createWithBsPrefix.default)('card-text', {
-  Component: 'p'
-});
-var CardHeader = (0, _createWithBsPrefix.default)('card-header');
-var CardFooter = (0, _createWithBsPrefix.default)('card-footer');
-var CardImgOverlay = (0, _createWithBsPrefix.default)('card-img-overlay');
-var defaultProps = {
-  body: false
-};
+exports.CardGroup = _CardGroup.default;
 
-var Card = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
-  var bsPrefix = _ref.bsPrefix,
-      className = _ref.className,
-      bg = _ref.bg,
-      text = _ref.text,
-      border = _ref.border,
-      body = _ref.body,
-      children = _ref.children,
-      _ref$as = _ref.as,
-      Component = _ref$as === void 0 ? 'div' : _ref$as,
-      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "bg", "text", "border", "body", "children", "as"]);
-  var prefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'card');
-  var cardContext = (0, _react.useMemo)(function () {
-    return {
-      cardHeaderBsPrefix: prefix + "-header"
-    };
-  }, [prefix]);
-  return /*#__PURE__*/_react.default.createElement(_CardContext.default.Provider, {
-    value: cardContext
-  }, /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({
-    ref: ref
-  }, props, {
-    className: (0, _classnames.default)(className, prefix, bg && "bg-" + bg, text && "text-" + text, border && "border-" + border)
-  }), body ?
-  /*#__PURE__*/
-  // @ts-ignore
-  _react.default.createElement(CardBody, null, children) : children));
-});
+var _Carousel = _interopRequireDefault(require("./Carousel"));
 
-Card.displayName = 'Card';
-Card.defaultProps = defaultProps;
-Card.Img = _CardImg.default;
-Card.Title = CardTitle;
-Card.Subtitle = CardSubtitle;
-Card.Body = CardBody;
-Card.Link = CardLink;
-Card.Text = CardText;
-Card.Header = CardHeader;
-Card.Footer = CardFooter;
-Card.ImgOverlay = CardImgOverlay;
-var _default = Card;
-exports.default = _default;
-module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S","./createWithBsPrefix":"2oVVc","./divWithClassName":"27J3S","./CardContext":"71yot","./CardImg":"68LPL"}],"27J3S":[function(require,module,exports) {
-"use strict";
+exports.Carousel = _Carousel.default;
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _CarouselItem = _interopRequireDefault(require("./CarouselItem"));
 
-exports.__esModule = true;
-exports.default = void 0;
+exports.CarouselItem = _CarouselItem.default;
 
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+var _CloseButton = _interopRequireDefault(require("./CloseButton"));
 
-var _react = _interopRequireDefault(require("react"));
+exports.CloseButton = _CloseButton.default;
 
-var _classnames = _interopRequireDefault(require("classnames"));
+var _Col = _interopRequireDefault(require("./Col"));
 
-var _default = function _default(className) {
-  return /*#__PURE__*/_react.default.forwardRef(function (p, ref) {
-    return /*#__PURE__*/_react.default.createElement("div", (0, _extends2.default)({}, p, {
-      ref: ref,
-      className: (0, _classnames.default)(p.className, className)
-    }));
-  });
-};
+exports.Col = _Col.default;
 
-exports.default = _default;
-module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","react":"3b2NM","classnames":"5aJRc"}],"71yot":[function(require,module,exports) {
-"use strict";
+var _Collapse = _interopRequireDefault(require("./Collapse"));
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+exports.Collapse = _Collapse.default;
 
-exports.__esModule = true;
-exports.default = void 0;
+var _Dropdown = _interopRequireDefault(require("./Dropdown"));
 
-var _react = _interopRequireDefault(require("react"));
+exports.Dropdown = _Dropdown.default;
 
-var context = /*#__PURE__*/_react.default.createContext(null);
+var _DropdownButton = _interopRequireDefault(require("./DropdownButton"));
 
-context.displayName = 'CardContext';
-var _default = context;
-exports.default = _default;
-module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","react":"3b2NM"}],"68LPL":[function(require,module,exports) {
-"use strict";
+exports.DropdownButton = _DropdownButton.default;
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _Fade = _interopRequireDefault(require("./Fade"));
 
-exports.__esModule = true;
-exports.default = void 0;
+exports.Fade = _Fade.default;
 
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+var _Form = _interopRequireDefault(require("./Form"));
 
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+exports.Form = _Form.default;
 
-var _classnames = _interopRequireDefault(require("classnames"));
+var _FormControl = _interopRequireDefault(require("./FormControl"));
 
-var _react = _interopRequireDefault(require("react"));
+exports.FormControl = _FormControl.default;
 
-var _ThemeProvider = require("./ThemeProvider");
+var _FormCheck = _interopRequireDefault(require("./FormCheck"));
 
-var defaultProps = {
-  variant: null
-};
+exports.FormCheck = _FormCheck.default;
 
-var CardImg = /*#__PURE__*/_react.default.forwardRef( // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
-function (_ref, ref) {
-  var bsPrefix = _ref.bsPrefix,
-      className = _ref.className,
-      variant = _ref.variant,
-      _ref$as = _ref.as,
-      Component = _ref$as === void 0 ? 'img' : _ref$as,
-      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "variant", "as"]);
-  var prefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'card-img');
-  return /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({
-    ref: ref,
-    className: (0, _classnames.default)(variant ? prefix + "-" + variant : prefix, className)
-  }, props));
-});
+var _FormFile = _interopRequireDefault(require("./FormFile"));
 
-CardImg.displayName = 'CardImg';
-CardImg.defaultProps = defaultProps;
-var _default = CardImg;
-exports.default = _default;
-module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S"}],"1B9U7":[function(require,module,exports) {
-"use strict";
+exports.FormFile = _FormFile.default;
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _FormGroup = _interopRequireDefault(require("./FormGroup"));
 
-exports.__esModule = true;
-exports.default = void 0;
+exports.FormGroup = _FormGroup.default;
 
-var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
+var _FormLabel = _interopRequireDefault(require("./FormLabel"));
 
-var _default = (0, _createWithBsPrefix.default)('card-group');
+exports.FormLabel = _FormLabel.default;
 
-exports.default = _default;
-module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","./createWithBsPrefix":"2oVVc"}],"5qrP5":[function(require,module,exports) {
-"use strict";
+var _FormText = _interopRequireDefault(require("./FormText"));
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+exports.FormText = _FormText.default;
 
-exports.__esModule = true;
-exports.default = exports.propTypes = void 0;
+var _Container = _interopRequireDefault(require("./Container"));
 
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+exports.Container = _Container.default;
 
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+var _Image = _interopRequireDefault(require("./Image"));
 
-var _classnames = _interopRequireDefault(require("classnames"));
+exports.Image = _Image.default;
 
-var _react = _interopRequireDefault(require("react"));
+var _Figure = _interopRequireDefault(require("./Figure"));
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
+exports.Figure = _Figure.default;
 
-var _ThemeProvider = require("./ThemeProvider");
+var _InputGroup = _interopRequireDefault(require("./InputGroup"));
 
-var propTypes = {
-  /**
-   * @default 'img'
-   */
-  bsPrefix: _propTypes.default.string,
+exports.InputGroup = _InputGroup.default;
 
-  /**
-   * Sets image as fluid image.
-   */
-  fluid: _propTypes.default.bool,
+var _Jumbotron = _interopRequireDefault(require("./Jumbotron"));
 
-  /**
-   * Sets image shape as rounded.
-   */
-  rounded: _propTypes.default.bool,
+exports.Jumbotron = _Jumbotron.default;
 
-  /**
-   * Sets image shape as circle.
-   */
-  roundedCircle: _propTypes.default.bool,
+var _ListGroup = _interopRequireDefault(require("./ListGroup"));
 
-  /**
-   * Sets image shape as thumbnail.
-   */
-  thumbnail: _propTypes.default.bool
-};
-exports.propTypes = propTypes;
-var defaultProps = {
-  fluid: false,
-  rounded: false,
-  roundedCircle: false,
-  thumbnail: false
-};
+exports.ListGroup = _ListGroup.default;
 
-var Image = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
-  var bsPrefix = _ref.bsPrefix,
-      className = _ref.className,
-      fluid = _ref.fluid,
-      rounded = _ref.rounded,
-      roundedCircle = _ref.roundedCircle,
-      thumbnail = _ref.thumbnail,
-      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "fluid", "rounded", "roundedCircle", "thumbnail"]);
-  bsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'img');
-  var classes = (0, _classnames.default)(fluid && bsPrefix + "-fluid", rounded && "rounded", roundedCircle && "rounded-circle", thumbnail && bsPrefix + "-thumbnail");
-  return /*#__PURE__*/_react.default.createElement("img", (0, _extends2.default)({
-    // eslint-disable-line jsx-a11y/alt-text
-    ref: ref
-  }, props, {
-    className: (0, _classnames.default)(className, classes)
-  }));
-});
+var _ListGroupItem = _interopRequireDefault(require("./ListGroupItem"));
 
-Image.displayName = 'Image';
-Image.defaultProps = defaultProps;
-var _default = Image;
-exports.default = _default;
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","prop-types":"4dfy5","./ThemeProvider":"4rz1S"}],"7v6h3":[function(require,module,exports) {
-var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-  _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "MovieCard", function () {
-    return MovieCard;
-  });
-  var _react = require('react');
-  var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _propTypes = require('prop-types');
-  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
-  var _reactBootstrapButton = require('react-bootstrap/Button');
-  var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
-  var _reactBootstrapCard = require('react-bootstrap/Card');
-  var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
-  require('react-bootstrap/Col');
-  require('react-bootstrap/CardDeck');
-  var _reactBootstrapCardGroup = require('react-bootstrap/CardGroup');
-  var _reactBootstrapCardGroupDefault = _parcelHelpers.interopDefault(_reactBootstrapCardGroup);
-  var _reactHelmet = require("react-helmet");
-  var _reactHelmetDefault = _parcelHelpers.interopDefault(_reactHelmet);
-  require('./movie-card.scss');
-  require('react-bootstrap/Container');
-  require('react-bootstrap/Navbar');
-  require("react-router-dom");
-  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx";
-  class MovieCard extends _reactDefault.default.Component {
-    render() {
-      const {movie, onMovieClick} = this.props;
-      return (
-        /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
-          bodyAttributes: {
-            style: 'background-color : black'
-          },
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 29,
-            columnNumber: 9
-          }
-        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardGroupDefault.default, {
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 30,
-            columnNumber: 9
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
-          body: true,
-          bsPrefix: "maximumW",
-          className: "bg-dark text-white mt-5 mx-4",
-          style: {
-            height: "24rem"
-          },
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 31,
-            columnNumber: 11
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
-          className: "justify-content align-items",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 32,
-            columnNumber: 13
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Img, {
-          variant: "top",
-          src: movie.ImagePath,
-          style: {
-            height: "11rem"
-          },
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 33,
-            columnNumber: 15
-          }
-        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Title, {
-          style: {
-            height: "3rem"
-          },
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 34,
-            columnNumber: 15
-          }
-        }, movie.Title), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Footer, {
-          className: "mb-3",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 35,
-            columnNumber: 15
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
-          onClick: () => onMovieClick(movie),
-          variant: "primary",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 36,
-            columnNumber: 17
-          }
-        }, "Movie Info"))))))
-      );
-    }
-  }
-  MovieCard.propTypes = {
-    movieData: _propTypesDefault.default.shape({
-      Title: _propTypesDefault.default.string.isRequired,
-      Description: _propTypesDefault.default.string.isRequired,
-      Genre: _propTypesDefault.default.arrayOf(_propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired,
-        Description: _propTypesDefault.default.string.isRequired
-      })),
-      Director: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired,
-        Bio: _propTypesDefault.default.string.isRequired,
-        Birth: _propTypesDefault.default.string.isRequired,
-        Death: _propTypesDefault.default.string
-      }),
-      ImagePath: _propTypesDefault.default.string.isRequired,
-      Featured: _propTypesDefault.default.bool,
-      Year: _propTypesDefault.default.string.isRequired
-    }).isRequired
-  };
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
+exports.ListGroupItem = _ListGroupItem.default;
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-bootstrap/Col":"2D0r8","react-bootstrap/CardDeck":"4fiZs","react-bootstrap/CardGroup":"1B9U7","react-helmet":"71Wec","./movie-card.scss":"43n4t","react-bootstrap/Container":"3Mt3t","react-bootstrap/Navbar":"3qLFd","react-router-dom":"1PMSK","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"4fiZs":[function(require,module,exports) {
-"use strict";
+var _Media = _interopRequireDefault(require("./Media"));
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+exports.Media = _Media.default;
 
-exports.__esModule = true;
-exports.default = void 0;
+var _Modal = _interopRequireDefault(require("./Modal"));
 
-var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
+exports.Modal = _Modal.default;
 
-var _default = (0, _createWithBsPrefix.default)('card-deck');
+var _ModalBody = _interopRequireDefault(require("./ModalBody"));
 
-exports.default = _default;
-module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","./createWithBsPrefix":"2oVVc"}],"43n4t":[function() {},{}],"3qLFd":[function(require,module,exports) {
-"use strict";
+exports.ModalBody = _ModalBody.default;
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _ModalDialog = _interopRequireDefault(require("./ModalDialog"));
 
-exports.__esModule = true;
-exports.default = void 0;
+exports.ModalDialog = _ModalDialog.default;
 
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+var _ModalFooter = _interopRequireDefault(require("./ModalFooter"));
 
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+exports.ModalFooter = _ModalFooter.default;
 
-var _classnames = _interopRequireDefault(require("classnames"));
+var _ModalTitle = _interopRequireDefault(require("./ModalTitle"));
 
-var _react = _interopRequireWildcard(require("react"));
+exports.ModalTitle = _ModalTitle.default;
 
-var _uncontrollable = require("uncontrollable");
+var _Nav = _interopRequireDefault(require("./Nav"));
 
-var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
+exports.Nav = _Nav.default;
+
+var _Navbar = _interopRequireDefault(require("./Navbar"));
+
+exports.Navbar = _Navbar.default;
 
 var _NavbarBrand = _interopRequireDefault(require("./NavbarBrand"));
 
-var _NavbarCollapse = _interopRequireDefault(require("./NavbarCollapse"));
+exports.NavbarBrand = _NavbarBrand.default;
 
-var _NavbarToggle = _interopRequireDefault(require("./NavbarToggle"));
+var _NavDropdown = _interopRequireDefault(require("./NavDropdown"));
 
-var _ThemeProvider = require("./ThemeProvider");
+exports.NavDropdown = _NavDropdown.default;
 
-var _NavbarContext = _interopRequireDefault(require("./NavbarContext"));
+var _NavItem = _interopRequireDefault(require("./NavItem"));
 
-var _SelectableContext = _interopRequireDefault(require("./SelectableContext"));
+exports.NavItem = _NavItem.default;
+
+var _NavLink = _interopRequireDefault(require("./NavLink"));
+
+exports.NavLink = _NavLink.default;
+
+var _Overlay = _interopRequireDefault(require("./Overlay"));
+
+exports.Overlay = _Overlay.default;
+
+var _OverlayTrigger = _interopRequireDefault(require("./OverlayTrigger"));
+
+exports.OverlayTrigger = _OverlayTrigger.default;
+
+var _PageItem = _interopRequireDefault(require("./PageItem"));
+
+exports.PageItem = _PageItem.default;
+
+var _Pagination = _interopRequireDefault(require("./Pagination"));
+
+exports.Pagination = _Pagination.default;
+
+var _Popover = _interopRequireDefault(require("./Popover"));
+
+exports.Popover = _Popover.default;
+
+var _PopoverTitle = _interopRequireDefault(require("./PopoverTitle"));
+
+exports.PopoverTitle = _PopoverTitle.default;
+
+var _PopoverContent = _interopRequireDefault(require("./PopoverContent"));
+
+exports.PopoverContent = _PopoverContent.default;
+
+var _ProgressBar = _interopRequireDefault(require("./ProgressBar"));
+
+exports.ProgressBar = _ProgressBar.default;
+
+var _ResponsiveEmbed = _interopRequireDefault(require("./ResponsiveEmbed"));
+
+exports.ResponsiveEmbed = _ResponsiveEmbed.default;
+
+var _Row = _interopRequireDefault(require("./Row"));
+
+exports.Row = _Row.default;
+
+var _SafeAnchor = _interopRequireDefault(require("./SafeAnchor"));
+
+exports.SafeAnchor = _SafeAnchor.default;
+
+var _Spinner = _interopRequireDefault(require("./Spinner"));
+
+exports.Spinner = _Spinner.default;
+
+var _SplitButton = _interopRequireDefault(require("./SplitButton"));
+
+exports.SplitButton = _SplitButton.default;
+
+var _Tab = _interopRequireDefault(require("./Tab"));
+
+exports.Tab = _Tab.default;
+
+var _TabContainer = _interopRequireDefault(require("./TabContainer"));
+
+exports.TabContainer = _TabContainer.default;
+
+var _TabContent = _interopRequireDefault(require("./TabContent"));
+
+exports.TabContent = _TabContent.default;
+
+var _Table = _interopRequireDefault(require("./Table"));
+
+exports.Table = _Table.default;
+
+var _TabPane = _interopRequireDefault(require("./TabPane"));
+
+exports.TabPane = _TabPane.default;
+
+var _Tabs = _interopRequireDefault(require("./Tabs"));
+
+exports.Tabs = _Tabs.default;
+
+var _ThemeProvider = _interopRequireDefault(require("./ThemeProvider"));
+
+exports.ThemeProvider = _ThemeProvider.default;
+
+var _Toast = _interopRequireDefault(require("./Toast"));
+
+exports.Toast = _Toast.default;
+
+var _ToastBody = _interopRequireDefault(require("./ToastBody"));
+
+exports.ToastBody = _ToastBody.default;
+
+var _ToastHeader = _interopRequireDefault(require("./ToastHeader"));
+
+exports.ToastHeader = _ToastHeader.default;
+
+var _ToggleButton = _interopRequireDefault(require("./ToggleButton"));
+
+exports.ToggleButton = _ToggleButton.default;
+
+var _ToggleButtonGroup = _interopRequireDefault(require("./ToggleButtonGroup"));
+
+exports.ToggleButtonGroup = _ToggleButtonGroup.default;
+
+var _Tooltip = _interopRequireDefault(require("./Tooltip"));
+
+exports.Tooltip = _Tooltip.default;
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","./Accordion":"123ZC","./AccordionContext":"6cHdE","./AccordionCollapse":"6fr2G","./AccordionToggle":"2CEru","./Alert":"1oIYX","./Badge":"2aFSj","./Breadcrumb":"hcZkb","./BreadcrumbItem":"fGRyA","./Button":"1ru0l","./ButtonGroup":"2THBw","./ButtonToolbar":"5QGeS","./Card":"1CZWQ","./CardColumns":"48yv5","./CardDeck":"4fiZs","./CardImg":"68LPL","./CardGroup":"1B9U7","./Carousel":"2Zcjk","./CarouselItem":"2tnC3","./CloseButton":"yWShL","./Col":"2D0r8","./Collapse":"4hhe0","./Dropdown":"27PdI","./DropdownButton":"7vE8v","./Fade":"2CU5C","./Form":"6A5ko","./FormControl":"573gP","./FormCheck":"6WcKM","./FormFile":"6mhKG","./FormGroup":"120iJ","./FormLabel":"70qP9","./FormText":"2VsfR","./Container":"3Mt3t","./Image":"5qrP5","./Figure":"2ZDTl","./InputGroup":"3nb5C","./Jumbotron":"1fO3T","./ListGroup":"6fErm","./ListGroupItem":"4tfxm","./Media":"120yO","./Modal":"20uUD","./ModalBody":"5Zu6o","./ModalDialog":"4OqPY","./ModalFooter":"4rYLN","./ModalTitle":"MJz12","./Nav":"3T3v1","./Navbar":"3qLFd","./NavbarBrand":"4flFi","./NavDropdown":"1qmIy","./NavItem":"39J70","./NavLink":"6stbu","./Overlay":"5PcTh","./OverlayTrigger":"4VaCP","./PageItem":"6IcgF","./Pagination":"3XBVG","./Popover":"4O1Nl","./PopoverTitle":"2W5ao","./PopoverContent":"1KTIN","./ProgressBar":"4HfN1","./ResponsiveEmbed":"76Zpv","./Row":"3fzwD","./SafeAnchor":"5VP5o","./Spinner":"4fhZt","./SplitButton":"qFVWq","./Tab":"2o9hU","./TabContainer":"31im4","./TabContent":"4a1d3","./Table":"34yor","./TabPane":"42ci1","./Tabs":"6YwyY","./ThemeProvider":"4rz1S","./Toast":"o9l9n","./ToastBody":"4qMwS","./ToastHeader":"3bTJs","./ToggleButton":"1noIF","./ToggleButtonGroup":"LW99s","./Tooltip":"2YAjd"}],"123ZC":[function(require,module,exports) {
+"use strict";
 
-var NavbarText = (0, _createWithBsPrefix.default)('navbar-text', {
-  Component: 'span'
-});
-var defaultProps = {
-  expand: true,
-  variant: 'light',
-  collapseOnSelect: false
-};
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var Navbar = /*#__PURE__*/_react.default.forwardRef(function (props, ref) {
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _uncontrollable = require("uncontrollable");
+
+var _ThemeProvider = require("./ThemeProvider");
+
+var _AccordionToggle = _interopRequireDefault(require("./AccordionToggle"));
+
+var _SelectableContext = _interopRequireDefault(require("./SelectableContext"));
+
+var _AccordionCollapse = _interopRequireDefault(require("./AccordionCollapse"));
+
+var _AccordionContext = _interopRequireDefault(require("./AccordionContext"));
+
+var Accordion = /*#__PURE__*/_react.default.forwardRef(function (props, ref) {
   var _useUncontrolled = (0, _uncontrollable.useUncontrolled)(props, {
-    expanded: 'onToggle'
+    activeKey: 'onSelect'
   }),
-      initialBsPrefix = _useUncontrolled.bsPrefix,
-      expand = _useUncontrolled.expand,
-      variant = _useUncontrolled.variant,
-      bg = _useUncontrolled.bg,
-      fixed = _useUncontrolled.fixed,
-      sticky = _useUncontrolled.sticky,
-      className = _useUncontrolled.className,
-      children = _useUncontrolled.children,
       _useUncontrolled$as = _useUncontrolled.as,
-      Component = _useUncontrolled$as === void 0 ? 'nav' : _useUncontrolled$as,
-      expanded = _useUncontrolled.expanded,
-      _onToggle = _useUncontrolled.onToggle,
+      Component = _useUncontrolled$as === void 0 ? 'div' : _useUncontrolled$as,
+      activeKey = _useUncontrolled.activeKey,
+      bsPrefix = _useUncontrolled.bsPrefix,
+      children = _useUncontrolled.children,
+      className = _useUncontrolled.className,
       onSelect = _useUncontrolled.onSelect,
-      collapseOnSelect = _useUncontrolled.collapseOnSelect,
-      controlledProps = (0, _objectWithoutPropertiesLoose2.default)(_useUncontrolled, ["bsPrefix", "expand", "variant", "bg", "fixed", "sticky", "className", "children", "as", "expanded", "onToggle", "onSelect", "collapseOnSelect"]);
+      controlledProps = (0, _objectWithoutPropertiesLoose2.default)(_useUncontrolled, ["as", "activeKey", "bsPrefix", "children", "className", "onSelect"]);
 
-  var bsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(initialBsPrefix, 'navbar');
-  var handleCollapse = (0, _react.useCallback)(function () {
-    if (onSelect) onSelect.apply(void 0, arguments);
-
-    if (collapseOnSelect && expanded) {
-      if (_onToggle) {
-        _onToggle(false);
-      }
-    }
-  }, [onSelect, collapseOnSelect, expanded, _onToggle]); // will result in some false positives but that seems better
-  // than false negatives. strict `undefined` check allows explicit
-  // "nulling" of the role if the user really doesn't want one
-
-  if (controlledProps.role === undefined && Component !== 'nav') {
-    controlledProps.role = 'navigation';
-  }
-
-  var expandClass = bsPrefix + "-expand";
-  if (typeof expand === 'string') expandClass = expandClass + "-" + expand;
-  var navbarContext = (0, _react.useMemo)(function () {
-    return {
-      onToggle: function onToggle() {
-        return _onToggle && _onToggle(!expanded);
-      },
-      bsPrefix: bsPrefix,
-      expanded: !!expanded
-    };
-  }, [bsPrefix, expanded, _onToggle]);
-  return /*#__PURE__*/_react.default.createElement(_NavbarContext.default.Provider, {
-    value: navbarContext
+  var finalClassName = (0, _classnames.default)(className, (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'accordion'));
+  return /*#__PURE__*/_react.default.createElement(_AccordionContext.default.Provider, {
+    value: activeKey || null
   }, /*#__PURE__*/_react.default.createElement(_SelectableContext.default.Provider, {
-    value: handleCollapse
+    value: onSelect || null
   }, /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({
     ref: ref
   }, controlledProps, {
-    className: (0, _classnames.default)(className, bsPrefix, expand && expandClass, variant && bsPrefix + "-" + variant, bg && "bg-" + bg, sticky && "sticky-" + sticky, fixed && "fixed-" + fixed)
+    className: finalClassName
   }), children)));
 });
 
-Navbar.defaultProps = defaultProps;
-Navbar.displayName = 'Navbar';
-Navbar.Brand = _NavbarBrand.default;
-Navbar.Toggle = _NavbarToggle.default;
-Navbar.Collapse = _NavbarCollapse.default;
-Navbar.Text = NavbarText;
-var _default = Navbar;
+Accordion.displayName = 'Accordion';
+Accordion.Toggle = _AccordionToggle.default;
+Accordion.Collapse = _AccordionCollapse.default;
+var _default = Accordion;
 exports.default = _default;
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","uncontrollable":"4P7FS","./createWithBsPrefix":"2oVVc","./NavbarBrand":"4flFi","./NavbarCollapse":"6KfIh","./NavbarToggle":"4uQiD","./ThemeProvider":"4rz1S","./NavbarContext":"1Ts0D","./SelectableContext":"3ATFf"}],"4P7FS":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","uncontrollable":"4P7FS","./ThemeProvider":"4rz1S","./AccordionToggle":"2CEru","./SelectableContext":"3ATFf","./AccordionCollapse":"6fr2G","./AccordionContext":"6cHdE"}],"4P7FS":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -36739,42 +36881,105 @@ function polyfill(Component) {
 
 exports.polyfill = polyfill;
 
-},{}],"4flFi":[function(require,module,exports) {
+},{}],"2CEru":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
+exports.useAccordionToggle = useAccordionToggle;
 exports.default = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
 var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
 
-var _classnames = _interopRequireDefault(require("classnames"));
+var _react = _interopRequireWildcard(require("react"));
 
-var _react = _interopRequireDefault(require("react"));
+var _SelectableContext = _interopRequireDefault(require("./SelectableContext"));
 
-var _ThemeProvider = require("./ThemeProvider");
+var _AccordionContext = _interopRequireDefault(require("./AccordionContext"));
 
-var NavbarBrand = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
-  var bsPrefix = _ref.bsPrefix,
-      className = _ref.className,
-      as = _ref.as,
-      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "as"]);
-  bsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'navbar-brand');
-  var Component = as || (props.href ? 'a' : 'span');
-  return /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({}, props, {
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function useAccordionToggle(eventKey, onClick) {
+  var contextEventKey = (0, _react.useContext)(_AccordionContext.default);
+  var onSelect = (0, _react.useContext)(_SelectableContext.default);
+  return function (e) {
+    /*
+      Compare the event key in context with the given event key.
+      If they are the same, then collapse the component.
+    */
+    var eventKeyPassed = eventKey === contextEventKey ? null : eventKey;
+    if (onSelect) onSelect(eventKeyPassed, e);
+    if (onClick) onClick(e);
+  };
+}
+
+var AccordionToggle = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
+  var _ref$as = _ref.as,
+      Component = _ref$as === void 0 ? 'button' : _ref$as,
+      children = _ref.children,
+      eventKey = _ref.eventKey,
+      onClick = _ref.onClick,
+      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["as", "children", "eventKey", "onClick"]);
+  var accordionOnClick = useAccordionToggle(eventKey, onClick);
+
+  if (Component === 'button') {
+    props.type = 'button';
+  }
+
+  return /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({
     ref: ref,
-    className: (0, _classnames.default)(className, bsPrefix)
-  }));
+    onClick: accordionOnClick
+  }, props), children);
 });
 
-NavbarBrand.displayName = 'NavbarBrand';
-var _default = NavbarBrand;
+var _default = AccordionToggle;
+exports.default = _default;
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","react":"3b2NM","./SelectableContext":"3ATFf","./AccordionContext":"6cHdE"}],"3ATFf":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = exports.makeEventKey = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var SelectableContext = /*#__PURE__*/_react.default.createContext(null);
+
+var makeEventKey = function makeEventKey(eventKey, href) {
+  if (href === void 0) {
+    href = null;
+  }
+
+  if (eventKey != null) return String(eventKey);
+  return href || null;
+};
+
+exports.makeEventKey = makeEventKey;
+var _default = SelectableContext;
+exports.default = _default;
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","react":"3b2NM"}],"6cHdE":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var context = /*#__PURE__*/_react.default.createContext(null);
+
+context.displayName = 'AccordionContext';
+var _default = context;
 exports.default = _default;
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S"}],"6KfIh":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","react":"3b2NM"}],"6fr2G":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -36786,34 +36991,38 @@ var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends")
 
 var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _Collapse = _interopRequireDefault(require("./Collapse"));
 
-var _ThemeProvider = require("./ThemeProvider");
+var _AccordionContext = _interopRequireDefault(require("./AccordionContext"));
 
-var _NavbarContext = _interopRequireDefault(require("./NavbarContext"));
+var _SelectableContext = _interopRequireDefault(require("./SelectableContext"));
 
-var NavbarCollapse = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var AccordionCollapse = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
   var children = _ref.children,
-      bsPrefix = _ref.bsPrefix,
-      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["children", "bsPrefix"]);
-  bsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'navbar-collapse');
-  return /*#__PURE__*/_react.default.createElement(_NavbarContext.default.Consumer, null, function (context) {
-    return /*#__PURE__*/_react.default.createElement(_Collapse.default, (0, _extends2.default)({
-      in: !!(context && context.expanded)
-    }, props), /*#__PURE__*/_react.default.createElement("div", {
-      ref: ref,
-      className: bsPrefix
-    }, children));
-  });
+      eventKey = _ref.eventKey,
+      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["children", "eventKey"]);
+  var contextEventKey = (0, _react.useContext)(_AccordionContext.default); // Empty SelectableContext is to prevent elements in the collapse
+  // from collapsing the accordion when clicked.
+
+  return /*#__PURE__*/_react.default.createElement(_SelectableContext.default.Provider, {
+    value: null
+  }, /*#__PURE__*/_react.default.createElement(_Collapse.default, (0, _extends2.default)({
+    ref: ref,
+    in: contextEventKey === eventKey
+  }, props), /*#__PURE__*/_react.default.createElement("div", null, _react.default.Children.only(children))));
 });
 
-NavbarCollapse.displayName = 'NavbarCollapse';
-var _default = NavbarCollapse;
+AccordionCollapse.displayName = 'AccordionCollapse';
+var _default = AccordionCollapse;
 exports.default = _default;
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","react":"3b2NM","./Collapse":"4hhe0","./ThemeProvider":"4rz1S","./NavbarContext":"1Ts0D"}],"4hhe0":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","react":"3b2NM","./Collapse":"4hhe0","./AccordionContext":"6cHdE","./SelectableContext":"3ATFf"}],"4hhe0":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -37934,712 +38143,7 @@ function triggerBrowserReflow(node) {
 }
 
 module.exports = exports["default"];
-},{}],"1Ts0D":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var context = /*#__PURE__*/_react.default.createContext(null);
-
-context.displayName = 'NavbarContext';
-var _default = context;
-exports.default = _default;
-module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","react":"3b2NM"}],"4uQiD":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-
-var _classnames = _interopRequireDefault(require("classnames"));
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _useEventCallback = _interopRequireDefault(require("@restart/hooks/useEventCallback"));
-
-var _ThemeProvider = require("./ThemeProvider");
-
-var _NavbarContext = _interopRequireDefault(require("./NavbarContext"));
-
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-var defaultProps = {
-  label: 'Toggle navigation'
-};
-
-var NavbarToggle = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
-  var bsPrefix = _ref.bsPrefix,
-      className = _ref.className,
-      children = _ref.children,
-      label = _ref.label,
-      _ref$as = _ref.as,
-      Component = _ref$as === void 0 ? 'button' : _ref$as,
-      onClick = _ref.onClick,
-      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "children", "label", "as", "onClick"]);
-  bsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'navbar-toggler');
-
-  var _ref2 = (0, _react.useContext)(_NavbarContext.default) || {},
-      onToggle = _ref2.onToggle,
-      expanded = _ref2.expanded;
-
-  var handleClick = (0, _useEventCallback.default)(function (e) {
-    if (onClick) onClick(e);
-    if (onToggle) onToggle();
-  });
-
-  if (Component === 'button') {
-    props.type = 'button';
-  }
-
-  return /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({}, props, {
-    ref: ref,
-    onClick: handleClick,
-    "aria-label": label,
-    className: (0, _classnames.default)(className, bsPrefix, !expanded && 'collapsed')
-  }), children || /*#__PURE__*/_react.default.createElement("span", {
-    className: bsPrefix + "-icon"
-  }));
-});
-
-NavbarToggle.displayName = 'NavbarToggle';
-NavbarToggle.defaultProps = defaultProps;
-var _default = NavbarToggle;
-exports.default = _default;
-module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","@restart/hooks/useEventCallback":"3v8B9","./ThemeProvider":"4rz1S","./NavbarContext":"1Ts0D"}],"3v8B9":[function(require,module,exports) {
-"use strict";
-
-exports.__esModule = true;
-exports.default = useEventCallback;
-
-var _react = require("react");
-
-var _useCommittedRef = _interopRequireDefault(require("./useCommittedRef"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function useEventCallback(fn) {
-  var ref = (0, _useCommittedRef.default)(fn);
-  return (0, _react.useCallback)(function () {
-    return ref.current && ref.current.apply(ref, arguments);
-  }, [ref]);
-}
-},{"react":"3b2NM","./useCommittedRef":"4xIdB"}],"4xIdB":[function(require,module,exports) {
-"use strict";
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _react = require("react");
-
-/**
- * Creates a `Ref` whose value is updated in an effect, ensuring the most recent
- * value is the one rendered with. Generally only required for Concurrent mode usage
- * where previous work in `render()` may be discarded befor being used.
- *
- * This is safe to access in an event handler.
- *
- * @param value The `Ref` value
- */
-function useCommittedRef(value) {
-  var ref = (0, _react.useRef)(value);
-  (0, _react.useEffect)(function () {
-    ref.current = value;
-  }, [value]);
-  return ref;
-}
-
-var _default = useCommittedRef;
-exports.default = _default;
-},{"react":"3b2NM"}],"3ATFf":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-exports.__esModule = true;
-exports.default = exports.makeEventKey = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var SelectableContext = /*#__PURE__*/_react.default.createContext(null);
-
-var makeEventKey = function makeEventKey(eventKey, href) {
-  if (href === void 0) {
-    href = null;
-  }
-
-  if (eventKey != null) return String(eventKey);
-  return href || null;
-};
-
-exports.makeEventKey = makeEventKey;
-var _default = SelectableContext;
-exports.default = _default;
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","react":"3b2NM"}],"3fzwD":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-
-var _classnames = _interopRequireDefault(require("classnames"));
-
-var _react = _interopRequireDefault(require("react"));
-
-var _ThemeProvider = require("./ThemeProvider");
-
-var DEVICE_SIZES = ['xl', 'lg', 'md', 'sm', 'xs'];
-var defaultProps = {
-  noGutters: false
-};
-
-var Row = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
-  var bsPrefix = _ref.bsPrefix,
-      className = _ref.className,
-      noGutters = _ref.noGutters,
-      _ref$as = _ref.as,
-      Component = _ref$as === void 0 ? 'div' : _ref$as,
-      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "noGutters", "as"]);
-  var decoratedBsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'row');
-  var sizePrefix = decoratedBsPrefix + "-cols";
-  var classes = [];
-  DEVICE_SIZES.forEach(function (brkPoint) {
-    var propValue = props[brkPoint];
-    delete props[brkPoint];
-    var cols;
-
-    if (propValue != null && typeof propValue === 'object') {
-      cols = propValue.cols;
-    } else {
-      cols = propValue;
-    }
-
-    var infix = brkPoint !== 'xs' ? "-" + brkPoint : '';
-    if (cols != null) classes.push("" + sizePrefix + infix + "-" + cols);
-  });
-  return /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({
-    ref: ref
-  }, props, {
-    className: _classnames.default.apply(void 0, [className, decoratedBsPrefix, noGutters && 'no-gutters'].concat(classes))
-  }));
-});
-
-Row.displayName = 'Row';
-Row.defaultProps = defaultProps;
-var _default = Row;
-exports.default = _default;
-module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S"}],"4n7hB":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-exports.__esModule = true;
-exports.useAccordionToggle = exports.Tooltip = exports.ToggleButtonGroup = exports.ToggleButton = exports.ToastHeader = exports.ToastBody = exports.Toast = exports.ThemeProvider = exports.Tabs = exports.TabPane = exports.Table = exports.TabContent = exports.TabContainer = exports.Tab = exports.SplitButton = exports.Spinner = exports.SafeAnchor = exports.Row = exports.ResponsiveEmbed = exports.ProgressBar = exports.PopoverContent = exports.PopoverTitle = exports.Popover = exports.Pagination = exports.PageItem = exports.OverlayTrigger = exports.Overlay = exports.NavLink = exports.NavItem = exports.NavDropdown = exports.NavbarBrand = exports.Navbar = exports.Nav = exports.ModalTitle = exports.ModalFooter = exports.ModalDialog = exports.ModalBody = exports.Modal = exports.Media = exports.ListGroupItem = exports.ListGroup = exports.Jumbotron = exports.InputGroup = exports.Figure = exports.Image = exports.Container = exports.FormText = exports.FormLabel = exports.FormGroup = exports.FormFile = exports.FormCheck = exports.FormControl = exports.Form = exports.Fade = exports.DropdownButton = exports.Dropdown = exports.Collapse = exports.Col = exports.CloseButton = exports.CarouselItem = exports.Carousel = exports.CardGroup = exports.CardImg = exports.CardDeck = exports.CardColumns = exports.Card = exports.ButtonToolbar = exports.ButtonGroup = exports.Button = exports.BreadcrumbItem = exports.Breadcrumb = exports.Badge = exports.Alert = exports.AccordionToggle = exports.AccordionCollapse = exports.AccordionContext = exports.Accordion = void 0;
-
-var _Accordion = _interopRequireDefault(require("./Accordion"));
-
-exports.Accordion = _Accordion.default;
-
-var _AccordionContext = _interopRequireDefault(require("./AccordionContext"));
-
-exports.AccordionContext = _AccordionContext.default;
-
-var _AccordionCollapse = _interopRequireDefault(require("./AccordionCollapse"));
-
-exports.AccordionCollapse = _AccordionCollapse.default;
-
-var _AccordionToggle = _interopRequireWildcard(require("./AccordionToggle"));
-
-exports.AccordionToggle = _AccordionToggle.default;
-exports.useAccordionToggle = _AccordionToggle.useAccordionToggle;
-
-var _Alert = _interopRequireDefault(require("./Alert"));
-
-exports.Alert = _Alert.default;
-
-var _Badge = _interopRequireDefault(require("./Badge"));
-
-exports.Badge = _Badge.default;
-
-var _Breadcrumb = _interopRequireDefault(require("./Breadcrumb"));
-
-exports.Breadcrumb = _Breadcrumb.default;
-
-var _BreadcrumbItem = _interopRequireDefault(require("./BreadcrumbItem"));
-
-exports.BreadcrumbItem = _BreadcrumbItem.default;
-
-var _Button = _interopRequireDefault(require("./Button"));
-
-exports.Button = _Button.default;
-
-var _ButtonGroup = _interopRequireDefault(require("./ButtonGroup"));
-
-exports.ButtonGroup = _ButtonGroup.default;
-
-var _ButtonToolbar = _interopRequireDefault(require("./ButtonToolbar"));
-
-exports.ButtonToolbar = _ButtonToolbar.default;
-
-var _Card = _interopRequireDefault(require("./Card"));
-
-exports.Card = _Card.default;
-
-var _CardColumns = _interopRequireDefault(require("./CardColumns"));
-
-exports.CardColumns = _CardColumns.default;
-
-var _CardDeck = _interopRequireDefault(require("./CardDeck"));
-
-exports.CardDeck = _CardDeck.default;
-
-var _CardImg = _interopRequireDefault(require("./CardImg"));
-
-exports.CardImg = _CardImg.default;
-
-var _CardGroup = _interopRequireDefault(require("./CardGroup"));
-
-exports.CardGroup = _CardGroup.default;
-
-var _Carousel = _interopRequireDefault(require("./Carousel"));
-
-exports.Carousel = _Carousel.default;
-
-var _CarouselItem = _interopRequireDefault(require("./CarouselItem"));
-
-exports.CarouselItem = _CarouselItem.default;
-
-var _CloseButton = _interopRequireDefault(require("./CloseButton"));
-
-exports.CloseButton = _CloseButton.default;
-
-var _Col = _interopRequireDefault(require("./Col"));
-
-exports.Col = _Col.default;
-
-var _Collapse = _interopRequireDefault(require("./Collapse"));
-
-exports.Collapse = _Collapse.default;
-
-var _Dropdown = _interopRequireDefault(require("./Dropdown"));
-
-exports.Dropdown = _Dropdown.default;
-
-var _DropdownButton = _interopRequireDefault(require("./DropdownButton"));
-
-exports.DropdownButton = _DropdownButton.default;
-
-var _Fade = _interopRequireDefault(require("./Fade"));
-
-exports.Fade = _Fade.default;
-
-var _Form = _interopRequireDefault(require("./Form"));
-
-exports.Form = _Form.default;
-
-var _FormControl = _interopRequireDefault(require("./FormControl"));
-
-exports.FormControl = _FormControl.default;
-
-var _FormCheck = _interopRequireDefault(require("./FormCheck"));
-
-exports.FormCheck = _FormCheck.default;
-
-var _FormFile = _interopRequireDefault(require("./FormFile"));
-
-exports.FormFile = _FormFile.default;
-
-var _FormGroup = _interopRequireDefault(require("./FormGroup"));
-
-exports.FormGroup = _FormGroup.default;
-
-var _FormLabel = _interopRequireDefault(require("./FormLabel"));
-
-exports.FormLabel = _FormLabel.default;
-
-var _FormText = _interopRequireDefault(require("./FormText"));
-
-exports.FormText = _FormText.default;
-
-var _Container = _interopRequireDefault(require("./Container"));
-
-exports.Container = _Container.default;
-
-var _Image = _interopRequireDefault(require("./Image"));
-
-exports.Image = _Image.default;
-
-var _Figure = _interopRequireDefault(require("./Figure"));
-
-exports.Figure = _Figure.default;
-
-var _InputGroup = _interopRequireDefault(require("./InputGroup"));
-
-exports.InputGroup = _InputGroup.default;
-
-var _Jumbotron = _interopRequireDefault(require("./Jumbotron"));
-
-exports.Jumbotron = _Jumbotron.default;
-
-var _ListGroup = _interopRequireDefault(require("./ListGroup"));
-
-exports.ListGroup = _ListGroup.default;
-
-var _ListGroupItem = _interopRequireDefault(require("./ListGroupItem"));
-
-exports.ListGroupItem = _ListGroupItem.default;
-
-var _Media = _interopRequireDefault(require("./Media"));
-
-exports.Media = _Media.default;
-
-var _Modal = _interopRequireDefault(require("./Modal"));
-
-exports.Modal = _Modal.default;
-
-var _ModalBody = _interopRequireDefault(require("./ModalBody"));
-
-exports.ModalBody = _ModalBody.default;
-
-var _ModalDialog = _interopRequireDefault(require("./ModalDialog"));
-
-exports.ModalDialog = _ModalDialog.default;
-
-var _ModalFooter = _interopRequireDefault(require("./ModalFooter"));
-
-exports.ModalFooter = _ModalFooter.default;
-
-var _ModalTitle = _interopRequireDefault(require("./ModalTitle"));
-
-exports.ModalTitle = _ModalTitle.default;
-
-var _Nav = _interopRequireDefault(require("./Nav"));
-
-exports.Nav = _Nav.default;
-
-var _Navbar = _interopRequireDefault(require("./Navbar"));
-
-exports.Navbar = _Navbar.default;
-
-var _NavbarBrand = _interopRequireDefault(require("./NavbarBrand"));
-
-exports.NavbarBrand = _NavbarBrand.default;
-
-var _NavDropdown = _interopRequireDefault(require("./NavDropdown"));
-
-exports.NavDropdown = _NavDropdown.default;
-
-var _NavItem = _interopRequireDefault(require("./NavItem"));
-
-exports.NavItem = _NavItem.default;
-
-var _NavLink = _interopRequireDefault(require("./NavLink"));
-
-exports.NavLink = _NavLink.default;
-
-var _Overlay = _interopRequireDefault(require("./Overlay"));
-
-exports.Overlay = _Overlay.default;
-
-var _OverlayTrigger = _interopRequireDefault(require("./OverlayTrigger"));
-
-exports.OverlayTrigger = _OverlayTrigger.default;
-
-var _PageItem = _interopRequireDefault(require("./PageItem"));
-
-exports.PageItem = _PageItem.default;
-
-var _Pagination = _interopRequireDefault(require("./Pagination"));
-
-exports.Pagination = _Pagination.default;
-
-var _Popover = _interopRequireDefault(require("./Popover"));
-
-exports.Popover = _Popover.default;
-
-var _PopoverTitle = _interopRequireDefault(require("./PopoverTitle"));
-
-exports.PopoverTitle = _PopoverTitle.default;
-
-var _PopoverContent = _interopRequireDefault(require("./PopoverContent"));
-
-exports.PopoverContent = _PopoverContent.default;
-
-var _ProgressBar = _interopRequireDefault(require("./ProgressBar"));
-
-exports.ProgressBar = _ProgressBar.default;
-
-var _ResponsiveEmbed = _interopRequireDefault(require("./ResponsiveEmbed"));
-
-exports.ResponsiveEmbed = _ResponsiveEmbed.default;
-
-var _Row = _interopRequireDefault(require("./Row"));
-
-exports.Row = _Row.default;
-
-var _SafeAnchor = _interopRequireDefault(require("./SafeAnchor"));
-
-exports.SafeAnchor = _SafeAnchor.default;
-
-var _Spinner = _interopRequireDefault(require("./Spinner"));
-
-exports.Spinner = _Spinner.default;
-
-var _SplitButton = _interopRequireDefault(require("./SplitButton"));
-
-exports.SplitButton = _SplitButton.default;
-
-var _Tab = _interopRequireDefault(require("./Tab"));
-
-exports.Tab = _Tab.default;
-
-var _TabContainer = _interopRequireDefault(require("./TabContainer"));
-
-exports.TabContainer = _TabContainer.default;
-
-var _TabContent = _interopRequireDefault(require("./TabContent"));
-
-exports.TabContent = _TabContent.default;
-
-var _Table = _interopRequireDefault(require("./Table"));
-
-exports.Table = _Table.default;
-
-var _TabPane = _interopRequireDefault(require("./TabPane"));
-
-exports.TabPane = _TabPane.default;
-
-var _Tabs = _interopRequireDefault(require("./Tabs"));
-
-exports.Tabs = _Tabs.default;
-
-var _ThemeProvider = _interopRequireDefault(require("./ThemeProvider"));
-
-exports.ThemeProvider = _ThemeProvider.default;
-
-var _Toast = _interopRequireDefault(require("./Toast"));
-
-exports.Toast = _Toast.default;
-
-var _ToastBody = _interopRequireDefault(require("./ToastBody"));
-
-exports.ToastBody = _ToastBody.default;
-
-var _ToastHeader = _interopRequireDefault(require("./ToastHeader"));
-
-exports.ToastHeader = _ToastHeader.default;
-
-var _ToggleButton = _interopRequireDefault(require("./ToggleButton"));
-
-exports.ToggleButton = _ToggleButton.default;
-
-var _ToggleButtonGroup = _interopRequireDefault(require("./ToggleButtonGroup"));
-
-exports.ToggleButtonGroup = _ToggleButtonGroup.default;
-
-var _Tooltip = _interopRequireDefault(require("./Tooltip"));
-
-exports.Tooltip = _Tooltip.default;
-
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","./Accordion":"123ZC","./AccordionContext":"6cHdE","./AccordionCollapse":"6fr2G","./AccordionToggle":"2CEru","./Alert":"1oIYX","./Badge":"2aFSj","./Breadcrumb":"hcZkb","./BreadcrumbItem":"fGRyA","./Button":"1ru0l","./ButtonGroup":"2THBw","./ButtonToolbar":"5QGeS","./Card":"1CZWQ","./CardColumns":"48yv5","./CardDeck":"4fiZs","./CardImg":"68LPL","./CardGroup":"1B9U7","./Carousel":"2Zcjk","./CarouselItem":"2tnC3","./CloseButton":"yWShL","./Col":"2D0r8","./Collapse":"4hhe0","./Dropdown":"27PdI","./DropdownButton":"7vE8v","./Fade":"2CU5C","./Form":"6A5ko","./FormControl":"573gP","./FormCheck":"6WcKM","./FormFile":"6mhKG","./FormGroup":"120iJ","./FormLabel":"70qP9","./FormText":"2VsfR","./Container":"3Mt3t","./Image":"5qrP5","./Figure":"2ZDTl","./InputGroup":"3nb5C","./Jumbotron":"1fO3T","./ListGroup":"6fErm","./ListGroupItem":"4tfxm","./Media":"120yO","./Modal":"20uUD","./ModalBody":"5Zu6o","./ModalDialog":"4OqPY","./ModalFooter":"4rYLN","./ModalTitle":"MJz12","./Nav":"3T3v1","./Navbar":"3qLFd","./NavbarBrand":"4flFi","./NavDropdown":"1qmIy","./NavItem":"39J70","./NavLink":"6stbu","./Overlay":"5PcTh","./OverlayTrigger":"4VaCP","./PageItem":"6IcgF","./Pagination":"3XBVG","./Popover":"4O1Nl","./PopoverTitle":"2W5ao","./PopoverContent":"1KTIN","./ProgressBar":"4HfN1","./ResponsiveEmbed":"76Zpv","./Row":"3fzwD","./SafeAnchor":"5VP5o","./Spinner":"4fhZt","./SplitButton":"qFVWq","./Tab":"2o9hU","./TabContainer":"31im4","./TabContent":"4a1d3","./Table":"34yor","./TabPane":"42ci1","./Tabs":"6YwyY","./ThemeProvider":"4rz1S","./Toast":"o9l9n","./ToastBody":"4qMwS","./ToastHeader":"3bTJs","./ToggleButton":"1noIF","./ToggleButtonGroup":"LW99s","./Tooltip":"2YAjd"}],"123ZC":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-
-var _classnames = _interopRequireDefault(require("classnames"));
-
-var _react = _interopRequireDefault(require("react"));
-
-var _uncontrollable = require("uncontrollable");
-
-var _ThemeProvider = require("./ThemeProvider");
-
-var _AccordionToggle = _interopRequireDefault(require("./AccordionToggle"));
-
-var _SelectableContext = _interopRequireDefault(require("./SelectableContext"));
-
-var _AccordionCollapse = _interopRequireDefault(require("./AccordionCollapse"));
-
-var _AccordionContext = _interopRequireDefault(require("./AccordionContext"));
-
-var Accordion = /*#__PURE__*/_react.default.forwardRef(function (props, ref) {
-  var _useUncontrolled = (0, _uncontrollable.useUncontrolled)(props, {
-    activeKey: 'onSelect'
-  }),
-      _useUncontrolled$as = _useUncontrolled.as,
-      Component = _useUncontrolled$as === void 0 ? 'div' : _useUncontrolled$as,
-      activeKey = _useUncontrolled.activeKey,
-      bsPrefix = _useUncontrolled.bsPrefix,
-      children = _useUncontrolled.children,
-      className = _useUncontrolled.className,
-      onSelect = _useUncontrolled.onSelect,
-      controlledProps = (0, _objectWithoutPropertiesLoose2.default)(_useUncontrolled, ["as", "activeKey", "bsPrefix", "children", "className", "onSelect"]);
-
-  var finalClassName = (0, _classnames.default)(className, (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'accordion'));
-  return /*#__PURE__*/_react.default.createElement(_AccordionContext.default.Provider, {
-    value: activeKey || null
-  }, /*#__PURE__*/_react.default.createElement(_SelectableContext.default.Provider, {
-    value: onSelect || null
-  }, /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({
-    ref: ref
-  }, controlledProps, {
-    className: finalClassName
-  }), children)));
-});
-
-Accordion.displayName = 'Accordion';
-Accordion.Toggle = _AccordionToggle.default;
-Accordion.Collapse = _AccordionCollapse.default;
-var _default = Accordion;
-exports.default = _default;
-module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","uncontrollable":"4P7FS","./ThemeProvider":"4rz1S","./AccordionToggle":"2CEru","./SelectableContext":"3ATFf","./AccordionCollapse":"6fr2G","./AccordionContext":"6cHdE"}],"2CEru":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-exports.__esModule = true;
-exports.useAccordionToggle = useAccordionToggle;
-exports.default = void 0;
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _SelectableContext = _interopRequireDefault(require("./SelectableContext"));
-
-var _AccordionContext = _interopRequireDefault(require("./AccordionContext"));
-
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function useAccordionToggle(eventKey, onClick) {
-  var contextEventKey = (0, _react.useContext)(_AccordionContext.default);
-  var onSelect = (0, _react.useContext)(_SelectableContext.default);
-  return function (e) {
-    /*
-      Compare the event key in context with the given event key.
-      If they are the same, then collapse the component.
-    */
-    var eventKeyPassed = eventKey === contextEventKey ? null : eventKey;
-    if (onSelect) onSelect(eventKeyPassed, e);
-    if (onClick) onClick(e);
-  };
-}
-
-var AccordionToggle = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
-  var _ref$as = _ref.as,
-      Component = _ref$as === void 0 ? 'button' : _ref$as,
-      children = _ref.children,
-      eventKey = _ref.eventKey,
-      onClick = _ref.onClick,
-      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["as", "children", "eventKey", "onClick"]);
-  var accordionOnClick = useAccordionToggle(eventKey, onClick);
-
-  if (Component === 'button') {
-    props.type = 'button';
-  }
-
-  return /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({
-    ref: ref,
-    onClick: accordionOnClick
-  }, props), children);
-});
-
-var _default = AccordionToggle;
-exports.default = _default;
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","react":"3b2NM","./SelectableContext":"3ATFf","./AccordionContext":"6cHdE"}],"6cHdE":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var context = /*#__PURE__*/_react.default.createContext(null);
-
-context.displayName = 'AccordionContext';
-var _default = context;
-exports.default = _default;
-module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","react":"3b2NM"}],"6fr2G":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-exports.__esModule = true;
-exports.default = void 0;
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _Collapse = _interopRequireDefault(require("./Collapse"));
-
-var _AccordionContext = _interopRequireDefault(require("./AccordionContext"));
-
-var _SelectableContext = _interopRequireDefault(require("./SelectableContext"));
-
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-var AccordionCollapse = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
-  var children = _ref.children,
-      eventKey = _ref.eventKey,
-      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["children", "eventKey"]);
-  var contextEventKey = (0, _react.useContext)(_AccordionContext.default); // Empty SelectableContext is to prevent elements in the collapse
-  // from collapsing the accordion when clicked.
-
-  return /*#__PURE__*/_react.default.createElement(_SelectableContext.default.Provider, {
-    value: null
-  }, /*#__PURE__*/_react.default.createElement(_Collapse.default, (0, _extends2.default)({
-    ref: ref,
-    in: contextEventKey === eventKey
-  }, props), /*#__PURE__*/_react.default.createElement("div", null, _react.default.Children.only(children))));
-});
-
-AccordionCollapse.displayName = 'AccordionCollapse';
-var _default = AccordionCollapse;
-exports.default = _default;
-module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","react":"3b2NM","./Collapse":"4hhe0","./AccordionContext":"6cHdE","./SelectableContext":"3ATFf"}],"1oIYX":[function(require,module,exports) {
+},{}],"1oIYX":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -38734,7 +38238,52 @@ Alert.Heading = AlertHeading;
 var _default = Alert;
 exports.default = _default;
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","uncontrollable":"4P7FS","@restart/hooks/useEventCallback":"3v8B9","./ThemeProvider":"4rz1S","./Fade":"2CU5C","./CloseButton":"yWShL","./divWithClassName":"27J3S","./createWithBsPrefix":"2oVVc","./SafeAnchor":"5VP5o"}],"2CU5C":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","uncontrollable":"4P7FS","@restart/hooks/useEventCallback":"3v8B9","./ThemeProvider":"4rz1S","./Fade":"2CU5C","./CloseButton":"yWShL","./divWithClassName":"27J3S","./createWithBsPrefix":"2oVVc","./SafeAnchor":"5VP5o"}],"3v8B9":[function(require,module,exports) {
+"use strict";
+
+exports.__esModule = true;
+exports.default = useEventCallback;
+
+var _react = require("react");
+
+var _useCommittedRef = _interopRequireDefault(require("./useCommittedRef"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useEventCallback(fn) {
+  var ref = (0, _useCommittedRef.default)(fn);
+  return (0, _react.useCallback)(function () {
+    return ref.current && ref.current.apply(ref, arguments);
+  }, [ref]);
+}
+},{"react":"3b2NM","./useCommittedRef":"4xIdB"}],"4xIdB":[function(require,module,exports) {
+"use strict";
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _react = require("react");
+
+/**
+ * Creates a `Ref` whose value is updated in an effect, ensuring the most recent
+ * value is the one rendered with. Generally only required for Concurrent mode usage
+ * where previous work in `render()` may be discarded befor being used.
+ *
+ * This is safe to access in an event handler.
+ *
+ * @param value The `Ref` value
+ */
+function useCommittedRef(value) {
+  var ref = (0, _react.useRef)(value);
+  (0, _react.useEffect)(function () {
+    ref.current = value;
+  }, [value]);
+  return ref;
+}
+
+var _default = useCommittedRef;
+exports.default = _default;
+},{"react":"3b2NM"}],"2CU5C":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -38845,7 +38394,32 @@ CloseButton.defaultProps = defaultProps;
 var _default = CloseButton;
 exports.default = _default;
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","prop-types":"4dfy5","react":"3b2NM","classnames":"5aJRc"}],"2aFSj":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","prop-types":"4dfy5","react":"3b2NM","classnames":"5aJRc"}],"27J3S":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _default = function _default(className) {
+  return /*#__PURE__*/_react.default.forwardRef(function (p, ref) {
+    return /*#__PURE__*/_react.default.createElement("div", (0, _extends2.default)({}, p, {
+      ref: ref,
+      className: (0, _classnames.default)(p.className, className)
+    }));
+  });
+};
+
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","react":"3b2NM","classnames":"5aJRc"}],"2aFSj":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -39082,6 +38656,159 @@ ButtonToolbar.defaultProps = defaultProps;
 var _default = ButtonToolbar;
 exports.default = _default;
 module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S"}],"1CZWQ":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _ThemeProvider = require("./ThemeProvider");
+
+var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
+
+var _divWithClassName = _interopRequireDefault(require("./divWithClassName"));
+
+var _CardContext = _interopRequireDefault(require("./CardContext"));
+
+var _CardImg = _interopRequireDefault(require("./CardImg"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var DivStyledAsH5 = (0, _divWithClassName.default)('h5');
+var DivStyledAsH6 = (0, _divWithClassName.default)('h6');
+var CardBody = (0, _createWithBsPrefix.default)('card-body');
+var CardTitle = (0, _createWithBsPrefix.default)('card-title', {
+  Component: DivStyledAsH5
+});
+var CardSubtitle = (0, _createWithBsPrefix.default)('card-subtitle', {
+  Component: DivStyledAsH6
+});
+var CardLink = (0, _createWithBsPrefix.default)('card-link', {
+  Component: 'a'
+});
+var CardText = (0, _createWithBsPrefix.default)('card-text', {
+  Component: 'p'
+});
+var CardHeader = (0, _createWithBsPrefix.default)('card-header');
+var CardFooter = (0, _createWithBsPrefix.default)('card-footer');
+var CardImgOverlay = (0, _createWithBsPrefix.default)('card-img-overlay');
+var defaultProps = {
+  body: false
+};
+
+var Card = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
+  var bsPrefix = _ref.bsPrefix,
+      className = _ref.className,
+      bg = _ref.bg,
+      text = _ref.text,
+      border = _ref.border,
+      body = _ref.body,
+      children = _ref.children,
+      _ref$as = _ref.as,
+      Component = _ref$as === void 0 ? 'div' : _ref$as,
+      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "bg", "text", "border", "body", "children", "as"]);
+  var prefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'card');
+  var cardContext = (0, _react.useMemo)(function () {
+    return {
+      cardHeaderBsPrefix: prefix + "-header"
+    };
+  }, [prefix]);
+  return /*#__PURE__*/_react.default.createElement(_CardContext.default.Provider, {
+    value: cardContext
+  }, /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({
+    ref: ref
+  }, props, {
+    className: (0, _classnames.default)(className, prefix, bg && "bg-" + bg, text && "text-" + text, border && "border-" + border)
+  }), body ?
+  /*#__PURE__*/
+  // @ts-ignore
+  _react.default.createElement(CardBody, null, children) : children));
+});
+
+Card.displayName = 'Card';
+Card.defaultProps = defaultProps;
+Card.Img = _CardImg.default;
+Card.Title = CardTitle;
+Card.Subtitle = CardSubtitle;
+Card.Body = CardBody;
+Card.Link = CardLink;
+Card.Text = CardText;
+Card.Header = CardHeader;
+Card.Footer = CardFooter;
+Card.ImgOverlay = CardImgOverlay;
+var _default = Card;
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S","./createWithBsPrefix":"2oVVc","./divWithClassName":"27J3S","./CardContext":"71yot","./CardImg":"68LPL"}],"71yot":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var context = /*#__PURE__*/_react.default.createContext(null);
+
+context.displayName = 'CardContext';
+var _default = context;
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","react":"3b2NM"}],"68LPL":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _ThemeProvider = require("./ThemeProvider");
+
+var defaultProps = {
+  variant: null
+};
+
+var CardImg = /*#__PURE__*/_react.default.forwardRef( // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+function (_ref, ref) {
+  var bsPrefix = _ref.bsPrefix,
+      className = _ref.className,
+      variant = _ref.variant,
+      _ref$as = _ref.as,
+      Component = _ref$as === void 0 ? 'img' : _ref$as,
+      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "variant", "as"]);
+  var prefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'card-img');
+  return /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({
+    ref: ref,
+    className: (0, _classnames.default)(variant ? prefix + "-" + variant : prefix, className)
+  }, props));
+});
+
+CardImg.displayName = 'CardImg';
+CardImg.defaultProps = defaultProps;
+var _default = CardImg;
+exports.default = _default;
+module.exports = exports["default"];
 },{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S"}],"48yv5":[function(require,module,exports) {
 "use strict";
 
@@ -39093,6 +38820,34 @@ exports.default = void 0;
 var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
 
 var _default = (0, _createWithBsPrefix.default)('card-columns');
+
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","./createWithBsPrefix":"2oVVc"}],"4fiZs":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
+
+var _default = (0, _createWithBsPrefix.default)('card-deck');
+
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","./createWithBsPrefix":"2oVVc"}],"1B9U7":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
+
+var _default = (0, _createWithBsPrefix.default)('card-group');
 
 exports.default = _default;
 module.exports = exports["default"];
@@ -43069,7 +42824,23 @@ function useMergedRefs(refA, refB) {
 
 var _default = useMergedRefs;
 exports.default = _default;
-},{"react":"3b2NM"}],"79Yqp":[function(require,module,exports) {
+},{"react":"3b2NM"}],"1Ts0D":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var context = /*#__PURE__*/_react.default.createContext(null);
+
+context.displayName = 'NavbarContext';
+var _default = context;
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","react":"3b2NM"}],"79Yqp":[function(require,module,exports) {
 "use strict";
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 exports.__esModule = true;
@@ -43454,7 +43225,83 @@ DropdownButton.propTypes = propTypes;
 var _default = DropdownButton;
 exports.default = _default;
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","react":"3b2NM","prop-types":"4dfy5","./Dropdown":"27PdI","./DropdownToggle":"3wlzX","./DropdownMenu":"2Ipap"}],"2ZDTl":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","react":"3b2NM","prop-types":"4dfy5","./Dropdown":"27PdI","./DropdownToggle":"3wlzX","./DropdownMenu":"2Ipap"}],"5qrP5":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = exports.propTypes = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _ThemeProvider = require("./ThemeProvider");
+
+var propTypes = {
+  /**
+   * @default 'img'
+   */
+  bsPrefix: _propTypes.default.string,
+
+  /**
+   * Sets image as fluid image.
+   */
+  fluid: _propTypes.default.bool,
+
+  /**
+   * Sets image shape as rounded.
+   */
+  rounded: _propTypes.default.bool,
+
+  /**
+   * Sets image shape as circle.
+   */
+  roundedCircle: _propTypes.default.bool,
+
+  /**
+   * Sets image shape as thumbnail.
+   */
+  thumbnail: _propTypes.default.bool
+};
+exports.propTypes = propTypes;
+var defaultProps = {
+  fluid: false,
+  rounded: false,
+  roundedCircle: false,
+  thumbnail: false
+};
+
+var Image = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
+  var bsPrefix = _ref.bsPrefix,
+      className = _ref.className,
+      fluid = _ref.fluid,
+      rounded = _ref.rounded,
+      roundedCircle = _ref.roundedCircle,
+      thumbnail = _ref.thumbnail,
+      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "fluid", "rounded", "roundedCircle", "thumbnail"]);
+  bsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'img');
+  var classes = (0, _classnames.default)(fluid && bsPrefix + "-fluid", rounded && "rounded", roundedCircle && "rounded-circle", thumbnail && bsPrefix + "-thumbnail");
+  return /*#__PURE__*/_react.default.createElement("img", (0, _extends2.default)({
+    // eslint-disable-line jsx-a11y/alt-text
+    ref: ref
+  }, props, {
+    className: (0, _classnames.default)(className, classes)
+  }));
+});
+
+Image.displayName = 'Image';
+Image.defaultProps = defaultProps;
+var _default = Image;
+exports.default = _default;
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","prop-types":"4dfy5","./ThemeProvider":"4rz1S"}],"2ZDTl":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -45702,7 +45549,263 @@ NavLink.defaultProps = defaultProps;
 var _default = NavLink;
 exports.default = _default;
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./SafeAnchor":"5VP5o","./AbstractNavItem":"3jbfQ","./ThemeProvider":"4rz1S"}],"1qmIy":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./SafeAnchor":"5VP5o","./AbstractNavItem":"3jbfQ","./ThemeProvider":"4rz1S"}],"3qLFd":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _uncontrollable = require("uncontrollable");
+
+var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
+
+var _NavbarBrand = _interopRequireDefault(require("./NavbarBrand"));
+
+var _NavbarCollapse = _interopRequireDefault(require("./NavbarCollapse"));
+
+var _NavbarToggle = _interopRequireDefault(require("./NavbarToggle"));
+
+var _ThemeProvider = require("./ThemeProvider");
+
+var _NavbarContext = _interopRequireDefault(require("./NavbarContext"));
+
+var _SelectableContext = _interopRequireDefault(require("./SelectableContext"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var NavbarText = (0, _createWithBsPrefix.default)('navbar-text', {
+  Component: 'span'
+});
+var defaultProps = {
+  expand: true,
+  variant: 'light',
+  collapseOnSelect: false
+};
+
+var Navbar = /*#__PURE__*/_react.default.forwardRef(function (props, ref) {
+  var _useUncontrolled = (0, _uncontrollable.useUncontrolled)(props, {
+    expanded: 'onToggle'
+  }),
+      initialBsPrefix = _useUncontrolled.bsPrefix,
+      expand = _useUncontrolled.expand,
+      variant = _useUncontrolled.variant,
+      bg = _useUncontrolled.bg,
+      fixed = _useUncontrolled.fixed,
+      sticky = _useUncontrolled.sticky,
+      className = _useUncontrolled.className,
+      children = _useUncontrolled.children,
+      _useUncontrolled$as = _useUncontrolled.as,
+      Component = _useUncontrolled$as === void 0 ? 'nav' : _useUncontrolled$as,
+      expanded = _useUncontrolled.expanded,
+      _onToggle = _useUncontrolled.onToggle,
+      onSelect = _useUncontrolled.onSelect,
+      collapseOnSelect = _useUncontrolled.collapseOnSelect,
+      controlledProps = (0, _objectWithoutPropertiesLoose2.default)(_useUncontrolled, ["bsPrefix", "expand", "variant", "bg", "fixed", "sticky", "className", "children", "as", "expanded", "onToggle", "onSelect", "collapseOnSelect"]);
+
+  var bsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(initialBsPrefix, 'navbar');
+  var handleCollapse = (0, _react.useCallback)(function () {
+    if (onSelect) onSelect.apply(void 0, arguments);
+
+    if (collapseOnSelect && expanded) {
+      if (_onToggle) {
+        _onToggle(false);
+      }
+    }
+  }, [onSelect, collapseOnSelect, expanded, _onToggle]); // will result in some false positives but that seems better
+  // than false negatives. strict `undefined` check allows explicit
+  // "nulling" of the role if the user really doesn't want one
+
+  if (controlledProps.role === undefined && Component !== 'nav') {
+    controlledProps.role = 'navigation';
+  }
+
+  var expandClass = bsPrefix + "-expand";
+  if (typeof expand === 'string') expandClass = expandClass + "-" + expand;
+  var navbarContext = (0, _react.useMemo)(function () {
+    return {
+      onToggle: function onToggle() {
+        return _onToggle && _onToggle(!expanded);
+      },
+      bsPrefix: bsPrefix,
+      expanded: !!expanded
+    };
+  }, [bsPrefix, expanded, _onToggle]);
+  return /*#__PURE__*/_react.default.createElement(_NavbarContext.default.Provider, {
+    value: navbarContext
+  }, /*#__PURE__*/_react.default.createElement(_SelectableContext.default.Provider, {
+    value: handleCollapse
+  }, /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({
+    ref: ref
+  }, controlledProps, {
+    className: (0, _classnames.default)(className, bsPrefix, expand && expandClass, variant && bsPrefix + "-" + variant, bg && "bg-" + bg, sticky && "sticky-" + sticky, fixed && "fixed-" + fixed)
+  }), children)));
+});
+
+Navbar.defaultProps = defaultProps;
+Navbar.displayName = 'Navbar';
+Navbar.Brand = _NavbarBrand.default;
+Navbar.Toggle = _NavbarToggle.default;
+Navbar.Collapse = _NavbarCollapse.default;
+Navbar.Text = NavbarText;
+var _default = Navbar;
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","uncontrollable":"4P7FS","./createWithBsPrefix":"2oVVc","./NavbarBrand":"4flFi","./NavbarCollapse":"6KfIh","./NavbarToggle":"4uQiD","./ThemeProvider":"4rz1S","./NavbarContext":"1Ts0D","./SelectableContext":"3ATFf"}],"4flFi":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _ThemeProvider = require("./ThemeProvider");
+
+var NavbarBrand = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
+  var bsPrefix = _ref.bsPrefix,
+      className = _ref.className,
+      as = _ref.as,
+      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "as"]);
+  bsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'navbar-brand');
+  var Component = as || (props.href ? 'a' : 'span');
+  return /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({}, props, {
+    ref: ref,
+    className: (0, _classnames.default)(className, bsPrefix)
+  }));
+});
+
+NavbarBrand.displayName = 'NavbarBrand';
+var _default = NavbarBrand;
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S"}],"6KfIh":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _Collapse = _interopRequireDefault(require("./Collapse"));
+
+var _ThemeProvider = require("./ThemeProvider");
+
+var _NavbarContext = _interopRequireDefault(require("./NavbarContext"));
+
+var NavbarCollapse = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
+  var children = _ref.children,
+      bsPrefix = _ref.bsPrefix,
+      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["children", "bsPrefix"]);
+  bsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'navbar-collapse');
+  return /*#__PURE__*/_react.default.createElement(_NavbarContext.default.Consumer, null, function (context) {
+    return /*#__PURE__*/_react.default.createElement(_Collapse.default, (0, _extends2.default)({
+      in: !!(context && context.expanded)
+    }, props), /*#__PURE__*/_react.default.createElement("div", {
+      ref: ref,
+      className: bsPrefix
+    }, children));
+  });
+});
+
+NavbarCollapse.displayName = 'NavbarCollapse';
+var _default = NavbarCollapse;
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","react":"3b2NM","./Collapse":"4hhe0","./ThemeProvider":"4rz1S","./NavbarContext":"1Ts0D"}],"4uQiD":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _useEventCallback = _interopRequireDefault(require("@restart/hooks/useEventCallback"));
+
+var _ThemeProvider = require("./ThemeProvider");
+
+var _NavbarContext = _interopRequireDefault(require("./NavbarContext"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var defaultProps = {
+  label: 'Toggle navigation'
+};
+
+var NavbarToggle = /*#__PURE__*/_react.default.forwardRef(function (_ref, ref) {
+  var bsPrefix = _ref.bsPrefix,
+      className = _ref.className,
+      children = _ref.children,
+      label = _ref.label,
+      _ref$as = _ref.as,
+      Component = _ref$as === void 0 ? 'button' : _ref$as,
+      onClick = _ref.onClick,
+      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "children", "label", "as", "onClick"]);
+  bsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'navbar-toggler');
+
+  var _ref2 = (0, _react.useContext)(_NavbarContext.default) || {},
+      onToggle = _ref2.onToggle,
+      expanded = _ref2.expanded;
+
+  var handleClick = (0, _useEventCallback.default)(function (e) {
+    if (onClick) onClick(e);
+    if (onToggle) onToggle();
+  });
+
+  if (Component === 'button') {
+    props.type = 'button';
+  }
+
+  return /*#__PURE__*/_react.default.createElement(Component, (0, _extends2.default)({}, props, {
+    ref: ref,
+    onClick: handleClick,
+    "aria-label": label,
+    className: (0, _classnames.default)(className, bsPrefix, !expanded && 'collapsed')
+  }), children || /*#__PURE__*/_react.default.createElement("span", {
+    className: bsPrefix + "-icon"
+  }));
+});
+
+NavbarToggle.displayName = 'NavbarToggle';
+NavbarToggle.defaultProps = defaultProps;
+var _default = NavbarToggle;
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","@restart/hooks/useEventCallback":"3v8B9","./ThemeProvider":"4rz1S","./NavbarContext":"1Ts0D"}],"1qmIy":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -47799,6 +47902,1112 @@ Tooltip.displayName = 'Tooltip';
 var _default = Tooltip;
 exports.default = _default;
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","prop-types-extra/lib/isRequiredForA11y":"4XrEc","./ThemeProvider":"4rz1S"}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequireeb1c")
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","prop-types-extra/lib/isRequiredForA11y":"4XrEc","./ThemeProvider":"4rz1S"}],"3xBbr":[function(require,module,exports) {
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "MovieView", function () {
+    return MovieView;
+  });
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _propTypes = require('prop-types');
+  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  var _reactBootstrapButton = require('react-bootstrap/Button');
+  var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
+  var _reactBootstrapCard = require('react-bootstrap/Card');
+  var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
+  var _reactBootstrapCardGroup = require('react-bootstrap/CardGroup');
+  var _reactBootstrapCardGroupDefault = _parcelHelpers.interopDefault(_reactBootstrapCardGroup);
+  var _reactBootstrapImage = require('react-bootstrap/Image');
+  var _reactBootstrapImageDefault = _parcelHelpers.interopDefault(_reactBootstrapImage);
+  var _reactBootstrapRow = require('react-bootstrap/Row');
+  var _reactBootstrapRowDefault = _parcelHelpers.interopDefault(_reactBootstrapRow);
+  var _reactHelmet = require("react-helmet");
+  var _reactHelmetDefault = _parcelHelpers.interopDefault(_reactHelmet);
+  var _reactRouterDom = require('react-router-dom');
+  require('react-bootstrap/Form');
+  var _reactBootstrapCol = require('react-bootstrap/Col');
+  var _reactBootstrapColDefault = _parcelHelpers.interopDefault(_reactBootstrapCol);
+  require('react-bootstrap');
+  require('react-bootstrap/FormControl');
+  require('react-bootstrap/Container');
+  require('../director-view/director-view');
+  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx";
+  class MovieView extends _reactDefault.default.Component {
+    keypressCallback(event) {
+      console.log(event.key);
+    }
+    componentDidMount() {
+      document.addEventListener('keypress', this.keypressCallback);
+    }
+    componentWillUnmount() {
+      document.removeEventListener('keypress', this.keypressCallback);
+    }
+    render() {
+      const {movie, onBackClick} = this.props;
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
+          bodyAttributes: {
+            style: 'background-color : black'
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 40,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardGroupDefault.default, {
+          className: "bg-dark my-5 mx-5",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 42,
+            columnNumber: 9
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
+          className: "movie-view bg-dark text-white my-5 mx-5 justify-content-center align-items-center",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 43,
+            columnNumber: 11
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapImageDefault.default, {
+          src: `/img/${movie.ImagePath}`,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 44,
+            columnNumber: 13
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Title, {
+          className: "label justify-content-center",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 45,
+            columnNumber: 13
+          }
+        }, movie.Title, " "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
+          className: "movie-description",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 46,
+            columnNumber: 13
+          }
+        }, "Description: ", movie.Description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
+          className: "movie-Genre",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 47,
+            columnNumber: 13
+          }
+        }, "Genre: ", movie.Genre.Name), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
+          className: "movie-director",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 48,
+            columnNumber: 13
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("span", {
+          className: "label",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 49,
+            columnNumber: 15
+          }
+        }, "Director: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
+          className: "value",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 50,
+            columnNumber: 15
+          }
+        }, movie.Director.Name), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 51,
+            columnNumber: 15
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("span", {
+          className: "label",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 52,
+            columnNumber: 15
+          }
+        }, "Bio: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
+          className: "value",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 53,
+            columnNumber: 15
+          }
+        }, movie.Director.Bio), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 54,
+            columnNumber: 15
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("span", {
+          className: "label",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 55,
+            columnNumber: 15
+          }
+        }, "Birth year: "), /*#__PURE__*/_reactDefault.default.createElement("span", {
+          className: "value",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 56,
+            columnNumber: 15
+          }
+        }, movie.Director.Birth)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 59,
+            columnNumber: 13
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+          className: "justify-content-center my-5",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 60,
+            columnNumber: 15
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+          to: `/directors/${movie.Director.Name}`,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 61,
+            columnNumber: 17
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+          variant: "dark",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 62,
+            columnNumber: 19
+          }
+        }, "Director"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+          className: "justify-content-center",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 65,
+            columnNumber: 15
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+          to: `/genres/${movie.Genre.Name}`,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 66,
+            columnNumber: 17
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+          variant: "dark",
+          className: "my-5",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 67,
+            columnNumber: 19
+          }
+        }, "Genre")))))))
+      );
+    }
+  }
+  MovieView.propTypes = {
+    movie: _propTypesDefault.default.shape({
+      Title: _propTypesDefault.default.string,
+      Description: _propTypesDefault.default.string,
+      ImagePath: _propTypesDefault.default.string,
+      Genre: _propTypesDefault.default.shape({
+        Name: _propTypesDefault.default.string.isRequired,
+        Description: _propTypesDefault.default.string.isRequired
+      }),
+      Director: _propTypesDefault.default.shape({
+        Name: _propTypesDefault.default.string.isRequired,
+        Bio: _propTypesDefault.default.string.isRequired,
+        Birth: _propTypesDefault.default.string,
+        Death: _propTypesDefault.default.string
+      })
+    }).isRequired
+  };
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-bootstrap/CardGroup":"1B9U7","react-bootstrap/Image":"5qrP5","react-bootstrap/Row":"3fzwD","react-helmet":"71Wec","react-router-dom":"1PMSK","react-bootstrap/Form":"6A5ko","react-bootstrap/Col":"2D0r8","react-bootstrap":"4n7hB","react-bootstrap/FormControl":"573gP","react-bootstrap/Container":"3Mt3t","../director-view/director-view":"7HF27","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"7HF27":[function(require,module,exports) {
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "DirectorView", function () {
+    return DirectorView;
+  });
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  require('react-router-dom');
+  var _propTypes = require('prop-types');
+  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  require('react-bootstrap/Button');
+  require('react-bootstrap/Container');
+  require('react-bootstrap/Col');
+  require('react-bootstrap/Row');
+  var _reactBootstrapCard = require('react-bootstrap/Card');
+  var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
+  var _reactHelmet = require("react-helmet");
+  var _reactHelmetDefault = _parcelHelpers.interopDefault(_reactHelmet);
+  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\director-view\\director-view.jsx";
+  class DirectorView extends _reactDefault.default.Component {
+    render() {
+      const {director, movies} = this.props;
+      console.log(this.props);
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 21,
+            columnNumber: 7
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
+          bodyAttributes: {
+            style: 'background-color : black'
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 22,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
+          className: "bg-dark text-white mt-5 mx-4",
+          style: {
+            height: "24rem"
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 24,
+            columnNumber: 9
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
+          className: "justify-content align-items",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 25,
+            columnNumber: 11
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Title, {
+          style: {
+            height: "3rem"
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 26,
+            columnNumber: 13
+          }
+        }, director.Name), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 27,
+            columnNumber: 13
+          }
+        }, "Bio: ", director.Bio), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 28,
+            columnNumber: 13
+          }
+        }, "Birth year: ", director.Birth), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 29,
+            columnNumber: 13
+          }
+        }, director.Death), /*#__PURE__*/_reactDefault.default.createElement("br", {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 32,
+            columnNumber: 13
+          }
+        }))))
+      );
+    }
+  }
+  DirectorView.propTypes = {
+    Director: _propTypesDefault.default.shape({
+      Name: _propTypesDefault.default.string.isRequired,
+      Bio: _propTypesDefault.default.string.isRequired,
+      Birth: _propTypesDefault.default.string.isRequired,
+      Death: _propTypesDefault.default.string
+    })
+  };
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","react-router-dom":"1PMSK","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Container":"3Mt3t","react-bootstrap/Col":"2D0r8","react-bootstrap/Row":"3fzwD","react-bootstrap/Card":"1CZWQ","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-helmet":"71Wec"}],"7v6h3":[function(require,module,exports) {
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "MovieCard", function () {
+    return MovieCard;
+  });
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _propTypes = require('prop-types');
+  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  var _reactBootstrapButton = require('react-bootstrap/Button');
+  var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
+  var _reactBootstrapCard = require('react-bootstrap/Card');
+  var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
+  require('react-bootstrap/CardGroup');
+  var _reactHelmet = require("react-helmet");
+  var _reactHelmetDefault = _parcelHelpers.interopDefault(_reactHelmet);
+  var _reactRouterDom = require('react-router-dom');
+  require('../director-view/director-view');
+  require('react-bootstrap');
+  require('./movie-card.scss');
+  require('react-bootstrap');
+  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx";
+  class MovieCard extends _reactDefault.default.Component {
+    render() {
+      const {movie, onMovieClick} = this.props;
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
+          bodyAttributes: {
+            style: 'background-color : black'
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 19,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
+          body: true,
+          bsPrefix: "maximumW",
+          className: "bg-dark text-white mt-5 mx-2",
+          style: {
+            height: "24rem"
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 23,
+            columnNumber: 9
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
+          className: "justify-content-center align-items-center",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 24,
+            columnNumber: 11
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Img, {
+          variant: "top",
+          src: movie.ImagePath,
+          style: {
+            height: "11rem"
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 25,
+            columnNumber: 13
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Title, {
+          className: "my-2",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 26,
+            columnNumber: 13
+          }
+        }, movie.Title), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Footer, {
+          className: "mb-4",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 27,
+            columnNumber: 13
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+          to: `/movies/${movie._id}`,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 28,
+            columnNumber: 15
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+          variant: "dark",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 29,
+            columnNumber: 17
+          }
+        }, "Movie Info"))))))
+      );
+    }
+  }
+  MovieCard.propTypes = {
+    movie: _propTypesDefault.default.shape({
+      Title: _propTypesDefault.default.string.isRequired,
+      Description: _propTypesDefault.default.string.isRequired,
+      Genre: _propTypesDefault.default.shape({
+        Name: _propTypesDefault.default.string.isRequired,
+        Description: _propTypesDefault.default.string.isRequired
+      }),
+      Director: _propTypesDefault.default.shape({
+        Name: _propTypesDefault.default.string.isRequired,
+        Bio: _propTypesDefault.default.string.isRequired,
+        Birth: _propTypesDefault.default.string.isRequired,
+        Death: _propTypesDefault.default.string
+      }),
+      ImagePath: _propTypesDefault.default.string.isRequired,
+      Featured: _propTypesDefault.default.bool,
+      Year: _propTypesDefault.default.string
+    }).isRequired
+  };
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-bootstrap/CardGroup":"1B9U7","react-helmet":"71Wec","react-router-dom":"1PMSK","../director-view/director-view":"7HF27","./movie-card.scss":"43n4t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap":"4n7hB"}],"43n4t":[function() {},{}],"6FLqj":[function(require,module,exports) {
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "GenreView", function () {
+    return GenreView;
+  });
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  require('react-router-dom');
+  var _propTypes = require('prop-types');
+  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  require('react-bootstrap/Button');
+  require('react-bootstrap/Container');
+  require('react-bootstrap/Col');
+  require('react-bootstrap/Row');
+  var _reactBootstrapCard = require('react-bootstrap/Card');
+  var _reactBootstrapCardDefault = _parcelHelpers.interopDefault(_reactBootstrapCard);
+  var _reactHelmet = require("react-helmet");
+  var _reactHelmetDefault = _parcelHelpers.interopDefault(_reactHelmet);
+  require('./genre-view.scss');
+  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx";
+  class GenreView extends _reactDefault.default.Component {
+    render() {
+      const {genre, movies} = this.props;
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 21,
+            columnNumber: 7
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
+          bodyAttributes: {
+            style: 'background-color : black'
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 22,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
+          className: "bg-dark text-white mt-5 mx-4",
+          style: {
+            height: "24rem"
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 24,
+            columnNumber: 9
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
+          className: "justify-content align-items",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 25,
+            columnNumber: 11
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Title, {
+          style: {
+            height: "3rem"
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 26,
+            columnNumber: 13
+          }
+        }, genre.Name), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 27,
+            columnNumber: 13
+          }
+        }, genre.Description))))
+      );
+    }
+  }
+  GenreView.propTypes = {
+    Genre: _propTypesDefault.default.shape({
+      Name: _propTypesDefault.default.string.isRequired,
+      Description: _propTypesDefault.default.string.isRequired
+    })
+  };
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","react-router-dom":"1PMSK","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Container":"3Mt3t","react-bootstrap/Col":"2D0r8","react-bootstrap/Row":"3fzwD","react-bootstrap/Card":"1CZWQ","react-helmet":"71Wec","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./genre-view.scss":"4iHPp"}],"4iHPp":[function() {},{}],"3CncI":[function(require,module,exports) {
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "ProfileView", function () {
+    return ProfileView;
+  });
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _axios = require('axios');
+  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
+  var _reactBootstrapForm = require('react-bootstrap/Form');
+  var _reactBootstrapFormDefault = _parcelHelpers.interopDefault(_reactBootstrapForm);
+  var _reactBootstrapButton = require('react-bootstrap/Button');
+  var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
+  require('react-bootstrap/Container');
+  var _reactHelmet = require("react-helmet");
+  var _reactHelmetDefault = _parcelHelpers.interopDefault(_reactHelmet);
+  var _reactBootstrapRow = require('react-bootstrap/Row');
+  var _reactBootstrapRowDefault = _parcelHelpers.interopDefault(_reactBootstrapRow);
+  require('react-bootstrap/Col');
+  var _propTypes = require('prop-types');
+  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  var _reactBootstrap = require('react-bootstrap');
+  var _reactBootstrapEsmImage = require('react-bootstrap/esm/Image');
+  require('react-router-dom');
+  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx";
+  class ProfileView extends _reactDefault.default.Component {
+    constructor() {
+      super();
+      this.state = {
+        movies: []
+      };
+    }
+    componentDidMount() {
+      let accessToken = localStorage.getItem('token');
+      let userInfo = localStorage.getItem('user');
+      if (accessToken !== null) {
+        this.setState({
+          user: localStorage.getItem('user'),
+          token: localStorage.getItem('token')
+        });
+      }
+    }
+    handleDelete(user, token) {
+      _axiosDefault.default.delete(`https://itshorrortime.herokuapp.com/users/${user}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(() => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        window.open('/', '_self');
+      });
+    }
+    handleUpdate(user, token, e) {
+      // console.log(this.state)
+      e.preventDefault();
+      _axiosDefault.default.put(`https://itshorrortime.herokuapp.com/users/${user}`, {
+        Username: this.state.Username,
+        Password: this.state.Password,
+        Email: this.state.Email,
+        Birthday: this.state.Birthday
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => {
+        const data = response.data;
+        localStorage.setItem("user", data.Username);
+        console.log(response.data);
+      }).catch(e => {
+        console.log(e);
+      });
+    }
+    render() {
+      const {user, token, userInfo} = this.props;
+      // console.log(this.props);
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
+          bodyAttributes: {
+            style: 'background-color : black, text-decoration-color : white'
+          },
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 92,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 93,
+            columnNumber: 9
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Title, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 94,
+            columnNumber: 11
+          }
+        }, " Account Information"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 95,
+            columnNumber: 11
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 96,
+            columnNumber: 13
+          }
+        }, "Username: ", user)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Card.Body, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 100,
+            columnNumber: 11
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 103,
+            columnNumber: 13
+          }
+        }, "Update Information"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+          className: "justify-content-center mt-5",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 108,
+            columnNumber: 9
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, {
+          onSubmit: e => this.handleUpdate(user, token, e),
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 110,
+            columnNumber: 11
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+          className: "justify-content-center",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 111,
+            columnNumber: 13
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+          as: _reactBootstrapRowDefault.default,
+          controlId: "validationCustomUsername",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 112,
+            columnNumber: 15
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 113,
+            columnNumber: 17
+          }
+        }, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+          type: "text",
+          required: true,
+          minLength: "6",
+          maxLength: "12",
+          placeholder: "Enter Username",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 114,
+            columnNumber: 17
+          }
+        }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+          className: "justify-content-center",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 125,
+            columnNumber: 13
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+          as: _reactBootstrapRowDefault.default,
+          controlId: "validationCustomPassword",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 126,
+            columnNumber: 15
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 127,
+            columnNumber: 17
+          }
+        }, "Password:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+          type: "text",
+          required: true,
+          minLength: "6",
+          maxLength: "12",
+          placeholder: "Enter Password",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 128,
+            columnNumber: 17
+          }
+        }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+          className: "justify-content-center",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 138,
+            columnNumber: 13
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+          as: _reactBootstrapRowDefault.default,
+          controlId: "validationCustomEmail",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 139,
+            columnNumber: 15
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 140,
+            columnNumber: 17
+          }
+        }, "Email:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+          type: "text",
+          required: true,
+          placeholder: "Enter Email",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 141,
+            columnNumber: 17
+          }
+        }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Row, {
+          className: "justify-content-center",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 149,
+            columnNumber: 13
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+          as: _reactBootstrapRowDefault.default,
+          controlId: "customValidationBirthday",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 150,
+            columnNumber: 15
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 151,
+            columnNumber: 17
+          }
+        }, "Birthday: "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+          type: "date",
+          required: true,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 152,
+            columnNumber: 17
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control.Feedback, {
+          type: "invalid",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 156,
+            columnNumber: 17
+          }
+        }, "Please enter your Birthday"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+          type: "submit",
+          variant: "dark",
+          block: true,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 161,
+            columnNumber: 13
+          }
+        }, "Submit"))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+          onClick: e => this.handleDelete(user, token),
+          variant: "dark",
+          block: true,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 164,
+            columnNumber: 9
+          }
+        }, "Delete"))
+      );
+    }
+  }
+  exports.default = ProfileView;
+  ProfileView.propTypes = {
+    User: _propTypesDefault.default.shape({
+      Username: _reactBootstrapEsmImage.propTypes.string,
+      Password: _reactBootstrapEsmImage.propTypes.string,
+      Email: _reactBootstrapEsmImage.propTypes.string
+    })
+  };
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","axios":"7rA65","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Container":"3Mt3t","react-helmet":"71Wec","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-bootstrap/esm/Image":"rzPO3","react-router-dom":"1PMSK"}],"rzPO3":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "propTypes", function () {
+  return propTypes;
+});
+var _babelRuntimeHelpersEsmExtends = require("@babel/runtime/helpers/esm/extends");
+var _babelRuntimeHelpersEsmExtendsDefault = _parcelHelpers.interopDefault(_babelRuntimeHelpersEsmExtends);
+var _babelRuntimeHelpersEsmObjectWithoutPropertiesLoose = require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose");
+var _babelRuntimeHelpersEsmObjectWithoutPropertiesLooseDefault = _parcelHelpers.interopDefault(_babelRuntimeHelpersEsmObjectWithoutPropertiesLoose);
+var _classnames = require('classnames');
+var _classnamesDefault = _parcelHelpers.interopDefault(_classnames);
+var _react = require('react');
+var _reactDefault = _parcelHelpers.interopDefault(_react);
+var _propTypes = require('prop-types');
+var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+var _ThemeProvider = require('./ThemeProvider');
+var propTypes = {
+  /**
+  * @default 'img'
+  */
+  bsPrefix: _propTypesDefault.default.string,
+  /**
+  * Sets image as fluid image.
+  */
+  fluid: _propTypesDefault.default.bool,
+  /**
+  * Sets image shape as rounded.
+  */
+  rounded: _propTypesDefault.default.bool,
+  /**
+  * Sets image shape as circle.
+  */
+  roundedCircle: _propTypesDefault.default.bool,
+  /**
+  * Sets image shape as thumbnail.
+  */
+  thumbnail: _propTypesDefault.default.bool
+};
+var defaultProps = {
+  fluid: false,
+  rounded: false,
+  roundedCircle: false,
+  thumbnail: false
+};
+var Image = /*#__PURE__*/_reactDefault.default.forwardRef(function (_ref, ref) {
+  var bsPrefix = _ref.bsPrefix, className = _ref.className, fluid = _ref.fluid, rounded = _ref.rounded, roundedCircle = _ref.roundedCircle, thumbnail = _ref.thumbnail, props = _babelRuntimeHelpersEsmObjectWithoutPropertiesLooseDefault.default(_ref, ["bsPrefix", "className", "fluid", "rounded", "roundedCircle", "thumbnail"]);
+  bsPrefix = _ThemeProvider.useBootstrapPrefix(bsPrefix, 'img');
+  var classes = _classnamesDefault.default(fluid && bsPrefix + "-fluid", rounded && "rounded", roundedCircle && "rounded-circle", thumbnail && bsPrefix + "-thumbnail");
+  return (
+    /*#__PURE__*/_reactDefault.default.createElement("img", _babelRuntimeHelpersEsmExtendsDefault.default({
+      // eslint-disable-line jsx-a11y/alt-text
+      ref: ref
+    }, props, {
+      className: _classnamesDefault.default(className, classes)
+    }))
+  );
+});
+Image.displayName = 'Image';
+Image.defaultProps = defaultProps;
+exports.default = Image;
+
+},{"@babel/runtime/helpers/esm/extends":"5qnVv","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"6rNIl","classnames":"5aJRc","react":"3b2NM","prop-types":"4dfy5","./ThemeProvider":"6Pzum","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5qnVv":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function _extends() {
+  _extends = Object.assign || (function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  });
+  return _extends.apply(this, arguments);
+}
+exports.default = _extends;
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6rNIl":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+  return target;
+}
+exports.default = _objectWithoutPropertiesLoose;
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6Pzum":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "useBootstrapPrefix", function () {
+  return useBootstrapPrefix;
+});
+_parcelHelpers.export(exports, "createBootstrapComponent", function () {
+  return createBootstrapComponent;
+});
+_parcelHelpers.export(exports, "ThemeConsumer", function () {
+  return Consumer;
+});
+var _babelRuntimeHelpersEsmExtends = require("@babel/runtime/helpers/esm/extends");
+var _babelRuntimeHelpersEsmExtendsDefault = _parcelHelpers.interopDefault(_babelRuntimeHelpersEsmExtends);
+var _react = require('react');
+var _reactDefault = _parcelHelpers.interopDefault(_react);
+var ThemeContext = /*#__PURE__*/_reactDefault.default.createContext({});
+var Consumer = ThemeContext.Consumer, Provider = ThemeContext.Provider;
+function ThemeProvider(_ref) {
+  var prefixes = _ref.prefixes, children = _ref.children;
+  var copiedPrefixes = _react.useMemo(function () {
+    return _babelRuntimeHelpersEsmExtendsDefault.default({}, prefixes);
+  }, [prefixes]);
+  return (
+    /*#__PURE__*/_reactDefault.default.createElement(Provider, {
+      value: copiedPrefixes
+    }, children)
+  );
+}
+function useBootstrapPrefix(prefix, defaultPrefix) {
+  var prefixes = _react.useContext(ThemeContext);
+  return prefix || prefixes[defaultPrefix] || defaultPrefix;
+}
+function createBootstrapComponent(Component, opts) {
+  if (typeof opts === 'string') opts = {
+    prefix: opts
+  };
+  var isClassy = Component.prototype && Component.prototype.isReactComponent;
+  // If it's a functional component make sure we don't break it with a ref
+  var _opts = opts, prefix = _opts.prefix, _opts$forwardRefAs = _opts.forwardRefAs, forwardRefAs = _opts$forwardRefAs === void 0 ? isClassy ? 'ref' : 'innerRef' : _opts$forwardRefAs;
+  var Wrapped = /*#__PURE__*/_reactDefault.default.forwardRef(function (_ref2, ref) {
+    var props = _babelRuntimeHelpersEsmExtendsDefault.default({}, _ref2);
+    props[forwardRefAs] = ref;
+    var bsPrefix = useBootstrapPrefix(props.bsPrefix, prefix);
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement(Component, _babelRuntimeHelpersEsmExtendsDefault.default({}, props, {
+        bsPrefix: bsPrefix
+      }))
+    );
+  });
+  Wrapped.displayName = "Bootstrap(" + (Component.displayName || Component.name) + ")";
+  return Wrapped;
+}
+exports.default = ThemeProvider;
+
+},{"@babel/runtime/helpers/esm/extends":"5qnVv","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequireeb1c")
 
 //# sourceMappingURL=index.02675e63.js.map

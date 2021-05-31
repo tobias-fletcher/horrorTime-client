@@ -1,0 +1,3 @@
+.maximumW {
+  max-width: 200px;
+}

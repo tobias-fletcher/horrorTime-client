@@ -1,0 +1,328 @@
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _axios = require('axios');
+  var _axiosDefault = _parcelHelpers.interopDefault(_axios);
+  var _reactRouterDom = require('react-router-dom');
+  var _reactBootstrapRow = require('react-bootstrap/Row');
+  var _reactBootstrapRowDefault = _parcelHelpers.interopDefault(_reactBootstrapRow);
+  var _reactBootstrapCol = require('react-bootstrap/Col');
+  var _reactBootstrapColDefault = _parcelHelpers.interopDefault(_reactBootstrapCol);
+  var _loginViewLoginView = require('../login-view/login-view');
+  var _movieViewMovieView = require('../movie-view/movie-view');
+  var _registrationViewRegistrationView = require('../registration-view/registration-view');
+  var _directorViewDirectorView = require('../director-view/director-view');
+  var _genreViewGenreView = require('../genre-view/genre-view');
+  var _navbarNavbar = require('../navbar/navbar');
+  var _profileViewProfileView = require('../profile-view/profile-view');
+  var _moviesListMoviesList = require('../movies-list/movies-list');
+  var _actionsActions = require('../../actions/actions');
+  require('./main-view.scss');
+  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\main-view\\main-view.jsx", _s = $RefreshSig$();
+  function MainView() {
+    _s();
+    // Redux global state
+    const movies = useSelector(state => state.movies), user = useSelector(state => state.user), visibilityFilter = useSelector(state => state.visibilityFilter), dispatch = useDispatch();
+    // Local state
+    const [isRegistered, setRegistration] = _react.useState(true);
+    const getMovies = token => {
+      _axiosDefault.default.get('https://the-moviebook.herokuapp.com/movies', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => {
+        dispatch(_actionsActions.setMovies(response.data));
+      }).catch(err => console.error(err));
+    };
+    const getUser = (user, token) => {
+      _axiosDefault.default.get(`https://the-moviebook.herokuapp.com/users/${user}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => dispatch(_actionsActions.setUser(response.data))).catch(err => console.error(err));
+    };
+    const onLogin = authData => {
+      _actionsActions.setUser(authData.user.Username);
+      localStorage.setItem('token', authData.token);
+      localStorage.setItem('user', authData.user.Username);
+      getMovies(authData.token);
+      getUser(authData.user.Username, authData.token);
+    };
+    const onLogout = () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.open('/', '_self');
+    };
+    // Retrive movies and user when user already logged in
+    _react.useEffect(() => {
+      let accessToken = localStorage.getItem('token'), storedUser = localStorage.getItem('user');
+      if (accessToken !== null && storedUser !== null) {
+        _actionsActions.setUser(storedUser);
+        getMovies(accessToken);
+        getUser(storedUser, accessToken);
+      }
+    }, []);
+    if (!isRegistered) {
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement(_registrationViewRegistrationView.RegistrationView, {
+          onLogin: onLogin,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 84,
+            columnNumber: 12
+          }
+        })
+      );
+    }
+    if (!localStorage.getItem('user')) {
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginView.LoginView, {
+          onLogin: onLogin,
+          onRegister: status => setRegistration(status),
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 90,
+            columnNumber: 12
+          }
+        })
+      );
+    }
+    if (!movies || movies.length === 0) return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 96,
+          columnNumber: 46
+        }
+      })
+    );
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 99,
+          columnNumber: 5
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+        className: "main-view",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 100,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_navbarNavbar.NavBar, {
+        onLogout: onLogout,
+        userData: user,
+        visibilityFilter: visibilityFilter,
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 101,
+          columnNumber: 9
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "/",
+        render: () => /*#__PURE__*/_reactDefault.default.createElement(_moviesListMoviesList.MoviesList, {
+          movies: movies,
+          visibilityFilter: visibilityFilter,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 111,
+            columnNumber: 13
+          }
+        }),
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 107,
+          columnNumber: 9
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+        path: "/movies/:movieID",
+        render: ({match}) => /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, {
+          className: "movie-view justify-content-md-center",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 121,
+            columnNumber: 13
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+          md: 8,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 122,
+            columnNumber: 15
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement(_movieViewMovieView.MovieView, {
+          movieData: movies.find(movie => movie._id === match.params.movieID),
+          isFaved: user.Favorites.includes(match.params.movieID),
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 123,
+            columnNumber: 17
+          }
+        }))),
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 118,
+          columnNumber: 9
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+        path: "/directors/:name",
+        render: ({match}) => {
+          const directorSearch = movie => movie.Director.Name === match.params.name;
+          return (
+            /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, {
+              className: "director-view justify-content-md-center",
+              __self: this,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 138,
+                columnNumber: 15
+              }
+            }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+              md: 8,
+              __self: this,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 139,
+                columnNumber: 17
+              }
+            }, /*#__PURE__*/_reactDefault.default.createElement(_directorViewDirectorView.DirectorView, {
+              directorData: movies.find(directorSearch).Director,
+              directedMovies: movies.filter(directorSearch),
+              __self: this,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 140,
+                columnNumber: 19
+              }
+            })))
+          );
+        },
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 132,
+          columnNumber: 9
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+        path: "/genres/:name",
+        render: ({match}) => {
+          const genreSearch = m => m.Genre.find(g => g.Name === match.params.name);
+          return (
+            /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, {
+              className: "genre-view justify-content-md-center",
+              __self: this,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 156,
+                columnNumber: 15
+              }
+            }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+              md: 8,
+              __self: this,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 157,
+                columnNumber: 17
+              }
+            }, /*#__PURE__*/_reactDefault.default.createElement(_genreViewGenreView.GenreView, {
+              genreData: movies.find(genreSearch).Genre.find(g => g.Name === match.params.name),
+              genreMovies: movies.filter(genreSearch),
+              __self: this,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 158,
+                columnNumber: 19
+              }
+            })))
+          );
+        },
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 150,
+          columnNumber: 9
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
+        path: "/users/:username",
+        render: ({match}) => {
+          if (user.Username === match.params.username) {
+            return (
+              /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, {
+                className: "profile-view justify-content-md-center",
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 173,
+                  columnNumber: 17
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+                md: 10,
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 174,
+                  columnNumber: 19
+                }
+              }, /*#__PURE__*/_reactDefault.default.createElement(_profileViewProfileView.ProfileView, {
+                userData: user,
+                movies: movies,
+                __self: this,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 175,
+                  columnNumber: 21
+                }
+              })))
+            );
+          }
+          return (
+            /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Redirect, {
+              to: "/",
+              __self: this,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 181,
+                columnNumber: 20
+              }
+            })
+          );
+        },
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 168,
+          columnNumber: 9
+        }
+      })))
+    );
+  }
+  exports.default = MainView;
+  _s(MainView, "UiG2YiDekjp15GQnIrSl/wC+Bvs=", true);
+  _c = MainView;
+  var _c;
+  $RefreshReg$(_c, "MainView");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

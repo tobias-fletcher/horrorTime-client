@@ -1,0 +1,57 @@
+var helpers = require("../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "FavoriteView", function () {
+    return FavoriteView;
+  });
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  require('axios');
+  require('react-bootstrap/Form');
+  require('react-bootstrap/Button');
+  require('react-bootstrap/Container');
+  require("react-helmet");
+  require('react-bootstrap/Row');
+  require('react-bootstrap/Col');
+  require('prop-types');
+  require('react-bootstrap');
+  require('react-bootstrap/esm/Image');
+  require('react-router-dom');
+  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\fav-view\\fav-view.jsx";
+  function FavoriteView(props) {
+    const userInfo = this.props;
+    const m = '';
+    function returnFavs(userInfo) {
+      this.props.FavoriteMovies.map((m, index) => /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 23,
+          columnNumber: 7
+        }
+      }, m));
+      console.log(m);
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("ul", {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 29,
+            columnNumber: 7
+          }
+        }, returnFavs)
+      );
+    }
+  }
+  _c = FavoriteView;
+  var _c;
+  $RefreshReg$(_c, "FavoriteView");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

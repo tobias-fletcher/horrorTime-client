@@ -26,7 +26,10 @@
 }
 .maximumW {
   max-width: 200px;
+  margin: auto;
+  min-width: 175px;
 }
+
 .Horror-Time {
   color: color;
 }

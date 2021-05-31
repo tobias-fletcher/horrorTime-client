@@ -1,0 +1,53 @@
+var helpers = require("../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "FavoriteView", function () {
+    return FavoriteView;
+  });
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  require('axios');
+  require('react-bootstrap/Form');
+  require('react-bootstrap/Button');
+  var _reactBootstrapContainer = require('react-bootstrap/Container');
+  var _reactBootstrapContainerDefault = _parcelHelpers.interopDefault(_reactBootstrapContainer);
+  var _reactHelmet = require("react-helmet");
+  var _reactHelmetDefault = _parcelHelpers.interopDefault(_reactHelmet);
+  require('react-bootstrap/Row');
+  require('react-bootstrap/Col');
+  var _jsxFileName = "C:\\Users\\tobia\\Desktop\\horrorTime-client\\src\\components\\fav-view\\fav-view.jsx";
+  function FavoriteView(props) {
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
+        className: "container1 justify-content-center",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 17,
+          columnNumber: 5
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactHelmetDefault.default, {
+        bodyAttributes: {
+          style: 'background-color : black'
+        },
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 18,
+          columnNumber: 7
+        }
+      }))
+    );
+  }
+  _c = FavoriteView;
+  var _c;
+  $RefreshReg$(_c, "FavoriteView");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
