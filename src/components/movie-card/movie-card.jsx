@@ -10,22 +10,52 @@ import { DirectorView } from '../director-view/director-view';
 import Container from 'react-bootstrap';
 import './movie-card.scss';
 import Col from 'react-bootstrap';
+import CardDeck from 'react-bootstrap/CardDeck'
 
-export class MovieCard extends React.Component {
+
+ export class MovieCard extends React.Component {
+
+  
+  constructor() {
+    super();
+    this.state = {
+      selectedMovie: null,
+      user: null,
+      register: true,
+      director: [],
+      token: null,
+      userInfo: null
+    }
+  }
+
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    let userInfo = localStorage.getItem('user');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user'),
+        token: localStorage.getItem('token'),
+
+      });
+     // this.getMovies(accessToken);
+     // this.getUser(accessToken, userInfo);
+    }
+  }
+
 
 
   addFav(movie, user, token, userInfo) {
 
     console.log(this.props.movie._id);
     console.log(movie);
+    console.log(user.user);
+    console.log(user.token);
 
-
-    axios.post(`https://itshorrortime.herokuapp.com/users/${user}/movies/${this.props.movie._id}`, {
-      FavoriteMovies: this.props.FavoriteMovies
+    axios.post(`https://itshorrortime.herokuapp.com/users/${user.user}/movies/${this.props.movie._id}`, {
     },
       {
         headers: {
-          'Authorization': `Bearer ${token} `,
+          'Authorization': `Bearer ${user.token} `,
           'Content-Type': 'application/json',
         }
       }
@@ -41,7 +71,9 @@ export class MovieCard extends React.Component {
 
 
   render() {
-    const { movie, onMovieClick, user, token } = this.props;
+    const { movie, token } = this.props;
+    const user = this.state;
+ 
     const App = () => {
       const alert = useAlert()
     }
@@ -51,12 +83,9 @@ export class MovieCard extends React.Component {
 
         <Helmet bodyAttributes={{ style: 'background-color : black' }} />
 
-
-
-        <Card body bsPrefix="maximumW" className="bg-dark text-white mt-5 mx-2" style={{ height: "24rem" }}>
-          <Card.Header className="mb-0">
-            <Button className="mb-2" block variant="primary" onClick={() => { alert.show('Movie Added') }} onClick={(e) => this.addFav(movie, user, token)}>Add</Button>
-          </Card.Header>
+      
+        <Card style={{flex: 1}} body bsPrefix="maximumW" className="bg-dark text-white mt-5 mx-2" style={{ height: "24rem" }}>
+    
           <Card.Body className="justify-content-center align-items-center" >
             <Card.Img variant="top" src={movie.ImagePath} style={{ height: "11rem" }} />
             <Card.Title className="my-2" >{movie.Title}</Card.Title>
@@ -64,10 +93,12 @@ export class MovieCard extends React.Component {
               <Link to={`/movies/${movie._id}`}>
                 <Button variant="dark">Movie Info</Button>
               </Link>
+              <br/>
+              <Button className="my-4" block variant="dark" onClick={(e) => this.addFav(movie, user, token)}>Add to Favs</Button>
             </Card.Footer>
           </Card.Body>
         </Card>
-
+  
 
       </>
     );

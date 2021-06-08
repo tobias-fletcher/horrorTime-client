@@ -1,0 +1,173 @@
+var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MovieCard", ()=>MovieCard
+);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _card = require("react-bootstrap/Card");
+var _cardDefault = parcelHelpers.interopDefault(_card);
+var _cardGroup = require("react-bootstrap/CardGroup");
+var _cardGroupDefault = parcelHelpers.interopDefault(_cardGroup);
+var _reactHelmet = require("react-helmet");
+var _reactHelmetDefault = parcelHelpers.interopDefault(_reactHelmet);
+var _reactRouterDom = require("react-router-dom");
+var _directorView = require("../director-view/director-view");
+var _reactBootstrap = require("react-bootstrap");
+var _reactBootstrapDefault = parcelHelpers.interopDefault(_reactBootstrap);
+var _movieCardScss = require("./movie-card.scss");
+class MovieCard extends _reactDefault.default.Component {
+    addFav(movie, user, token, userInfo) {
+        console.log(this.props.movie._id);
+        console.log(movie);
+        console.log(user);
+        _axiosDefault.default.post(`https://itshorrortime.herokuapp.com/users/${user}/movies/${this.props.movie._id}`, {
+        }, {
+            headers: {
+                'Authorization': `Bearer ${token} `,
+                'Content-Type': 'application/json'
+            }
+        }).then((response)=>{
+            const data = response;
+            console.log(response);
+            console.log(movie);
+            this.setState({
+                FavoriteMovies: response.data
+            });
+        });
+    }
+    render() {
+        var _s = $RefreshSig$();
+        const { movie , onMovieClick , user , token  } = this.props;
+        const App = ()=>{
+            _s();
+            const alert = useAlert();
+        };
+        _s(App, "/tbmWjntTVQXAO42KRyQZrplUA4=", true);
+        return(/*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactHelmetDefault.default, {
+            bodyAttributes: {
+                style: 'background-color : black'
+            },
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
+                lineNumber: 54
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
+            body: true,
+            bsPrefix: "maximumW",
+            className: "bg-dark text-white mt-5 mx-2",
+            style: {
+                height: "24rem"
+            },
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
+                lineNumber: 58
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Header, {
+            className: "mb-0",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
+                lineNumber: 59
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            className: "mb-2",
+            block: true,
+            variant: "primary",
+            onClick: ()=>{
+                alert.show('Movie Added');
+            },
+            onClick: (e)=>this.addFav(movie, user, token)
+            ,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
+                lineNumber: 60
+            },
+            __self: this
+        }, "Add")), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
+            className: "justify-content-center align-items-center",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
+                lineNumber: 62
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Img, {
+            variant: "top",
+            src: movie.ImagePath,
+            style: {
+                height: "11rem"
+            },
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
+                lineNumber: 63
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Title, {
+            className: "my-2",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
+                lineNumber: 64
+            },
+            __self: this
+        }, movie.Title), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Footer, {
+            className: "mb-4",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
+                lineNumber: 65
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+            to: `/movies/${movie._id}`,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
+                lineNumber: 66
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            variant: "dark",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
+                lineNumber: 67
+            },
+            __self: this
+        }, "Movie Info")))))));
+    }
+}
+MovieCard.propTypes = {
+    movie: _propTypesDefault.default.shape({
+        Title: _propTypesDefault.default.string.isRequired,
+        Description: _propTypesDefault.default.string.isRequired,
+        Genre: _propTypesDefault.default.shape({
+            Name: _propTypesDefault.default.string.isRequired,
+            Description: _propTypesDefault.default.string.isRequired
+        }),
+        Director: _propTypesDefault.default.shape({
+            Name: _propTypesDefault.default.string.isRequired,
+            Bio: _propTypesDefault.default.string.isRequired,
+            Birth: _propTypesDefault.default.string.isRequired,
+            Death: _propTypesDefault.default.string
+        }),
+        ImagePath: _propTypesDefault.default.string.isRequired,
+        Featured: _propTypesDefault.default.bool,
+        Year: _propTypesDefault.default.string
+    }).isRequired
+};
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

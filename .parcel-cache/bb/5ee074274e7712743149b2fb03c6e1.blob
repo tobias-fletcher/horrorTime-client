@@ -1,4 +1,0 @@
-.card .cardbody {
-  max-height: 350px;
-  max-width: 275px;
-}

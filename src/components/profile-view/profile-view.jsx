@@ -6,16 +6,15 @@ import Helmet from "react-helmet";
 import Row from 'react-bootstrap/Row';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
+import { Accordion } from 'react-bootstrap';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import FormControl from 'react-bootstrap/FormControl';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import ModalHeader from 'react-bootstrap/ModalHeader';
 import ModalDialog from 'react-bootstrap/ModalDialog';
-import Modal from 'react-bootstrap/Modal'
-import { FavoriteView } from '../fav-view/fav-view';
-import Container from 'react-bootstrap';
-import Moment from 'react-moment';
-import moment from 'moment';
+import Modal from 'react-bootstrap/Modal';
+import Container from 'react-bootstrap/Container';
+
 import Col from 'react-bootstrap/Col'
 
 export class ProfileView extends React.Component {
@@ -29,11 +28,6 @@ export class ProfileView extends React.Component {
     this.state = { Birthday: '' }
     this.state = { FavoriteMovies: [] }
     this.state = { FavMovies: [] }
-
-
-
-
-
   }
 
   componentDidMount() {
@@ -53,7 +47,6 @@ export class ProfileView extends React.Component {
 
   }
 
-
   getUser(token, user) {
     axios.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
@@ -65,12 +58,13 @@ export class ProfileView extends React.Component {
           Username: response.data.Username,
           Password: response.data.Password,
           Email: response.data.Email,
-          Birthday: response.data.Birthday
+          Birthday: response.data.Birthday, 
+          FavoriteMovies: response.data.FavoriteMovies
         });
 
       })
   }
-
+  
   getMovies(token) {
     axios.get('https://itshorrortime.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
@@ -82,6 +76,8 @@ export class ProfileView extends React.Component {
         console.log('got movies');
       })
   }
+
+
   handleDelete(user, token) {
     axios.delete(`https://itshorrortime.herokuapp.com/users/${user}`,
       {
@@ -93,8 +89,6 @@ export class ProfileView extends React.Component {
       });
 
   }
-
-
 
   handleUpdate(user, token, e) {
     console.log('you are in handleUpdate');
@@ -136,7 +130,6 @@ export class ProfileView extends React.Component {
     console.log(movie);
     console.log(token);
 
-
     axios.delete(`https://itshorrortime.herokuapp.com/users/${user}/movies/${movie}`,
       {
         headers: {
@@ -155,8 +148,6 @@ export class ProfileView extends React.Component {
     })
   }
 
-
-
   render() {
 
     const { user, token, movies, userInfo } = this.props;
@@ -164,74 +155,50 @@ export class ProfileView extends React.Component {
       return userInfo.FavoriteMovies.includes(movie._id);
     });
 
-
-
-
-
-
-
-
-
-
     return (
       <>
-        <Helmet bodyAttributes={{ style: 'background-color : black, text-decoration-color : white' }} />
-
-
-
-        <Card>
-          <Card.Title> Account Information</Card.Title>
+     
+              <Helmet bodyAttributes={{ style: 'background-color : black' }} />
+              <Container className="align-items-center justify-content-md-center">
+<Row className="justify-content-md-center align-items-center d-flex">
+  <Col xs={8} md={7} className="justify-content-md-center mx-4 my-4">
+        <h1 className="align-items-center">Account Information</h1>
+        <Card className="bg-dark justify-content-md-center align-items-center">
+          
+         
           <Card.Body>
             <Card.Text>Username: {user}</Card.Text>
             <Card.Text>Email:{this.state.Email}</Card.Text>
             <Card.Text>Birthday: {this.state.Birthday}</Card.Text>
-
-          </Card.Body>
-          <Card.Body></Card.Body>
-          <Card.Body>
-            {/*make drop down when clicking update information to pull up update form*/}
-
-            <Button>Update Information</Button>
-            {  /*<Button onClick={() => this.FavMovies()}>Show Movies</Button>*/}
-
-
-          </Card.Body>
-
-        </Card>
-        <Card>
-          <Col>
-            <Card.Title>FavoriteMoviesList</Card.Title>
-            <Card.Body>
-
-              <div>{FavMovies.map((movie) => (
-                <div key={movie.Title}>{movie.Title} <Button onClick={(e) => this.deleteFav(movie._id, user, token, userInfo)} variant="dark" block>Delete</Button> </div>
-
-              ))}</div>
-
             </Card.Body>
-            <Card.Footer>
+            </Card>
+            </Col>
+            <Col>
+            <Card>
+             
 
-            </Card.Footer>
+             
+          <Accordion defaultActiveKey="0">
+         
+           <Accordion.Toggle as={Button} variant="dark" eventKey="0">
+            Update Information
+           </Accordion.Toggle>
+        
+        <Accordion.Collapse eventKey="0">
+      
 
-          </Col>
-        </Card>
-
-
-
-
-        <Form onSubmit={(e) => this.handleUpdate(user, token, e)}>
-          <Form.Row className="justify-content-center">
-            <Form.Label>Username:</Form.Label>
-            <Form.Control
-              type='text'
-              required
-              minLength="6"
-              maxLength="12"
-              placeholder='Enter Username'
-              value={this.state.username}
-              id='username'
-
-            />
+           <Form onSubmit={(e) => this.handleUpdate(user, token, e)}>
+            <Form.Row className="justify-content-center">
+             <Form.Label>Username:</Form.Label>
+               <Form.Control
+                type='text'
+                required
+                minLength="6"
+                maxLength="12"
+                placeholder='Enter Username'
+                value={this.state.username}
+                id='username'
+             />
           </Form.Row>
 
           <Form.Row className="justify-content-center">
@@ -272,12 +239,39 @@ export class ProfileView extends React.Component {
 
             />
           </Form.Row>
-
-
+      
+       
           <Button type="submit" variant="dark" block >Submit</Button>
-        </Form >
+          </Form >
+       
+        </Accordion.Collapse>
+          </Accordion>
+      
+          </Card>
+       
+          
+          </Col>
+        
+        <Card>
+          <Col xs={8} md={12}>
+            <Card.Title>FavoriteMoviesList</Card.Title>
+            <Card.Body>
 
-        <Button onClick={(e) => this.handleDelete(user, token)} variant="dark" block>Delete</Button>
+              <div>{FavMovies.map((movie, index) => (
+                <div key={index}>{movie.Title} <Button onClick={(e) => this.deleteFav(movie._id, user, token, userInfo)} variant="dark" block>Delete</Button> </div>
+              ))}</div>
+
+            </Card.Body>
+          </Col>
+        </Card>
+        </Row>
+        </Container>
+                <br/>
+
+
+      
+
+        <Button onClick={(e) => this.handleDelete(user, token)} variant="dark" block>Delete My Account</Button>
 
 
 
