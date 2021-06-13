@@ -16,10 +16,10 @@ const store = createStore(moviesApp);
 // Main component (will eventually use all the others)
 class horrorTimeApp extends React.Component {
   render() {
-    return(
-     <Provider store={store}>
-        <Container>
-          <MainView />
+    return (
+      <Provider store={store}>
+        <Container className="flex" >
+          <MainView className="justify-content-md-center align-content-center" />
         </Container>
       </Provider>
     );

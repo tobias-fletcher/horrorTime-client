@@ -13,9 +13,9 @@ import Col from 'react-bootstrap';
 import CardDeck from 'react-bootstrap/CardDeck'
 
 
- export class MovieCard extends React.Component {
+export class MovieCard extends React.Component {
 
-  
+
   constructor() {
     super();
     this.state = {
@@ -37,8 +37,8 @@ import CardDeck from 'react-bootstrap/CardDeck'
         token: localStorage.getItem('token'),
 
       });
-     // this.getMovies(accessToken);
-     // this.getUser(accessToken, userInfo);
+      // this.getMovies(accessToken);
+      // this.getUser(accessToken, userInfo);
     }
   }
 
@@ -73,7 +73,7 @@ import CardDeck from 'react-bootstrap/CardDeck'
   render() {
     const { movie, token } = this.props;
     const user = this.state;
- 
+
     const App = () => {
       const alert = useAlert()
     }
@@ -83,22 +83,23 @@ import CardDeck from 'react-bootstrap/CardDeck'
 
         <Helmet bodyAttributes={{ style: 'background-color : black' }} />
 
-      
-        <Card style={{flex: 1}} body bsPrefix="maximumW" className="bg-dark text-white mt-5 mx-2" style={{ height: "24rem" }}>
-    
+
+        <Card style={{ flex: 1 }} body bsPrefix="maximumW" className="bg-dark text-white mt-5 mx-2" style={{ height: "24rem" }}>
+
           <Card.Body className="justify-content-center align-items-center" >
+            <Button block variant="dark" onClick={(e) => this.addFav(movie, user, token)}>Add</Button>
             <Card.Img variant="top" src={movie.ImagePath} style={{ height: "11rem" }} />
-            <Card.Title className="my-2" >{movie.Title}</Card.Title>
+            <Card.Title className="my-2 align-item-center" >{movie.Title}</Card.Title>
             <Card.Footer className="mb-4">
               <Link to={`/movies/${movie._id}`}>
                 <Button variant="dark">Movie Info</Button>
               </Link>
-              <br/>
-              <Button className="my-4" block variant="dark" onClick={(e) => this.addFav(movie, user, token)}>Add to Favs</Button>
+              <br />
             </Card.Footer>
           </Card.Body>
         </Card>
-  
+        <br />
+
 
       </>
     );

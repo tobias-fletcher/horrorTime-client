@@ -7,8 +7,8 @@ import CardDeck from 'react-bootstrap/CardDeck'
 import { Card } from 'react-bootstrap';
 import CardGroup from 'react-bootstrap/CardGroup';
 const mapStateToProps = state => {
-  const { visibilityFilter } = state;
-  return { visibilityFilter };
+  const { visibilityFilter, movies } = state;
+  return { visibilityFilter, movies };
 };
 
 
@@ -21,14 +21,14 @@ function MoviesList(props) {
     filteredMovies = movies.filter(m => m.Title.toLowerCase().includes(visibilityFilter.toLowerCase()));
   }
 
-  if (!movies) return <div className="main-view"/>;
+  if (!movies) return <div className="main-view" />;
 
- return <div className="movies-list">
- <Row>
- <visibilityFilterInput visibilityFilter={visibilityFilter} />
- {filteredMovies.map(m => <MovieCard key={m._id} movie={m}/>)}
- </Row>
-</div>;
+  return <div className="movies-list my-3">
+    <Row>
+      <visibilityFilterInput visibilityFilter={visibilityFilter} />
+      {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
+    </Row>
+  </div>;
 }
 
 export default connect(mapStateToProps)(MoviesList);

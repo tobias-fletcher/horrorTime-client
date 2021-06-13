@@ -1,0 +1,14 @@
+.textColor {
+  text-decoration-color: white;
+}
+
+.customThis {
+  flex-direction: column;
+}
+
+.accountCard {
+  color: white;
+  max-width: 900px;
+  min-width: 300px;
+  margin: 50%;
+}

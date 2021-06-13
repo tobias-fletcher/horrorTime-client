@@ -5,3 +5,26 @@
 .customThis {
   flex-direction: column;
 }
+
+.accountCard {
+  color: white;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.accountDeletion {
+  border: solid white;
+  align-items: center;
+  justify-content: center;
+  color: red;
+  text-align: center;
+}
+
+.accountPage {
+  border: solid red;
+  display: flex;
+  width: 100%;
+  text-align: start;
+
+}
