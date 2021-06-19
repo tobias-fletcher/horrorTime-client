@@ -11,8 +11,7 @@ import MoviesList from '../movies-list/movies-list';
 
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
-import Menu from '../menu/Menu';
-import Container from 'react-bootstrap/Container';
+import Menu from '../menu/menu';
 import { connect } from 'react-redux';
 import { setMovies } from '../../actions/actions';
 import { setUser } from '../../actions/actions';
@@ -134,15 +133,15 @@ class MainView extends React.Component {
         <Router>
 
 
-          <Menu style={{ width: "100%" }} user={user} logOut={this.onLoggedOut} />
+          <Menu style={{ width: "100%", margin: "0" }} user={user} logOut={this.onLoggedOut} />
           <br />
 
-          <div className="main-view justify-content-md-center">
+          <div className="main-view ">
             <Route exact path="/" render={() => {
               if (!user) return <Col>
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
               </Col>
-              if (movies.length === 0) return <div className="main-view align-items-center" />;
+              if (movies.length === 0) return <div className="main-viewr" />;
               return <MoviesList user={user} />;
             }} />
 
@@ -157,8 +156,8 @@ class MainView extends React.Component {
               if (!user) return <Col>
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
               </Col>
-              if (movies.length === 0) return <div className="main-view" />;
-              return <Col md={8}>
+              if (movies.length === 0) return <div className="main-view " />;
+              return <Col className="align-items-center justify-content-center">
                 <MovieView movie={movies.find(m => m._id === match.params.movieId)} user={user} onBackClick={() => history.goBack()} />
               </Col>
             }} />

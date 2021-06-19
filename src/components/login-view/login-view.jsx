@@ -3,10 +3,9 @@ import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import Helmet from "react-helmet";
 import './login-view.scss';
-import { InputGroup } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 
 export function LoginView(props) {
@@ -44,10 +43,14 @@ export function LoginView(props) {
 
   return (
 
+
     <Container className="container1">
       <Helmet bodyAttributes={{ style: 'background-color : black' }} />
 
       <Container>
+        <Row bsPrefix="heading">
+          <h1>Welcome to HorrorTime</h1>
+        </Row>
         <Form.Row className="justify-content-center mt-5">
           <Form noValidate validated={validated} onSubmit={handleSubmit} className="container2 justify-content-enter">
 

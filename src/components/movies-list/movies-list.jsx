@@ -1,11 +1,9 @@
 import React from 'react';
-import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux';
 import Row from 'react-bootstrap/Row';
 import { MovieCard } from '../movie-card/movie-card';
-import CardDeck from 'react-bootstrap/CardDeck'
-import { Card } from 'react-bootstrap';
-import CardGroup from 'react-bootstrap/CardGroup';
+
+
 const mapStateToProps = state => {
   const { visibilityFilter, movies } = state;
   return { visibilityFilter, movies };

@@ -12,9 +12,13 @@ export default function Menu(props) {
 
   let { user } = props;
 
-
+  console.log('hello');
   const history = useHistory();
-
+  /*const [searchTerm, setSearchTerm] = React.useState("");
+  const [searchResults, setSearchResults] = React.useState("");
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+  }*/
   const onLogOut = () => {
     props.logOut();
     history.push("/");
@@ -22,7 +26,7 @@ export default function Menu(props) {
 
 
   return (
-    <Container className="justify-content-end">
+    <Container className="m-0 p-0 ">
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#movies">HorrorTime</Navbar.Brand>
         <Nav className="mr-auto">
@@ -33,10 +37,10 @@ export default function Menu(props) {
             <Button variant="dark">Account</Button>
           </Link>
         </Nav>
-        <Form style={{ margin: "auto" }} inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+        {/*} <Form style={{ margin: "auto" }} inline>
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" value={searchTerm} onChange={handleChange} />
           <Button variant="outline-info">Search</Button>
-        </Form>
+  </Form>*/}
         <Nav.Item>
           <Button variant="dark" onClick={onLogOut} >Logout</Button>
         </Nav.Item>

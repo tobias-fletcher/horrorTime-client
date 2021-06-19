@@ -4,7 +4,6 @@
   font-weight: bolder;
   height: 100vh;
   padding: auto;
-  align-items: center;
   justify-content: center;
 }
 
@@ -23,6 +22,13 @@
   width: 60%;
   justify-content: center;
   align-items: center;
+}
+
+.heading {
+  color: white;
+  text-align: center;
+  margin-bottom: 20%;
+  margin-top: 20%;
 }
 
 .textColor {
@@ -49,19 +55,22 @@
 }
 
 .accountPage {
-  border: solid red;
   display: flex;
   width: 100%;
-  text-align: start;
+  color: turquoise;
 }
 .maximumW {
   max-width: 200px;
   margin: auto;
   min-width: 200px;
   max-height: 600px;
-  min-height: 475px;
+  min-height: 255px;
   justify-content: center;
   align-items: center;
+  color: black;
+}
+
+.buttonInfo {
   color: black;
 }
 .Horror-Time {

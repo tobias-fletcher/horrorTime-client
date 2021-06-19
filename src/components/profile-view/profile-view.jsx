@@ -7,12 +7,6 @@ import Row from 'react-bootstrap/Row';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import { Accordion } from 'react-bootstrap';
-import { propTypes } from 'react-bootstrap/esm/Image';
-import FormControl from 'react-bootstrap/FormControl';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import ModalHeader from 'react-bootstrap/ModalHeader';
-import ModalDialog from 'react-bootstrap/ModalDialog';
-import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
 import moment from 'moment';
 import Col from 'react-bootstrap/Col';
@@ -155,6 +149,8 @@ export class ProfileView extends React.Component {
     const FavMovies = movies.filter((movie) => {
       return userInfo.FavoriteMovies.includes(movie._id);
     });
+    const BirthDate = moment(this.state.Birthday);
+    console.log(BirthDate);
 
     return (
       <>
@@ -169,11 +165,13 @@ export class ProfileView extends React.Component {
                 <Card.Body className="align-items-center justify-content-center">
                   <Row>
                     <Col>
-                      <Card.Text>Username: </Card.Text>
-                      <Card.Text>Email: </Card.Text>
-                      <Card.Text>Birthday: </Card.Text>
+                      <Card.Body>
+                        <Card.Text>Username: </Card.Text>
+                        <Card.Text>Email: </Card.Text>
+                        <Card.Text>Birthday: </Card.Text>
+                      </Card.Body>
                       <Accordion defaultActiveKey="1">
-                        <Accordion.Toggle className="mb-4 mx-1" as={Button} variant="dark" eventKey="0">Update Information</Accordion.Toggle>
+                        <Accordion.Toggle className="mb-4 mx-1" as={Button} variant="dark" eventKey="0">Update Account</Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
 
                           <Form onSubmit={(e) => this.handleUpdate(user, token, e)}>
@@ -231,12 +229,14 @@ export class ProfileView extends React.Component {
                       </Accordion>
                     </Col>
                     <Col>
-                      <Card.Text>{user}</Card.Text>
-                      <Card.Text> {this.state.Email}</Card.Text>
-                      <Card.Text>{this.state.Birthday}</Card.Text>
+                      <Card.Body>
+                        <Card.Text>{user}</Card.Text>
+                        <Card.Text> {this.state.Email}</Card.Text>
+                        <Card.Text>{BirthDate.format('MMM-DD-YYYY')}</Card.Text>
+                      </Card.Body>
                       <Accordion defaultActiveKey="1">
 
-                        <Accordion.Toggle as={Button} variant="dark" eventKey="0">Favorite Movies List</Accordion.Toggle>
+                        <Accordion.Toggle as={Button} variant="dark" eventKey="0">Favorite Movies</Accordion.Toggle>
 
                         <Accordion.Collapse eventKey="0">
                           <Card.Body>

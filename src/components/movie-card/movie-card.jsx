@@ -3,14 +3,10 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
 import Helmet from "react-helmet";
 import { Link } from 'react-router-dom';
-import { DirectorView } from '../director-view/director-view';
-import Container from 'react-bootstrap';
 import './movie-card.scss';
-import Col from 'react-bootstrap';
-import CardDeck from 'react-bootstrap/CardDeck'
+
 
 
 export class MovieCard extends React.Component {
@@ -89,13 +85,13 @@ export class MovieCard extends React.Component {
           <Card.Body className="justify-content-center align-items-center" >
             <Button block variant="dark" onClick={(e) => this.addFav(movie, user, token)}>Add</Button>
             <Card.Img variant="top" src={movie.ImagePath} style={{ height: "11rem" }} />
-            <Card.Title className="my-2 align-item-center" >{movie.Title}</Card.Title>
-            <Card.Footer className="mb-4">
-              <Link to={`/movies/${movie._id}`}>
-                <Button variant="dark">Movie Info</Button>
-              </Link>
-              <br />
-            </Card.Footer>
+            <Card.Title className="my-2 align-items-center" >{movie.Title}</Card.Title>
+
+            <Link to={`/movies/${movie._id}`}>
+              <Button variant="info" className="buttonInfo">Read More</Button>
+            </Link>
+            <br />
+
           </Card.Body>
         </Card>
         <br />

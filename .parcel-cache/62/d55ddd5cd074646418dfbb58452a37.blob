@@ -1,0 +1,143 @@
+var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactBootstrap = require("react-bootstrap");
+var _reactRouterDom = require("react-router-dom");
+var _container = require("react-bootstrap/Container");
+var _containerDefault = parcelHelpers.interopDefault(_container);
+var _menu = require("./menu");
+var _themeProvider = require("react-bootstrap/esm/ThemeProvider");
+var _s = $RefreshSig$();
+function Menu(props) {
+    _s();
+    let { user  } = props;
+    const history = _reactRouterDom.useHistory();
+    const [searchTerm, setSearchTerm] = _reactDefault.default.useState("");
+    const handleChange = (event)=>{
+        setSearchTerm(event.target.value);
+    };
+    const onLogOut = ()=>{
+        props.logOut();
+        history.push("/");
+    };
+    return(/*#__PURE__*/ _reactDefault.default.createElement(_containerDefault.default, {
+        className: "m-0 p-0",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 28
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar, {
+        bg: "dark",
+        variant: "dark",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 29
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
+        href: "#movies",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 30
+        },
+        __self: this
+    }, "HorrorTime"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav, {
+        className: "mr-auto",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 31
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+        to: "/",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 32
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "dark",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 33
+        },
+        __self: this
+    }, "Movies")), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+        to: `/users/${user}`,
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 35
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "dark",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 36
+        },
+        __self: this
+    }, "Account"))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form, {
+        style: {
+            margin: "auto"
+        },
+        inline: true,
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 39
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.FormControl, {
+        type: "text",
+        placeholder: "Search",
+        className: "mr-sm-2",
+        value: searchTerm,
+        onChange: handleChange,
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 40
+        },
+        __self: this
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "outline-info",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 41
+        },
+        __self: this
+    }, "Search")), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Item, {
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 43
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "dark",
+        onClick: onLogOut,
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 44
+        },
+        __self: this
+    }, "Logout")))));
+}
+exports.default = Menu;
+_s(_menu.Menu, "Pi8pI0TMiAPYDWrmvrKP6jGRPKY=", false, function() {
+    return [_reactRouterDom.useHistory];
+});
+_c = _menu.Menu;
+var _c;
+$RefreshReg$(_c, "Menu");
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

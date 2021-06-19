@@ -1,0 +1,223 @@
+var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "LoginView", ()=>LoginView
+);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _form = require("react-bootstrap/Form");
+var _formDefault = parcelHelpers.interopDefault(_form);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _container = require("react-bootstrap/Container");
+var _containerDefault = parcelHelpers.interopDefault(_container);
+var _reactHelmet = require("react-helmet");
+var _reactHelmetDefault = parcelHelpers.interopDefault(_reactHelmet);
+var _loginViewScss = require("./login-view.scss");
+var _reactRouterDom = require("react-router-dom");
+var _s = $RefreshSig$();
+function LoginView(props) {
+    _s();
+    const [username, setUsername] = _react.useState('');
+    const [password, setPassword] = _react.useState('');
+    const [validated, setValidated] = _react.useState(false);
+    const history = _reactRouterDom.useHistory();
+    const handleClick = ()=>{
+        history.push("/register");
+    };
+    const handleSubmit = (e)=>{
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        e.preventDefault();
+        _axiosDefault.default.post(' https://itshorrortime.herokuapp.com/login', {
+            Username: username,
+            Password: password
+        }).then((response)=>{
+            const data = response.data;
+            props.onLoggedIn(data);
+        }).catch((e1)=>{
+            console.log('Invalid Username or Password');
+        });
+        setValidated(true);
+    };
+    return(/*#__PURE__*/ _reactDefault.default.createElement(_containerDefault.default, {
+        className: "container1",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 45
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactHelmetDefault.default, {
+        bodyAttributes: {
+            style: 'background-color : black'
+        },
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 46
+        },
+        __self: this
+    }), /*#__PURE__*/ _reactDefault.default.createElement("h1", {
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 47
+        },
+        __self: this
+    }, "Welcome to HorrorTime"), /*#__PURE__*/ _reactDefault.default.createElement(_containerDefault.default, {
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 48
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
+        className: "justify-content-center mt-5",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 49
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
+        noValidate: true,
+        validated: validated,
+        onSubmit: handleSubmit,
+        className: "container2 justify-content-enter",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 50
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
+        className: "justify-content-center",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 52
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+        controlId: "validationCustomUsername",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 53
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 54
+        },
+        __self: this
+    }, "Username:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
+        type: "text",
+        placeholder: "Enter Username",
+        required: true,
+        "aria-describedby": "inputGroupPrepend",
+        onChange: (e)=>setUsername(e.target.value)
+        ,
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 56
+        },
+        __self: this
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
+        type: "invalid",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 63
+        },
+        __self: this
+    }, "Please enter your username"))), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
+        className: "justify-content-center",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 69
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+        controlId: "validationCustomPassword",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 70
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 71
+        },
+        __self: this
+    }, "Password:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
+        type: "password",
+        placeholder: "Enter Password",
+        required: true,
+        className: "",
+        "aria-describedby": "inputGroupPrepend",
+        onChange: (e)=>setPassword(e.target.value)
+        ,
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 72
+        },
+        __self: this
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
+        type: "invalid",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 80
+        },
+        __self: this
+    }, "Please enter your Password"))), /*#__PURE__*/ _reactDefault.default.createElement(_containerDefault.default, {
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 85
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
+        className: "justify-content-center mb-3",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 86
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+        variant: "dark",
+        block: true,
+        type: "submit",
+        onClick: handleSubmit,
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 87
+        },
+        __self: this
+    }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+        variant: "outline-dark",
+        block: true,
+        onClick: ()=>handleClick('/')
+        ,
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 88
+        },
+        __self: this
+    }, "Don't have an account?"))))))));
+}
+_s(LoginView, "SuriaRFL2yQfPUXfs5oDRVYHDA0=", false, function() {
+    return [_reactRouterDom.useHistory];
+});
+_c = LoginView;
+var _c;
+$RefreshReg$(_c, "LoginView");
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

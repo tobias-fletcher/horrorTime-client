@@ -24783,10 +24783,8 @@ var _moviesListDefault = parcelHelpers.interopDefault(_moviesList);
 var _reactRouterDom = require("react-router-dom");
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
-var _menu = require("../menu/Menu");
+var _menu = require("../menu/menu");
 var _menuDefault = parcelHelpers.interopDefault(_menu);
-var _container = require("react-bootstrap/Container");
-var _containerDefault = parcelHelpers.interopDefault(_container);
 var _reactRedux = require("react-redux");
 var _actions = require("../../actions/actions");
 //add config file for url to use throughout code
@@ -24887,31 +24885,32 @@ class MainView extends _reactDefault.default.Component {
         return(/*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 134
+                lineNumber: 133
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_menuDefault.default, {
             style: {
-                width: "100%"
+                width: "100%",
+                margin: "0"
             },
             user: user,
             logOut: this.onLoggedOut,
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 137
+                lineNumber: 136
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement("br", {
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 138
+                lineNumber: 137
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement("div", {
-            className: "main-view justify-content-md-center",
+            className: "main-view ",
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 140
+                lineNumber: 139
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -24922,7 +24921,7 @@ class MainView extends _reactDefault.default.Component {
                     onLoggedIn: (user1)=>this.onLoggedIn(user1)
                 })));
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-                    className: "main-view align-items-center"
+                    className: "main-viewr"
                 }));
                 return(/*#__PURE__*/ _reactDefault.default.createElement(_moviesListDefault.default, {
                     user: user
@@ -24930,7 +24929,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 141
+                lineNumber: 140
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -24943,7 +24942,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 149
+                lineNumber: 148
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -24953,10 +24952,10 @@ class MainView extends _reactDefault.default.Component {
                     onLoggedIn: (user1)=>this.onLoggedIn(user1)
                 })));
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-                    className: "main-view"
+                    className: "main-view "
                 }));
                 return(/*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
-                    md: 8
+                    className: "align-items-center justify-content-center"
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_movieView.MovieView, {
                     movie: movies.find((m)=>m._id === match.params.movieId
                     ),
@@ -24966,7 +24965,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 156
+                lineNumber: 155
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -24989,7 +24988,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 166
+                lineNumber: 165
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -25011,7 +25010,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 177
+                lineNumber: 176
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -25037,7 +25036,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 187
+                lineNumber: 186
             },
             __self: this
         })))));
@@ -25059,7 +25058,7 @@ exports.default = _reactRedux.connect(mapStateToProps, {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","axios":"7rA65","../registration-view/registration-view":"1QIs8","../login-view/login-view":"5pnAF","../movie-view/movie-view":"4vll5","../genre-view/genre-view":"44u5W","../director-view/director-view":"6fg8h","../profile-view/profile-view":"5hFqi","../movies-list/movies-list":"1Uql0","react-router-dom":"1PMSK","react-bootstrap/Col":"2D0r8","react-bootstrap/Container":"3Mt3t","react-redux":"7GDa4","../../actions/actions":"5S6cN","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","../menu/Menu":"Y6EQz"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","../registration-view/registration-view":"1QIs8","../login-view/login-view":"5pnAF","../movie-view/movie-view":"4vll5","../genre-view/genre-view":"44u5W","../director-view/director-view":"6fg8h","../profile-view/profile-view":"5hFqi","../movies-list/movies-list":"1Uql0","react-router-dom":"1PMSK","react-bootstrap/Col":"2D0r8","react-redux":"7GDa4","../../actions/actions":"5S6cN","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","../menu/menu":"1esxd"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
@@ -31415,12 +31414,11 @@ var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _container = require("react-bootstrap/Container");
 var _containerDefault = parcelHelpers.interopDefault(_container);
-var _col = require("react-bootstrap/Col");
-var _colDefault = parcelHelpers.interopDefault(_col);
+var _row = require("react-bootstrap/Row");
+var _rowDefault = parcelHelpers.interopDefault(_row);
 var _reactHelmet = require("react-helmet");
 var _reactHelmetDefault = parcelHelpers.interopDefault(_reactHelmet);
 var _loginViewScss = require("./login-view.scss");
-var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
 function LoginView(props) {
@@ -31472,11 +31470,24 @@ function LoginView(props) {
             lineNumber: 50
         },
         __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
-        className: "justify-content-center mt-5",
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+        bsPrefix: "heading",
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
             lineNumber: 51
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 52
+        },
+        __self: this
+    }, "Welcome to HorrorTime")), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
+        className: "justify-content-center mt-5",
+        __source: {
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 54
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
@@ -31486,27 +31497,27 @@ function LoginView(props) {
         className: "container2 justify-content-enter",
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 52
+            lineNumber: 55
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
         className: "justify-content-center",
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 54
+            lineNumber: 57
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         controlId: "validationCustomUsername",
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 55
+            lineNumber: 58
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 56
+            lineNumber: 59
         },
         __self: this
     }, "Username:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -31518,34 +31529,34 @@ function LoginView(props) {
         ,
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 58
+            lineNumber: 61
         },
         __self: this
     }), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
         type: "invalid",
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 65
+            lineNumber: 68
         },
         __self: this
     }, "Please enter your username"))), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
         className: "justify-content-center",
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 71
+            lineNumber: 74
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         controlId: "validationCustomPassword",
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 72
+            lineNumber: 75
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 73
+            lineNumber: 76
         },
         __self: this
     }, "Password:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -31558,27 +31569,27 @@ function LoginView(props) {
         ,
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 74
+            lineNumber: 77
         },
         __self: this
     }), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
         type: "invalid",
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 82
+            lineNumber: 85
         },
         __self: this
     }, "Please enter your Password"))), /*#__PURE__*/ _reactDefault.default.createElement(_containerDefault.default, {
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 87
+            lineNumber: 90
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
         className: "justify-content-center mb-3",
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 88
+            lineNumber: 91
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -31588,7 +31599,7 @@ function LoginView(props) {
         onClick: handleSubmit,
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 89
+            lineNumber: 92
         },
         __self: this
     }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -31598,7 +31609,7 @@ function LoginView(props) {
         ,
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\login-view\\login-view.jsx",
-            lineNumber: 90
+            lineNumber: 93
         },
         __self: this
     }, "Don't have an account?"))))))));
@@ -31615,7 +31626,1112 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","axios":"7rA65","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Container":"3Mt3t","react-bootstrap/Col":"2D0r8","react-helmet":"71Wec","./login-view.scss":"3jfzV","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"3jfzV":[function() {},{}],"4n7hB":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Container":"3Mt3t","react-helmet":"71Wec","./login-view.scss":"3jfzV","react-router-dom":"1PMSK","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","react-bootstrap/Row":"3fzwD"}],"3jfzV":[function() {},{}],"4vll5":[function(require,module,exports) {
+var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MovieView", ()=>MovieView
+);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _card = require("react-bootstrap/Card");
+var _cardDefault = parcelHelpers.interopDefault(_card);
+var _cardGroup = require("react-bootstrap/CardGroup");
+var _cardGroupDefault = parcelHelpers.interopDefault(_cardGroup);
+var _row = require("react-bootstrap/Row");
+var _rowDefault = parcelHelpers.interopDefault(_row);
+var _reactHelmet = require("react-helmet");
+var _reactHelmetDefault = parcelHelpers.interopDefault(_reactHelmet);
+var _col = require("react-bootstrap/Col");
+var _colDefault = parcelHelpers.interopDefault(_col);
+var _reactRouterDom = require("react-router-dom");
+var _container = require("react-bootstrap/Container");
+var _containerDefault = parcelHelpers.interopDefault(_container);
+class MovieView extends _reactDefault.default.Component {
+    constructor(){
+        super();
+        this.state = {
+            movies: [],
+            user: ''
+        };
+    }
+    keypressCallback(event) {
+        console.log(event.key);
+    }
+    componentDidMount() {
+        document.addEventListener('keypress', this.keypressCallback);
+    }
+    componentWillUnmount() {
+        document.removeEventListener('keypress', this.keypressCallback);
+    }
+    render() {
+        const { movie , onBackClick , user  } = this.props;
+        return(/*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactHelmetDefault.default, {
+            bodyAttributes: {
+                style: 'background-color : black'
+            },
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 42
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_containerDefault.default, {
+            className: "justify-content-center align-items-center",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 43
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            variant: "dark",
+            onClick: ()=>history.back()
+            ,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 44
+            },
+            __self: this
+        }, "Back"), /*#__PURE__*/ _reactDefault.default.createElement(_cardGroupDefault.default, {
+            className: "bg-dark my-5 mx-5 ",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 46
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
+            className: "movie-view bg-dark text-white my-5 mx-5 justify-content-center align-items-center",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 47
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Img, {
+            variant: "top",
+            src: movie.ImagePath,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 49
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
+            className: "movie-description",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 50
+            },
+            __self: this
+        }, "Description: ", movie.Description), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 52
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+            to: `/genres/${movie.Genre.Name}`,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 53
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            variant: "dark",
+            className: "my-5",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 54
+            },
+            __self: this
+        }, "Genre: ", movie.Genre.Name, " ")), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+            to: `/directors/${movie.Director.Name}`,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 57
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            variant: "dark",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 58
+            },
+            __self: this
+        }, "Director: ", movie.Director.Name, " "))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 63
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+            className: "justify-content-center my-5",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 64
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+            className: "justify-content-center",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 67
+            },
+            __self: this
+        })))))));
+    }
+}
+MovieView.propTypes = {
+    movie: _propTypesDefault.default.shape({
+        Title: _propTypesDefault.default.string,
+        Description: _propTypesDefault.default.string,
+        ImagePath: _propTypesDefault.default.string,
+        Genre: _propTypesDefault.default.shape({
+            Name: _propTypesDefault.default.string.isRequired,
+            Description: _propTypesDefault.default.string.isRequired
+        }),
+        Director: _propTypesDefault.default.shape({
+            Name: _propTypesDefault.default.string.isRequired,
+            Bio: _propTypesDefault.default.string.isRequired,
+            Birth: _propTypesDefault.default.string,
+            Death: _propTypesDefault.default.string
+        })
+    }).isRequired
+};
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-bootstrap/CardGroup":"1B9U7","react-bootstrap/Row":"3fzwD","react-helmet":"71Wec","react-router-dom":"1PMSK","react-bootstrap/Col":"2D0r8","react-bootstrap/Container":"3Mt3t","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"1CZWQ":[function(require,module,exports) {
+"use strict";
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+exports.__esModule = true;
+exports.default = void 0;
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+var _classnames = _interopRequireDefault(require("classnames"));
+var _react = _interopRequireWildcard(require("react"));
+var _ThemeProvider = require("./ThemeProvider");
+var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
+var _divWithClassName = _interopRequireDefault(require("./divWithClassName"));
+var _CardContext = _interopRequireDefault(require("./CardContext"));
+var _CardImg = _interopRequireDefault(require("./CardImg"));
+function _getRequireWildcardCache(nodeInterop) {
+    if (typeof WeakMap !== "function") return null;
+    var cacheBabelInterop = new WeakMap();
+    var cacheNodeInterop = new WeakMap();
+    return (_getRequireWildcardCache = function _getRequireWildcardCache1(nodeInterop1) {
+        return nodeInterop1 ? cacheNodeInterop : cacheBabelInterop;
+    })(nodeInterop);
+}
+function _interopRequireWildcard(obj, nodeInterop) {
+    if (!nodeInterop && obj && obj.__esModule) return obj;
+    if (obj === null || typeof obj !== "object" && typeof obj !== "function") return {
+        default: obj
+    };
+    var cache = _getRequireWildcardCache(nodeInterop);
+    if (cache && cache.has(obj)) return cache.get(obj);
+    var newObj = {
+    };
+    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+    for(var key in obj)if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
+        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+        if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);
+        else newObj[key] = obj[key];
+    }
+    newObj.default = obj;
+    if (cache) cache.set(obj, newObj);
+    return newObj;
+}
+var DivStyledAsH5 = _divWithClassName.default('h5');
+var DivStyledAsH6 = _divWithClassName.default('h6');
+var CardBody = _createWithBsPrefix.default('card-body');
+var CardTitle = _createWithBsPrefix.default('card-title', {
+    Component: DivStyledAsH5
+});
+var CardSubtitle = _createWithBsPrefix.default('card-subtitle', {
+    Component: DivStyledAsH6
+});
+var CardLink = _createWithBsPrefix.default('card-link', {
+    Component: 'a'
+});
+var CardText = _createWithBsPrefix.default('card-text', {
+    Component: 'p'
+});
+var CardHeader = _createWithBsPrefix.default('card-header');
+var CardFooter = _createWithBsPrefix.default('card-footer');
+var CardImgOverlay = _createWithBsPrefix.default('card-img-overlay');
+var defaultProps = {
+    body: false
+};
+var Card = /*#__PURE__*/ _react.default.forwardRef(function(_ref, ref) {
+    var bsPrefix = _ref.bsPrefix, className = _ref.className, bg = _ref.bg, text = _ref.text, border = _ref.border, body = _ref.body, children = _ref.children, _ref$as = _ref.as, Component = _ref$as === void 0 ? 'div' : _ref$as, props = _objectWithoutPropertiesLoose2.default(_ref, [
+        "bsPrefix",
+        "className",
+        "bg",
+        "text",
+        "border",
+        "body",
+        "children",
+        "as"
+    ]);
+    var prefix = _ThemeProvider.useBootstrapPrefix(bsPrefix, 'card');
+    var cardContext = _react.useMemo(function() {
+        return {
+            cardHeaderBsPrefix: prefix + "-header"
+        };
+    }, [
+        prefix
+    ]);
+    return(/*#__PURE__*/ _react.default.createElement(_CardContext.default.Provider, {
+        value: cardContext
+    }, /*#__PURE__*/ _react.default.createElement(Component, _extends2.default({
+        ref: ref
+    }, props, {
+        className: _classnames.default(className, prefix, bg && "bg-" + bg, text && "text-" + text, border && "border-" + border)
+    }), body ? /*#__PURE__*/ // @ts-ignore
+    _react.default.createElement(CardBody, null, children) : children)));
+});
+Card.displayName = 'Card';
+Card.defaultProps = defaultProps;
+Card.Img = _CardImg.default;
+Card.Title = CardTitle;
+Card.Subtitle = CardSubtitle;
+Card.Body = CardBody;
+Card.Link = CardLink;
+Card.Text = CardText;
+Card.Header = CardHeader;
+Card.Footer = CardFooter;
+Card.ImgOverlay = CardImgOverlay;
+var _default = Card;
+exports.default = _default;
+module.exports = exports["default"];
+
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S","./createWithBsPrefix":"2oVVc","./divWithClassName":"27J3S","./CardContext":"71yot","./CardImg":"68LPL"}],"27J3S":[function(require,module,exports) {
+"use strict";
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+exports.__esModule = true;
+exports.default = void 0;
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+var _react = _interopRequireDefault(require("react"));
+var _classnames = _interopRequireDefault(require("classnames"));
+var _default = function _default1(className) {
+    return(/*#__PURE__*/ _react.default.forwardRef(function(p, ref) {
+        return(/*#__PURE__*/ _react.default.createElement("div", _extends2.default({
+        }, p, {
+            ref: ref,
+            className: _classnames.default(p.className, className)
+        })));
+    }));
+};
+exports.default = _default;
+module.exports = exports["default"];
+
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","react":"3b2NM","classnames":"5aJRc"}],"71yot":[function(require,module,exports) {
+"use strict";
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+exports.__esModule = true;
+exports.default = void 0;
+var _react = _interopRequireDefault(require("react"));
+var context = /*#__PURE__*/ _react.default.createContext(null);
+context.displayName = 'CardContext';
+var _default = context;
+exports.default = _default;
+module.exports = exports["default"];
+
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","react":"3b2NM"}],"68LPL":[function(require,module,exports) {
+"use strict";
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+exports.__esModule = true;
+exports.default = void 0;
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+var _classnames = _interopRequireDefault(require("classnames"));
+var _react = _interopRequireDefault(require("react"));
+var _ThemeProvider = require("./ThemeProvider");
+var defaultProps = {
+    variant: null
+};
+var CardImg = /*#__PURE__*/ _react.default.forwardRef(function(_ref, ref) {
+    var bsPrefix = _ref.bsPrefix, className = _ref.className, variant = _ref.variant, _ref$as = _ref.as, Component = _ref$as === void 0 ? 'img' : _ref$as, props = _objectWithoutPropertiesLoose2.default(_ref, [
+        "bsPrefix",
+        "className",
+        "variant",
+        "as"
+    ]);
+    var prefix = _ThemeProvider.useBootstrapPrefix(bsPrefix, 'card-img');
+    return(/*#__PURE__*/ _react.default.createElement(Component, _extends2.default({
+        ref: ref,
+        className: _classnames.default(variant ? prefix + "-" + variant : prefix, className)
+    }, props)));
+});
+CardImg.displayName = 'CardImg';
+CardImg.defaultProps = defaultProps;
+var _default = CardImg;
+exports.default = _default;
+module.exports = exports["default"];
+
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S"}],"1B9U7":[function(require,module,exports) {
+"use strict";
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+exports.__esModule = true;
+exports.default = void 0;
+var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
+var _default = _createWithBsPrefix.default('card-group');
+exports.default = _default;
+module.exports = exports["default"];
+
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","./createWithBsPrefix":"2oVVc"}],"44u5W":[function(require,module,exports) {
+var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "GenreView", ()=>GenreView
+);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _card = require("react-bootstrap/Card");
+var _cardDefault = parcelHelpers.interopDefault(_card);
+var _reactHelmet = require("react-helmet");
+var _reactHelmetDefault = parcelHelpers.interopDefault(_reactHelmet);
+var _genreViewScss = require("./genre-view.scss");
+class GenreView extends _reactDefault.default.Component {
+    render() {
+        const { genre , movies  } = this.props;
+        return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
+                lineNumber: 17
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactHelmetDefault.default, {
+            bodyAttributes: {
+                style: 'background-color : black'
+            },
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
+                lineNumber: 18
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
+            className: "bg-dark text-white mt-5 mx-4",
+            style: {
+                height: "24rem"
+            },
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
+                lineNumber: 20
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
+            className: "justify-content align-items",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
+                lineNumber: 21
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Title, {
+            style: {
+                height: "3rem"
+            },
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
+                lineNumber: 22
+            },
+            __self: this
+        }, genre.Name), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
+                lineNumber: 23
+            },
+            __self: this
+        }, genre.Description)), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Footer, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
+                lineNumber: 25
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            variant: "dark",
+            onClick: ()=>history.back()
+            ,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
+                lineNumber: 26
+            },
+            __self: this
+        }, "Back")))));
+    }
+}
+GenreView.propTypes = {
+    Genre: _propTypesDefault.default.shape({
+        Name: _propTypesDefault.default.string.isRequired,
+        Description: _propTypesDefault.default.string.isRequired
+    })
+};
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-helmet":"71Wec","./genre-view.scss":"2YCaG","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"2YCaG":[function() {},{}],"6fg8h":[function(require,module,exports) {
+var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "DirectorView", ()=>DirectorView
+);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _card = require("react-bootstrap/Card");
+var _cardDefault = parcelHelpers.interopDefault(_card);
+var _reactHelmet = require("react-helmet");
+var _reactHelmetDefault = parcelHelpers.interopDefault(_reactHelmet);
+class DirectorView extends _reactDefault.default.Component {
+    render() {
+        const { director , movies  } = this.props;
+        console.log(this.props);
+        return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
+                lineNumber: 17
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactHelmetDefault.default, {
+            bodyAttributes: {
+                style: 'background-color : black'
+            },
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
+                lineNumber: 18
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
+            className: "bg-dark text-white mt-5 mx-4",
+            style: {
+                height: "24rem"
+            },
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
+                lineNumber: 20
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
+            className: "justify-content align-items",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
+                lineNumber: 21
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Title, {
+            style: {
+                height: "3rem"
+            },
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
+                lineNumber: 22
+            },
+            __self: this
+        }, director.Name), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
+                lineNumber: 23
+            },
+            __self: this
+        }, "Bio: ", director.Bio), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
+                lineNumber: 24
+            },
+            __self: this
+        }, "Birth year: ", director.Birth), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
+                lineNumber: 25
+            },
+            __self: this
+        }, director.Death), /*#__PURE__*/ _reactDefault.default.createElement("br", {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
+                lineNumber: 28
+            },
+            __self: this
+        })), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Footer, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
+                lineNumber: 31
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            variant: "dark",
+            onClick: ()=>history.back()
+            ,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
+                lineNumber: 32
+            },
+            __self: this
+        }, "Back")))));
+    }
+}
+DirectorView.propTypes = {
+    Director: _propTypesDefault.default.shape({
+        Name: _propTypesDefault.default.string.isRequired,
+        Bio: _propTypesDefault.default.string.isRequired,
+        Birth: _propTypesDefault.default.string.isRequired,
+        Death: _propTypesDefault.default.string
+    })
+};
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-helmet":"71Wec","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"5hFqi":[function(require,module,exports) {
+var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ProfileView", ()=>ProfileView
+);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _form = require("react-bootstrap/Form");
+var _formDefault = parcelHelpers.interopDefault(_form);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _reactHelmet = require("react-helmet");
+var _reactHelmetDefault = parcelHelpers.interopDefault(_reactHelmet);
+var _row = require("react-bootstrap/Row");
+var _rowDefault = parcelHelpers.interopDefault(_row);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _reactBootstrap = require("react-bootstrap");
+var _container = require("react-bootstrap/Container");
+var _containerDefault = parcelHelpers.interopDefault(_container);
+var _moment = require("moment");
+var _momentDefault = parcelHelpers.interopDefault(_moment);
+var _col = require("react-bootstrap/Col");
+var _colDefault = parcelHelpers.interopDefault(_col);
+var _profileViewScss = require("./profile-view.scss");
+class ProfileView extends _reactDefault.default.Component {
+    constructor(){
+        super();
+        this.state = {
+            Username: ''
+        };
+        this.state = {
+            Password: ''
+        };
+        this.state = {
+            Email: ''
+        };
+        this.state = {
+            Birthday: ''
+        };
+        this.state = {
+            FavoriteMovies: []
+        };
+        this.state = {
+            FavMovies: []
+        };
+    }
+    componentDidMount() {
+        let accessToken = localStorage.getItem('token');
+        let userInfo = localStorage.getItem('user');
+        if (accessToken !== null) {
+            this.setState({
+                user: localStorage.getItem('user'),
+                token: localStorage.getItem('token')
+            });
+            this.getMovies(accessToken);
+            this.getUser(accessToken, userInfo);
+        }
+    }
+    getUser(token, user) {
+        _axiosDefault.default.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            console.log('Got account Info');
+            this.setState({
+                userInfo: response.data,
+                Username: response.data.Username,
+                Password: response.data.Password,
+                Email: response.data.Email,
+                Birthday: response.data.Birthday,
+                FavoriteMovies: response.data.FavoriteMovies
+            });
+        });
+    }
+    getMovies(token) {
+        _axiosDefault.default.get('https://itshorrortime.herokuapp.com/movies', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            this.setState({
+                movies: response.data
+            });
+            console.log('got movies');
+        });
+    }
+    handleDelete(user, token) {
+        _axiosDefault.default.delete(`https://itshorrortime.herokuapp.com/users/${user}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(()=>{
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            window.open('/', '_self');
+        });
+    }
+    handleUpdate(user, token, e) {
+        console.log('you are in handleUpdate');
+        console.log(this.state.Username);
+        console.log(this.state.Password);
+        console.log(e.target.username.value);
+        e.preventDefault();
+        _axiosDefault.default.put(`https://itshorrortime.herokuapp.com/users/${user} `, {
+            Username: e.target.username.value,
+            Password: e.target.password.value,
+            Email: e.target.email.value,
+            Birthday: e.target.birthday.value
+        }, {
+            headers: {
+                'Authorization': `Bearer ${token} `,
+                'Content-Type': 'application/json'
+            }
+        }).then((response)=>{
+            console.log(response);
+            const data = response.data;
+            localStorage.setItem("user", data.Username);
+            console.log(data);
+            window.open(`/users/${data.Username}`);
+        }).catch((e)=>{
+            console.log(e.toJSON());
+            console.log(e.response.data);
+        });
+    }
+    deleteFav(movie, user, token, userInfo) {
+        console.log(movie);
+        console.log(token);
+        _axiosDefault.default.delete(`https://itshorrortime.herokuapp.com/users/${user}/movies/${movie}`, {
+            headers: {
+                'Authorization': `Bearer ${token} `,
+                'Content-Type': 'application/json'
+            }
+        }).then((response)=>{
+            console.log(response);
+            const data = response.data;
+            this.setState({
+                FavMovies: response.data
+            });
+            window.location.reload();
+        });
+    }
+    render() {
+        const { user , token , movies , userInfo  } = this.props;
+        const FavMovies = movies.filter((movie)=>{
+            return userInfo.FavoriteMovies.includes(movie._id);
+        });
+        const BirthDate = _momentDefault.default(this.state.Birthday);
+        console.log(BirthDate);
+        return(/*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactHelmetDefault.default, {
+            bodyAttributes: {
+                style: 'background-color : black'
+            },
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 158
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_containerDefault.default, {
+            className: "align-items-center justify-content-md-center",
+            bsPrefix: "accountPage",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 160
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+            className: "d-flex",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 161
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+            className: "justify-content-md-center align-items-center mx-4 my-4",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 162
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
+            className: "align-items-center",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 163
+            },
+            __self: this
+        }, "Account Information"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, {
+            className: "bg-dark justify-content-md-center align-items-center",
+            bsPrefix: "accountCard",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 164
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, {
+            className: "align-items-center justify-content-center",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 165
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 166
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 167
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 168
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 169
+            },
+            __self: this
+        }, "Username: "), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 170
+            },
+            __self: this
+        }, "Email: "), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 171
+            },
+            __self: this
+        }, "Birthday: ")), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Accordion, {
+            defaultActiveKey: "1",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 173
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Accordion.Toggle, {
+            className: "mb-4 mx-1",
+            as: _buttonDefault.default,
+            variant: "dark",
+            eventKey: "0",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 174
+            },
+            __self: this
+        }, "Update Account"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Accordion.Collapse, {
+            eventKey: "0",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 175
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
+            onSubmit: (e)=>this.handleUpdate(user, token, e)
+            ,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 177
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
+            className: "justify-content-center",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 178
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 179
+            },
+            __self: this
+        }, "Username:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
+            type: "text",
+            required: true,
+            minLength: "6",
+            maxLength: "10",
+            placeholder: "Enter Username",
+            value: this.state.username,
+            id: "username",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 180
+            },
+            __self: this
+        })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
+            className: "justify-content-center",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 191
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 192
+            },
+            __self: this
+        }, "Password:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
+            type: "text",
+            required: true,
+            minLength: "6",
+            maxLength: "10",
+            placeholder: "Enter Password",
+            id: "password",
+            value: this.state.password,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 193
+            },
+            __self: this
+        })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
+            className: "justify-content-center",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 206
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 207
+            },
+            __self: this
+        }, "Email:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
+            type: "text",
+            required: true,
+            placeholder: "Enter Email",
+            id: "email",
+            value: this.state.email,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 208
+            },
+            __self: this
+        })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
+            className: "justify-content-center",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 216
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 217
+            },
+            __self: this
+        }, "Birthday: "), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
+            type: "date",
+            required: true,
+            id: "birthday",
+            value: this.state.birthday,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 218
+            },
+            __self: this
+        })), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            type: "submit",
+            variant: "dark",
+            block: true,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 226
+            },
+            __self: this
+        }, "Submit"))))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 231
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 232
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 233
+            },
+            __self: this
+        }, user), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 234
+            },
+            __self: this
+        }, " ", this.state.Email), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Text, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 235
+            },
+            __self: this
+        }, BirthDate.format('MMM-DD-YYYY'))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Accordion, {
+            defaultActiveKey: "1",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 237
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Accordion.Toggle, {
+            as: _buttonDefault.default,
+            variant: "dark",
+            eventKey: "0",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 239
+            },
+            __self: this
+        }, "Favorite Movies"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Accordion.Collapse, {
+            eventKey: "0",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 241
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 242
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 243
+            },
+            __self: this
+        }, FavMovies.map((movie, index)=>/*#__PURE__*/ _reactDefault.default.createElement("div", {
+                key: index,
+                __source: {
+                    fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                    lineNumber: 244
+                },
+                __self: this
+            }, movie.Title, " ", /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+                onClick: (e)=>this.deleteFav(movie._id, user, token, userInfo)
+                ,
+                variant: "dark",
+                block: true,
+                __source: {
+                    fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                    lineNumber: 244
+                },
+                __self: this
+            }, "Delete"), " ")
+        ))))))))), /*#__PURE__*/ _reactDefault.default.createElement("br", {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 254
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement("br", {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 255
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, {
+            bsPrefix: "accountDeletion",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 258
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Title, {
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 259
+            },
+            __self: this
+        }, "Warning: Account Deletion below"), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            block: true,
+            onClick: (e)=>this.handleDelete(user, token)
+            ,
+            variant: "dark",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
+                lineNumber: 260
+            },
+            __self: this
+        }, "Delete My Account")))))));
+    }
+}
+ProfileView.propTypes = {
+    movies: _propTypesDefault.default.array.isRequired
+};
+exports.default = ProfileView;
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"3b2NM","axios":"7rA65","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-helmet":"71Wec","react-bootstrap/Row":"3fzwD","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-bootstrap/Container":"3Mt3t","react-bootstrap/Col":"2D0r8","./profile-view.scss":"26JE8","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","moment":"5Hi32"}],"4n7hB":[function(require,module,exports) {
 "use strict";
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 exports.__esModule = true;
@@ -33678,27 +34794,7 @@ var _default = CloseButton;
 exports.default = _default;
 module.exports = exports["default"];
 
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","prop-types":"4dfy5","react":"3b2NM","classnames":"5aJRc"}],"27J3S":[function(require,module,exports) {
-"use strict";
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-exports.__esModule = true;
-exports.default = void 0;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _react = _interopRequireDefault(require("react"));
-var _classnames = _interopRequireDefault(require("classnames"));
-var _default = function _default1(className) {
-    return(/*#__PURE__*/ _react.default.forwardRef(function(p, ref) {
-        return(/*#__PURE__*/ _react.default.createElement("div", _extends2.default({
-        }, p, {
-            ref: ref,
-            className: _classnames.default(p.className, className)
-        })));
-    }));
-};
-exports.default = _default;
-module.exports = exports["default"];
-
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","react":"3b2NM","classnames":"5aJRc"}],"2aFSj":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","prop-types":"4dfy5","react":"3b2NM","classnames":"5aJRc"}],"2aFSj":[function(require,module,exports) {
 "use strict";
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 exports.__esModule = true;
@@ -33894,155 +34990,6 @@ var _default = ButtonToolbar;
 exports.default = _default;
 module.exports = exports["default"];
 
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S"}],"1CZWQ":[function(require,module,exports) {
-"use strict";
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-exports.__esModule = true;
-exports.default = void 0;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _classnames = _interopRequireDefault(require("classnames"));
-var _react = _interopRequireWildcard(require("react"));
-var _ThemeProvider = require("./ThemeProvider");
-var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
-var _divWithClassName = _interopRequireDefault(require("./divWithClassName"));
-var _CardContext = _interopRequireDefault(require("./CardContext"));
-var _CardImg = _interopRequireDefault(require("./CardImg"));
-function _getRequireWildcardCache(nodeInterop) {
-    if (typeof WeakMap !== "function") return null;
-    var cacheBabelInterop = new WeakMap();
-    var cacheNodeInterop = new WeakMap();
-    return (_getRequireWildcardCache = function _getRequireWildcardCache1(nodeInterop1) {
-        return nodeInterop1 ? cacheNodeInterop : cacheBabelInterop;
-    })(nodeInterop);
-}
-function _interopRequireWildcard(obj, nodeInterop) {
-    if (!nodeInterop && obj && obj.__esModule) return obj;
-    if (obj === null || typeof obj !== "object" && typeof obj !== "function") return {
-        default: obj
-    };
-    var cache = _getRequireWildcardCache(nodeInterop);
-    if (cache && cache.has(obj)) return cache.get(obj);
-    var newObj = {
-    };
-    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-    for(var key in obj)if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
-        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-        if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);
-        else newObj[key] = obj[key];
-    }
-    newObj.default = obj;
-    if (cache) cache.set(obj, newObj);
-    return newObj;
-}
-var DivStyledAsH5 = _divWithClassName.default('h5');
-var DivStyledAsH6 = _divWithClassName.default('h6');
-var CardBody = _createWithBsPrefix.default('card-body');
-var CardTitle = _createWithBsPrefix.default('card-title', {
-    Component: DivStyledAsH5
-});
-var CardSubtitle = _createWithBsPrefix.default('card-subtitle', {
-    Component: DivStyledAsH6
-});
-var CardLink = _createWithBsPrefix.default('card-link', {
-    Component: 'a'
-});
-var CardText = _createWithBsPrefix.default('card-text', {
-    Component: 'p'
-});
-var CardHeader = _createWithBsPrefix.default('card-header');
-var CardFooter = _createWithBsPrefix.default('card-footer');
-var CardImgOverlay = _createWithBsPrefix.default('card-img-overlay');
-var defaultProps = {
-    body: false
-};
-var Card = /*#__PURE__*/ _react.default.forwardRef(function(_ref, ref) {
-    var bsPrefix = _ref.bsPrefix, className = _ref.className, bg = _ref.bg, text = _ref.text, border = _ref.border, body = _ref.body, children = _ref.children, _ref$as = _ref.as, Component = _ref$as === void 0 ? 'div' : _ref$as, props = _objectWithoutPropertiesLoose2.default(_ref, [
-        "bsPrefix",
-        "className",
-        "bg",
-        "text",
-        "border",
-        "body",
-        "children",
-        "as"
-    ]);
-    var prefix = _ThemeProvider.useBootstrapPrefix(bsPrefix, 'card');
-    var cardContext = _react.useMemo(function() {
-        return {
-            cardHeaderBsPrefix: prefix + "-header"
-        };
-    }, [
-        prefix
-    ]);
-    return(/*#__PURE__*/ _react.default.createElement(_CardContext.default.Provider, {
-        value: cardContext
-    }, /*#__PURE__*/ _react.default.createElement(Component, _extends2.default({
-        ref: ref
-    }, props, {
-        className: _classnames.default(className, prefix, bg && "bg-" + bg, text && "text-" + text, border && "border-" + border)
-    }), body ? /*#__PURE__*/ // @ts-ignore
-    _react.default.createElement(CardBody, null, children) : children)));
-});
-Card.displayName = 'Card';
-Card.defaultProps = defaultProps;
-Card.Img = _CardImg.default;
-Card.Title = CardTitle;
-Card.Subtitle = CardSubtitle;
-Card.Body = CardBody;
-Card.Link = CardLink;
-Card.Text = CardText;
-Card.Header = CardHeader;
-Card.Footer = CardFooter;
-Card.ImgOverlay = CardImgOverlay;
-var _default = Card;
-exports.default = _default;
-module.exports = exports["default"];
-
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S","./createWithBsPrefix":"2oVVc","./divWithClassName":"27J3S","./CardContext":"71yot","./CardImg":"68LPL"}],"71yot":[function(require,module,exports) {
-"use strict";
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-exports.__esModule = true;
-exports.default = void 0;
-var _react = _interopRequireDefault(require("react"));
-var context = /*#__PURE__*/ _react.default.createContext(null);
-context.displayName = 'CardContext';
-var _default = context;
-exports.default = _default;
-module.exports = exports["default"];
-
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","react":"3b2NM"}],"68LPL":[function(require,module,exports) {
-"use strict";
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-exports.__esModule = true;
-exports.default = void 0;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _classnames = _interopRequireDefault(require("classnames"));
-var _react = _interopRequireDefault(require("react"));
-var _ThemeProvider = require("./ThemeProvider");
-var defaultProps = {
-    variant: null
-};
-var CardImg = /*#__PURE__*/ _react.default.forwardRef(function(_ref, ref) {
-    var bsPrefix = _ref.bsPrefix, className = _ref.className, variant = _ref.variant, _ref$as = _ref.as, Component = _ref$as === void 0 ? 'img' : _ref$as, props = _objectWithoutPropertiesLoose2.default(_ref, [
-        "bsPrefix",
-        "className",
-        "variant",
-        "as"
-    ]);
-    var prefix = _ThemeProvider.useBootstrapPrefix(bsPrefix, 'card-img');
-    return(/*#__PURE__*/ _react.default.createElement(Component, _extends2.default({
-        ref: ref,
-        className: _classnames.default(variant ? prefix + "-" + variant : prefix, className)
-    }, props)));
-});
-CardImg.displayName = 'CardImg';
-CardImg.defaultProps = defaultProps;
-var _default = CardImg;
-exports.default = _default;
-module.exports = exports["default"];
-
 },{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","./ThemeProvider":"4rz1S"}],"48yv5":[function(require,module,exports) {
 "use strict";
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -34060,16 +35007,6 @@ exports.__esModule = true;
 exports.default = void 0;
 var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
 var _default = _createWithBsPrefix.default('card-deck');
-exports.default = _default;
-module.exports = exports["default"];
-
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","./createWithBsPrefix":"2oVVc"}],"1B9U7":[function(require,module,exports) {
-"use strict";
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-exports.__esModule = true;
-exports.default = void 0;
-var _createWithBsPrefix = _interopRequireDefault(require("./createWithBsPrefix"));
-var _default = _createWithBsPrefix.default('card-group');
 exports.default = _default;
 module.exports = exports["default"];
 
@@ -42211,1160 +43148,7 @@ var _default = Tooltip;
 exports.default = _default;
 module.exports = exports["default"];
 
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","prop-types-extra/lib/isRequiredForA11y":"4XrEc","./ThemeProvider":"4rz1S"}],"4vll5":[function(require,module,exports) {
-var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MovieView", ()=>MovieView
-);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _button = require("react-bootstrap/Button");
-var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _card = require("react-bootstrap/Card");
-var _cardDefault = parcelHelpers.interopDefault(_card);
-var _cardGroup = require("react-bootstrap/CardGroup");
-var _cardGroupDefault = parcelHelpers.interopDefault(_cardGroup);
-var _image = require("react-bootstrap/Image");
-var _imageDefault = parcelHelpers.interopDefault(_image);
-var _row = require("react-bootstrap/Row");
-var _rowDefault = parcelHelpers.interopDefault(_row);
-var _reactHelmet = require("react-helmet");
-var _reactHelmetDefault = parcelHelpers.interopDefault(_reactHelmet);
-var _reactRouterDom = require("react-router-dom");
-var _form = require("react-bootstrap/Form");
-var _formDefault = parcelHelpers.interopDefault(_form);
-var _col = require("react-bootstrap/Col");
-var _colDefault = parcelHelpers.interopDefault(_col);
-var _reactBootstrap = require("react-bootstrap");
-var _formControl = require("react-bootstrap/FormControl");
-var _formControlDefault = parcelHelpers.interopDefault(_formControl);
-var _container = require("react-bootstrap/Container");
-var _containerDefault = parcelHelpers.interopDefault(_container);
-var _directorView = require("../director-view/director-view");
-var _axios = require("axios");
-var _axiosDefault = parcelHelpers.interopDefault(_axios);
-class MovieView extends _reactDefault.default.Component {
-    constructor(){
-        super();
-        this.state = {
-            movies: [],
-            user: ''
-        };
-    }
-    keypressCallback(event) {
-        console.log(event.key);
-    }
-    componentDidMount() {
-        document.addEventListener('keypress', this.keypressCallback);
-    }
-    componentWillUnmount() {
-        document.removeEventListener('keypress', this.keypressCallback);
-    }
-    render() {
-        const { movie , onBackClick , user  } = this.props;
-        return(/*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactHelmetDefault.default, {
-            bodyAttributes: {
-                style: 'background-color : black'
-            },
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 49
-            },
-            __self: this
-        }), /*#__PURE__*/ _reactDefault.default.createElement(_cardGroupDefault.default, {
-            className: "bg-dark my-5 mx-5",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 51
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
-            className: "movie-view bg-dark text-white my-5 mx-5 justify-content-center align-items-center",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 52
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Img, {
-            variant: "top",
-            src: movie.ImagePath,
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 53
-            },
-            __self: this
-        }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Title, {
-            className: "label justify-content-center",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 54
-            },
-            __self: this
-        }, movie.Title, " "), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
-            className: "movie-description",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 55
-            },
-            __self: this
-        }, "Description: ", movie.Description), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
-            className: "movie-Genre",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 56
-            },
-            __self: this
-        }, "Genre: ", movie.Genre.Name), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
-            className: "movie-director",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 57
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "label",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 58
-            },
-            __self: this
-        }, "Director: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "value",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 59
-            },
-            __self: this
-        }, movie.Director.Name), /*#__PURE__*/ _reactDefault.default.createElement("br", {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 60
-            },
-            __self: this
-        }), /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "label",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 61
-            },
-            __self: this
-        }, "Bio: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "value",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 62
-            },
-            __self: this
-        }, movie.Director.Bio), /*#__PURE__*/ _reactDefault.default.createElement("br", {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 63
-            },
-            __self: this
-        }), /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "label",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 64
-            },
-            __self: this
-        }, "Birth year: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "value",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 65
-            },
-            __self: this
-        }, movie.Director.Birth)), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 67
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
-            className: "justify-content-center my-5",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 68
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
-            to: `/directors/${movie.Director.Name}`,
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 69
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            variant: "dark",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 70
-            },
-            __self: this
-        }, "Director"))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
-            className: "justify-content-center",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 73
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
-            to: `/genres/${movie.Genre.Name}`,
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 74
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            variant: "dark",
-            className: "my-5",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 75
-            },
-            __self: this
-        }, "Genre")), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            onClick: ()=>history.back()
-            ,
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 77
-            },
-            __self: this
-        }, "Back")))))));
-    }
-}
-MovieView.propTypes = {
-    movie: _propTypesDefault.default.shape({
-        Title: _propTypesDefault.default.string,
-        Description: _propTypesDefault.default.string,
-        ImagePath: _propTypesDefault.default.string,
-        Genre: _propTypesDefault.default.shape({
-            Name: _propTypesDefault.default.string.isRequired,
-            Description: _propTypesDefault.default.string.isRequired
-        }),
-        Director: _propTypesDefault.default.shape({
-            Name: _propTypesDefault.default.string.isRequired,
-            Bio: _propTypesDefault.default.string.isRequired,
-            Birth: _propTypesDefault.default.string,
-            Death: _propTypesDefault.default.string
-        })
-    }).isRequired
-};
-
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-bootstrap/CardGroup":"1B9U7","react-bootstrap/Image":"5qrP5","react-bootstrap/Row":"3fzwD","react-helmet":"71Wec","react-router-dom":"1PMSK","react-bootstrap/Form":"6A5ko","react-bootstrap/Col":"2D0r8","react-bootstrap":"4n7hB","react-bootstrap/FormControl":"573gP","react-bootstrap/Container":"3Mt3t","../director-view/director-view":"6fg8h","axios":"7rA65","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"6fg8h":[function(require,module,exports) {
-var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "DirectorView", ()=>DirectorView
-);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactRouterDom = require("react-router-dom");
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _button = require("react-bootstrap/Button");
-var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _container = require("react-bootstrap/Container");
-var _containerDefault = parcelHelpers.interopDefault(_container);
-var _col = require("react-bootstrap/Col");
-var _colDefault = parcelHelpers.interopDefault(_col);
-var _row = require("react-bootstrap/Row");
-var _rowDefault = parcelHelpers.interopDefault(_row);
-var _card = require("react-bootstrap/Card");
-var _cardDefault = parcelHelpers.interopDefault(_card);
-var _reactHelmet = require("react-helmet");
-var _reactHelmetDefault = parcelHelpers.interopDefault(_reactHelmet);
-class DirectorView extends _reactDefault.default.Component {
-    render() {
-        const { director , movies  } = this.props;
-        console.log(this.props);
-        return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
-                lineNumber: 21
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactHelmetDefault.default, {
-            bodyAttributes: {
-                style: 'background-color : black'
-            },
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
-                lineNumber: 22
-            },
-            __self: this
-        }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
-            className: "bg-dark text-white mt-5 mx-4",
-            style: {
-                height: "24rem"
-            },
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
-                lineNumber: 24
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
-            className: "justify-content align-items",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
-                lineNumber: 25
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Title, {
-            style: {
-                height: "3rem"
-            },
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
-                lineNumber: 26
-            },
-            __self: this
-        }, director.Name), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
-                lineNumber: 27
-            },
-            __self: this
-        }, "Bio: ", director.Bio), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
-                lineNumber: 28
-            },
-            __self: this
-        }, "Birth year: ", director.Birth), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
-                lineNumber: 29
-            },
-            __self: this
-        }, director.Death), /*#__PURE__*/ _reactDefault.default.createElement("br", {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
-                lineNumber: 32
-            },
-            __self: this
-        })), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Footer, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
-                lineNumber: 35
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            onClick: ()=>history.back()
-            ,
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\director-view\\director-view.jsx",
-                lineNumber: 36
-            },
-            __self: this
-        }, "Back")))));
-    }
-}
-DirectorView.propTypes = {
-    Director: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired,
-        Bio: _propTypesDefault.default.string.isRequired,
-        Birth: _propTypesDefault.default.string.isRequired,
-        Death: _propTypesDefault.default.string
-    })
-};
-
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"3b2NM","react-router-dom":"1PMSK","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Container":"3Mt3t","react-bootstrap/Col":"2D0r8","react-bootstrap/Row":"3fzwD","react-bootstrap/Card":"1CZWQ","react-helmet":"71Wec","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"44u5W":[function(require,module,exports) {
-var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "GenreView", ()=>GenreView
-);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactRouterDom = require("react-router-dom");
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _button = require("react-bootstrap/Button");
-var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _container = require("react-bootstrap/Container");
-var _containerDefault = parcelHelpers.interopDefault(_container);
-var _col = require("react-bootstrap/Col");
-var _colDefault = parcelHelpers.interopDefault(_col);
-var _row = require("react-bootstrap/Row");
-var _rowDefault = parcelHelpers.interopDefault(_row);
-var _card = require("react-bootstrap/Card");
-var _cardDefault = parcelHelpers.interopDefault(_card);
-var _reactHelmet = require("react-helmet");
-var _reactHelmetDefault = parcelHelpers.interopDefault(_reactHelmet);
-var _genreViewScss = require("./genre-view.scss");
-class GenreView extends _reactDefault.default.Component {
-    render() {
-        const { genre , movies  } = this.props;
-        return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
-                lineNumber: 21
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactHelmetDefault.default, {
-            bodyAttributes: {
-                style: 'background-color : black'
-            },
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
-                lineNumber: 22
-            },
-            __self: this
-        }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
-            className: "bg-dark text-white mt-5 mx-4",
-            style: {
-                height: "24rem"
-            },
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
-                lineNumber: 24
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
-            className: "justify-content align-items",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
-                lineNumber: 25
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Title, {
-            style: {
-                height: "3rem"
-            },
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
-                lineNumber: 26
-            },
-            __self: this
-        }, genre.Name), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
-                lineNumber: 27
-            },
-            __self: this
-        }, genre.Description)), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Footer, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
-                lineNumber: 29
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            onClick: ()=>history.back()
-            ,
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\genre-view\\genre-view.jsx",
-                lineNumber: 30
-            },
-            __self: this
-        }, "Back")))));
-    }
-}
-GenreView.propTypes = {
-    Genre: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired,
-        Description: _propTypesDefault.default.string.isRequired
-    })
-};
-
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"3b2NM","react-router-dom":"1PMSK","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Container":"3Mt3t","react-bootstrap/Col":"2D0r8","react-bootstrap/Row":"3fzwD","react-bootstrap/Card":"1CZWQ","react-helmet":"71Wec","./genre-view.scss":"2YCaG","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"2YCaG":[function() {},{}],"5hFqi":[function(require,module,exports) {
-var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ProfileView", ()=>ProfileView
-);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _axios = require("axios");
-var _axiosDefault = parcelHelpers.interopDefault(_axios);
-var _form = require("react-bootstrap/Form");
-var _formDefault = parcelHelpers.interopDefault(_form);
-var _button = require("react-bootstrap/Button");
-var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _reactHelmet = require("react-helmet");
-var _reactHelmetDefault = parcelHelpers.interopDefault(_reactHelmet);
-var _row = require("react-bootstrap/Row");
-var _rowDefault = parcelHelpers.interopDefault(_row);
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _reactBootstrap = require("react-bootstrap");
-var _image = require("react-bootstrap/esm/Image");
-var _formControl = require("react-bootstrap/FormControl");
-var _formControlDefault = parcelHelpers.interopDefault(_formControl);
-var _reactRouterDom = require("react-router-dom");
-var _modalHeader = require("react-bootstrap/ModalHeader");
-var _modalHeaderDefault = parcelHelpers.interopDefault(_modalHeader);
-var _modalDialog = require("react-bootstrap/ModalDialog");
-var _modalDialogDefault = parcelHelpers.interopDefault(_modalDialog);
-var _modal = require("react-bootstrap/Modal");
-var _modalDefault = parcelHelpers.interopDefault(_modal);
-var _container = require("react-bootstrap/Container");
-var _containerDefault = parcelHelpers.interopDefault(_container);
-var _moment = require("moment");
-var _momentDefault = parcelHelpers.interopDefault(_moment);
-var _col = require("react-bootstrap/Col");
-var _colDefault = parcelHelpers.interopDefault(_col);
-var _profileViewScss = require("./profile-view.scss");
-class ProfileView extends _reactDefault.default.Component {
-    constructor(){
-        super();
-        this.state = {
-            Username: ''
-        };
-        this.state = {
-            Password: ''
-        };
-        this.state = {
-            Email: ''
-        };
-        this.state = {
-            Birthday: ''
-        };
-        this.state = {
-            FavoriteMovies: []
-        };
-        this.state = {
-            FavMovies: []
-        };
-    }
-    componentDidMount() {
-        let accessToken = localStorage.getItem('token');
-        let userInfo = localStorage.getItem('user');
-        if (accessToken !== null) {
-            this.setState({
-                user: localStorage.getItem('user'),
-                token: localStorage.getItem('token')
-            });
-            this.getMovies(accessToken);
-            this.getUser(accessToken, userInfo);
-        }
-    }
-    getUser(token, user) {
-        _axiosDefault.default.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            console.log('Got account Info');
-            this.setState({
-                userInfo: response.data,
-                Username: response.data.Username,
-                Password: response.data.Password,
-                Email: response.data.Email,
-                Birthday: response.data.Birthday,
-                FavoriteMovies: response.data.FavoriteMovies
-            });
-        });
-    }
-    getMovies(token) {
-        _axiosDefault.default.get('https://itshorrortime.herokuapp.com/movies', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            this.setState({
-                movies: response.data
-            });
-            console.log('got movies');
-        });
-    }
-    handleDelete(user, token) {
-        _axiosDefault.default.delete(`https://itshorrortime.herokuapp.com/users/${user}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then(()=>{
-            localStorage.removeItem('user');
-            localStorage.removeItem('token');
-            window.open('/', '_self');
-        });
-    }
-    handleUpdate(user, token, e) {
-        console.log('you are in handleUpdate');
-        console.log(this.state.Username);
-        console.log(this.state.Password);
-        console.log(e.target.username.value);
-        e.preventDefault();
-        _axiosDefault.default.put(`https://itshorrortime.herokuapp.com/users/${user} `, {
-            Username: e.target.username.value,
-            Password: e.target.password.value,
-            Email: e.target.email.value,
-            Birthday: e.target.birthday.value
-        }, {
-            headers: {
-                'Authorization': `Bearer ${token} `,
-                'Content-Type': 'application/json'
-            }
-        }).then((response)=>{
-            console.log(response);
-            const data = response.data;
-            localStorage.setItem("user", data.Username);
-            console.log(data);
-            window.open(`/users/${data.Username}`);
-        }).catch((e)=>{
-            console.log(e.toJSON());
-            console.log(e.response.data);
-        });
-    }
-    deleteFav(movie, user, token, userInfo) {
-        console.log(movie);
-        console.log(token);
-        _axiosDefault.default.delete(`https://itshorrortime.herokuapp.com/users/${user}/movies/${movie}`, {
-            headers: {
-                'Authorization': `Bearer ${token} `,
-                'Content-Type': 'application/json'
-            }
-        }).then((response)=>{
-            console.log(response);
-            const data = response.data;
-            this.setState({
-                FavMovies: response.data
-            });
-            window.location.reload();
-        });
-    }
-    render() {
-        const { user , token , movies , userInfo  } = this.props;
-        const FavMovies = movies.filter((movie)=>{
-            return userInfo.FavoriteMovies.includes(movie._id);
-        });
-        return(/*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactHelmetDefault.default, {
-            bodyAttributes: {
-                style: 'background-color : black'
-            },
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 162
-            },
-            __self: this
-        }), /*#__PURE__*/ _reactDefault.default.createElement(_containerDefault.default, {
-            className: "align-items-center justify-content-md-center",
-            bsPrefix: "accountPage",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 164
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
-            className: "d-flex",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 165
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
-            className: "justify-content-md-center align-items-center mx-4 my-4",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 166
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
-            className: "align-items-center",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 167
-            },
-            __self: this
-        }, "Account Information"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, {
-            className: "bg-dark justify-content-md-center align-items-center",
-            bsPrefix: "accountCard",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 168
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, {
-            className: "align-items-center justify-content-center",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 169
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 170
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 171
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Text, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 172
-            },
-            __self: this
-        }, "Username: "), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Text, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 173
-            },
-            __self: this
-        }, "Email: "), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Text, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 174
-            },
-            __self: this
-        }, "Birthday: "), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Accordion, {
-            defaultActiveKey: "1",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 175
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Accordion.Toggle, {
-            className: "mb-4 mx-1",
-            as: _buttonDefault.default,
-            variant: "dark",
-            eventKey: "0",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 176
-            },
-            __self: this
-        }, "Update Information"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Accordion.Collapse, {
-            eventKey: "0",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 177
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
-            onSubmit: (e)=>this.handleUpdate(user, token, e)
-            ,
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 179
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
-            className: "justify-content-center",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 180
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 181
-            },
-            __self: this
-        }, "Username:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
-            type: "text",
-            required: true,
-            minLength: "6",
-            maxLength: "10",
-            placeholder: "Enter Username",
-            value: this.state.username,
-            id: "username",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 182
-            },
-            __self: this
-        })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
-            className: "justify-content-center",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 193
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 194
-            },
-            __self: this
-        }, "Password:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
-            type: "text",
-            required: true,
-            minLength: "6",
-            maxLength: "10",
-            placeholder: "Enter Password",
-            id: "password",
-            value: this.state.password,
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 195
-            },
-            __self: this
-        })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
-            className: "justify-content-center",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 208
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 209
-            },
-            __self: this
-        }, "Email:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
-            type: "text",
-            required: true,
-            placeholder: "Enter Email",
-            id: "email",
-            value: this.state.email,
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 210
-            },
-            __self: this
-        })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Row, {
-            className: "justify-content-center",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 218
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 219
-            },
-            __self: this
-        }, "Birthday: "), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
-            type: "date",
-            required: true,
-            id: "birthday",
-            value: this.state.birthday,
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 220
-            },
-            __self: this
-        })), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            type: "submit",
-            variant: "dark",
-            block: true,
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 228
-            },
-            __self: this
-        }, "Submit"))))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 233
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Text, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 234
-            },
-            __self: this
-        }, user), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Text, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 235
-            },
-            __self: this
-        }, " ", this.state.Email), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Text, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 236
-            },
-            __self: this
-        }, this.state.Birthday), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Accordion, {
-            defaultActiveKey: "1",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 237
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Accordion.Toggle, {
-            as: _buttonDefault.default,
-            variant: "dark",
-            eventKey: "0",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 239
-            },
-            __self: this
-        }, "Favorite Movies List"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Accordion.Collapse, {
-            eventKey: "0",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 241
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 242
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 243
-            },
-            __self: this
-        }, FavMovies.map((movie, index)=>/*#__PURE__*/ _reactDefault.default.createElement("div", {
-                key: index,
-                __source: {
-                    fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                    lineNumber: 244
-                },
-                __self: this
-            }, movie.Title, " ", /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-                onClick: (e)=>this.deleteFav(movie._id, user, token, userInfo)
-                ,
-                variant: "dark",
-                block: true,
-                __source: {
-                    fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                    lineNumber: 244
-                },
-                __self: this
-            }, "Delete"), " ")
-        ))))))))), /*#__PURE__*/ _reactDefault.default.createElement("br", {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 254
-            },
-            __self: this
-        }), /*#__PURE__*/ _reactDefault.default.createElement("br", {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 255
-            },
-            __self: this
-        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, {
-            bsPrefix: "accountDeletion",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 258
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Title, {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 259
-            },
-            __self: this
-        }, "Warning: Account Deletion below"), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            block: true,
-            onClick: (e)=>this.handleDelete(user, token)
-            ,
-            variant: "dark",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 260
-            },
-            __self: this
-        }, "Delete My Account")))))));
-    }
-}
-ProfileView.propTypes = {
-    movies: _propTypesDefault.default.array.isRequired
-};
-exports.default = ProfileView;
-
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"3b2NM","axios":"7rA65","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-helmet":"71Wec","react-bootstrap/Row":"3fzwD","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-bootstrap/esm/Image":"rzPO3","react-bootstrap/FormControl":"573gP","react-router-dom":"1PMSK","react-bootstrap/ModalHeader":"3Q71Q","react-bootstrap/ModalDialog":"4OqPY","react-bootstrap/Modal":"20uUD","react-bootstrap/Container":"3Mt3t","react-bootstrap/Col":"2D0r8","./profile-view.scss":"26JE8","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","moment":"5Hi32"}],"rzPO3":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "propTypes", ()=>propTypes
-);
-var _extends = require("@babel/runtime/helpers/esm/extends");
-var _extendsDefault = parcelHelpers.interopDefault(_extends);
-var _objectWithoutPropertiesLoose = require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose");
-var _objectWithoutPropertiesLooseDefault = parcelHelpers.interopDefault(_objectWithoutPropertiesLoose);
-var _classnames = require("classnames");
-var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _themeProvider = require("./ThemeProvider");
-var propTypes = {
-    /**
-   * @default 'img'
-   */ bsPrefix: _propTypesDefault.default.string,
-    /**
-   * Sets image as fluid image.
-   */ fluid: _propTypesDefault.default.bool,
-    /**
-   * Sets image shape as rounded.
-   */ rounded: _propTypesDefault.default.bool,
-    /**
-   * Sets image shape as circle.
-   */ roundedCircle: _propTypesDefault.default.bool,
-    /**
-   * Sets image shape as thumbnail.
-   */ thumbnail: _propTypesDefault.default.bool
-};
-var defaultProps = {
-    fluid: false,
-    rounded: false,
-    roundedCircle: false,
-    thumbnail: false
-};
-var Image1 = /*#__PURE__*/ _reactDefault.default.forwardRef(function(_ref, ref) {
-    var bsPrefix = _ref.bsPrefix, className = _ref.className, fluid = _ref.fluid, rounded = _ref.rounded, roundedCircle = _ref.roundedCircle, thumbnail = _ref.thumbnail, props = _objectWithoutPropertiesLooseDefault.default(_ref, [
-        "bsPrefix",
-        "className",
-        "fluid",
-        "rounded",
-        "roundedCircle",
-        "thumbnail"
-    ]);
-    bsPrefix = _themeProvider.useBootstrapPrefix(bsPrefix, 'img');
-    var classes = _classnamesDefault.default(fluid && bsPrefix + "-fluid", rounded && "rounded", roundedCircle && "rounded-circle", thumbnail && bsPrefix + "-thumbnail");
-    return(/*#__PURE__*/ _reactDefault.default.createElement("img", _extendsDefault.default({
-        // eslint-disable-line jsx-a11y/alt-text
-        ref: ref
-    }, props, {
-        className: _classnamesDefault.default(className, classes)
-    })));
-});
-Image1.displayName = 'Image';
-Image1.defaultProps = defaultProps;
-exports.default = Image1;
-
-},{"@babel/runtime/helpers/esm/extends":"5qnVv","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"6rNIl","classnames":"5aJRc","react":"3b2NM","prop-types":"4dfy5","./ThemeProvider":"6Pzum","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi"}],"5qnVv":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function _extends() {
-    _extends = Object.assign || function(target) {
-        for(var i = 1; i < arguments.length; i++){
-            var source = arguments[i];
-            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
-        }
-        return target;
-    };
-    return _extends.apply(this, arguments);
-}
-exports.default = _extends;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi"}],"6rNIl":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function _objectWithoutPropertiesLoose(source, excluded) {
-    if (source == null) return {
-    };
-    var target = {
-    };
-    var sourceKeys = Object.keys(source);
-    var key, i;
-    for(i = 0; i < sourceKeys.length; i++){
-        key = sourceKeys[i];
-        if (excluded.indexOf(key) >= 0) continue;
-        target[key] = source[key];
-    }
-    return target;
-}
-exports.default = _objectWithoutPropertiesLoose;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi"}],"6Pzum":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "useBootstrapPrefix", ()=>useBootstrapPrefix
-);
-parcelHelpers.export(exports, "createBootstrapComponent", ()=>createBootstrapComponent
-);
-parcelHelpers.export(exports, "ThemeConsumer", ()=>Consumer
-);
-var _extends = require("@babel/runtime/helpers/esm/extends");
-var _extendsDefault = parcelHelpers.interopDefault(_extends);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var ThemeContext = /*#__PURE__*/ _reactDefault.default.createContext({
-});
-var Consumer = ThemeContext.Consumer, Provider = ThemeContext.Provider;
-function ThemeProvider(_ref) {
-    var prefixes = _ref.prefixes, children = _ref.children;
-    var copiedPrefixes = _react.useMemo(function() {
-        return _extendsDefault.default({
-        }, prefixes);
-    }, [
-        prefixes
-    ]);
-    return(/*#__PURE__*/ _reactDefault.default.createElement(Provider, {
-        value: copiedPrefixes
-    }, children));
-}
-function useBootstrapPrefix(prefix, defaultPrefix) {
-    var prefixes = _react.useContext(ThemeContext);
-    return prefix || prefixes[defaultPrefix] || defaultPrefix;
-}
-function createBootstrapComponent(Component, opts) {
-    if (typeof opts === 'string') opts = {
-        prefix: opts
-    };
-    var isClassy = Component.prototype && Component.prototype.isReactComponent; // If it's a functional component make sure we don't break it with a ref
-    var _opts = opts, prefix = _opts.prefix, _opts$forwardRefAs = _opts.forwardRefAs, forwardRefAs = _opts$forwardRefAs === void 0 ? isClassy ? 'ref' : 'innerRef' : _opts$forwardRefAs;
-    var Wrapped = /*#__PURE__*/ _reactDefault.default.forwardRef(function(_ref2, ref) {
-        var props = _extendsDefault.default({
-        }, _ref2);
-        props[forwardRefAs] = ref;
-        var bsPrefix = useBootstrapPrefix(props.bsPrefix, prefix);
-        return(/*#__PURE__*/ _reactDefault.default.createElement(Component, _extendsDefault.default({
-        }, props, {
-            bsPrefix: bsPrefix
-        })));
-    });
-    Wrapped.displayName = "Bootstrap(" + (Component.displayName || Component.name) + ")";
-    return Wrapped;
-}
-exports.default = ThemeProvider;
-
-},{"@babel/runtime/helpers/esm/extends":"5qnVv","react":"3b2NM","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi"}],"26JE8":[function() {},{}],"5Hi32":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","prop-types-extra/lib/isRequiredForA11y":"4XrEc","./ThemeProvider":"4rz1S"}],"26JE8":[function() {},{}],"5Hi32":[function(require,module,exports) {
 (function(global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.moment = factory();
 })(this, function() {
@@ -47097,17 +46881,10 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _col = require("react-bootstrap/Col");
-var _colDefault = parcelHelpers.interopDefault(_col);
 var _reactRedux = require("react-redux");
 var _row = require("react-bootstrap/Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
 var _movieCard = require("../movie-card/movie-card");
-var _cardDeck = require("react-bootstrap/CardDeck");
-var _cardDeckDefault = parcelHelpers.interopDefault(_cardDeck);
-var _reactBootstrap = require("react-bootstrap");
-var _cardGroup = require("react-bootstrap/CardGroup");
-var _cardGroupDefault = parcelHelpers.interopDefault(_cardGroup);
 const mapStateToProps = (state)=>{
     const { visibilityFilter , movies  } = state;
     return {
@@ -47124,7 +46901,7 @@ function MoviesList(props) {
         className: "main-view",
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movies-list\\movies-list.jsx",
-            lineNumber: 24
+            lineNumber: 22
         },
         __self: this
     }));
@@ -47132,20 +46909,20 @@ function MoviesList(props) {
         className: "movies-list my-3",
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movies-list\\movies-list.jsx",
-            lineNumber: 26
+            lineNumber: 24
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movies-list\\movies-list.jsx",
-            lineNumber: 27
+            lineNumber: 25
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("visibilityFilterInput", {
         visibilityFilter: visibilityFilter,
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movies-list\\movies-list.jsx",
-            lineNumber: 28
+            lineNumber: 26
         },
         __self: this
     }), filteredMovies.map((m)=>/*#__PURE__*/ _reactDefault.default.createElement(_movieCard.MovieCard, {
@@ -47153,7 +46930,7 @@ function MoviesList(props) {
             movie: m,
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movies-list\\movies-list.jsx",
-                lineNumber: 29
+                lineNumber: 27
             },
             __self: this
         })
@@ -47169,7 +46946,7 @@ $RefreshReg$(_c, "MoviesList");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","react-bootstrap/Col":"2D0r8","react-redux":"7GDa4","react-bootstrap/Row":"3fzwD","../movie-card/movie-card":"6whRk","react-bootstrap/CardDeck":"4fiZs","react-bootstrap":"4n7hB","react-bootstrap/CardGroup":"1B9U7","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"6whRk":[function(require,module,exports) {
+},{"react":"3b2NM","react-redux":"7GDa4","react-bootstrap/Row":"3fzwD","../movie-card/movie-card":"6whRk","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"6whRk":[function(require,module,exports) {
 var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47190,17 +46967,10 @@ var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _card = require("react-bootstrap/Card");
 var _cardDefault = parcelHelpers.interopDefault(_card);
-var _cardGroup = require("react-bootstrap/CardGroup");
-var _cardGroupDefault = parcelHelpers.interopDefault(_cardGroup);
 var _reactHelmet = require("react-helmet");
 var _reactHelmetDefault = parcelHelpers.interopDefault(_reactHelmet);
 var _reactRouterDom = require("react-router-dom");
-var _directorView = require("../director-view/director-view");
-var _reactBootstrap = require("react-bootstrap");
-var _reactBootstrapDefault = parcelHelpers.interopDefault(_reactBootstrap);
 var _movieCardScss = require("./movie-card.scss");
-var _cardDeck = require("react-bootstrap/CardDeck");
-var _cardDeckDefault = parcelHelpers.interopDefault(_cardDeck);
 class MovieCard extends _reactDefault.default.Component {
     constructor(){
         super();
@@ -47256,7 +47026,7 @@ class MovieCard extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
-                lineNumber: 84
+                lineNumber: 80
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
@@ -47271,14 +47041,14 @@ class MovieCard extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
-                lineNumber: 87
+                lineNumber: 83
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
             className: "justify-content-center align-items-center",
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
-                lineNumber: 89
+                lineNumber: 85
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -47288,7 +47058,7 @@ class MovieCard extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
-                lineNumber: 90
+                lineNumber: 86
             },
             __self: this
         }, "Add"), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Img, {
@@ -47299,47 +47069,41 @@ class MovieCard extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
-                lineNumber: 91
+                lineNumber: 87
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Title, {
-            className: "my-2 align-item-center",
+            className: "my-2 align-items-center",
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
-                lineNumber: 92
+                lineNumber: 88
             },
             __self: this
-        }, movie.Title), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Footer, {
-            className: "mb-4",
+        }, movie.Title), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+            to: `/movies/${movie._id}`,
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
+                lineNumber: 90
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            variant: "info",
+            className: "buttonInfo",
+            __source: {
+                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
+                lineNumber: 91
+            },
+            __self: this
+        }, "Read More")), /*#__PURE__*/ _reactDefault.default.createElement("br", {
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
                 lineNumber: 93
             },
             __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
-            to: `/movies/${movie._id}`,
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
-                lineNumber: 94
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            variant: "dark",
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
-                lineNumber: 95
-            },
-            __self: this
-        }, "Movie Info")), /*#__PURE__*/ _reactDefault.default.createElement("br", {
+        }))), /*#__PURE__*/ _reactDefault.default.createElement("br", {
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
                 lineNumber: 97
-            },
-            __self: this
-        })))), /*#__PURE__*/ _reactDefault.default.createElement("br", {
-            __source: {
-                fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movie-card\\movie-card.jsx",
-                lineNumber: 101
             },
             __self: this
         })));
@@ -47370,7 +47134,7 @@ MovieCard.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","axios":"7rA65","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-bootstrap/CardGroup":"1B9U7","react-helmet":"71Wec","react-router-dom":"1PMSK","../director-view/director-view":"6fg8h","react-bootstrap":"4n7hB","./movie-card.scss":"7hzRy","react-bootstrap/CardDeck":"4fiZs","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"7hzRy":[function() {},{}],"Y6EQz":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-helmet":"71Wec","react-router-dom":"1PMSK","./movie-card.scss":"7hzRy","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"7hzRy":[function() {},{}],"1esxd":[function(require,module,exports) {
 var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47391,106 +47155,85 @@ var _s = $RefreshSig$();
 function Menu(props) {
     _s();
     let { user  } = props;
+    console.log('hello');
     const history = _reactRouterDom.useHistory();
-    const onLogOut = ()=>{
+    /*const [searchTerm, setSearchTerm] = React.useState("");
+  const [searchResults, setSearchResults] = React.useState("");
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+  }*/ const onLogOut = ()=>{
         props.logOut();
         history.push("/");
     };
     return(/*#__PURE__*/ _reactDefault.default.createElement(_containerDefault.default, {
-        className: "justify-content-end",
+        className: "m-0 p-0 ",
         __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\Menu.js",
-            lineNumber: 25
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 29
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar, {
         bg: "dark",
         variant: "dark",
         __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\Menu.js",
-            lineNumber: 26
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 30
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
         href: "#movies",
         __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\Menu.js",
-            lineNumber: 27
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 31
         },
         __self: this
     }, "HorrorTime"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav, {
         className: "mr-auto",
         __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\Menu.js",
-            lineNumber: 28
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 32
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
         to: "/",
         __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\Menu.js",
-            lineNumber: 29
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 33
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "dark",
         __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\Menu.js",
-            lineNumber: 30
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 34
         },
         __self: this
     }, "Movies")), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
         to: `/users/${user}`,
         __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\Menu.js",
-            lineNumber: 32
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 36
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "dark",
         __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\Menu.js",
-            lineNumber: 33
-        },
-        __self: this
-    }, "Account"))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form, {
-        style: {
-            margin: "auto"
-        },
-        inline: true,
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\Menu.js",
-            lineNumber: 36
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.FormControl, {
-        type: "text",
-        placeholder: "Search",
-        className: "mr-sm-2",
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\Menu.js",
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
             lineNumber: 37
         },
         __self: this
-    }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "outline-info",
+    }, "Account"))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Item, {
         __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\Menu.js",
-            lineNumber: 38
-        },
-        __self: this
-    }, "Search")), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Item, {
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\Menu.js",
-            lineNumber: 40
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 44
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "dark",
         onClick: onLogOut,
         __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\Menu.js",
-            lineNumber: 41
+            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
+            lineNumber: 45
         },
         __self: this
     }, "Logout")))));
@@ -47508,144 +47251,74 @@ $RefreshReg$(_c, "Menu");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","react-bootstrap/Container":"3Mt3t","./menu":"1esxd","react-bootstrap/esm/ThemeProvider":"6Pzum","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"1esxd":[function(require,module,exports) {
-var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-
-try {
+},{"react":"3b2NM","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","react-bootstrap/Container":"3Mt3t","./menu":"1esxd","react-bootstrap/esm/ThemeProvider":"6Pzum","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"6Pzum":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "useBootstrapPrefix", ()=>useBootstrapPrefix
+);
+parcelHelpers.export(exports, "createBootstrapComponent", ()=>createBootstrapComponent
+);
+parcelHelpers.export(exports, "ThemeConsumer", ()=>Consumer
+);
+var _extends = require("@babel/runtime/helpers/esm/extends");
+var _extendsDefault = parcelHelpers.interopDefault(_extends);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactBootstrap = require("react-bootstrap");
-var _reactRouterDom = require("react-router-dom");
-var _container = require("react-bootstrap/Container");
-var _containerDefault = parcelHelpers.interopDefault(_container);
-var _menu = require("./menu");
-var _themeProvider = require("react-bootstrap/esm/ThemeProvider");
-var _s = $RefreshSig$();
-function Menu(props) {
-    _s();
-    let { user  } = props;
-    const history = _reactRouterDom.useHistory();
-    const onLogOut = ()=>{
-        props.logOut();
-        history.push("/");
-    };
-    return(/*#__PURE__*/ _reactDefault.default.createElement(_containerDefault.default, {
-        className: "justify-content-end",
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
-            lineNumber: 25
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar, {
-        bg: "dark",
-        variant: "dark",
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
-            lineNumber: 26
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-        href: "#movies",
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
-            lineNumber: 27
-        },
-        __self: this
-    }, "HorrorTime"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav, {
-        className: "mr-auto",
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
-            lineNumber: 28
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
-        to: "/",
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
-            lineNumber: 29
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "dark",
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
-            lineNumber: 30
-        },
-        __self: this
-    }, "Movies")), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
-        to: `/users/${user}`,
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
-            lineNumber: 32
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "dark",
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
-            lineNumber: 33
-        },
-        __self: this
-    }, "Account"))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form, {
-        style: {
-            margin: "auto"
-        },
-        inline: true,
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
-            lineNumber: 36
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.FormControl, {
-        type: "text",
-        placeholder: "Search",
-        className: "mr-sm-2",
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
-            lineNumber: 37
-        },
-        __self: this
-    }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "outline-info",
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
-            lineNumber: 38
-        },
-        __self: this
-    }, "Search")), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Item, {
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
-            lineNumber: 40
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "dark",
-        onClick: onLogOut,
-        __source: {
-            fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\menu\\menu.js",
-            lineNumber: 41
-        },
-        __self: this
-    }, "Logout")))));
-}
-exports.default = Menu;
-_s(_menu.Menu, "9cZfZ04734qoCGIctmKX7+sX6eU=", false, function() {
-    return [_reactRouterDom.useHistory];
+var ThemeContext = /*#__PURE__*/ _reactDefault.default.createContext({
 });
-_c = _menu.Menu;
-var _c;
-$RefreshReg$(_c, "Menu");
-
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
+var Consumer = ThemeContext.Consumer, Provider = ThemeContext.Provider;
+function ThemeProvider(_ref) {
+    var prefixes = _ref.prefixes, children = _ref.children;
+    var copiedPrefixes = _react.useMemo(function() {
+        return _extendsDefault.default({
+        }, prefixes);
+    }, [
+        prefixes
+    ]);
+    return(/*#__PURE__*/ _reactDefault.default.createElement(Provider, {
+        value: copiedPrefixes
+    }, children));
 }
-},{"react":"3b2NM","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","react-bootstrap/Container":"3Mt3t","./menu":"1esxd","react-bootstrap/esm/ThemeProvider":"6Pzum","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"6ih7B":[function() {},{}]},["1j6wU","5gZXG","1UOLp"], "1UOLp", "parcelRequireeb1c")
+function useBootstrapPrefix(prefix, defaultPrefix) {
+    var prefixes = _react.useContext(ThemeContext);
+    return prefix || prefixes[defaultPrefix] || defaultPrefix;
+}
+function createBootstrapComponent(Component, opts) {
+    if (typeof opts === 'string') opts = {
+        prefix: opts
+    };
+    var isClassy = Component.prototype && Component.prototype.isReactComponent; // If it's a functional component make sure we don't break it with a ref
+    var _opts = opts, prefix = _opts.prefix, _opts$forwardRefAs = _opts.forwardRefAs, forwardRefAs = _opts$forwardRefAs === void 0 ? isClassy ? 'ref' : 'innerRef' : _opts$forwardRefAs;
+    var Wrapped = /*#__PURE__*/ _reactDefault.default.forwardRef(function(_ref2, ref) {
+        var props = _extendsDefault.default({
+        }, _ref2);
+        props[forwardRefAs] = ref;
+        var bsPrefix = useBootstrapPrefix(props.bsPrefix, prefix);
+        return(/*#__PURE__*/ _reactDefault.default.createElement(Component, _extendsDefault.default({
+        }, props, {
+            bsPrefix: bsPrefix
+        })));
+    });
+    Wrapped.displayName = "Bootstrap(" + (Component.displayName || Component.name) + ")";
+    return Wrapped;
+}
+exports.default = ThemeProvider;
+
+},{"@babel/runtime/helpers/esm/extends":"5qnVv","react":"3b2NM","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi"}],"5qnVv":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function _extends() {
+    _extends = Object.assign || function(target) {
+        for(var i = 1; i < arguments.length; i++){
+            var source = arguments[i];
+            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
+        }
+        return target;
+    };
+    return _extends.apply(this, arguments);
+}
+exports.default = _extends;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi"}],"6ih7B":[function() {},{}]},["1j6wU","5gZXG","1UOLp"], "1UOLp", "parcelRequireeb1c")
 
 //# sourceMappingURL=index.256d6946.js.map

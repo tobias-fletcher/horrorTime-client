@@ -1,10 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Helmet from "react-helmet";
 import './genre-view.scss';
@@ -27,7 +23,7 @@ export class GenreView extends React.Component {
             <Card.Text>{genre.Description}</Card.Text>
           </Card.Body>
           <Card.Footer>
-            <Button onClick={() => history.back()}>Back</Button>
+            <Button variant="dark" onClick={() => history.back()}>Back</Button>
           </Card.Footer>
         </Card>
       </div>
