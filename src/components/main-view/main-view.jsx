@@ -8,7 +8,7 @@ import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { ProfileView } from '../profile-view/profile-view';
 import MoviesList from '../movies-list/movies-list';
-
+import { Config } from '../../config';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 import Menu from '../menu/menu';
@@ -73,7 +73,7 @@ class MainView extends React.Component {
     this.setState({
       user: null
     });
-    window.open('/', '_self');
+    //window.open('/', '_self');
   }
 
   getMovies(token) {
@@ -119,13 +119,11 @@ class MainView extends React.Component {
     this.setState({
       update
     });
-    console.log(update)
   }
 
   render() {
     let { movies } = this.props;
     const { user, token, userInfo } = this.state;
-    console.log(movies);
 
     return (
 

@@ -24780,7 +24780,6 @@ var _directorView = require("../director-view/director-view");
 var _profileView = require("../profile-view/profile-view");
 var _moviesList = require("../movies-list/movies-list");
 var _moviesListDefault = parcelHelpers.interopDefault(_moviesList);
-var _config = require("../../config");
 var _reactRouterDom = require("react-router-dom");
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
@@ -25057,7 +25056,7 @@ exports.default = _reactRedux.connect(mapStateToProps, {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","axios":"7rA65","../registration-view/registration-view":"1QIs8","../login-view/login-view":"5pnAF","../movie-view/movie-view":"4vll5","../genre-view/genre-view":"44u5W","../director-view/director-view":"6fg8h","../profile-view/profile-view":"5hFqi","../movies-list/movies-list":"1Uql0","react-router-dom":"1PMSK","react-bootstrap/Col":"2D0r8","../menu/menu":"1esxd","react-redux":"7GDa4","../../actions/actions":"5S6cN","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","../../config":"5yJJr"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","../registration-view/registration-view":"1QIs8","../login-view/login-view":"5pnAF","../movie-view/movie-view":"4vll5","../genre-view/genre-view":"44u5W","../director-view/director-view":"6fg8h","../profile-view/profile-view":"5hFqi","../movies-list/movies-list":"1Uql0","react-router-dom":"1PMSK","react-bootstrap/Col":"2D0r8","../menu/menu":"1esxd","react-redux":"7GDa4","../../actions/actions":"5S6cN","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
@@ -47345,14 +47344,6 @@ function _extends() {
 }
 exports.default = _extends;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi"}],"5yJJr":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const Config = {
-    API_URL: "https://itshorrortime.herokuapp.com"
-};
-exports.default = Config;
-
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi"}],"6ih7B":[function() {},{}]},["1j6wU","5gZXG","1UOLp"], "1UOLp", "parcelRequireeb1c")
 
-//# sourceMappingURL=index.256d6946.js.map
+//# sourceMappingURL=index.HASH_REF_b8adcb2a42056b9295fe5849256d6946.js.map

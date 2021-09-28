@@ -105,23 +105,17 @@ export class ProfileView extends React.Component {
         }
       })
       .then((response) => {
-        console.log(response);
         const data = response.data;
         localStorage.setItem("user", data.Username);
-        console.log(data);
         window.open(`/users/${data.Username}`);
       }).catch((e) => {
         console.log(e.toJSON());
         console.log(e.response.data);
-
       });
 
   }
 
   deleteFav(movie, user, token, userInfo) {
-    console.log(movie);
-    console.log(token);
-
     axios.delete(`https://itshorrortime.herokuapp.com/users/${user}/movies/${movie}`,
       {
         headers: {
@@ -130,7 +124,6 @@ export class ProfileView extends React.Component {
         }
       }
     ).then((response) => {
-      console.log(response);
       const data = response.data;
       let FavoriteMovies = [...this.state.FavoriteMovies];
       FavoriteMovies.splice(
