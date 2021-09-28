@@ -1,4 +1,4 @@
-5678
+5686
 68C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\fastq132671251994947973 1
 86C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-redux\es\index.js121436361000000000 0
 99C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\_createRelationalOperation.js121436361000000000 0
@@ -39,7 +39,7 @@
 81C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\redux\lib\redux.js121436361000000000 0
 53C:\Users\tobia\Documents\GitHub\horrorTime-client\src132671251015568644 1
 90C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-bootstrap\ToastHeader132671251990437973 1
-54C:\Users\tobia\Documents\GitHub\horrorTime-client\dist132685965220169555 1
+54C:\Users\tobia\Documents\GitHub\horrorTime-client\dist132772676244486514 1
 76C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-dom\cjs132671251987637973 1
 86C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\moment\src\locale\sd.js121436361000000000 0
 97C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-bootstrap\cjs\NavbarBrand.js121436361000000000 0
@@ -58,14 +58,14 @@
 85C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\path-type\package.json132671251993597974 0
 59C:\Users\tobia\Documents\GitHub\horrorTime-client\yarn.lock132671251015578629 0
 64C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components132671693331343378 1
-77C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.abce8ba0.css.map132685965219767140 0
+77C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.abce8ba0.css.map132772676243169234 0
 77C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\profile-view132671251015558627 1
 85C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash-es\_castRest.js121436361000000000 0
 101C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-side-effect\lib\index.umd.min.js121436361000000000 0
 64C:\Users\tobia\Documents\GitHub\horrorTime-client\src\index.html132671250901263725 0
 79C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\moment\README.md121436361000000000 0
 80C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\fp\take.js121436361000000000 0
-90C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\movie-card\movie-card.jsx132681981101644153 0
+90C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\movie-card\movie-card.jsx132685966191809771 0
 93C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-bootstrap\cjs\Table.d.ts121436361000000000 0
 91C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\fp\sortedLastIndex.js121436361000000000 0
 101C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@types\hoist-non-react-statics\LICENSE131988769420000000 0
@@ -152,7 +152,7 @@
 91C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\movie-view\movie-view.scss132681937868152640 0
 85C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash-es\kebabCase.js121436361000000000 0
 88C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\_listCacheClear.js121436361000000000 0
-88C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\main-view\main-view.jsx132681980857507543 0
+88C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\main-view\main-view.jsx132772676238922562 0
 69C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@types132671251992107981 1
 99C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-bootstrap\Tooltip\package.json121436361000000000 0
 98C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@restart\hooks\cjs\useUpdatedRef.js121436361000000000 0
@@ -213,17 +213,17 @@
 86C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\_baseProperty.js121436361000000000 0
 103C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@nodelib\fs.stat\src\adapters\fs.spec.ts121436361000000000 0
 104C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-bootstrap\esm\AccordionContext.d.ts121436361000000000 0
-77C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\menu\menu.js132685965050698419 0
+77C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\menu\menu.js132772656118647373 0
 89C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\main-view\main-view.scss132673178061208475 0
 99C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-overlays\cjs\useRootClose.d.ts121436361000000000 0
 106C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\mini-create-react-context\dist\cjs\index.js121436361000000000 0
 114C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@restart\hooks\useIntersectionObserver\package.json121436361000000000 0
 75C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\run-parallel132671251994937971 1
-90C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\login-view\login-view.jsx132681980686640882 0
+90C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\login-view\login-view.jsx132691370367494912 0
 98C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-overlays\Overlay\package.json121436361000000000 0
 81C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\_baseSet.js121436361000000000 0
 77C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-redux\es132671660385188110 1
-91C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\login-view\login-view.scss132671250901213661 0
+91C:\Users\tobia\Documents\GitHub\horrorTime-client\src\components\login-view\login-view.scss132685976394164563 0
 88C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-side-effect\LICENSE121436361000000000 0
 92C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\moment\src\lib\utils\hooks.js121436361000000000 0
 86C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\fp\spreadFrom.js121436361000000000 0
@@ -850,6 +850,7 @@
 92C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\dom-helpers\esm\contains.d.ts121436361000000000 0
 100C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\tiny-invariant\dist\tiny-invariant.js121436361000000000 0
 85C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\fp\cloneDeep.js121436361000000000 0
+76C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.6d9b37eb.js.map132745748564736777 0
 82C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\moment\locale\dv.js121436361000000000 0
 99C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-router\umd\react-router.min.js121436361000000000 0
 87C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\react-bootstrap\Carousel132671251989117969 1
@@ -3724,6 +3725,7 @@
 83C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash-es\toUpper.js121436361000000000 0
 90C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@parcel\plugin\package.json132671251993487986 0
 83C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash-es\trimEnd.js121436361000000000 0
+68C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.css.map132772663914927617 0
 85C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash-es\trimStart.js121436361000000000 0
 86C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\_createHybrid.js121436361000000000 0
 81C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\fp\first.js121436361000000000 0
@@ -4204,6 +4206,7 @@
 78C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\times.js121436361000000000 0
 80C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\toArray.js121436361000000000 0
 79C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\fastq\index.d.ts121436361000000000 0
+63C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.js132772663914947162 0
 82C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\toInteger.js121436361000000000 0
 83C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\toIterator.js121436361000000000 0
 80C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\toLower.js121436361000000000 0
@@ -4396,7 +4399,7 @@
 83C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\_lazyValue.js121436361000000000 0
 106C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@popperjs\core\lib\modifiers\applyStyles.js121436361000000000 0
 89C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\_listCacheDelete.js121436361000000000 0
-73C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.abce8ba0.css132685965219705721 0
+73C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.abce8ba0.css132772676243006504 0
 111C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@popperjs\core\lib\utils\mergePaddingObject.d.ts121436361000000000 0
 86C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\_listCacheGet.js121436361000000000 0
 84C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\lodash\_mapToArray.js121436361000000000 0
@@ -5008,7 +5011,7 @@
 121C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@popperjs\core\lib\dom-utils\getBoundingClientRect.js.flow121436361000000000 0
 77C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\axios\index.js121436361000000000 0
 85C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\axios\UPGRADE_GUIDE.md121436361000000000 0
-72C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.256d6946.js132685965219869981 0
+72C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.256d6946.js132772676243604442 0
 81C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\axios\lib\adapters132671251985477976 1
 81C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\axios\lib\axios.js121436361000000000 0
 79C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\axios\lib\cancel132671251984817982 1
@@ -5459,6 +5462,7 @@
 106C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@nodelib\fs.walk\out\settings.spec.d.ts.map121436361000000000 0
 89C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@nodelib\fs.walk\out\tests132671251985917985 1
 89C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@nodelib\fs.walk\out\types132671251986577977 1
+72C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.6d9b37eb.js132745748564287875 0
 98C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@nodelib\fs.walk\out\types\index.js121436361000000000 0
 107C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@babel\runtime\helpers\wrapAsyncGenerator.js121012626000000000 0
 104C:\Users\tobia\Documents\GitHub\horrorTime-client\node_modules\@nodelib\fs.walk\out\tests\index.d.ts.map121436361000000000 0
@@ -5666,14 +5670,18 @@
 72C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.02675e63.js132671250900953656 0
 76C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.02675e63.js.map132671250900973658 0
 73C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.17951e9a.css132671250900973658 0
-76C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.256d6946.js.map132685965220159539 0
+73C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.199b0eea.css132745748563692304 0
+77C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.199b0eea.css.map132745748563873950 0
+76C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.256d6946.js.map132772676244440947 0
 73C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.46d3c6ce.css132671250900983660 0
 73C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.778c89a2.css132671250900983660 0
 73C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.b92007f6.css132671251015498629 0
 77C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.b92007f6.css.map132671251015498629 0
 77C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.cb3331c5.css.map132671250901003659 0
+64C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.css132772663914877631 0
 73C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.d22b8a02.css132671250901003659 0
 77C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.d22b8a02.css.map132671250901003659 0
 72C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.e42acf8a.js132671250901073662 0
 76C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.e42acf8a.js.map132671250901093657 0
-65C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.html132685965219705721 0
+65C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.html132772676242990178 0
+67C:\Users\tobia\Documents\GitHub\horrorTime-client\dist\index.js.map132772663915137616 0

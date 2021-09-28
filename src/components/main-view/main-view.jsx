@@ -133,7 +133,7 @@ class MainView extends React.Component {
         <Router>
 
 
-          <Menu style={{ width: "100%", margin: "0" }} user={user} logOut={this.onLoggedOut} />
+          {user && <Menu style={{ width: "100%", margin: "0" }} user={user} logOut={this.onLoggedOut} />}
           <br />
 
           <div className="main-view ">

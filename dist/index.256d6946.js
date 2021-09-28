@@ -24888,7 +24888,7 @@ class MainView extends _reactDefault.default.Component {
                 lineNumber: 133
             },
             __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_menuDefault.default, {
+        }, user && /*#__PURE__*/ _reactDefault.default.createElement(_menuDefault.default, {
             style: {
                 width: "100%",
                 margin: "0"
@@ -25058,7 +25058,7 @@ exports.default = _reactRedux.connect(mapStateToProps, {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","axios":"7rA65","../registration-view/registration-view":"1QIs8","../login-view/login-view":"5pnAF","../movie-view/movie-view":"4vll5","../genre-view/genre-view":"44u5W","../director-view/director-view":"6fg8h","../profile-view/profile-view":"5hFqi","../movies-list/movies-list":"1Uql0","react-router-dom":"1PMSK","react-bootstrap/Col":"2D0r8","react-redux":"7GDa4","../../actions/actions":"5S6cN","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","../menu/menu":"1esxd"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","../registration-view/registration-view":"1QIs8","../login-view/login-view":"5pnAF","../movie-view/movie-view":"4vll5","../genre-view/genre-view":"44u5W","../director-view/director-view":"6fg8h","../profile-view/profile-view":"5hFqi","../movies-list/movies-list":"1Uql0","react-router-dom":"1PMSK","react-bootstrap/Col":"2D0r8","../menu/menu":"1esxd","react-redux":"7GDa4","../../actions/actions":"5S6cN","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
@@ -31626,7 +31626,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","axios":"7rA65","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Container":"3Mt3t","react-helmet":"71Wec","./login-view.scss":"3jfzV","react-router-dom":"1PMSK","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","react-bootstrap/Row":"3fzwD"}],"3jfzV":[function() {},{}],"4vll5":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Container":"3Mt3t","react-bootstrap/Row":"3fzwD","react-helmet":"71Wec","./login-view.scss":"3jfzV","react-router-dom":"1PMSK","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"3jfzV":[function() {},{}],"4vll5":[function(require,module,exports) {
 var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -31810,7 +31810,7 @@ MovieView.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-bootstrap/CardGroup":"1B9U7","react-bootstrap/Row":"3fzwD","react-helmet":"71Wec","react-router-dom":"1PMSK","react-bootstrap/Col":"2D0r8","react-bootstrap/Container":"3Mt3t","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"1CZWQ":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","react-bootstrap/CardGroup":"1B9U7","react-bootstrap/Row":"3fzwD","react-helmet":"71Wec","react-bootstrap/Col":"2D0r8","react-router-dom":"1PMSK","react-bootstrap/Container":"3Mt3t","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"1CZWQ":[function(require,module,exports) {
 "use strict";
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 exports.__esModule = true;
@@ -32731,7 +32731,7 @@ exports.default = ProfileView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","axios":"7rA65","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-helmet":"71Wec","react-bootstrap/Row":"3fzwD","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-bootstrap/Container":"3Mt3t","react-bootstrap/Col":"2D0r8","./profile-view.scss":"26JE8","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF","moment":"5Hi32"}],"4n7hB":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-helmet":"71Wec","react-bootstrap/Row":"3fzwD","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-bootstrap/Container":"3Mt3t","moment":"5Hi32","react-bootstrap/Col":"2D0r8","./profile-view.scss":"26JE8","@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi","../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7belF"}],"4n7hB":[function(require,module,exports) {
 "use strict";
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 exports.__esModule = true;
@@ -43148,7 +43148,7 @@ var _default = Tooltip;
 exports.default = _default;
 module.exports = exports["default"];
 
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","prop-types-extra/lib/isRequiredForA11y":"4XrEc","./ThemeProvider":"4rz1S"}],"26JE8":[function() {},{}],"5Hi32":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","prop-types-extra/lib/isRequiredForA11y":"4XrEc","./ThemeProvider":"4rz1S"}],"5Hi32":[function(require,module,exports) {
 (function(global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.moment = factory();
 })(this, function() {
@@ -46870,7 +46870,7 @@ module.exports = exports["default"];
     return hooks;
 });
 
-},{}],"1Uql0":[function(require,module,exports) {
+},{}],"26JE8":[function() {},{}],"1Uql0":[function(require,module,exports) {
 var helpers = require("../../../../../../AppData/Roaming/npm/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
