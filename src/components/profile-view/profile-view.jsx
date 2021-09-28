@@ -17,12 +17,15 @@ export class ProfileView extends React.Component {
 
   constructor() {
     super();
-    this.state = { Username: '' }
-    this.state = { Password: '' }
-    this.state = { Email: '' }
-    this.state = { Birthday: '' }
-    this.state = { FavoriteMovies: [] }
-    this.state = { FavMovies: [] }
+    this.state = {
+      Username: '',
+      Password: '',
+      Email: '',
+      Birthday: '',
+      FavoriteMovies: [],
+      FavMovies: []
+    }
+
   }
 
   componentDidMount() {
@@ -86,12 +89,6 @@ export class ProfileView extends React.Component {
   }
 
   handleUpdate(user, token, e) {
-    console.log('you are in handleUpdate');
-    console.log(this.state.Username);
-    console.log(this.state.Password);
-
-    console.log(e.target.username.value);
-
     e.preventDefault();
 
     axios.put(`https://itshorrortime.herokuapp.com/users/${user} `,
@@ -135,10 +132,13 @@ export class ProfileView extends React.Component {
     ).then((response) => {
       console.log(response);
       const data = response.data;
+      let FavoriteMovies = [...this.state.FavoriteMovies];
+      FavoriteMovies.splice(
+        FavoriteMovies.indexOf(movie), 1)
       this.setState({
-        FavMovies: response.data
+        FavoriteMovies
       });
-      window.location.reload();
+      //window.location.reload();
 
     })
   }
@@ -147,7 +147,7 @@ export class ProfileView extends React.Component {
 
     const { user, token, movies, userInfo } = this.props;
     const FavMovies = movies.filter((movie) => {
-      return userInfo.FavoriteMovies.includes(movie._id);
+      return this.state.FavoriteMovies.includes(movie._id);
     });
     const BirthDate = moment(this.state.Birthday);
     console.log(BirthDate);

@@ -32250,11 +32250,21 @@ class ProfileView extends _reactDefault.default.Component {
     constructor(){
         super();
         this.state = {
-            Username: '',
-            Password: '',
-            Email: '',
-            Birthday: '',
-            FavoriteMovies: [],
+            Username: ''
+        };
+        this.state = {
+            Password: ''
+        };
+        this.state = {
+            Email: ''
+        };
+        this.state = {
+            Birthday: ''
+        };
+        this.state = {
+            FavoriteMovies: []
+        };
+        this.state = {
             FavMovies: []
         };
     }
@@ -32311,6 +32321,10 @@ class ProfileView extends _reactDefault.default.Component {
         });
     }
     handleUpdate(user, token, e) {
+        console.log('you are in handleUpdate');
+        console.log(this.state.Username);
+        console.log(this.state.Password);
+        console.log(e.target.username.value);
         e.preventDefault();
         _axiosDefault.default.put(`https://itshorrortime.herokuapp.com/users/${user} `, {
             Username: e.target.username.value,
@@ -32344,20 +32358,16 @@ class ProfileView extends _reactDefault.default.Component {
         }).then((response)=>{
             console.log(response);
             const data = response.data;
-            let FavoriteMovies = [
-                ...this.state.FavoriteMovies
-            ];
-            FavoriteMovies.splice(FavoriteMovies.indexOf(movie), 1);
             this.setState({
-                FavoriteMovies
+                FavMovies: response.data
             });
-        //window.location.reload();
+            window.location.reload();
         });
     }
     render() {
         const { user , token , movies , userInfo  } = this.props;
         const FavMovies = movies.filter((movie)=>{
-            return this.state.FavoriteMovies.includes(movie._id);
+            return userInfo.FavoriteMovies.includes(movie._id);
         });
         const BirthDate = _momentDefault.default(this.state.Birthday);
         console.log(BirthDate);
@@ -46893,7 +46903,7 @@ function MoviesList(props) {
         className: "main-view",
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movies-list\\movies-list.jsx",
-            lineNumber: 21
+            lineNumber: 22
         },
         __self: this
     }));
@@ -46901,20 +46911,20 @@ function MoviesList(props) {
         className: "movies-list my-3",
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movies-list\\movies-list.jsx",
-            lineNumber: 23
+            lineNumber: 24
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movies-list\\movies-list.jsx",
-            lineNumber: 24
+            lineNumber: 25
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_visibilityFilterInputDefault.default, {
         visibilityFilter: visibilityFilter,
         __source: {
             fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movies-list\\movies-list.jsx",
-            lineNumber: 25
+            lineNumber: 26
         },
         __self: this
     }), filteredMovies.map((m)=>/*#__PURE__*/ _reactDefault.default.createElement(_movieCard.MovieCard, {
@@ -46922,7 +46932,7 @@ function MoviesList(props) {
             movie: m,
             __source: {
                 fileName: "C:\\Users\\tobia\\Documents\\GitHub\\horrorTime-client\\src\\components\\movies-list\\movies-list.jsx",
-                lineNumber: 26
+                lineNumber: 27
             },
             __self: this
         })
@@ -47353,4 +47363,4 @@ exports.default = _extends;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"6BsJi"}],"6ih7B":[function() {},{}]},["1j6wU","5gZXG","1UOLp"], "1UOLp", "parcelRequireeb1c")
 
-//# sourceMappingURL=index.256d6946.js.map
+//# sourceMappingURL=index.HASH_REF_b8adcb2a42056b9295fe5849256d6946.js.map
