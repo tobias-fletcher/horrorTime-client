@@ -1,4 +1,0 @@
-import   "4cd41def393241cb3dfe7217e5fb9cc5:react";
-var $4cd41def393241cb3dfe7217e5fb9cc5$var$context = /*#__PURE__*/ $4cd41def393241cb3dfe7217e5fb9cc5$import$f02ba03fc070e88c$9099ad97b570f7c.createContext(null);
-$4cd41def393241cb3dfe7217e5fb9cc5$var$context.displayName = 'AccordionContext';
-var $4cd41def393241cb3dfe7217e5fb9cc5$export$9099ad97b570f7c = $4cd41def393241cb3dfe7217e5fb9cc5$var$context;
