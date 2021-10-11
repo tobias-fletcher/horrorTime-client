@@ -1,0 +1,32 @@
+import   "c29df614d29d51422ceeb42c59fe766e:@babel/runtime/helpers/esm/extends";
+import   "c29df614d29d51422ceeb42c59fe766e:@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
+import   "c29df614d29d51422ceeb42c59fe766e:react";
+import   "c29df614d29d51422ceeb42c59fe766e:./SelectableContext";
+import   "c29df614d29d51422ceeb42c59fe766e:./AccordionContext";
+function $c29df614d29d51422ceeb42c59fe766e$export$801f63c5b19cdd87(eventKey, onClick) {
+    var contextEventKey = $c29df614d29d51422ceeb42c59fe766e$import$f02ba03fc070e88c$d532f802c57568ca($c29df614d29d51422ceeb42c59fe766e$import$973712510fae43b9$9099ad97b570f7c);
+    var onSelect = $c29df614d29d51422ceeb42c59fe766e$import$f02ba03fc070e88c$d532f802c57568ca($c29df614d29d51422ceeb42c59fe766e$import$4659efbd9c13b15a$9099ad97b570f7c);
+    return function(e) {
+        /*
+      Compare the event key in context with the given event key.
+      If they are the same, then collapse the component.
+    */ var eventKeyPassed = eventKey === contextEventKey ? null : eventKey;
+        if (onSelect) onSelect(eventKeyPassed, e);
+        if (onClick) onClick(e);
+    };
+}
+var $c29df614d29d51422ceeb42c59fe766e$var$AccordionToggle = /*#__PURE__*/ $c29df614d29d51422ceeb42c59fe766e$import$f02ba03fc070e88c$9099ad97b570f7c.forwardRef(function(_ref, ref) {
+    var _ref$as = _ref.as, Component = _ref$as === void 0 ? 'button' : _ref$as, children = _ref.children, eventKey = _ref.eventKey, onClick = _ref.onClick, props = $c29df614d29d51422ceeb42c59fe766e$import$555fcbd5081a286a$9099ad97b570f7c(_ref, [
+        "as",
+        "children",
+        "eventKey",
+        "onClick"
+    ]);
+    var accordionOnClick = $c29df614d29d51422ceeb42c59fe766e$export$801f63c5b19cdd87(eventKey, onClick);
+    if (Component === 'button') props.type = 'button';
+    return(/*#__PURE__*/ $c29df614d29d51422ceeb42c59fe766e$import$f02ba03fc070e88c$9099ad97b570f7c.createElement(Component, $c29df614d29d51422ceeb42c59fe766e$import$b5eba6ed2ba96e9b$9099ad97b570f7c({
+        ref: ref,
+        onClick: accordionOnClick
+    }, props), children));
+});
+var $c29df614d29d51422ceeb42c59fe766e$export$9099ad97b570f7c = $c29df614d29d51422ceeb42c59fe766e$var$AccordionToggle;

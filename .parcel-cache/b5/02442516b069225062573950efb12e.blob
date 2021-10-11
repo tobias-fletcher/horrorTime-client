@@ -1,0 +1,36 @@
+import   "ab364e32f6f0b0d73bd033222e95b217:react";
+import   "ab364e32f6f0b0d73bd033222e95b217:prop-types";
+import   "ab364e32f6f0b0d73bd033222e95b217:react-bootstrap/Button";
+import   "ab364e32f6f0b0d73bd033222e95b217:react-bootstrap/Card";
+import   "ab364e32f6f0b0d73bd033222e95b217:react-helmet";
+import   "ab364e32f6f0b0d73bd033222e95b217:./genre-view.scss";
+class $ab364e32f6f0b0d73bd033222e95b217$export$7ca4026d42a195d7 extends $ab364e32f6f0b0d73bd033222e95b217$import$f02ba03fc070e88c$9099ad97b570f7c.Component {
+    render() {
+        const { genre: genre , movies: movies  } = this.props;
+        return(/*#__PURE__*/ $ab364e32f6f0b0d73bd033222e95b217$import$f02ba03fc070e88c$9099ad97b570f7c.createElement("div", null, /*#__PURE__*/ $ab364e32f6f0b0d73bd033222e95b217$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($ab364e32f6f0b0d73bd033222e95b217$import$f550c88f5bd531dc$9099ad97b570f7c, {
+            bodyAttributes: {
+                style: 'background-color : black'
+            }
+        }), /*#__PURE__*/ $ab364e32f6f0b0d73bd033222e95b217$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($ab364e32f6f0b0d73bd033222e95b217$import$7167a86633e97921$9099ad97b570f7c, {
+            className: "bg-dark text-white mt-5 mx-4",
+            style: {
+                height: "24rem"
+            }
+        }, /*#__PURE__*/ $ab364e32f6f0b0d73bd033222e95b217$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($ab364e32f6f0b0d73bd033222e95b217$import$7167a86633e97921$9099ad97b570f7c.Body, {
+            className: "justify-content align-items"
+        }, /*#__PURE__*/ $ab364e32f6f0b0d73bd033222e95b217$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($ab364e32f6f0b0d73bd033222e95b217$import$7167a86633e97921$9099ad97b570f7c.Title, {
+            style: {
+                height: "3rem"
+            }
+        }, genre.Name), /*#__PURE__*/ $ab364e32f6f0b0d73bd033222e95b217$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($ab364e32f6f0b0d73bd033222e95b217$import$7167a86633e97921$9099ad97b570f7c.Text, null, genre.Description)), /*#__PURE__*/ $ab364e32f6f0b0d73bd033222e95b217$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($ab364e32f6f0b0d73bd033222e95b217$import$7167a86633e97921$9099ad97b570f7c.Footer, null, /*#__PURE__*/ $ab364e32f6f0b0d73bd033222e95b217$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($ab364e32f6f0b0d73bd033222e95b217$import$4f4877c85d888a51$9099ad97b570f7c, {
+            variant: "dark",
+            onClick: ()=>history.back()
+        }, "Back")))));
+    }
+}
+$ab364e32f6f0b0d73bd033222e95b217$export$7ca4026d42a195d7.propTypes = {
+    Genre: $ab364e32f6f0b0d73bd033222e95b217$import$67a8cc6ac06859d5$9099ad97b570f7c.shape({
+        Name: $ab364e32f6f0b0d73bd033222e95b217$import$67a8cc6ac06859d5$9099ad97b570f7c.string.isRequired,
+        Description: $ab364e32f6f0b0d73bd033222e95b217$import$67a8cc6ac06859d5$9099ad97b570f7c.string.isRequired
+    })
+};

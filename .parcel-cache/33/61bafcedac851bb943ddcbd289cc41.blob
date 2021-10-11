@@ -1,0 +1,4 @@
+const $6509d9e6689a0555de5d7e2535f8654f$var$Config = {
+    API_URL: "https://itshorrortime.herokuapp.com"
+};
+var $6509d9e6689a0555de5d7e2535f8654f$export$9099ad97b570f7c = $6509d9e6689a0555de5d7e2535f8654f$var$Config;

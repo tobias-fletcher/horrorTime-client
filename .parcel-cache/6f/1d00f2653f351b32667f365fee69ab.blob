@@ -1,0 +1,81 @@
+'use strict';
+function $a876d300bdf985762f9ffc57eee46788$var$_interopDefault(ex) {
+    return ex && typeof ex === 'object' && 'default' in ex ? ex['default'] : ex;
+}
+import   "a876d300bdf985762f9ffc57eee46788:react";
+var $a876d300bdf985762f9ffc57eee46788$var$React__default = $a876d300bdf985762f9ffc57eee46788$var$_interopDefault($a876d300bdf985762f9ffc57eee46788$import$f02ba03fc070e88c);
+function $a876d300bdf985762f9ffc57eee46788$var$_defineProperty(obj, key, value) {
+    if (key in obj) Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+    });
+    else obj[key] = value;
+    return obj;
+}
+function $a876d300bdf985762f9ffc57eee46788$var$_inheritsLoose(subClass, superClass) {
+    subClass.prototype = Object.create(superClass.prototype);
+    subClass.prototype.constructor = subClass;
+    subClass.__proto__ = superClass;
+}
+var $a876d300bdf985762f9ffc57eee46788$var$canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+function $a876d300bdf985762f9ffc57eee46788$var$withSideEffect(reducePropsToState, handleStateChangeOnClient, mapStateOnServer) {
+    if (typeof reducePropsToState !== 'function') throw new Error('Expected reducePropsToState to be a function.');
+    if (typeof handleStateChangeOnClient !== 'function') throw new Error('Expected handleStateChangeOnClient to be a function.');
+    if (typeof mapStateOnServer !== 'undefined' && typeof mapStateOnServer !== 'function') throw new Error('Expected mapStateOnServer to either be undefined or a function.');
+    function getDisplayName(WrappedComponent) {
+        return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+    }
+    return function wrap(WrappedComponent) {
+        if (typeof WrappedComponent !== 'function') throw new Error('Expected WrappedComponent to be a React component.');
+        var mountedInstances = [];
+        var state;
+        function emitChange() {
+            state = reducePropsToState(mountedInstances.map(function(instance) {
+                return instance.props;
+            }));
+            if (SideEffect1.canUseDOM) handleStateChangeOnClient(state);
+            else if (mapStateOnServer) state = mapStateOnServer(state);
+        }
+        var SideEffect1 = /*#__PURE__*/ function(_PureComponent) {
+            $a876d300bdf985762f9ffc57eee46788$var$_inheritsLoose(SideEffect2, _PureComponent);
+            function SideEffect2() {
+                return _PureComponent.apply(this, arguments) || this;
+            }
+            // Try to use displayName of wrapped component
+            // Expose canUseDOM so tests can monkeypatch it
+            SideEffect2.peek = function peek() {
+                return state;
+            };
+            SideEffect2.rewind = function rewind() {
+                if (SideEffect2.canUseDOM) throw new Error('You may only call rewind() on the server. Call peek() to read the current state.');
+                var recordedState = state;
+                state = undefined;
+                mountedInstances = [];
+                return recordedState;
+            };
+            var _proto = SideEffect2.prototype;
+            _proto.UNSAFE_componentWillMount = function UNSAFE_componentWillMount() {
+                mountedInstances.push(this);
+                emitChange();
+            };
+            _proto.componentDidUpdate = function componentDidUpdate() {
+                emitChange();
+            };
+            _proto.componentWillUnmount = function componentWillUnmount() {
+                var index = mountedInstances.indexOf(this);
+                mountedInstances.splice(index, 1);
+                emitChange();
+            };
+            _proto.render = function render() {
+                return(/*#__PURE__*/ $a876d300bdf985762f9ffc57eee46788$var$React__default.createElement(WrappedComponent, this.props));
+            };
+            return SideEffect2;
+        }($a876d300bdf985762f9ffc57eee46788$import$f02ba03fc070e88c.PureComponent);
+        $a876d300bdf985762f9ffc57eee46788$var$_defineProperty(SideEffect1, "displayName", "SideEffect(" + getDisplayName(WrappedComponent) + ")");
+        $a876d300bdf985762f9ffc57eee46788$var$_defineProperty(SideEffect1, "canUseDOM", $a876d300bdf985762f9ffc57eee46788$var$canUseDOM);
+        return SideEffect1;
+    };
+}
+$a876d300bdf985762f9ffc57eee46788$exports = $a876d300bdf985762f9ffc57eee46788$var$withSideEffect;

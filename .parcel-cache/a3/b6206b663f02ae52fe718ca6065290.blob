@@ -1,0 +1,121 @@
+import   "b224803f606cf88d6259040424b45468:react";
+import   "b224803f606cf88d6259040424b45468:axios";
+import   "b224803f606cf88d6259040424b45468:react-bootstrap/Form";
+import   "b224803f606cf88d6259040424b45468:react-bootstrap/Button";
+import   "b224803f606cf88d6259040424b45468:react-bootstrap/Container";
+import   "b224803f606cf88d6259040424b45468:react-helmet";
+import   "b224803f606cf88d6259040424b45468:react-bootstrap/Row";
+import   "b224803f606cf88d6259040424b45468:react-bootstrap/Col";
+import   "b224803f606cf88d6259040424b45468:react-router-dom";
+import   "b224803f606cf88d6259040424b45468:react-router-dom";
+function $b224803f606cf88d6259040424b45468$export$be145813352386bb(props) {
+    const [username, setUsername] = $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$f54936751fc2c51('');
+    const [password, setPassword] = $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$f54936751fc2c51('');
+    const [email, setEmail] = $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$f54936751fc2c51('');
+    const [birthday, setBirthday] = $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$f54936751fc2c51('');
+    const [validated, setValidated] = $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$f54936751fc2c51(false);
+    const history = $b224803f606cf88d6259040424b45468$import$46a3a2459f86404b$91086302b3863684();
+    const handleClick = ()=>{
+        history.push("/");
+    };
+    const handleSubmit = (e)=>{
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        e.preventDefault();
+        $b224803f606cf88d6259040424b45468$import$bed27987f94bc6dd$9099ad97b570f7c.post('https://itshorrortime.herokuapp.com/users', {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
+        }).then((response)=>{
+            const data = response.data;
+            // props.onRegister(data);
+            window.open('/', '_self');
+        }).catch((e1)=>{
+            console.log('Error Registering User');
+        });
+        setValidated(true);
+    };
+    return(/*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$b57f412d96bb23fc$9099ad97b570f7c, {
+        className: "container1 justify-content-center"
+    }, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$f550c88f5bd531dc$9099ad97b570f7c, {
+        bodyAttributes: {
+            style: 'background-color : black'
+        }
+    }), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$b57f412d96bb23fc$9099ad97b570f7c, {
+        className: "container2"
+    }, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Row, {
+        className: "justify-content-center mt-5"
+    }, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c, {
+        noValidate: true,
+        validated: validated,
+        onSubmit: handleSubmit
+    }, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Row, {
+        className: "justify-content-center"
+    }, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Group, {
+        as: $b224803f606cf88d6259040424b45468$import$cc38948d830542d3$9099ad97b570f7c,
+        controlId: "validationCustomUsername"
+    }, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Label, null, "Username:"), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Control, {
+        type: "text",
+        required: true,
+        minLength: "6",
+        maxLength: "12",
+        placeholder: "Enter Username",
+        onChange: (e)=>setUsername(e.target.value)
+    }), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Control.Feedback, {
+        type: "invalid"
+    }, "Please enter Username between 6 and 12 characters"))), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Row, {
+        className: "justify-content-center"
+    }, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Group, {
+        as: $b224803f606cf88d6259040424b45468$import$cc38948d830542d3$9099ad97b570f7c,
+        controlId: "validationCustomPassword"
+    }, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Label, null, "Password: "), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Control, {
+        type: "password",
+        required: true,
+        minLength: "6",
+        placeholder: "Alphanumeric (6-12 characters)",
+        onChange: (e)=>setPassword(e.target.value)
+    }), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Control.Feedback, {
+        type: "invalid"
+    }, "Please enter an alphanumeric password at least 6 characters long."))), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Row, {
+        className: "justify-content-center"
+    }, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Group, {
+        as: $b224803f606cf88d6259040424b45468$import$cc38948d830542d3$9099ad97b570f7c,
+        controlId: "customValidationEmail"
+    }, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Label, {
+        column: true,
+        sm: 2
+    }, "Email: "), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Control, {
+        type: "email",
+        required: true,
+        placeholder: "example@example.com",
+        onChange: (e)=>setEmail(e.target.value)
+    }), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Control.Feedback, {
+        type: "invalid"
+    }, "Please include @ in the email address"))), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Row, {
+        className: "justify-content-center"
+    }, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Group, {
+        as: $b224803f606cf88d6259040424b45468$import$cc38948d830542d3$9099ad97b570f7c,
+        controlId: "customValidationbirthday"
+    }, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Label, null, "Birthday: "), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Control, {
+        type: "date",
+        required: true,
+        onChange: (e)=>setBirthday(e.target.value)
+    }), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Control.Feedback, {
+        type: "invalid"
+    }, "Please enter your birthday"))), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$b57f412d96bb23fc$9099ad97b570f7c, null, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$c33866132872a26f$9099ad97b570f7c.Row, {
+        className: "justify-content-center mb-3"
+    }, /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$4f4877c85d888a51$9099ad97b570f7c, {
+        variant: "dark",
+        block: true,
+        type: "submit",
+        onClick: handleSubmit
+    }, " Submit"), /*#__PURE__*/ $b224803f606cf88d6259040424b45468$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b224803f606cf88d6259040424b45468$import$4f4877c85d888a51$9099ad97b570f7c, {
+        variant: "outline-dark",
+        block: true,
+        onClick: ()=>handleClick('/')
+    }, "Already have an account?"))))))));
+}

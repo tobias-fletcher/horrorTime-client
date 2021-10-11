@@ -1,0 +1,36 @@
+import   "cae32f46b09c9aca49e2da1aced0f8e8:@babel/runtime/helpers/esm/extends";
+import   "cae32f46b09c9aca49e2da1aced0f8e8:@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
+import   "cae32f46b09c9aca49e2da1aced0f8e8:classnames";
+import   "cae32f46b09c9aca49e2da1aced0f8e8:react";
+import   "cae32f46b09c9aca49e2da1aced0f8e8:uncontrollable";
+import   "cae32f46b09c9aca49e2da1aced0f8e8:./ThemeProvider";
+import   "cae32f46b09c9aca49e2da1aced0f8e8:./AccordionToggle";
+import   "cae32f46b09c9aca49e2da1aced0f8e8:./SelectableContext";
+import   "cae32f46b09c9aca49e2da1aced0f8e8:./AccordionCollapse";
+import   "cae32f46b09c9aca49e2da1aced0f8e8:./AccordionContext";
+var $cae32f46b09c9aca49e2da1aced0f8e8$var$Accordion = /*#__PURE__*/ $cae32f46b09c9aca49e2da1aced0f8e8$import$f02ba03fc070e88c$9099ad97b570f7c.forwardRef(function(props, ref) {
+    var _useUncontrolled = $cae32f46b09c9aca49e2da1aced0f8e8$import$54dc6d68fdbeb00d$8b522e502bfc74ab(props, {
+        activeKey: 'onSelect'
+    }), _useUncontrolled$as = _useUncontrolled.as, Component = _useUncontrolled$as === void 0 ? 'div' : _useUncontrolled$as, activeKey = _useUncontrolled.activeKey, bsPrefix = _useUncontrolled.bsPrefix, children = _useUncontrolled.children, className = _useUncontrolled.className, onSelect = _useUncontrolled.onSelect, controlledProps = $cae32f46b09c9aca49e2da1aced0f8e8$import$555fcbd5081a286a$9099ad97b570f7c(_useUncontrolled, [
+        "as",
+        "activeKey",
+        "bsPrefix",
+        "children",
+        "className",
+        "onSelect"
+    ]);
+    var finalClassName = $cae32f46b09c9aca49e2da1aced0f8e8$import$c7a3314ec092e1bf$9099ad97b570f7c(className, $cae32f46b09c9aca49e2da1aced0f8e8$import$1581226de02c9527$6efad33e744e1774(bsPrefix, 'accordion'));
+    return(/*#__PURE__*/ $cae32f46b09c9aca49e2da1aced0f8e8$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($cae32f46b09c9aca49e2da1aced0f8e8$import$973712510fae43b9$9099ad97b570f7c.Provider, {
+        value: activeKey || null
+    }, /*#__PURE__*/ $cae32f46b09c9aca49e2da1aced0f8e8$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($cae32f46b09c9aca49e2da1aced0f8e8$import$4659efbd9c13b15a$9099ad97b570f7c.Provider, {
+        value: onSelect || null
+    }, /*#__PURE__*/ $cae32f46b09c9aca49e2da1aced0f8e8$import$f02ba03fc070e88c$9099ad97b570f7c.createElement(Component, $cae32f46b09c9aca49e2da1aced0f8e8$import$b5eba6ed2ba96e9b$9099ad97b570f7c({
+        ref: ref
+    }, controlledProps, {
+        className: finalClassName
+    }), children))));
+});
+$cae32f46b09c9aca49e2da1aced0f8e8$var$Accordion.displayName = 'Accordion';
+$cae32f46b09c9aca49e2da1aced0f8e8$var$Accordion.Toggle = $cae32f46b09c9aca49e2da1aced0f8e8$import$da64c503c825bc2b$9099ad97b570f7c;
+$cae32f46b09c9aca49e2da1aced0f8e8$var$Accordion.Collapse = $cae32f46b09c9aca49e2da1aced0f8e8$import$7144690596eff9b0$9099ad97b570f7c;
+var $cae32f46b09c9aca49e2da1aced0f8e8$export$9099ad97b570f7c = $cae32f46b09c9aca49e2da1aced0f8e8$var$Accordion;

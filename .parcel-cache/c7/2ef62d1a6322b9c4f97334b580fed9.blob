@@ -1,0 +1,221 @@
+import   "b99182411b0c4385ef7cb9ad77bf0b83:react";
+import   "b99182411b0c4385ef7cb9ad77bf0b83:axios";
+import   "b99182411b0c4385ef7cb9ad77bf0b83:react-bootstrap/Form";
+import   "b99182411b0c4385ef7cb9ad77bf0b83:react-bootstrap/Button";
+import   "b99182411b0c4385ef7cb9ad77bf0b83:react-helmet";
+import   "b99182411b0c4385ef7cb9ad77bf0b83:react-bootstrap/Row";
+import   "b99182411b0c4385ef7cb9ad77bf0b83:prop-types";
+import   "b99182411b0c4385ef7cb9ad77bf0b83:react-bootstrap";
+import   "b99182411b0c4385ef7cb9ad77bf0b83:react-bootstrap";
+import   "b99182411b0c4385ef7cb9ad77bf0b83:react-bootstrap/Container";
+import   "b99182411b0c4385ef7cb9ad77bf0b83:moment";
+import   "b99182411b0c4385ef7cb9ad77bf0b83:react-bootstrap/Col";
+import   "b99182411b0c4385ef7cb9ad77bf0b83:./profile-view.scss";
+class $b99182411b0c4385ef7cb9ad77bf0b83$export$19171ea33e9e98aa extends $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.Component {
+    constructor(){
+        super();
+        this.state = {
+            Username: '',
+            Password: '',
+            Email: '',
+            Birthday: '',
+            FavoriteMovies: [],
+            FavMovies: []
+        };
+    }
+    componentDidMount() {
+        let accessToken = localStorage.getItem('token');
+        let userInfo = localStorage.getItem('user');
+        if (accessToken !== null) {
+            this.setState({
+                user: localStorage.getItem('user'),
+                token: localStorage.getItem('token')
+            });
+            this.getMovies(accessToken);
+            this.getUser(accessToken, userInfo);
+        }
+    }
+    getUser(token, user) {
+        $b99182411b0c4385ef7cb9ad77bf0b83$import$bed27987f94bc6dd$9099ad97b570f7c.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            console.log('Got account Info');
+            this.setState({
+                userInfo: response.data,
+                Username: response.data.Username,
+                Password: response.data.Password,
+                Email: response.data.Email,
+                Birthday: response.data.Birthday,
+                FavoriteMovies: response.data.FavoriteMovies
+            });
+        });
+    }
+    getMovies(token) {
+        $b99182411b0c4385ef7cb9ad77bf0b83$import$bed27987f94bc6dd$9099ad97b570f7c.get('https://itshorrortime.herokuapp.com/movies', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            this.setState({
+                movies: response.data
+            });
+            console.log('got movies');
+        });
+    }
+    handleDelete(user, token) {
+        $b99182411b0c4385ef7cb9ad77bf0b83$import$bed27987f94bc6dd$9099ad97b570f7c.delete(`https://itshorrortime.herokuapp.com/users/${user}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(()=>{
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            window.open('/', '_self');
+        });
+    }
+    handleUpdate(user, token, e) {
+        e.preventDefault();
+        $b99182411b0c4385ef7cb9ad77bf0b83$import$bed27987f94bc6dd$9099ad97b570f7c.put(`https://itshorrortime.herokuapp.com/users/${user} `, {
+            Username: e.target.username.value,
+            Password: e.target.password.value,
+            Email: e.target.email.value,
+            Birthday: e.target.birthday.value
+        }, {
+            headers: {
+                'Authorization': `Bearer ${token} `,
+                'Content-Type': 'application/json'
+            }
+        }).then((response)=>{
+            const data = response.data;
+            localStorage.setItem("user", data.Username);
+            window.open(`/users/${data.Username}`);
+        }).catch((e)=>{
+            console.log(e.toJSON());
+            console.log(e.response.data);
+        });
+    }
+    deleteFav(movie, user, token, userInfo) {
+        $b99182411b0c4385ef7cb9ad77bf0b83$import$bed27987f94bc6dd$9099ad97b570f7c.delete(`https://itshorrortime.herokuapp.com/users/${user}/movies/${movie}`, {
+            headers: {
+                'Authorization': `Bearer ${token} `,
+                'Content-Type': 'application/json'
+            }
+        }).then((response)=>{
+            const data = response.data;
+            let FavoriteMovies = [
+                ...this.state.FavoriteMovies
+            ];
+            FavoriteMovies.splice(FavoriteMovies.indexOf(movie), 1);
+            this.setState({
+                FavoriteMovies: FavoriteMovies
+            });
+        //window.location.reload();
+        });
+    }
+    render() {
+        const { user: user , token: token , movies: movies , userInfo: userInfo  } = this.props;
+        const FavMovies = movies.filter((movie)=>{
+            return this.state.FavoriteMovies.includes(movie._id);
+        });
+        const BirthDate = $b99182411b0c4385ef7cb9ad77bf0b83$import$137cea99ac96085$9099ad97b570f7c(this.state.Birthday);
+        console.log(BirthDate);
+        return(/*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.Fragment, null, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$f550c88f5bd531dc$9099ad97b570f7c, {
+            bodyAttributes: {
+                style: 'background-color : black'
+            }
+        }), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$b57f412d96bb23fc$9099ad97b570f7c, {
+            className: "align-items-center justify-content-md-center",
+            bsPrefix: "accountPage"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$cc38948d830542d3$9099ad97b570f7c, {
+            className: "d-flex"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$f6437e7de1c0263b$9099ad97b570f7c, {
+            className: "justify-content-md-center align-items-center mx-4 my-4"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement("h1", {
+            className: "align-items-center"
+        }, "Account Information"), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$34cdf0c8e3b348f8, {
+            className: "bg-dark justify-content-md-center align-items-center",
+            bsPrefix: "accountCard"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$34cdf0c8e3b348f8.Body, {
+            className: "align-items-center justify-content-center"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$cc38948d830542d3$9099ad97b570f7c, null, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$f6437e7de1c0263b$9099ad97b570f7c, null, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$34cdf0c8e3b348f8.Body, null, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$34cdf0c8e3b348f8.Text, null, "Username: "), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$34cdf0c8e3b348f8.Text, null, "Email: "), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$34cdf0c8e3b348f8.Text, null, "Birthday: ")), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$569fe326415aff92, {
+            defaultActiveKey: "1"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$569fe326415aff92.Toggle, {
+            className: "mb-4 mx-1",
+            as: $b99182411b0c4385ef7cb9ad77bf0b83$import$4f4877c85d888a51$9099ad97b570f7c,
+            variant: "dark",
+            eventKey: "0"
+        }, "Update Account"), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$569fe326415aff92.Collapse, {
+            eventKey: "0"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$c33866132872a26f$9099ad97b570f7c, {
+            onSubmit: (e)=>this.handleUpdate(user, token, e)
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$c33866132872a26f$9099ad97b570f7c.Row, {
+            className: "justify-content-center"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$c33866132872a26f$9099ad97b570f7c.Label, null, "Username:"), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$c33866132872a26f$9099ad97b570f7c.Control, {
+            type: "text",
+            required: true,
+            minLength: "6",
+            maxLength: "10",
+            placeholder: "Enter Username",
+            value: this.state.username,
+            id: "username"
+        })), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$c33866132872a26f$9099ad97b570f7c.Row, {
+            className: "justify-content-center"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$c33866132872a26f$9099ad97b570f7c.Label, null, "Password:"), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$c33866132872a26f$9099ad97b570f7c.Control, {
+            type: "text",
+            required: true,
+            minLength: "6",
+            maxLength: "10",
+            placeholder: "Enter Password",
+            id: "password",
+            value: this.state.password
+        })), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$c33866132872a26f$9099ad97b570f7c.Row, {
+            className: "justify-content-center"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$c33866132872a26f$9099ad97b570f7c.Label, null, "Email:"), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$c33866132872a26f$9099ad97b570f7c.Control, {
+            type: "text",
+            required: true,
+            placeholder: "Enter Email",
+            id: "email",
+            value: this.state.email
+        })), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$c33866132872a26f$9099ad97b570f7c.Row, {
+            className: "justify-content-center"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$c33866132872a26f$9099ad97b570f7c.Label, null, "Birthday: "), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$c33866132872a26f$9099ad97b570f7c.Control, {
+            type: "date",
+            required: true,
+            id: "birthday",
+            value: this.state.birthday
+        })), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$4f4877c85d888a51$9099ad97b570f7c, {
+            type: "submit",
+            variant: "dark",
+            block: true
+        }, "Submit"))))), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$f6437e7de1c0263b$9099ad97b570f7c, null, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$34cdf0c8e3b348f8.Body, null, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$34cdf0c8e3b348f8.Text, null, user), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$34cdf0c8e3b348f8.Text, null, " ", this.state.Email), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$34cdf0c8e3b348f8.Text, null, BirthDate.format('MMM-DD-YYYY'))), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$569fe326415aff92, {
+            defaultActiveKey: "1"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$569fe326415aff92.Toggle, {
+            as: $b99182411b0c4385ef7cb9ad77bf0b83$import$4f4877c85d888a51$9099ad97b570f7c,
+            variant: "dark",
+            eventKey: "0"
+        }, "Favorite Movies"), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$569fe326415aff92.Collapse, {
+            eventKey: "0"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$34cdf0c8e3b348f8.Body, null, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement("div", null, FavMovies.map((movie, index)=>/*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement("div", {
+                key: index
+            }, movie.Title, " ", /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$4f4877c85d888a51$9099ad97b570f7c, {
+                onClick: (e)=>this.deleteFav(movie._id, user, token, userInfo)
+                ,
+                variant: "dark",
+                block: true
+            }, "Delete"), " ")
+        ))))))))), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement("br", null), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement("br", null), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$34cdf0c8e3b348f8, {
+            bsPrefix: "accountDeletion"
+        }, /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$3bf355e273f5520b$34cdf0c8e3b348f8.Title, null, "Warning: Account Deletion below"), /*#__PURE__*/ $b99182411b0c4385ef7cb9ad77bf0b83$import$f02ba03fc070e88c$9099ad97b570f7c.createElement($b99182411b0c4385ef7cb9ad77bf0b83$import$4f4877c85d888a51$9099ad97b570f7c, {
+            block: true,
+            onClick: (e)=>this.handleDelete(user, token)
+            ,
+            variant: "dark"
+        }, "Delete My Account")))))));
+    }
+}
+$b99182411b0c4385ef7cb9ad77bf0b83$export$19171ea33e9e98aa.propTypes = {
+    movies: $b99182411b0c4385ef7cb9ad77bf0b83$import$67a8cc6ac06859d5$9099ad97b570f7c.array.isRequired
+};
+var $b99182411b0c4385ef7cb9ad77bf0b83$export$9099ad97b570f7c = $b99182411b0c4385ef7cb9ad77bf0b83$export$19171ea33e9e98aa;
