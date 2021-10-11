@@ -11,8 +11,6 @@ import { useBootstrapPrefix } from 'react-bootstrap/esm/ThemeProvider';
 export default function Menu(props) {
 
   let { user } = props;
-
-  console.log('hello');
   const history = useHistory();
   /*const [searchTerm, setSearchTerm] = React.useState("");
   const [searchResults, setSearchResults] = React.useState("");
