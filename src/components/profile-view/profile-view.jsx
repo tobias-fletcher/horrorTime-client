@@ -17,12 +17,13 @@ export class ProfileView extends React.Component {
 
   constructor() {
     super();
-    this.state = { Username: '' }
-    this.state = { Password: '' }
-    this.state = { Email: '' }
-    this.state = { Birthday: '' }
-    this.state = { FavoriteMovies: [] }
-    this.state = { FavMovies: [] }
+    this.state = {
+      Username: '',
+      Password: '',
+      Birthday: '',
+      FavoriteMovies: [],
+      FavMovies: []
+    }
   }
 
   componentDidMount() {
@@ -43,7 +44,7 @@ export class ProfileView extends React.Component {
   }
 
   getUser(token, user) {
-    axios.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
+    axios.get(`https://zealous-banach-c1d750.netlify.app/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -61,7 +62,7 @@ export class ProfileView extends React.Component {
   }
 
   getMovies(token) {
-    axios.get('https://itshorrortime.herokuapp.com/movies', {
+    axios.get('https://zealous-banach-c1d750.netlify.app/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -74,7 +75,7 @@ export class ProfileView extends React.Component {
 
 
   handleDelete(user, token) {
-    axios.delete(`https://itshorrortime.herokuapp.com/users/${user}`,
+    axios.delete(`https://zealous-banach-c1d750.netlify.app/${user}`,
       {
         headers: { Authorization: `Bearer ${token}` }
       }).then(() => {
@@ -94,7 +95,7 @@ export class ProfileView extends React.Component {
 
     e.preventDefault();
 
-    axios.put(`https://itshorrortime.herokuapp.com/users/${user} `,
+    axios.put(`https://zealous-banach-c1d750.netlify.app/${user} `,
       {
         Username: e.target.username.value,
         Password: e.target.password.value,
@@ -125,7 +126,7 @@ export class ProfileView extends React.Component {
     console.log(movie);
     console.log(token);
 
-    axios.delete(`https://itshorrortime.herokuapp.com/users/${user}/movies/${movie}`,
+    axios.delete(`https://zealous-banach-c1d750.netlify.app/users/${user}/movies/${movie}`,
       {
         headers: {
           'Authorization': `Bearer ${token} `,
