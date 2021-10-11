@@ -77,7 +77,7 @@ class MainView extends React.Component {
   }
 
   getMovies(token) {
-    axios.get('zealous-banach-c1d750.netlify.app/movies', {
+    axios.get('/itshorrortime.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -91,7 +91,7 @@ class MainView extends React.Component {
   }
 
   getUser(token, user) {
-    axios.get(`/zealous-banach-c1d750.netlify.app/users/${user}`, {
+    axios.get(`/itshorrortime.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {

@@ -26,7 +26,7 @@ export function LoginView(props) {
       e.stopPropagation();
     }
     e.preventDefault();
-    axios.post('/zealous-banach-c1d750.netlify.app/login', {
+    axios.post('/itshorrortime.herokuapp.com/login', {
       Username: username,
       Password: password
     }).then(response => {

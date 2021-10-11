@@ -31,7 +31,7 @@ export function RegistrationView(props) {
       e.stopPropagation();
     }
     e.preventDefault();
-    axios.post('/zealous-banach-c1d750.netlify.app/users', {
+    axios.post('https://itshorrortime.herokuapp.com/users', {
       Username: username,
       Password: password,
       Email: email,

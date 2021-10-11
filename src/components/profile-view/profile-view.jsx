@@ -44,7 +44,7 @@ export class ProfileView extends React.Component {
   }
 
   getUser(token, user) {
-    axios.get(`/zealous-banach-c1d750.netlify.app/${user}`, {
+    axios.get(`itshorrortime.herokuapp.com/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -62,7 +62,7 @@ export class ProfileView extends React.Component {
   }
 
   getMovies(token) {
-    axios.get('/zealous-banach-c1d750.netlify.app/movies', {
+    axios.get('/itshorrortime.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -75,7 +75,7 @@ export class ProfileView extends React.Component {
 
 
   handleDelete(user, token) {
-    axios.delete(`/zealous-banach-c1d750.netlify.app/${user}`,
+    axios.delete(`/itshorrortime.herokuapp.com/${user}`,
       {
         headers: { Authorization: `Bearer ${token}` }
       }).then(() => {
@@ -95,7 +95,7 @@ export class ProfileView extends React.Component {
 
     e.preventDefault();
 
-    axios.put(`/zealous-banach-c1d750.netlify.app/${user} `,
+    axios.put(`/itshorrortime.herokuapp.com/${user} `,
       {
         Username: e.target.username.value,
         Password: e.target.password.value,
@@ -126,7 +126,7 @@ export class ProfileView extends React.Component {
     console.log(movie);
     console.log(token);
 
-    axios.delete(`/zealous-banach-c1d750.netlify.app/users/${user}/movies/${movie}`,
+    axios.delete(`/itshorrortime.herokuapp.com/users/${user}/movies/${movie}`,
       {
         headers: {
           'Authorization': `Bearer ${token} `,
