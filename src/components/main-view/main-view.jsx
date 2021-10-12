@@ -8,7 +8,7 @@ import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { ProfileView } from '../profile-view/profile-view';
 import MoviesList from '../movies-list/movies-list';
-
+import { Config } from '../../config';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 import Menu from '../menu/menu';
@@ -73,11 +73,11 @@ class MainView extends React.Component {
     this.setState({
       user: null
     });
-    window.open('/', '_self');
+    //window.open('/', '_self');
   }
 
   getMovies(token) {
-    axios.get('/itshorrortime.herokuapp.com/movies', {
+    axios.get('https://itshorrortime.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -91,7 +91,7 @@ class MainView extends React.Component {
   }
 
   getUser(token, user) {
-    axios.get(`/itshorrortime.herokuapp.com/users/${user}`, {
+    axios.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -119,13 +119,11 @@ class MainView extends React.Component {
     this.setState({
       update
     });
-    console.log(update)
   }
 
   render() {
     let { movies } = this.props;
     const { user, token, userInfo } = this.state;
-    console.log(movies);
 
     return (
 
@@ -133,7 +131,7 @@ class MainView extends React.Component {
         <Router>
 
 
-          <Menu style={{ width: "100%", margin: "0" }} user={user} logOut={this.onLoggedOut} />
+          {user && <Menu style={{ width: "100%", margin: "0" }} user={user} logOut={this.onLoggedOut} />}
           <br />
 
           <div className="main-view ">

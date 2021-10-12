@@ -25549,6 +25549,7 @@ var _directorView = require("../director-view/director-view");
 var _profileView = require("../profile-view/profile-view");
 var _moviesList = require("../movies-list/movies-list");
 var _moviesListDefault = parcelHelpers.interopDefault(_moviesList);
+var _config = require("../../config");
 var _reactRouterDom = require("react-router-dom");
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
@@ -25605,10 +25606,10 @@ class MainView extends _reactDefault.default.Component {
         this.setState({
             user: null
         });
-        window.open('/', '_self');
+    //window.open('/', '_self');
     }
     getMovies(token) {
-        _axiosDefault.default.get('/itshorrortime.herokuapp.com/movies', {
+        _axiosDefault.default.get('https://itshorrortime.herokuapp.com/movies', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -25620,7 +25621,7 @@ class MainView extends _reactDefault.default.Component {
         });
     }
     getUser(token, user) {
-        _axiosDefault.default.get(`/itshorrortime.herokuapp.com/users/${user}`, {
+        _axiosDefault.default.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -25645,21 +25646,19 @@ class MainView extends _reactDefault.default.Component {
         this.setState({
             update
         });
-        console.log(update);
     }
     render() {
         let { movies  } = this.props;
         const { user , token , userInfo  } = this.state;
-        console.log(movies);
         return(/*#__PURE__*/ _jsxRuntime.jsx(_jsxRuntime.Fragment, {
             children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactRouterDom.BrowserRouter, {
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 133
+                    lineNumber: 131
                 },
                 __self: this,
                 children: [
-                    /*#__PURE__*/ _jsxRuntime.jsx(_menuDefault.default, {
+                    user && /*#__PURE__*/ _jsxRuntime.jsx(_menuDefault.default, {
                         style: {
                             width: "100%",
                             margin: "0"
@@ -25668,14 +25667,14 @@ class MainView extends _reactDefault.default.Component {
                         logOut: this.onLoggedOut,
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 136
+                            lineNumber: 134
                         },
                         __self: this
                     }),
                     /*#__PURE__*/ _jsxRuntime.jsx("br", {
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 137
+                            lineNumber: 135
                         },
                         __self: this
                     }),
@@ -25683,7 +25682,7 @@ class MainView extends _reactDefault.default.Component {
                         className: "main-view ",
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 139
+                            lineNumber: 137
                         },
                         __self: this,
                         children: [
@@ -25705,7 +25704,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 140
+                                    lineNumber: 138
                                 },
                                 __self: this
                             }),
@@ -25722,7 +25721,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 148
+                                    lineNumber: 146
                                 },
                                 __self: this
                             }),
@@ -25749,7 +25748,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 155
+                                    lineNumber: 153
                                 },
                                 __self: this
                             }),
@@ -25776,7 +25775,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 165
+                                    lineNumber: 163
                                 },
                                 __self: this
                             }),
@@ -25802,7 +25801,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 176
+                                    lineNumber: 174
                                 },
                                 __self: this
                             }),
@@ -25832,7 +25831,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 186
+                                    lineNumber: 184
                                 },
                                 __self: this
                             })
@@ -25859,7 +25858,7 @@ exports.default = _reactRedux.connect(mapStateToProps, {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","../registration-view/registration-view":"aP2YV","../login-view/login-view":"054li","../movie-view/movie-view":"ikZdr","../genre-view/genre-view":"8WCoL","../director-view/director-view":"ck15y","../profile-view/profile-view":"2E7Aw","../movies-list/movies-list":"1kGQ5","react-router-dom":"cpyQW","react-bootstrap/Col":"fbam0","../menu/menu":"8ULW8","react-redux":"2L0if","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"iH7OR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7ZIIm"}],"iYoWk":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","../registration-view/registration-view":"aP2YV","../login-view/login-view":"054li","../movie-view/movie-view":"ikZdr","../genre-view/genre-view":"8WCoL","../director-view/director-view":"ck15y","../profile-view/profile-view":"2E7Aw","../movies-list/movies-list":"1kGQ5","react-router-dom":"cpyQW","react-bootstrap/Col":"fbam0","../menu/menu":"8ULW8","react-redux":"2L0if","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"iH7OR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7ZIIm","../../config":"4dfwK"}],"iYoWk":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"3QmO2"}],"3QmO2":[function(require,module,exports) {
@@ -47894,6 +47893,11 @@ $RefreshReg$(_c, "Menu");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","react-router-dom":"cpyQW","react-bootstrap/Container":"2PRIq","react-bootstrap/esm/ThemeProvider":"eeqfi","@parcel/transformer-js/src/esmodule-helpers.js":"iH7OR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7ZIIm"}],"jUTZ8":[function() {},{}]},["irtwj","jhknU","dLPEP"], "dLPEP", "parcelRequirea858")
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","react-router-dom":"cpyQW","react-bootstrap/Container":"2PRIq","react-bootstrap/esm/ThemeProvider":"eeqfi","@parcel/transformer-js/src/esmodule-helpers.js":"iH7OR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7ZIIm"}],"4dfwK":[function(require,module,exports) {
+const Config = {
+    API_URL: "https://zealous-banach-c1d750.netlify.app/"
+};
+
+},{}],"jUTZ8":[function() {},{}]},["irtwj","jhknU","dLPEP"], "dLPEP", "parcelRequirea858")
 
 //# sourceMappingURL=index.6701a6e1.js.map
