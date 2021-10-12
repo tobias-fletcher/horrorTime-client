@@ -62,7 +62,7 @@ export class ProfileView extends React.Component {
   }
 
   getMovies(token) {
-    axios.get('/itshorrortime.herokuapp.com/movies', {
+    axios.get('https://itshorrortime.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -75,7 +75,7 @@ export class ProfileView extends React.Component {
 
 
   handleDelete(user, token) {
-    axios.delete(`/itshorrortime.herokuapp.com/${user}`,
+    axios.delete(`https://itshorrortime.herokuapp.com/${user}`,
       {
         headers: { Authorization: `Bearer ${token}` }
       }).then(() => {
@@ -95,7 +95,7 @@ export class ProfileView extends React.Component {
 
     e.preventDefault();
 
-    axios.put(`/itshorrortime.herokuapp.com/${user} `,
+    axios.put(`https://itshorrortime.herokuapp.com/${user} `,
       {
         Username: e.target.username.value,
         Password: e.target.password.value,
@@ -126,7 +126,7 @@ export class ProfileView extends React.Component {
     console.log(movie);
     console.log(token);
 
-    axios.delete(`/itshorrortime.herokuapp.com/users/${user}/movies/${movie}`,
+    axios.delete(`https://itshorrortime.herokuapp.com/users/${user}/movies/${movie}`,
       {
         headers: {
           'Authorization': `Bearer ${token} `,
