@@ -25858,7 +25858,7 @@ exports.default = _reactRedux.connect(mapStateToProps, {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","../registration-view/registration-view":"aP2YV","../login-view/login-view":"054li","../movie-view/movie-view":"ikZdr","../genre-view/genre-view":"8WCoL","../director-view/director-view":"ck15y","../profile-view/profile-view":"2E7Aw","../movies-list/movies-list":"1kGQ5","react-router-dom":"cpyQW","react-bootstrap/Col":"fbam0","../menu/menu":"8ULW8","react-redux":"2L0if","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"iH7OR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7ZIIm","../../config":"4dfwK"}],"iYoWk":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","../registration-view/registration-view":"aP2YV","../login-view/login-view":"054li","../movie-view/movie-view":"ikZdr","../genre-view/genre-view":"8WCoL","../director-view/director-view":"ck15y","../profile-view/profile-view":"2E7Aw","../movies-list/movies-list":"1kGQ5","../../config":"4dfwK","react-router-dom":"cpyQW","react-bootstrap/Col":"fbam0","../menu/menu":"8ULW8","react-redux":"2L0if","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"iH7OR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7ZIIm"}],"iYoWk":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"3QmO2"}],"3QmO2":[function(require,module,exports) {
@@ -47487,6 +47487,8 @@ var _reactRedux = require("react-redux");
 var _row = require("react-bootstrap/Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
 var _movieCard = require("../movie-card/movie-card");
+var _visibilityFilterInput = require("../visibility-filter-input/visibility-filter-input");
+var _visibilityFilterInputDefault = parcelHelpers.interopDefault(_visibilityFilterInput);
 const mapStateToProps = (state)=>{
     const { visibilityFilter , movies  } = state;
     return {
@@ -47503,7 +47505,7 @@ function MoviesList(props) {
         className: "main-view",
         __source: {
             fileName: "src/components/movies-list/movies-list.jsx",
-            lineNumber: 22
+            lineNumber: 23
         },
         __self: this
     }));
@@ -47511,21 +47513,21 @@ function MoviesList(props) {
         className: "movies-list my-3",
         __source: {
             fileName: "src/components/movies-list/movies-list.jsx",
-            lineNumber: 24
+            lineNumber: 25
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs(_rowDefault.default, {
             __source: {
                 fileName: "src/components/movies-list/movies-list.jsx",
-                lineNumber: 25
+                lineNumber: 26
             },
             __self: this,
             children: [
-                /*#__PURE__*/ _jsxRuntime.jsx("visibilityFilterInput", {
+                /*#__PURE__*/ _jsxRuntime.jsx(_visibilityFilterInputDefault.default, {
                     visibilityFilter: visibilityFilter,
                     __source: {
                         fileName: "src/components/movies-list/movies-list.jsx",
-                        lineNumber: 26
+                        lineNumber: 27
                     },
                     __self: this
                 }),
@@ -47533,7 +47535,7 @@ function MoviesList(props) {
                         movie: m,
                         __source: {
                             fileName: "src/components/movies-list/movies-list.jsx",
-                            lineNumber: 27
+                            lineNumber: 28
                         },
                         __self: this
                     }, m._id)
@@ -47552,7 +47554,7 @@ $RefreshReg$(_c, "MoviesList");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-redux":"2L0if","react-bootstrap/Row":"c0x1x","../movie-card/movie-card":"6EiBJ","@parcel/transformer-js/src/esmodule-helpers.js":"iH7OR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7ZIIm"}],"6EiBJ":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-redux":"2L0if","react-bootstrap/Row":"c0x1x","../movie-card/movie-card":"6EiBJ","@parcel/transformer-js/src/esmodule-helpers.js":"iH7OR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7ZIIm","../visibility-filter-input/visibility-filter-input":"7ZxGS"}],"6EiBJ":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$4249 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47759,7 +47761,53 @@ MovieCard.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","prop-types":"1tgq3","react-bootstrap/Button":"9CzHT","react-bootstrap/Card":"MoOk8","react-helmet":"2mAsw","react-router-dom":"cpyQW","./movie-card.scss":"cF5gT","@parcel/transformer-js/src/esmodule-helpers.js":"iH7OR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7ZIIm"}],"cF5gT":[function() {},{}],"8ULW8":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","prop-types":"1tgq3","react-bootstrap/Button":"9CzHT","react-bootstrap/Card":"MoOk8","react-helmet":"2mAsw","react-router-dom":"cpyQW","./movie-card.scss":"cF5gT","@parcel/transformer-js/src/esmodule-helpers.js":"iH7OR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7ZIIm"}],"cF5gT":[function() {},{}],"7ZxGS":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$9bc3 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$9bc3.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxRuntime = require("react/jsx-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactRedux = require("react-redux");
+var _form = require("react-bootstrap/Form");
+var _formDefault = parcelHelpers.interopDefault(_form);
+var _actions = require("../../actions/actions");
+function VisibilityFilterInput(props) {
+    return(/*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Control, {
+        onChange: (e)=>props.setFilter(e.target.value)
+        ,
+        value: props.visibilityFilter,
+        placeholder: "filter",
+        __source: {
+            fileName: "src/components/visibility-filter-input/visibility-filter-input.jsx",
+            lineNumber: 9
+        },
+        __self: this
+    }));
+}
+_c = VisibilityFilterInput;
+exports.default = _reactRedux.connect(null, {
+    setFilter: _actions.setFilter
+})(VisibilityFilterInput);
+var _c;
+$RefreshReg$(_c, "VisibilityFilterInput");
+
+  $parcel$ReactRefreshHelpers$9bc3.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-redux":"2L0if","react-bootstrap/Form":"5ykgY","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"iH7OR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7ZIIm"}],"4dfwK":[function(require,module,exports) {
+const Config = {
+    API_URL: "https://zealous-banach-c1d750.netlify.app/"
+};
+
+},{}],"8ULW8":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$b158 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47893,11 +47941,6 @@ $RefreshReg$(_c, "Menu");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","react-router-dom":"cpyQW","react-bootstrap/Container":"2PRIq","react-bootstrap/esm/ThemeProvider":"eeqfi","@parcel/transformer-js/src/esmodule-helpers.js":"iH7OR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7ZIIm"}],"4dfwK":[function(require,module,exports) {
-const Config = {
-    API_URL: "https://zealous-banach-c1d750.netlify.app/"
-};
-
-},{}],"jUTZ8":[function() {},{}]},["irtwj","jhknU","dLPEP"], "dLPEP", "parcelRequirea858")
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","react-router-dom":"cpyQW","react-bootstrap/Container":"2PRIq","react-bootstrap/esm/ThemeProvider":"eeqfi","@parcel/transformer-js/src/esmodule-helpers.js":"iH7OR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7ZIIm"}],"jUTZ8":[function() {},{}]},["irtwj","jhknU","dLPEP"], "dLPEP", "parcelRequirea858")
 
 //# sourceMappingURL=index.6701a6e1.js.map
