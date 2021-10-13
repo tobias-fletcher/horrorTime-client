@@ -6,8 +6,8 @@ import Card from 'react-bootstrap/Card';
 import Helmet from "react-helmet";
 import { Link } from 'react-router-dom';
 import './movie-card.scss';
-
-
+import Col from 'react-bootstrap';
+import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 
 export class MovieCard extends React.Component {
 
@@ -93,7 +93,7 @@ export class MovieCard extends React.Component {
             <br />
 
           </Card.Body>
-        </Card>
+        </Card >
         <br />
 
 
