@@ -30,11 +30,7 @@ class MainView extends React.Component {
       token: null,
       userInfo: null
     }
-<<<<<<< HEAD
     this.onLoggedOut = this.onLoggedOut.bind(this)
-=======
-
->>>>>>> main
   }
 
   componentDidMount() {

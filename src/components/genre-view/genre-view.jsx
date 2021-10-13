@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Helmet from "react-helmet";
-import './genre-view.scss';
 
 export class GenreView extends React.Component {
 
