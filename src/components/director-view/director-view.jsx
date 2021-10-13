@@ -1,10 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Helmet from "react-helmet";
 
@@ -32,6 +28,9 @@ export class DirectorView extends React.Component {
             <br />
 
           </Card.Body>
+          <Card.Footer>
+            <Button variant="dark" onClick={() => history.back()}>Back</Button>
+          </Card.Footer>
         </Card>
       </div >
     );
