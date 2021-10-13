@@ -134,12 +134,12 @@ class MainView extends React.Component {
           {user && <Menu style={{ width: "100%", margin: "0" }} user={user} logOut={this.onLoggedOut} />}
           <br />
 
-          <div className="main-view ">
+          <div className="main-view">
             <Route exact path="/" render={() => {
               if (!user) return <Col>
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
               </Col>
-              if (movies.length === 0) return <div className="main-viewr" />;
+              if (movies.length === 0) return <div className="main-view" />;
               return <MoviesList user={user} />;
             }} />
 
