@@ -44,10 +44,9 @@ Profile view, single movie view, and all movies view
 
 
 # Technologies Used 
-* HTML
-* CSS
-* JS
-* jQuery
+* React
+* React Redux
+* Parcel
 * Bootstrap
-
+* hosted on netlify
 
