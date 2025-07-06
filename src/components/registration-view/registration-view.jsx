@@ -31,7 +31,7 @@ export function RegistrationView(props) {
       e.stopPropagation();
     }
     e.preventDefault();
-    axios.post('https://itshorrortime.herokuapp.com/users', {
+    axios.post('https://horror-time.onrender.com/users', {
       Username: username,
       Password: password,
       Email: email,
