@@ -74,7 +74,7 @@ class MainView extends React.Component {
   }
 
   getMovies(token) {
-    axios.get('https://itshorrortime.herokuapp.com/movies', {
+    axios.get('https://horror-time.onrender.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -88,7 +88,7 @@ class MainView extends React.Component {
   }
 
   getUser(token, user) {
-    axios.get(`https://itshorrortime.herokuapp.com/users/${user}`, {
+    axios.get(`https://horror-time.onrender.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
