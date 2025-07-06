@@ -46,7 +46,7 @@ export class MovieCard extends React.Component {
     console.log(user.user);
     console.log(user.token);
 
-    axios.post(`https://itshorrortime.herokuapp.com/users/${user.user}/movies/${this.props.movie._id}`, {
+    axios.post(`https://horror-time.onrender.com/users/${user.user}/movies/${this.props.movie._id}`, {
     },
       {
         headers: {
