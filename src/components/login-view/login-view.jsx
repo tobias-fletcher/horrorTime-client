@@ -26,7 +26,7 @@ export function LoginView(props) {
       e.stopPropagation();
     }
     e.preventDefault();
-    axios.post(' https://itshorrortime.herokuapp.com/login', {
+    axios.post('https://horror-time.onrender.com/login', {
       Username: username,
       Password: password
     }).then(response => {
